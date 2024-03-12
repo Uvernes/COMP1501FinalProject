@@ -1,12 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://bmd12xdmd8v0x"]
+[gd_scene load_steps=4 format=3 uid="uid://bur4lc3pjbfbc"]
 
 [ext_resource type="PackedScene" uid="uid://beund7unw4rx4" path="res://Scenes/Player/Player.tscn" id="1_hc2s1"]
 [ext_resource type="PackedScene" uid="uid://7lgbxm51b76s" path="res://Scenes/WorldMap/RoughWorkTileMap.tscn" id="2_1r5h2"]
+[ext_resource type="PackedScene" uid="uid://cbej05v14rtms" path="res://Scenes/Enemy/Enemy.tscn" id="3_ls103"]
 
-[node name="ExampleLevel1" type="Node2D"]
+[node name="ExampleLevelWithEnemy" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_hc2s1")]
 position = Vector2(131, 68)
 
 [node name="RoughWorkTileMap" parent="." instance=ExtResource("2_1r5h2")]
 position = Vector2(469, 133)
+
+[node name="Enemy" parent="." instance=ExtResource("3_ls103")]

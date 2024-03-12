@@ -4,6 +4,9 @@ extends CharacterBody2D
 const speed = 300.0
 #const decrease_speed_factor = 10
 
+func _ready():
+	position = Vector2(0,0)
+
 
 
 func _physics_process(delta):
