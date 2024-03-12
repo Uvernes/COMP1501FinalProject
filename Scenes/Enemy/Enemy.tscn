@@ -4,14 +4,21 @@
 [ext_resource type="Texture2D" uid="uid://doylxy08g5a0d" path="res://Assets/red.png" id="1_h7knj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ln52u"]
-radius = 28.0
-height = 56.0
+radius = 17.0
+height = 38.0
 
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_2m10n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_ln52u")
+metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.78125, 0.78125)
 texture = ExtResource("1_h7knj")
+metadata/_edit_group_ = true
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
