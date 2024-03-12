@@ -5,11 +5,11 @@ const SPEED = 100
 const homebase_pos = Vector2(0,0)
 const distance_to_see_player = 300
 const attack_range = 70
-const health = 4 #unused right now
+var health = 4
 const damage = 2 #unused right now
 
 func _ready():
-	position = Vector2(500, 500)
+	#position = Vector2(500, 500)
 	$AttackTimer.start()
 
 
@@ -26,7 +26,10 @@ func _physics_process(delta):
 			print("Enemy is attacking") #temporary
 			$AttackTimer.start()
 			
-			
+func _take_damage(amount):
+	health = health - amount
+	if (health <= 0):
+		queue_free()
 		
 	
 	
