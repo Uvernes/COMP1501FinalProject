@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bur4lc3pjbfbc"]
+[gd_scene load_steps=6 format=3 uid="uid://bur4lc3pjbfbc"]
 
 [ext_resource type="Script" path="res://Prototyping/PrototypeGame.gd" id="1_rgqgc"]
 [ext_resource type="PackedScene" uid="uid://cbej05v14rtms" path="res://Scenes/Enemy/Enemy.tscn" id="2_t6k24"]
 [ext_resource type="PackedScene" uid="uid://beund7unw4rx4" path="res://Scenes/Player/Player.tscn" id="3_ikerl"]
-[ext_resource type="PackedScene" uid="uid://npbjmbt4um60" path="res://Scenes/HUD/HUD.tscn" id="3_wqtu2"]
 [ext_resource type="PackedScene" uid="uid://7lgbxm51b76s" path="res://Scenes/WorldMap/RoughWorkTileMap.tscn" id="4_okh0x"]
 
 [sub_resource type="Curve2D" id="Curve2D_676rq"]
@@ -15,8 +14,6 @@ point_count = 5
 [node name="ExampleLevelWithEnemy" type="Node2D"]
 script = ExtResource("1_rgqgc")
 enemy_scene = ExtResource("2_t6k24")
-
-[node name="Hud" parent="." instance=ExtResource("3_wqtu2")]
 
 [node name="Player" parent="." instance=ExtResource("3_ikerl")]
 position = Vector2(131, 68)

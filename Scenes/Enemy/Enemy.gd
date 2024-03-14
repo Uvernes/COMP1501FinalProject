@@ -15,6 +15,7 @@ func _ready():
 
 func _physics_process(delta):
 	var player_pos = get_parent().get_node("Player").position
+	# Movement towards the player or to "Homebase"
 	if (player_pos - position).length() > distance_to_see_player:
 		position = position.move_toward(homebase_pos, delta * SPEED)
 	else:
@@ -23,9 +24,10 @@ func _physics_process(delta):
 	if ($AttackTimer.time_left == 0):
 		if (player_pos - position).length() <= attack_range:
 			#send signal to player that the enemey is attacking and how much damage it does?
-			print("Enemy is attacking") #temporary
+			GlobalSingleton.take_damage(damage)
 			$AttackTimer.start()
 			
+# Damage of the enemy.
 func _take_damage(amount):
 	health = health - amount
 	if (health <= 0):

@@ -7,8 +7,6 @@ const speed = 300.0
 func _ready():
 	position = Vector2(0,0)
 
-
-
 func _physics_process(delta):
 	velocity = Vector2.ZERO
 	#if velocity.length() > 10:
@@ -33,3 +31,4 @@ func _physics_process(delta):
 		#$AnimatedSprite2D.stop()
 
 	move_and_slide()
+
