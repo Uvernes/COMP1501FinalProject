@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnpk6ul0cvh8u"]
+
+[ext_resource type="Texture2D" uid="uid://dfhlv3tft3tux" path="res://Assets/spit_bullet.png" id="1_idki5"]
+[ext_resource type="Script" path="res://Scenes/Player/Bullet/bullet.gd" id="1_ullke"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ugbv4"]
+size = Vector2(32, 12)
+
+[node name="Bullet" type="CharacterBody2D" groups=["player_projectile"]]
+collision_layer = 2
+script = ExtResource("1_ullke")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ugbv4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(2, 2)
+texture = ExtResource("1_idki5")
