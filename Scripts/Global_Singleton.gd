@@ -6,7 +6,7 @@ var population = 0;
 signal health_changed(new_health)
 signal population_changed(new_population)
 
-func take_damage(amount):
+func deal_damage(amount):
 	health -= amount
 	if health < 0:
 		health = 0

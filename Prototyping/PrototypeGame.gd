@@ -9,7 +9,7 @@ const min_distance_from_player = 200
 func _ready():
 	$EnemySpawnTimer.start()
 	
-func _process(delta):
+func _process(_delta):
 	if($EnemySpawnTimer.time_left == 0):
 		
 		var enemy_spawn_location = $EnemyPath/EnemySpawnLocation
