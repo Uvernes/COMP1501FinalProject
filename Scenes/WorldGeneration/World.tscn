@@ -1,0 +1,27 @@
+[gd_scene load_steps=7 format=3 uid="uid://c2npfte3awq2m"]
+
+[ext_resource type="Script" path="res://Scenes/WorldGeneration/World.gd" id="1_p2g32"]
+[ext_resource type="TileSet" uid="uid://cdts6lkln0xio" path="res://Scenes/WorldMap/RoughWorkTileMap.tres" id="2_dwnei"]
+[ext_resource type="PackedScene" uid="uid://beund7unw4rx4" path="res://Scenes/Player/Player.tscn" id="3_lroji"]
+
+[sub_resource type="Gradient" id="Gradient_6l4b7"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.148867)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_657r5"]
+noise_type = 2
+frequency = 0.05
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5k3jp"]
+color_ramp = SubResource("Gradient_6l4b7")
+noise = SubResource("FastNoiseLite_657r5")
+
+[node name="world" type="Node2D"]
+script = ExtResource("1_p2g32")
+noise_height_text = SubResource("NoiseTexture2D_5k3jp")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("2_dwnei")
+format = 2
+
+[node name="Player" parent="." instance=ExtResource("3_lroji")]
