@@ -17,7 +17,7 @@ config/icon="res://Assets/icon.svg"
 
 [autoload]
 
-GlobalSingleton="*res://Scripts/Global_Singleton.gd"
+GlobalSingleton="res://Scripts/Global_Singleton.gd"
 
 [input]
 

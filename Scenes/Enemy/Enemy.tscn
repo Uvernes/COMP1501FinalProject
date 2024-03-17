@@ -7,19 +7,20 @@
 radius = 17.0
 height = 38.0
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
+collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_2m10n")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Enemy"]]
 shape = SubResource("CapsuleShape2D_ln52u")
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["Enemy"]]
 scale = Vector2(0.78125, 0.78125)
 texture = ExtResource("1_h7knj")
 metadata/_edit_group_ = true
 
-[node name="AttackTimer" type="Timer" parent="."]
+[node name="AttackTimer" type="Timer" parent="." groups=["Enemy"]]
 wait_time = 2.0
 one_shot = true

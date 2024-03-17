@@ -8,6 +8,7 @@ size = Vector2(32, 12)
 
 [node name="Bullet" type="CharacterBody2D" groups=["player_projectile"]]
 collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_ullke")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

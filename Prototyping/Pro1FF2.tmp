@@ -33,6 +33,3 @@ position = Vector2(-392, -384)
 [node name="EnemySpawnTimer" type="Timer" parent="."]
 wait_time = 6.0
 one_shot = true
-
-[connection signal="health_changed" from="Player" to="Hud" method="_on_player_health_changed"]
-[connection signal="ready" from="Player" to="Hud" method="_on_player_ready"]

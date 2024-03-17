@@ -1,11 +1,13 @@
 [gd_scene load_steps=2 format=3 uid="uid://npbjmbt4um60"]
 
-[ext_resource type="Script" path="res://Scenes/HUD/Health.gd" id="1_mdamh"]
+[ext_resource type="Script" path="res://Scenes/HUD/HUD.gd" id="1_niqmd"]
 
-[node name="Hud" type="CanvasLayer"]
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_niqmd")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
+anchors_preset = 0
 offset_right = 1152.0
 offset_bottom = 648.0
 grow_horizontal = 2
@@ -25,5 +27,6 @@ offset_left = 15.0
 offset_top = 607.0
 offset_right = 233.0
 offset_bottom = 634.0
+step = 1.0
 value = 100.0
-script = ExtResource("1_mdamh")
+show_percentage = false
