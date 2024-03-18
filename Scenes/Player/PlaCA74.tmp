@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_88ct0"]
 [ext_resource type="Texture2D" uid="uid://bmob6rl87bciu" path="res://Assets/icon.svg" id="1_u1tom"]
-[ext_resource type="PackedScene" uid="uid://cnpk6ul0cvh8u" path="res://Scenes/Bullet/bullet.tscn" id="2_tj8lh"]
+[ext_resource type="PackedScene" uid="uid://cnpk6ul0cvh8u" path="res://Scenes/Player/Bullet/bullet.tscn" id="2_hb70m"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2af3w"]
 radius = 25.0
@@ -10,7 +10,7 @@ height = 64.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_88ct0")
-bullet_scene = ExtResource("2_tj8lh")
+bullet_scene = ExtResource("2_hb70m")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

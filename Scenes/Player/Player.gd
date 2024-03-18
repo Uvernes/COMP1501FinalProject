@@ -3,6 +3,11 @@ extends CharacterBody2D
 
 signal health_changed(new_health: int)
 
+ # Player signals that they want to build. Indirect rather than direct call
+# as there is lots of logic game controller handles (e.g cost to build, etc.)
+# For now. Simplified and tile map just picks it up.
+signal build_requested(global_mouse_pos: Vector2) 
+
 # Stats - can be upgraded over time
 var max_health = 10
 var speed = 300
@@ -17,7 +22,7 @@ var cur_health
 const max_bullet_count = 3
 # make a scene to be used for Bullet creation
 @export var bullet_scene: PackedScene
-const Bullet = preload("res://Scenes/Player/Bullet/bullet.gd"); # For type annotation
+const Bullet = preload("res://Scenes/Bullet/bullet.gd") # For type annotation
 
 func _ready():
 	position = Vector2(0,0)
@@ -56,6 +61,10 @@ func _physics_process(_delta):
 	# check if player left clicked
 	if Input.is_action_just_pressed("attack"):
 		shoot()
+		
+	# TODO - incorporate more logic
+	if Input.is_action_just_released("RMB"):
+		build()
 
 # Method for recieving damage
 func hit(amount):
@@ -81,3 +90,7 @@ func shoot():
 		var bullet_direction = (get_global_mouse_position() - position).normalized()
 		bullet.init(position, rotation, bullet_speed, bullet_direction, bullet_damage)
 		bullet.fire()
+
+func build():
+	build_requested.emit(get_global_mouse_position())
+	

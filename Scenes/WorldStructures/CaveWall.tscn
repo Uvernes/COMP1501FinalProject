@@ -6,15 +6,20 @@ size = Vector2(64, 64)
 [node name="CaveWall" type="StaticBody2D"]
 collision_mask = 3
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wttac")
+
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -32.0
 offset_top = -32.0
 offset_right = 32.0
 offset_bottom = 32.0
-color = Color(0, 0, 0, 1)
 metadata/_edit_use_anchors_ = true
-metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_wttac")
-metadata/_edit_lock_ = true
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = -31.0
+offset_top = -31.0
+offset_right = 9.0
+offset_bottom = 9.0
+scale = Vector2(1.55008, 1.55008)
+color = Color(0, 0, 0, 1)

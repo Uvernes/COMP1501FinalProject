@@ -1,10 +1,11 @@
-[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://cdts6lkln0xio"]
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://byrdsnd3rf0iv"]
 
-[ext_resource type="Texture2D" uid="uid://dts1vnk2d4y8q" path="res://Assets/TileSets/kenney_abstract-platformer/Tilesheet/tilesheet_complete.png" id="1_w0lsg"]
-[ext_resource type="PackedScene" uid="uid://ct5lgyoushw53" path="res://Scenes/WorldStructures/CaveWall.tscn" id="2_4tyih"]
+[ext_resource type="Texture2D" uid="uid://dts1vnk2d4y8q" path="res://Assets/TileSets/kenney_abstract-platformer/Tilesheet/tilesheet_complete.png" id="1_x8qc8"]
+[ext_resource type="PackedScene" uid="uid://ct5lgyoushw53" path="res://Scenes/WorldStructures/CaveWall.tscn" id="2_ocltl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gfvvb"]
-texture = ExtResource("1_w0lsg")
+texture = ExtResource("1_x8qc8")
+separation = Vector2i(10, 0)
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 1:0/0 = 0
@@ -272,7 +273,7 @@ texture_region_size = Vector2i(64, 64)
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_wm6yl"]
 resource_name = "WorldStructures"
-scenes/1/scene = ExtResource("2_4tyih")
+scenes/1/scene = ExtResource("2_ocltl")
 
 [resource]
 tile_size = Vector2i(64, 64)

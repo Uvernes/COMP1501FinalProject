@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b4qbtrpv7rxhe"]
 
 [ext_resource type="PackedScene" uid="uid://beund7unw4rx4" path="res://Scenes/Player/Player.tscn" id="1_g3d7p"]
-[ext_resource type="PackedScene" uid="uid://7lgbxm51b76s" path="res://Scenes/WorldMap/RoughWorkTileMap.tscn" id="2_6h2dq"]
+[ext_resource type="PackedScene" uid="uid://7lgbxm51b76s" path="res://Scenes/WorldMap/ExampleTileMap.tscn" id="2_6h2dq"]
 
 [node name="ExampleLevel1" type="Node2D"]
 

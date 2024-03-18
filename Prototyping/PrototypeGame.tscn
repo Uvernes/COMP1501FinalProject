@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cbej05v14rtms" path="res://Scenes/Enemy/Enemy.tscn" id="2_t6k24"]
 [ext_resource type="PackedScene" uid="uid://beund7unw4rx4" path="res://Scenes/Player/Player.tscn" id="3_ikerl"]
 [ext_resource type="PackedScene" uid="uid://npbjmbt4um60" path="res://Scenes/HUD/HUD.tscn" id="3_wqtu2"]
-[ext_resource type="PackedScene" uid="uid://7lgbxm51b76s" path="res://Scenes/WorldMap/RoughWorkTileMap.tscn" id="4_okh0x"]
+[ext_resource type="PackedScene" uid="uid://7lgbxm51b76s" path="res://Scenes/WorldMap/ExampleTileMap.tscn" id="4_okh0x"]
 
 [sub_resource type="Curve2D" id="Curve2D_676rq"]
 _data = {
@@ -34,5 +34,6 @@ position = Vector2(-392, -384)
 wait_time = 6.0
 one_shot = true
 
+[connection signal="build_requested" from="Player" to="RoughWorkTileMap" method="_on_player_build_requested"]
 [connection signal="health_changed" from="Player" to="Hud" method="_on_player_health_changed"]
 [connection signal="ready" from="Player" to="Hud" method="_on_player_ready"]
