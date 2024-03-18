@@ -31,7 +31,7 @@ curve = SubResource("Curve2D_676rq")
 position = Vector2(-392, -384)
 
 [node name="EnemySpawnTimer" type="Timer" parent="."]
-wait_time = 6.0
+wait_time = 2.0
 one_shot = true
 
 [connection signal="build_requested" from="Player" to="RoughWorkTileMap" method="_on_player_build_requested"]
