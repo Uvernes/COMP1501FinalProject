@@ -42,11 +42,12 @@ func _physics_process(delta):
 	
 func update_hover_tile(new_hover_tile_coords):
 	# Remove old hover tile (if not null, i.e none yet)
-	if cur_hover_tile_coords:
+	if cur_hover_tile_coords != null:
 		# -1 source_id (3rd argument) means to erase the tile at tile_coords on layer 2
 		set_cell(2, cur_hover_tile_coords, -1)  
 	# Set new hover tile
-	set_cell(2, new_hover_tile_coords, hover_tile_source_id, hover_tile_atlas_coords)
+	print(new_hover_tile_coords)
+	set_cell(2, new_hover_tile_coords, hover_tile_source_id, hover_tile_atlas_coords, 0)
 	cur_hover_tile_coords = new_hover_tile_coords  # Update current hover tile coords
 
 func _on_player_build_requested(global_mouse_pos):
