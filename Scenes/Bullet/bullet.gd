@@ -53,6 +53,8 @@ func handle_collision(collision: KinematicCollision2D):
 	print("Hit!")
 	if collider.is_in_group("Enemy"):
 		collider.hit(damage)
+	# Delete bullet if it collides with anything that is not the player
+	if not collider.is_in_group("Player"):
 		queue_free()
 		
 

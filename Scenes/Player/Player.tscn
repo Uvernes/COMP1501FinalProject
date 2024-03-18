@@ -8,19 +8,19 @@
 radius = 25.0
 height = 64.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_88ct0")
 bullet_scene = ExtResource("2_tj8lh")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." groups=["Player"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Player"]]
 shape = SubResource("CapsuleShape2D_2af3w")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["Player"]]
 position = Vector2(0, -1)
 rotation = 1.5708
 scale = Vector2(0.460938, 0.453125)
 texture = ExtResource("1_u1tom")
 
-[node name="Bullet_Storage" type="Node" parent="."]
+[node name="Bullet_Storage" type="Node" parent="." groups=["Player"]]
