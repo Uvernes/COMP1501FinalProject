@@ -2,11 +2,15 @@ extends CharacterBody2D
 
 
 signal health_changed(new_health: int)
+signal mode_changed(new_mode: int)
 
  # Player signals that they want to build. Indirect rather than direct call
 # as there is lots of logic game controller handles (e.g cost to build, etc.)
 # For now. Simplified and tile map just picks it up.
-signal build_requested(global_mouse_pos: Vector2) 
+signal build_requested(global_mouse_pos: Vector2)
+ 
+# Enum for what mode the player is currently in
+enum mode { MELEE, SHOOT, DELETE, BUILD }
 
 # Stats - can be upgraded over time
 var max_health = 10
@@ -16,8 +20,7 @@ var bullet_damage = 1
 
 # Current values
 var cur_health
-
-#const decrease_speed_factor = 10
+var cur_mode  # Current mode player is in (e.g Build mode)
 
 const max_bullet_count = 3
 # make a scene to be used for Bullet creation
@@ -27,9 +30,18 @@ const Bullet = preload("res://Scenes/Bullet/bullet.gd") # For type annotation
 func _ready():
 	position = Vector2(0,0)
 	cur_health = max_health
+	
+	# Starting, default mode is melee
+	cur_mode = mode.MELEE
 
-#func _process(_delta):
-	 # .set_rot(get_angle_to(...))
+
+func _process(_delta):
+	_update_mode()
+		
+	# handle left mouse click
+	if Input.is_action_just_pressed("LMB"):
+		_handle_left_mouse_click()
+		
 
 func _physics_process(_delta):
 	look_at(get_global_mouse_position())
@@ -57,14 +69,31 @@ func _physics_process(_delta):
 
 	move_and_slide()
 	
-	# handle player attack (ranged)
-	# check if player left clicked
-	if Input.is_action_just_pressed("attack"):
-		shoot()
+func _update_mode():
+	# Check if mode changed
+	var mode_has_changed = false
+	if Input.is_action_just_pressed("MWU"):
+		cur_mode += 1
+		mode_has_changed = true
+	if Input.is_action_just_pressed("MWD"):
+		cur_mode -= 1
+		mode_has_changed = true
+	# Wrap around if scrolled past end / beginnning
+	if cur_mode < 0:
+		cur_mode = mode.size() - 1 # Wrap around
+	elif cur_mode >= mode.size():
+		cur_mode = 0
+	if mode_has_changed:
+		mode_changed.emit(cur_mode)
 		
-	# TODO - incorporate more logic
-	if Input.is_action_just_released("RMB"):
+	
+func _handle_left_mouse_click():
+	if cur_mode == mode.SHOOT:
+		shoot()
+	elif cur_mode == mode.BUILD:
 		build()
+	# TODO. Other mode logic
+	
 
 # Method for recieving damage
 func hit(amount):
