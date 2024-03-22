@@ -14,9 +14,14 @@ enum mode { MELEE, SHOOT, DELETE, BUILD }
 
 # Stats - can be upgraded over time
 var max_health = 10
-var speed = 300
 var bullet_speed = 600
 var bullet_damage = 1
+
+const max_speed = 300
+const accel = 1500
+const friction = 600
+# Represents direction to go into
+var direction = Vector2.ZERO
 
 # Current values
 var cur_health
@@ -26,6 +31,7 @@ const max_bullet_count = 3
 # make a scene to be used for Bullet creation
 @export var bullet_scene: PackedScene
 const Bullet = preload("res://Scenes/Bullet/bullet.gd") # For type annotation
+
 
 func _ready():
 	position = Vector2(0,0)
@@ -42,33 +48,31 @@ func _process(_delta):
 	if Input.is_action_just_pressed("LMB"):
 		_handle_left_mouse_click()
 		
-
-func _physics_process(_delta):
+func _physics_process(delta):
 	look_at(get_global_mouse_position())
-	velocity = Vector2.ZERO
-	#if velocity.length() > 10:
-		#velocity = velocity / decrease_speed_factor
-	
-	#else:
-	#	velocity = Vector2.ZERO
-	#print(velocity)
-	if Input.is_action_pressed("move_right"):
-		velocity.x += 1
-	if Input.is_action_pressed("move_left"):
-		velocity.x -= 1
-	if Input.is_action_pressed("move_down"):
-		velocity.y += 1
-	if Input.is_action_pressed("move_up"):
-		velocity.y -= 1
-	
-	if velocity.length() > 0:
-		velocity = velocity.normalized() * speed
-		#$AnimatedSprite2D.play()
-	#else:
-		#$AnimatedSprite2D.stop()
+	player_movement(delta)
 
-	move_and_slide()
+# get updated direction value for player
+func get_direction():
+	direction.x = int(Input.is_action_pressed("move_right")) - int(Input.is_action_pressed("move_left"))
+	direction.y = int(Input.is_action_pressed("move_down")) - int(Input.is_action_pressed("move_up"))
+	return direction.normalized()
+
+# handles player movement
+func player_movement(delta):
+	direction = get_direction()
 	
+	if direction == Vector2.ZERO:
+		if velocity.length() > (friction * delta):
+			velocity -= velocity.normalized() * (friction * delta)
+		else:
+			velocity = Vector2.ZERO
+	else:
+		velocity += (direction * accel * delta)
+		velocity = velocity.limit_length(max_speed)
+		
+	move_and_slide()
+
 func _update_mode():
 	# Check if mode changed
 	var mode_has_changed = false
@@ -93,7 +97,6 @@ func _handle_left_mouse_click():
 	elif cur_mode == mode.BUILD:
 		build()
 	# TODO. Other mode logic
-	
 
 # Method for recieving damage
 func hit(amount):
