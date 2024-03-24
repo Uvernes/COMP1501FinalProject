@@ -35,3 +35,15 @@ func _on_player_mode_changed(new_mode):
 	# Add background for the selected mode
 	hotBarItems[new_mode].get_node("Background").show()
 
+func update_resource(type, new_amount):
+	if type == "dirt":
+		$ResourceDisplay/Dirt/Label.text = "Dirt: " + str(new_amount)
+	elif type == "stone":
+		$ResourceDisplay/Stone/Label.text = "Stone: " + str(new_amount)
+	elif type == "leaves":
+		$ResourceDisplay/Leaves/Label.text = "Leaves: " + str(new_amount)
+	elif type == "wood":
+		$ResourceDisplay/Wood/Label.text = "Wood: " + str(new_amount)
+	else:
+		# only other possibility (note: could make storage node for multiple checks)
+		$ResourceDisplay/Mobdrops/Label.text = "Mobdrops: " + str(new_amount)

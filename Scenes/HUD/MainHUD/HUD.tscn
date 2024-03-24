@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://npbjmbt4um60"]
+[gd_scene load_steps=9 format=3 uid="uid://npbjmbt4um60"]
 
 [ext_resource type="Script" path="res://Scenes/HUD/MainHUD/HUD.gd" id="1_niqmd"]
 
@@ -7,6 +7,33 @@ bg_color = Color(0.443137, 0.223529, 0.196078, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4qknp"]
 bg_color = Color(0.862745, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_lywem"]
+line_spacing = 0.0
+font_size = 18
+font_color = Color(0.615686, 0.435294, 0.0980392, 1)
+outline_size = 1
+outline_color = Color(0.172549, 0.172549, 0.172549, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jifqf"]
+line_spacing = 0.0
+font_size = 18
+font_color = Color(0.466667, 0.466667, 0.466667, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1yaxf"]
+line_spacing = 0.0
+font_size = 18
+font_color = Color(0.203922, 0.576471, 0.356863, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_c6w1b"]
+line_spacing = 0.0
+font_size = 18
+font_color = Color(0.54902, 0.317647, 0.0666667, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_j2epg"]
+line_spacing = 0.0
+font_size = 18
+font_color = Color(0.756863, 0.176471, 0.196078, 1)
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_niqmd")
@@ -225,3 +252,131 @@ offset_top = 227.0
 offset_right = 1127.0
 offset_bottom = 250.0
 text = "TORCH"
+
+[node name="ResourceDisplay" type="BoxContainer" parent="."]
+clip_contents = true
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 175.0
+offset_bottom = 165.0
+vertical = true
+
+[node name="Dirt" type="Control" parent="ResourceDisplay"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="ResourceDisplay/Dirt"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.360784, 0.168627, 0.12549, 1)
+
+[node name="Label" type="Label" parent="ResourceDisplay/Dirt"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Dirt: 0"
+label_settings = SubResource("LabelSettings_lywem")
+horizontal_alignment = 1
+
+[node name="Stone" type="Control" parent="ResourceDisplay"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="ResourceDisplay/Stone"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.360784, 0.168627, 0.12549, 1)
+
+[node name="Label" type="Label" parent="ResourceDisplay/Stone"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Stone: 0"
+label_settings = SubResource("LabelSettings_jifqf")
+horizontal_alignment = 1
+
+[node name="Leaves" type="Control" parent="ResourceDisplay"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="ResourceDisplay/Leaves"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.360784, 0.168627, 0.12549, 1)
+
+[node name="Label" type="Label" parent="ResourceDisplay/Leaves"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Leaves: 0"
+label_settings = SubResource("LabelSettings_1yaxf")
+horizontal_alignment = 1
+
+[node name="Wood" type="Control" parent="ResourceDisplay"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="ResourceDisplay/Wood"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.360784, 0.168627, 0.12549, 1)
+
+[node name="Label" type="Label" parent="ResourceDisplay/Wood"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Wood: 0"
+label_settings = SubResource("LabelSettings_c6w1b")
+horizontal_alignment = 1
+
+[node name="Mobdrops" type="Control" parent="ResourceDisplay"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="ResourceDisplay/Mobdrops"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.360784, 0.168627, 0.12549, 1)
+
+[node name="Label" type="Label" parent="ResourceDisplay/Mobdrops"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Mobdrops: 0"
+label_settings = SubResource("LabelSettings_j2epg")
+horizontal_alignment = 1
