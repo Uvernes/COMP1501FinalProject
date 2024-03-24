@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjdqvr0d6xkj3"]
+
+[ext_resource type="Script" path="res://Scenes/ResourceSpawners/dirt_spawner.gd" id="1_p26j0"]
+[ext_resource type="PackedScene" uid="uid://b6imdyagxnjg7" path="res://Scenes/Resources/resource.tscn" id="2_ujj8b"]
+
+[node name="DirtSpawner" type="Node2D"]
+position = Vector2(1, 0)
+script = ExtResource("1_p26j0")
+resource_scene = ExtResource("2_ujj8b")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 60.0
+one_shot = true
+
+[connection signal="child_exiting_tree" from="." to="." method="_on_child_exiting_tree"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
