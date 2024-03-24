@@ -26,12 +26,16 @@ func _physics_process(delta):
 			velocity += ((player.position - position).normalized() * accel * delta)
 		velocity = velocity.limit_length(MAX_SPEED)
 		move_and_slide()
+	for i in get_slide_collision_count():
+		handle_collision(get_slide_collision(i))
 
 # Method for recieving damage
 func take_damage(amount):
-	health = health - amount
-	if (health <= 0):
-		queue_free()
+	if $TakeDamageTimer.time_left == 0:
+		health = health - amount
+		$TakeDamageTimer.start()
+		if (health <= 0):
+			queue_free()
 
 # handle enemy attack when possible
 func _on_attack_timer_timeout():
@@ -45,3 +49,8 @@ func _on_attack_timer_timeout():
 		# after timer, make everything resume
 		moving = true
 	$AttackTimer.start()
+
+func handle_collision(collision: KinematicCollision2D):
+	var collider = collision.get_collider()
+	if collider.name == "Head":
+		take_damage(collider.get_melee_damage())

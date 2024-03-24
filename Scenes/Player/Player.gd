@@ -54,6 +54,8 @@ func _process(_delta):
 	# handle left mouse click
 	if Input.is_action_just_pressed("LMB"):
 		_handle_left_mouse_click()
+	if Input.is_action_just_pressed("RMB"):
+		_handle_right_mouse_click()
 
 func _physics_process(delta):
 	look_at(get_global_mouse_position())
@@ -105,6 +107,10 @@ func _handle_left_mouse_click():
 	elif cur_mode == mode.BUILD:
 		build()
 	# TODO. Other mode logic
+
+func _handle_right_mouse_click():
+	if cur_mode == mode.MELEE:
+		$Head.start_attack()
 
 # Method for recieving damage
 func hit(amount):

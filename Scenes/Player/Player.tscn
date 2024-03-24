@@ -1,13 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://beund7unw4rx4"]
+[gd_scene load_steps=9 format=3 uid="uid://beund7unw4rx4"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_88ct0"]
 [ext_resource type="PackedScene" uid="uid://cnpk6ul0cvh8u" path="res://Scenes/Bullet/bullet.tscn" id="2_tj8lh"]
 [ext_resource type="Texture2D" uid="uid://ccpfp8st1r1uk" path="res://Assets/ants/front.png" id="3_7w88q"]
 [ext_resource type="Texture2D" uid="uid://cecwh4twkhrw5" path="res://Assets/light_tpbg_white.png" id="4_4ynsi"]
+[ext_resource type="Script" path="res://Scenes/Player/Head.gd" id="5_jbtl3"]
+[ext_resource type="Texture2D" uid="uid://brgnkoxbceqc" path="res://Assets/ants/anthead.png" id="5_v00cx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2af3w"]
-radius = 25.0
-height = 64.0
+radius = 15.0
+height = 50.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6qbbr"]
+size = Vector2(8, 10)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 2
@@ -16,11 +21,11 @@ bullet_scene = ExtResource("2_tj8lh")
 
 [node name="Camera2D" type="Camera2D" parent="." groups=["Player"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Player"]]
+[node name="BodyHitBox" type="CollisionShape2D" parent="." groups=["Player"]]
+rotation = 1.5708
 shape = SubResource("CapsuleShape2D_2af3w")
 
 [node name="Sprite2D" type="Sprite2D" parent="." groups=["Player"]]
-position = Vector2(0, -1)
 rotation = 1.5708
 scale = Vector2(0.460938, 0.453125)
 texture = ExtResource("3_7w88q")
@@ -37,4 +42,28 @@ texture_scale = 5.0
 
 [node name="StaminaTimer" type="Timer" parent="."]
 
+[node name="Head" type="CharacterBody2D" parent="."]
+position = Vector2(18, 0)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("5_jbtl3")
+
+[node name="HeadHitBox" type="CollisionShape2D" parent="Head"]
+position = Vector2(6, 0)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_6qbbr")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Head"]
+position = Vector2(2, -1)
+rotation = 1.5708
+scale = Vector2(0.466941, 0.431098)
+texture = ExtResource("5_v00cx")
+metadata/_edit_group_ = true
+
+[node name="AttackTimer" type="Timer" parent="Head"]
+wait_time = 0.2
+one_shot = true
+
 [connection signal="timeout" from="StaminaTimer" to="." method="_on_stamina_timer_timeout"]
+[connection signal="timeout" from="Head/AttackTimer" to="Head" method="_on_attack_timer_timeout"]

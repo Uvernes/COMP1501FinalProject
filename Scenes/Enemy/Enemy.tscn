@@ -24,4 +24,7 @@ metadata/_edit_group_ = true
 wait_time = 2.0
 one_shot = true
 
+[node name="TakeDamageTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
