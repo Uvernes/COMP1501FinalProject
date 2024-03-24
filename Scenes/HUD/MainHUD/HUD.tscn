@@ -12,9 +12,9 @@ bg_color = Color(0.862745, 0, 0, 1)
 script = ExtResource("1_niqmd")
 
 [node name="StaminaBar" type="ProgressBar" parent="."]
-offset_left = 16.0
+offset_left = 17.0
 offset_top = 586.0
-offset_right = 234.0
+offset_right = 235.0
 offset_bottom = 613.0
 scale = Vector2(1, 0.560001)
 theme_override_styles/background = SubResource("StyleBoxFlat_p7254")
