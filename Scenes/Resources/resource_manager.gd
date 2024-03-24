@@ -7,7 +7,7 @@ var wood_amount = 0
 
 var mobdrops_amount = 0
 
-func resource_picked_up(type):
+func resource_picked_up(type, amount):
 	if type == "dirt":
 		dirt_amount += 1
 		get_node("/root").get_child(1).get_node("HUD").update_resource(type, dirt_amount)

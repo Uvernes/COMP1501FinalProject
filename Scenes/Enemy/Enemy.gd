@@ -15,6 +15,7 @@ const damage = 2
 
 var player # Reference to player object
 
+
 func _ready():
 	player = get_parent().get_node("Player")
 	$AttackTimer.start()
@@ -40,8 +41,29 @@ func take_damage(amount):
 		# create mobdrop on enemy death
 		var mobdrop = resource_scene.instantiate()
 		mobdrop.init("mobdrop", "res://Assets/Resources/mobdrop_resource.png")
-		mobdrop.position = position
+		mobdrop.position = Vector2((position.x)-3, (position.y)-3)
 		get_parent().add_child(mobdrop)
+		var randomizer = randf()
+		if randomizer < 0.25:
+			var dirt = resource_scene.instantiate()
+			dirt.init("dirt", "res://Assets/Resources/dirt_resource.png")
+			dirt.position = Vector2((position.x)+3, (position.y)+3)
+			get_parent().add_child(dirt)
+		elif randomizer < 0.5:
+			var stone = resource_scene.instantiate()
+			stone.init("stone", "res://Assets/Resources/stone_resource.png")
+			stone.position = Vector2((position.x)+3, (position.y)+3)
+			get_parent().add_child(stone)
+		elif randomizer < 0.75:
+			var leaves = resource_scene.instantiate()
+			leaves.init("leaves", "res://Assets/Resources/leaves_resource.png")
+			leaves.position = Vector2((position.x)+3, (position.y)+3)
+			get_parent().add_child(leaves)
+		else:
+			var wood = resource_scene.instantiate()
+			wood.init("wood", "res://Assets/Resources/wood_resource.png")
+			wood.position = Vector2((position.x)+3, (position.y)+3)
+			get_parent().add_child(wood)
 		# remove enemy
 		queue_free()
 
@@ -65,5 +87,3 @@ func handle_collision(collision: KinematicCollision2D):
 			if $TakeDamageTimer.time_left == 0:
 				take_damage(collider.get_melee_damage())
 				$TakeDamageTimer.start()
-
-
