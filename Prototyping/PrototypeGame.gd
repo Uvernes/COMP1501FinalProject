@@ -4,7 +4,6 @@ extends Node2D
 
 const min_distance_from_player = 200
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$EnemySpawnTimer.start()
