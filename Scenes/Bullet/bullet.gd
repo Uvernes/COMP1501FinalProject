@@ -10,13 +10,14 @@ var speed: int
 var direction: Vector2 # Direction bullet should face
 var damage: int  # Different player / enemies will have dif. damage
 var moving: bool = false # moving flag used to know when bullet is active
-
+var starting_pos: Vector2 # used to keep track of distance traveled by bullet since start
 # -lifespan used to keep track of when to make the bullet de-spawn/disappear
 # -treating lifespan as distance that diminishes (to compare to enemy engage radius)
 var bullet_lifespan = 280
 
 func init(position, rotation, speed, direction, damage, bullet_lifespan=bullet_lifespan):
 	self.position = position
+	self.starting_pos = position
 	self.rotation = rotation
 	self.speed = speed
 	self.direction = direction # Direction bullet will move in same as its rotation
@@ -29,35 +30,22 @@ func fire():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	if moving:
-		if bullet_lifespan<=0:
+		if bullet_lifespan <= (position - starting_pos).length():
 			# delete bullet when lifespan diminished
 			queue_free()
-			
-		# keep track of how much position changes to change lifespan accordingly
-		var pos_change = direction * speed * delta
 		
-		# move bullet
-		position += pos_change
-		move_and_slide() # change this line to change behavior for bullets vs. walls
+		velocity += (direction * speed)
+		velocity = velocity.limit_length(speed)
+		move_and_slide()
 		
 		# Handle collisions
 		# Using move_and_slide.
 		for i in get_slide_collision_count():
 			handle_collision(get_slide_collision(i))
-				
-		# decrease lifespan
-		bullet_lifespan -= pos_change.length()
-		
+
 func handle_collision(collision: KinematicCollision2D):
 	var collider = collision.get_collider()
-	print("Hit!")
 	if collider.is_in_group("Enemy"):
-		collider.hit(damage)
-	# Delete bullet if it collides with anything that is not the player
-	if not collider.is_in_group("Player"):
-		queue_free()
-		
-
-		
-		
-		
+		collider.take_damage(damage)
+	# Delete bullet if it collides with anything
+	queue_free()

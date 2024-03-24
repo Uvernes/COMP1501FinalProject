@@ -5,7 +5,6 @@ var player
 
 func _ready():
 	player = get_parent().get_node("Player")
-	
 	#$HScrollBar.set_focus()
 
 # Cannot initialize HUD until player is initialized (otherwise undefined values)
@@ -17,9 +16,9 @@ func _on_player_ready():
 	# Init hotbar
 	_on_player_mode_changed(player.cur_mode)
 
-	
 func _on_player_health_changed(new_health):
 	$HealthBar.value = new_health
+
 
 # Update the player mode hotbar
 # NOTE: The GUI must be kept in sync with player's modes 
