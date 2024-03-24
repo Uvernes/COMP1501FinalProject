@@ -1,24 +1,30 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbej05v14rtms"]
+[gd_scene load_steps=8 format=3 uid="uid://cbej05v14rtms"]
 
 [ext_resource type="Script" path="res://Scenes/Enemy/Enemy.gd" id="1_2m10n"]
 [ext_resource type="Texture2D" uid="uid://doylxy08g5a0d" path="res://Assets/red.png" id="1_h7knj"]
 [ext_resource type="PackedScene" uid="uid://b6imdyagxnjg7" path="res://Scenes/Resources/resource.tscn" id="2_jdubo"]
+[ext_resource type="Texture2D" uid="uid://bqxm7whjg8o2s" path="res://Assets/ants/redAntHead.png" id="4_lgny2"]
+[ext_resource type="Script" path="res://Scenes/Enemy/EnemyHead.gd" id="4_s6wme"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ln52u"]
-radius = 17.0
-height = 38.0
+radius = 15.0
+height = 52.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ojxr"]
+size = Vector2(12.4167, 16)
 
 [node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
 collision_mask = 3
 script = ExtResource("1_2m10n")
 resource_scene = ExtResource("2_jdubo")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Enemy"]]
+[node name="BodyHitBox" type="CollisionShape2D" parent="." groups=["Enemy"]]
+rotation = 1.5708
 shape = SubResource("CapsuleShape2D_ln52u")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." groups=["Enemy"]]
-scale = Vector2(0.78125, 0.78125)
+scale = Vector2(0.824219, 0.59375)
 texture = ExtResource("1_h7knj")
 metadata/_edit_group_ = true
 
@@ -27,6 +33,29 @@ wait_time = 2.0
 one_shot = true
 
 [node name="TakeDamageTimer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
+[node name="EnemyHead" type="CharacterBody2D" parent="."]
+position = Vector2(18, 0)
+scale = Vector2(1.5, 1.5)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("4_s6wme")
+
+[node name="HeadHitBox" type="CollisionShape2D" parent="EnemyHead"]
+position = Vector2(11.5417, 0)
+shape = SubResource("RectangleShape2D_5ojxr")
+
+[node name="Sprite2D" type="Sprite2D" parent="EnemyHead"]
+position = Vector2(6, 0)
+rotation = 1.5708
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_lgny2")
+
+[node name="AttackDurationTimer" type="Timer" parent="EnemyHead"]
+wait_time = 0.2
 one_shot = true
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="EnemyHead/AttackDurationTimer" to="EnemyHead" method="_on_attack_duration_timer_timeout"]
