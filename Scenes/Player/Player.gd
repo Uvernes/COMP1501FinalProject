@@ -18,11 +18,14 @@ var max_stamina = 14
 var bullet_speed = 500
 var bullet_damage = 1
 
-const max_speed = 300
+const walk_speed = 300
+const sprint_speed = 600
 const accel = 1500
 const friction = 1000
 # Represents direction to go into
 var direction = Vector2.ZERO
+
+var cur_speed
 
 # Current values
 var cur_health
@@ -39,6 +42,8 @@ func _ready():
 	position = Vector2(0,0)
 	cur_health = max_health
 	cur_stamina = max_stamina
+	
+	cur_speed = walk_speed
 	
 	# Starting, default mode is melee
 	cur_mode = mode.MELEE
@@ -75,7 +80,7 @@ func player_movement(delta):
 			velocity = Vector2.ZERO
 	else:
 		velocity += (direction * accel * delta)
-		velocity = velocity.limit_length(max_speed)
+		velocity = velocity.limit_length(cur_speed)
 		
 	move_and_slide()
 	for i in get_slide_collision_count():
@@ -87,7 +92,6 @@ func handle_collision(collision: KinematicCollision2D):
 		hit(collider.get_melee_damage())
 		collider.update_hit_player()
 		
-
 
 func _update_mode():
 	# Check if mode changed
@@ -127,7 +131,6 @@ func hit(amount):
 
 func shoot():
 	# compares the current stamina to the amount of stamina needed to fire a bullet.
-	print(cur_stamina)
 	if cur_stamina >= bullet_stamina_use:
 		# if we have enought stamina, create new bullet for player
 		var bullet: Bullet = bullet_scene.instantiate()
@@ -155,3 +158,9 @@ func _on_stamina_timer_timeout():
 	cur_stamina = max_stamina
 	stamina_changed.emit(cur_stamina)
 
+func sprint():
+	if Input.is_action_just_pressed("shift"):
+		cur_speed = sprint_speed
+		print("shift")
+	if Input.is_action_just_released("shift"):
+		cur_speed = walk_speed
