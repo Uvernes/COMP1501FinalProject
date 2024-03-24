@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-
 signal health_changed(new_health: int)
+signal stamina_changed(new_stamina: int)
 signal mode_changed(new_mode: int)
 
  # Player signals that they want to build. Indirect rather than direct call
@@ -20,16 +20,21 @@ var bullet_damage = 1
 
 const max_speed = 300
 const accel = 1500
-const friction = 600
+const friction = 1000
 # Represents direction to go into
 var direction = Vector2.ZERO
 
 # Current values
 var cur_health
+var cur_stamina
 var cur_mode  # Current mode player is in (e.g Build mode)
 
-const max_bullet_count = 3
+# UNUSED CONSTANT
+# const max_bullet_count = 3
 # make a scene to be used for Bullet creation
+# how much stamina does a bullet take? currently set to 3
+const bullet_stamina_use = 3
+
 @export var bullet_scene: PackedScene
 const Bullet = preload("res://Scenes/Bullet/bullet.gd") # For type annotation
 
@@ -37,6 +42,7 @@ const Bullet = preload("res://Scenes/Bullet/bullet.gd") # For type annotation
 func _ready():
 	position = Vector2(0,0)
 	cur_health = max_health
+	cur_stamina = max_stamina
 	
 	# Starting, default mode is melee
 	cur_mode = mode.MELEE
@@ -109,13 +115,18 @@ func hit(amount):
 		get_tree().quit()
 
 func shoot():
-	# use Bullet Storage node to check how many bullets currently exist
-	if $Bullet_Storage.get_child_count() < max_bullet_count:
-		# if we haven't reached max bullet count, create new bullet for player
+	# compares the current stamina to the amount of stamina needed to fire a bullet.
+	print(cur_stamina)
+	if cur_stamina >= bullet_stamina_use:
+		# if we have enought stamina, create new bullet for player
 		var bullet: Bullet = bullet_scene.instantiate()
 		# add bullet as a child to keep track of its existence
 		$Bullet_Storage.add_child(bullet)
-		
+		# Reduce the amount of stamina a player has and sends signal to HUD
+		cur_stamina -= bullet_stamina_use
+		stamina_changed.emit(cur_stamina)
+		#checks stamina and sets a timer for the stamina regeneration.
+		stamina_check()
 		# we create a direction vector to move appropriately. It is the direction of the mouse pointer from the player
 		var bullet_direction = (get_global_mouse_position() - position).normalized()
 		bullet.init(position, rotation, bullet_speed, bullet_direction, bullet_damage)
@@ -123,3 +134,12 @@ func shoot():
 
 func build():
 	build_requested.emit(get_global_mouse_position())
+
+func stamina_check():
+	if(cur_stamina <= 0):
+			cur_stamina = 0
+	$StaminaTimer.start()
+
+func _on_stamina_timer_timeout():
+	cur_stamina = max_stamina
+

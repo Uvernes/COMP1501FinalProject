@@ -34,3 +34,7 @@ texture_filter = 1
 color = Color(0.431373, 0.431373, 0.431373, 1)
 texture = ExtResource("4_4ynsi")
 texture_scale = 5.0
+
+[node name="StaminaTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="StaminaTimer" to="." method="_on_stamina_timer_timeout"]

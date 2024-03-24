@@ -12,12 +12,17 @@ func _on_player_ready():
 	# Initialize Health bar
 	$HealthBar.max_value = player.max_health
 	$HealthBar.value = player.cur_health
-	
+	# Initialize Stamina bar
+	$StaminaBar.max_value = player.max_stamina
+	$StaminaBar.value = player.cur_stamina
 	# Init hotbar
 	_on_player_mode_changed(player.cur_mode)
 
 func _on_player_health_changed(new_health):
 	$HealthBar.value = new_health
+
+func _on_stamina_bar_changed(new_stamina):
+	$StaminaBar.value = new_stamina
 
 
 # Update the player mode hotbar
@@ -29,3 +34,4 @@ func _on_player_mode_changed(new_mode):
 		hotBarItem.get_node("Background").hide()
 	# Add background for the selected mode
 	hotBarItems[new_mode].get_node("Background").show()
+
