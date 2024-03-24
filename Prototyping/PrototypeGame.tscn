@@ -61,3 +61,4 @@ position = Vector2(270, -248)
 [connection signal="mode_changed" from="Player" to="HUD" method="_on_player_mode_changed"]
 [connection signal="mode_changed" from="Player" to="RoughWorkTileMap" method="_on_player_mode_changed"]
 [connection signal="ready" from="Player" to="HUD" method="_on_player_ready"]
+[connection signal="stamina_changed" from="Player" to="HUD" method="_on_player_stamina_changed"]

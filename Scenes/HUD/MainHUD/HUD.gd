@@ -21,9 +21,9 @@ func _on_player_ready():
 func _on_player_health_changed(new_health):
 	$HealthBar.value = new_health
 
-func _on_stamina_bar_changed(new_stamina):
-	$StaminaBar.value = new_stamina
 
+func _on_player_stamina_changed(new_stamina):
+	$StaminaBar.value = new_stamina
 
 # Update the player mode hotbar
 # NOTE: The GUI must be kept in sync with player's modes 

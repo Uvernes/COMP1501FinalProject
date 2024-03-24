@@ -144,4 +144,5 @@ func stamina_check():
 
 func _on_stamina_timer_timeout():
 	cur_stamina = max_stamina
+	stamina_changed.emit(cur_stamina)
 
