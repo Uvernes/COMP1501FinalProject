@@ -14,7 +14,7 @@ var health = 3
 const damage = 2
 
 var player # Reference to player object
-
+var dead = false
 
 func _ready():
 	player = get_parent().get_node("Player")
@@ -64,7 +64,7 @@ func take_damage(amount):
 			wood.init("wood", "res://Assets/Resources/wood_resource.png")
 			wood.position = Vector2((position.x)+3, (position.y)+3)
 			get_parent().add_child(wood)
-		# remove enemy
+		self.dead = true
 		queue_free()
 
 # handle enemy attack when possible

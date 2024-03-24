@@ -20,7 +20,6 @@ func resource_picked_up(type, amount):
 	elif type == "wood":
 		wood_amount += 1
 		get_node("/root").get_child(1).get_node("HUD").update_resource(type, wood_amount)
-	else:
-		# only other possibility (note: could make storage node for multiple checks)
+	elif type == "mobdrop":
 		mobdrops_amount += 1
 		get_node("/root").get_child(1).get_node("HUD").update_resource(type, mobdrops_amount)

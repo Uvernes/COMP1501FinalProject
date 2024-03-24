@@ -46,6 +46,7 @@ func _physics_process(delta):
 func handle_collision(collision: KinematicCollision2D):
 	var collider = collision.get_collider()
 	if collider.is_in_group("Enemy"):
-		collider.take_damage(damage)
+		if !(collider.dead):
+			collider.take_damage(damage)
 	# Delete bullet if it collides with anything
 	queue_free()
