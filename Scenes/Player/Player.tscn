@@ -9,6 +9,7 @@ radius = 25.0
 height = 64.0
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
+collision_layer = 2
 script = ExtResource("1_88ct0")
 bullet_scene = ExtResource("2_tj8lh")
 
