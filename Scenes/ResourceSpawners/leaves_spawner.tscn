@@ -8,7 +8,7 @@ script = ExtResource("1_0vfpw")
 resource_scene = ExtResource("2_v18x2")
 
 [node name="SpawnTimer" type="Timer" parent="."]
-wait_time = 60.0
+wait_time = 20.0
 one_shot = true
 
 [connection signal="child_exiting_tree" from="." to="." method="_on_child_exiting_tree"]
