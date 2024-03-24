@@ -16,6 +16,7 @@ size = Vector2(8, 10)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_88ct0")
 bullet_scene = ExtResource("2_tj8lh")
 
@@ -55,7 +56,7 @@ shape = SubResource("RectangleShape2D_6qbbr")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Head"]
-position = Vector2(2, -1)
+position = Vector2(2, 0)
 rotation = 1.5708
 scale = Vector2(0.466941, 0.431098)
 texture = ExtResource("5_v00cx")
