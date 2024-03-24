@@ -14,6 +14,7 @@ enum mode { MELEE, SHOOT, DELETE, BUILD }
 
 # Stats - can be upgraded over time
 var max_health = 10
+var max_stamina = 10
 var bullet_speed = 500
 var bullet_damage = 1
 

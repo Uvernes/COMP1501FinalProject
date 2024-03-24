@@ -19,6 +19,10 @@ config/icon="res://Assets/icon.svg"
 
 GlobalSingleton="res://Scripts/Global_Singleton.gd"
 
+[display]
+
+window/stretch/mode="viewport"
+
 [input]
 
 move_up={
@@ -61,3 +65,7 @@ MWD={
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":16,"position":Vector2(192, 17),"global_position":Vector2(196, 58),"factor":1.0,"button_index":5,"canceled":false,"pressed":true,"double_click":false,"script":null)
 ]
 }
+
+[rendering]
+
+viewport/transparent_background=true

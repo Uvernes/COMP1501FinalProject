@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://cefwrbfmupn0"]
+
+[ext_resource type="Texture2D" uid="uid://c8tn5v5n7gqia" path="res://Assets/torchtexture.png" id="1_ik7re"]
+[ext_resource type="Texture2D" uid="uid://cecwh4twkhrw5" path="res://Assets/light_tpbg_white.png" id="2_7pui1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hfvhp"]
+
+[node name="Torch" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_hfvhp")
+disabled = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 30.0
+offset_bottom = 30.0
+scale = Vector2(0.499692, 0.500464)
+texture = ExtResource("1_ik7re")
+expand_mode = 2
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture_filter = 1
+color = Color(0.952941, 0.898039, 0.768627, 1)
+energy = 3.0
+texture = ExtResource("2_7pui1")
+texture_scale = 5.0
