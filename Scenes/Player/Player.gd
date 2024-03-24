@@ -14,7 +14,7 @@ enum mode { MELEE, SHOOT, DELETE, BUILD }
 
 # Stats - can be upgraded over time
 var max_health = 10
-var max_stamina = 10
+var max_stamina = 14
 var bullet_speed = 500
 var bullet_damage = 1
 
@@ -29,11 +29,7 @@ var cur_health
 var cur_stamina
 var cur_mode  # Current mode player is in (e.g Build mode)
 
-# UNUSED CONSTANT
-# const max_bullet_count = 3
-# make a scene to be used for Bullet creation
-# how much stamina does a bullet take? currently set to 3
-const bullet_stamina_use = 3
+const bullet_stamina_use = 2
 
 @export var bullet_scene: PackedScene
 const Bullet = preload("res://Scenes/Bullet/bullet.gd") # For type annotation

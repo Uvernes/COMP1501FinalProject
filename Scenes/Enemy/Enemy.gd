@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
 
+@export var resource_scene: PackedScene
+
 const MAX_SPEED = 100
 const accel = 500
 var moving = true
@@ -29,12 +31,18 @@ func _physics_process(delta):
 	for i in get_slide_collision_count():
 		handle_collision(get_slide_collision(i))
 
-# Method for recieving damage
+# Method for receiving damage
 func take_damage(amount):
 	if $TakeDamageTimer.time_left == 0:
 		health = health - amount
 		$TakeDamageTimer.start()
 		if (health <= 0):
+			# create mobdrop on enemy death
+			var mobdrop = resource_scene.instantiate()
+			mobdrop.init("mobdrop", "res://Assets/Resources/mobdrop_resource.png")
+			mobdrop.position = position
+			get_parent().add_child(mobdrop)
+			# remove enemy
 			queue_free()
 
 # handle enemy attack when possible

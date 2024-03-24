@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cbej05v14rtms"]
+[gd_scene load_steps=5 format=3 uid="uid://cbej05v14rtms"]
 
 [ext_resource type="Script" path="res://Scenes/Enemy/Enemy.gd" id="1_2m10n"]
 [ext_resource type="Texture2D" uid="uid://doylxy08g5a0d" path="res://Assets/red.png" id="1_h7knj"]
+[ext_resource type="PackedScene" uid="uid://b6imdyagxnjg7" path="res://Scenes/Resources/resource.tscn" id="2_jdubo"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ln52u"]
 radius = 17.0
@@ -10,6 +11,7 @@ height = 38.0
 [node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
 collision_mask = 3
 script = ExtResource("1_2m10n")
+resource_scene = ExtResource("2_jdubo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Enemy"]]
 shape = SubResource("CapsuleShape2D_ln52u")

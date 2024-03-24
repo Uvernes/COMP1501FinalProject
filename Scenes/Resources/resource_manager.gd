@@ -16,7 +16,7 @@ func resource_picked_up(type):
 		leaves_amount += 1
 	elif type == "wood":
 		wood_amount += 1
-	elif type == "mobdrops":
+	elif type == "mobdrop":
 		mobdrops_amount += 1
 	else:
 		print("Unknown resource picked up")
