@@ -1,64 +1,47 @@
 extends CharacterBody2D
 
 
-const SPEED = 100
+const MAX_SPEED = 100
+const accel = 500
+var moving = true
+
 const homebase_pos = Vector2(0,0)
 const distance_to_see_player = 300
-const attack_range = 70
+const attack_range = 75
 var health = 3
-const damage = 2 #unused right now
+const damage = 2
 
 var player # Reference to player object
 
 func _ready():
 	player = get_parent().get_node("Player")
-	#position = Vector2(500, 500)
 	$AttackTimer.start()
 
 func _physics_process(delta):
-	""" this is used if enemy is Area2D
-	# Movement towards the player or to "Homebase"
-	if (player_pos - position).length() > distance_to_see_player:
-		position = position.move_toward(homebase_pos, delta * SPEED)
-	else:
-		position = position.move_toward(player_pos, delta * SPEED)
-		"""
-	# change enemy movement accordingly
-	if (player.position - position).length() > distance_to_see_player:
-		velocity = (homebase_pos - position).normalized() * SPEED
-	else:
-		velocity = (player.position - position).normalized() * SPEED
-	
-	move_and_slide()
-	
-	# COLLISION WITH BULLETS LOGIC MOVED TO BULLET CLASS.
-	# extract enemy collision events to detect presence of bullets
-	# (also enables collision/movement simultaneously)
-	#var collision = move_and_collide(velocity * delta)
-	#if collision:
-		## if collided with player bullet...
-		#if collision.get_collider().is_in_group("player_projectile"):
-			## ...take damage, and delete the bullet object
-			#hit(collision.get_collider().damage)
-			#collision.get_collider().queue_free()
-	#
-	if ($AttackTimer.time_left == 0):
-		if (player.position - position).length() <= attack_range:
-			player.hit(damage)
-			# Before: <-- should avoid singleton / global unless no other choice
-			# GlobalSingleton.deal_damage(damage)
-			$AttackTimer.start()
+	if moving:
+		# change enemy movement accordingly
+		if (player.position - position).length() > distance_to_see_player:
+			velocity += ((homebase_pos - position).normalized() * accel * delta)
+		else:
+			velocity += ((player.position - position).normalized() * accel * delta)
+		velocity = velocity.limit_length(MAX_SPEED)
+		move_and_slide()
 
 # Method for recieving damage
-func hit(amount):
+func take_damage(amount):
 	health = health - amount
 	if (health <= 0):
 		queue_free()
 
-# Used if enemy is Area2D
-""" connect on area entered signal
-func _on_area_entered(area): 
-	if area.is_in_group("player_projectile"):
-		take_damage(area.damage)
-		area.queue_free()
-"""
+# handle enemy attack when possible
+func _on_attack_timer_timeout():
+	if (player.position - position).length() <= attack_range:
+		# when hitting player, reset speed (since they need to stop for a successful hit)
+		velocity = Vector2.ZERO
+		player.hit(damage)
+		# force enemy to stop moving after hit
+		moving = false
+		await get_tree().create_timer(1.0).timeout
+		# after timer, make everything resume
+		moving = true
+	$AttackTimer.start()

@@ -8,7 +8,6 @@ radius = 17.0
 height = 38.0
 
 [node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
-collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_2m10n")
 
@@ -24,3 +23,5 @@ metadata/_edit_group_ = true
 [node name="AttackTimer" type="Timer" parent="." groups=["Enemy"]]
 wait_time = 2.0
 one_shot = true
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
