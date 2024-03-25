@@ -155,7 +155,10 @@ func stamina_check():
 	$StaminaTimer.start()
 
 func _on_stamina_timer_timeout():
-	cur_stamina = max_stamina
+	if cur_stamina < max_stamina:
+		cur_stamina += 4
+	elif cur_stamina > max_stamina:
+		cur_stamina = max_stamina
 	stamina_changed.emit(cur_stamina)
 
 func sprint():
