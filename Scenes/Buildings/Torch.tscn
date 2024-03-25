@@ -1,11 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://cefwrbfmupn0"]
+[gd_scene load_steps=5 format=3 uid="uid://cefwrbfmupn0"]
 
+[ext_resource type="Script" path="res://Scenes/Buildings/Torch.gd" id="1_4gjva"]
 [ext_resource type="Texture2D" uid="uid://c8tn5v5n7gqia" path="res://Assets/torchtexture.png" id="1_ik7re"]
 [ext_resource type="Texture2D" uid="uid://cecwh4twkhrw5" path="res://Assets/light_tpbg_white.png" id="2_7pui1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hfvhp"]
 
 [node name="Torch" type="StaticBody2D"]
+script = ExtResource("1_4gjva")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_hfvhp")

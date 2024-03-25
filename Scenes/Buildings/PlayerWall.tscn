@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://by4p42g28kdn6"]
+
+[ext_resource type="Script" path="res://Scenes/Buildings/PlayerWall.gd" id="1_rksrj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wttac"]
+size = Vector2(64, 64)
+
+[node name="PlayerWall" type="StaticBody2D"]
+script = ExtResource("1_rksrj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wttac")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = -31.0
+offset_top = -31.0
+offset_right = 9.0
+offset_bottom = 9.0
+scale = Vector2(1.55008, 1.55008)
+color = Color(0.658824, 0.403922, 0.196078, 1)

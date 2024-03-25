@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtvk4och446ub"]
+
+[ext_resource type="Script" path="res://Scenes/Buildings/Road.gd" id="1_4caf8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vauwb"]
+size = Vector2(64, 64)
+
+[node name="Road" type="Area2D"]
+script = ExtResource("1_4caf8")
+can_traverse = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_vauwb")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = -31.0
+offset_top = -31.0
+offset_right = 9.0
+offset_bottom = 9.0
+scale = Vector2(1.55008, 1.55008)
+color = Color(0.388235, 0.180392, 0.0156863, 1)
