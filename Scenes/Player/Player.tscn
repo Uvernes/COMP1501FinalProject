@@ -37,9 +37,10 @@ texture = ExtResource("3_7w88q")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 texture_filter = 1
-color = Color(0.431373, 0.431373, 0.431373, 1)
+color = Color(0.494118, 0.494118, 0.494118, 1)
+energy = 1.5
 texture = ExtResource("4_4ynsi")
-texture_scale = 5.0
+texture_scale = 10.0
 
 [node name="StaminaTimer" type="Timer" parent="."]
 
