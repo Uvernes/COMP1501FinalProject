@@ -40,7 +40,7 @@ func take_damage(amount):
 	if (health <= 0):
 		# create mobdrop on enemy death
 		var mobdrop = resource_scene.instantiate()
-		mobdrop.init("mobdrop", "res://Assets/Resources/mobdrop_resource.png")
+		mobdrop.init("mobdrops", "res://Assets/Resources/mobdrop_resource.png")
 		mobdrop.position = Vector2((position.x)-3, (position.y)-3)
 		get_parent().add_child(mobdrop)
 		var randomizer = randf()

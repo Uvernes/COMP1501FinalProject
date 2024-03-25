@@ -9,8 +9,9 @@ enum placeables {
 
 # Scene paths
 var scene_paths: Dictionary = {
-	placeables.PLAYER_WALL: "res://Scenes/Buildings/PlayerWall",
-	placeables.TORCH: "res://Scenes/Buildings/Torch.gd",
+	placeables.PLAYER_WALL: "res://Scenes/Placeable/PlayerWall.tscn",
+	placeables.TORCH: "res://Scenes/Placeable/Torch.tscn",
+	placeables.ROAD: "res://Scenes/Placeable/Road.tscn",
 }
 
 # Fields

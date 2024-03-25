@@ -1,25 +1,26 @@
+"""
+Class for maintaining and handling all resources logic.
+Includes:
+-Storing amounts of each resources
+-Handling player build requests and deletes
+"""
 extends Node2D
 
-var dirt_amount = 0
-var stone_amount = 0
-var leaves_amount = 0
-var wood_amount = 0
+# Resource field
+var resources = {
+	"dirt": 0,
+	"stone": 0,
+	"leaves": 0,
+	"wood": 0,
+	"mobdrops": 0
+}
 
-var mobdrops_amount = 0
 
 func resource_picked_up(type, amount):
-	if type == "dirt":
-		dirt_amount += 1
-		get_node("/root").get_child(1).get_node("HUD").update_resource(type, dirt_amount)
-	elif type == "stone":
-		stone_amount += 1
-		get_node("/root").get_child(1).get_node("HUD").update_resource(type, stone_amount)
-	elif type == "leaves":
-		leaves_amount += 1
-		get_node("/root").get_child(1).get_node("HUD").update_resource(type, leaves_amount)
-	elif type == "wood":
-		wood_amount += 1
-		get_node("/root").get_child(1).get_node("HUD").update_resource(type, wood_amount)
-	elif type == "mobdrop":
-		mobdrops_amount += 1
-		get_node("/root").get_child(1).get_node("HUD").update_resource(type, mobdrops_amount)
+	resources[type] += amount
+	get_parent().get_node("HUD").update_resource(type, resources[type])
+
+
+#TODO - implement
+func handle_build_request(build_id):
+	pass

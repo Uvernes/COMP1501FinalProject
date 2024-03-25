@@ -1,3 +1,14 @@
+"""
+Game controller script. Highest level for orchestrating the game logic.
+Recieves signals and delegates tasks accordingly.
+Some tasks include: 
+-Population (handled here)
+-Enemy spawning (handled here for now)
+-Resource management (delegated)
+
+The controller should also manage the calls to updating the UI.
+"""
+
 extends Node2D
 
 @export var enemy_scene: PackedScene

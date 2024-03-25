@@ -37,7 +37,7 @@ const bullet_stamina_use = 2
 
 @export var bullet_scene: PackedScene
 const Bullet = preload("res://Scenes/Bullet/bullet.gd") # For type annotation
-const Placeable = preload("res://Scenes/Buildings/Placeable.gd") # For type annotation
+const Placeable = preload("res://Scenes/Placeables/Placeable.gd") # For type annotation
 
 # Placeables - related fields
 var cur_build_selection # Will be an int of Placeable.placeables or null  
