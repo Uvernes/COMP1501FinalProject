@@ -44,6 +44,5 @@ func update_resource(type, new_amount):
 		$ResourceDisplay/Leaves/Label.text = "Leaves: " + str(new_amount)
 	elif type == "wood":
 		$ResourceDisplay/Wood/Label.text = "Wood: " + str(new_amount)
-	else:
-		# only other possibility (note: could make storage node for multiple checks)
+	elif type == "mobdrop":
 		$ResourceDisplay/Mobdrops/Label.text = "Mobdrops: " + str(new_amount)
