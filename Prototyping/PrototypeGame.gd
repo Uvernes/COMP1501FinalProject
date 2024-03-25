@@ -3,19 +3,51 @@ extends Node2D
 @export var enemy_scene: PackedScene
 
 const min_distance_from_player = 200
+const min_player_distance_from_base = 1000
+
+const min_spawn_distance_from_base = 400
+const max_spawn_distance_from_base = 1000
+const min_spawn_distance_from_player = 250 #should be far enough that the player can never see an enemy spawn
+const max_spawn_distance_from_player = 500
+
+var random = RandomNumberGenerator.new()
+
+var spawn_location_around_base
+var spawn_location_around_player
+var player
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$EnemySpawnTimer.start()
+	player = get_node("Player")
+	$EnemySpawnTimerForBase.start()
+	$EnemySpawnTimerForPlayer.start()
 	
 func _process(_delta):
-	if($EnemySpawnTimer.time_left == 0):
-		var enemy_spawn_location = $EnemyPath/EnemySpawnLocation
-		enemy_spawn_location.progress_ratio = randf()
+	if($EnemySpawnTimerForBase.time_left == 0):
+		var distance = random.randf_range(min_spawn_distance_from_base, max_spawn_distance_from_base)
+		var direction = Vector2(randf_range(-1,1),randf_range(-1,1))
+		var spawn_position = direction * distance
 		
-		if(enemy_spawn_location.position - get_node("Player").position).length() > min_distance_from_player: #ensures enemies don't spawn too close to player
+		#check if position is available here
+		if(spawn_position - player.position).length() > min_distance_from_player:
 			var enemy = enemy_scene.instantiate()
-			enemy.position = enemy_spawn_location.position
+			enemy.position = spawn_position
 			enemy.add_to_group("Enemy")
 			add_child(enemy)
-			$EnemySpawnTimer.start()
+			$EnemySpawnTimerForBase.start()
+			
+	if player.position.length() > min_player_distance_from_base:
+		if $EnemySpawnTimerForPlayer.time_left == 0:
+			var distance = random.randf_range(min_spawn_distance_from_player, max_spawn_distance_from_player)
+			var direction = Vector2(randf_range(-1,1),randf_range(-1,1))
+			var spawn_position = player.position + direction * distance
+			
+			#check if position is available here
+			var enemy = enemy_scene.instantiate()
+			enemy.position = spawn_position
+			enemy.add_to_group("Enemy")
+			add_child(enemy)
+			$EnemySpawnTimerForPlayer.start()
+			
+			
+			
