@@ -41,7 +41,7 @@ one_shot = true
 z_index = 2
 position = Vector2(18, 0)
 scale = Vector2(1.5, 1.5)
-collision_mask = 2
+collision_mask = 3
 script = ExtResource("4_s6wme")
 
 [node name="HeadHitBox" type="CollisionShape2D" parent="EnemyHead"]

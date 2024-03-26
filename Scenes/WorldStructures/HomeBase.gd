@@ -2,6 +2,7 @@ extends Area2D
 
 signal player_on_home_base()
 signal player_off_home_base()
+signal population_zero()
 
 var current_pop
 var max_pop
@@ -20,9 +21,10 @@ func _process(delta):
 	
 func decrease_pop(amount):
 	current_pop -= amount
+	print("Current population is: ", current_pop)
 	if current_pop <= 0:
 		current_pop = 0
-		#game over
+		population_zero.emit()
 
 func increase_pop(amount):
 	current_pop += amount

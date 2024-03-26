@@ -35,6 +35,7 @@ func _ready():
 	player = get_node("Player")
 	homebase = get_node("HomeBase")
 	player.connect("player_death", handle_player_death)
+	homebase.connect("population_zero", handle_homebase_death)
 	$EnemySpawnTimerForBase.start()
 	$EnemySpawnTimerForPlayer.start()
 	
@@ -88,8 +89,13 @@ func handle_player_death():
 		player.respawn()
 	else:
 		#game over
-		print("Game Over")
+		print("Player died and could not respawn: Game Over")
 		get_tree().quit()
+
+func handle_homebase_death():
+	#game over
+	print("Population reached zero: Game Over")
+	get_tree().quit()
 	
 
 	

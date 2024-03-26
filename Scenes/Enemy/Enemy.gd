@@ -6,6 +6,7 @@ extends CharacterBody2D
 const MAX_SPEED = 100
 const accel = 500
 var moving = true
+var attacking_base = false
 
 const homebase_pos = Vector2(0,0)
 const distance_to_see_player = 400
@@ -22,26 +23,30 @@ func _ready():
 	$AttackTimer.start()
 
 func _physics_process(delta):
-	if (player.position - position).length() <= min_distance_from_player:
-		moving = false
-	else:
-		moving = true
-	if moving:
-		# change enemy movement accordingly
-		if (player.position - position).length() > distance_to_see_player:
-			look_at(homebase_pos)
-			velocity += ((homebase_pos - position).normalized() * accel * delta)
+	if attacking_base == false: #for now, once an enemy starts attacking the base they won't stop
+		if (player.position - position).length() <= min_distance_from_player:
+			moving = false
 		else:
-			look_at(player.position)
-			velocity += ((player.position - position).normalized() * accel * delta)
-		velocity = velocity.limit_length(MAX_SPEED)
-		move_and_slide()
-	if (player.position - position).length() <= attack_range && $AttackTimer.time_left == 0:
+			moving = true
+		if moving:
+			# change enemy movement accordingly
+			if (player.position - position).length() > distance_to_see_player:
+				look_at(homebase_pos)
+				velocity += ((homebase_pos - position).normalized() * accel * delta)
+			else:
+				look_at(player.position)
+				velocity += ((player.position - position).normalized() * accel * delta)
+			velocity = velocity.limit_length(MAX_SPEED)
+			move_and_slide()
+		if (player.position - position).length() <= attack_range && $AttackTimer.time_left == 0:
+			start_attack_process()
+	elif $AttackTimer.time_left == 0:
 		start_attack_process()
 
 # Method for receiving damage
 func take_damage(amount):
 	health = health - amount
+	stop_attacking_base() #remove to prioritze attacking base over player
 	if (health <= 0):
 		# create mobdrop on enemy death
 		var mobdrop = resource_scene.instantiate()
@@ -85,6 +90,9 @@ func start_attack_process():
 	moving = true
 
 func attack_base():
-	pass
+	attacking_base = true
+	moving = false
+
 func stop_attacking_base():
-	pass
+	attacking_base = false
+	moving = true
