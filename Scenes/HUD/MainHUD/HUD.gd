@@ -46,3 +46,13 @@ func update_resource(type, new_amount):
 		$ResourceDisplay/Wood/Label.text = "Wood: " + str(new_amount)
 	elif type == "mobdrops":
 		$ResourceDisplay/Mobdrops/Label.text = "Mobdrops: " + str(new_amount)
+
+
+func update_all_resources(resource_amounts: Dictionary):
+	$ResourceDisplay/Dirt/Label.text = "Dirt: " + str(resource_amounts["dirt"])
+	$ResourceDisplay/Stone/Label.text = "Stone: " + str(resource_amounts["stone"])
+	$ResourceDisplay/Leaves/Label.text = "Leaves: " + str(resource_amounts["leaves"])
+	$ResourceDisplay/Wood/Label.text = "Wood: " + str(resource_amounts["wood"])
+	$ResourceDisplay/Mobdrops/Label.text = "Mobdrops: " + str(resource_amounts["mobdrops"])
+
+	

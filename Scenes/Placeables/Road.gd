@@ -1,4 +1,4 @@
-extends "res://Scenes/Buildings/Placeable.gd"
+extends "res://Scenes/Placeables/Placeable.gd"
 
 
 # Define resources cost

@@ -1,4 +1,4 @@
-extends "res://Scenes/Buildings/Placeable.gd"
+extends "res://Scenes/Placeables/Placeable.gd"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,4 +18,5 @@ static func get_cost() -> Dictionary:
 		"leaves": 0,
 		"wood": 10
 	}
+	
 

@@ -7,7 +7,7 @@ signal mode_changed(new_mode: int)
  # Player signals that they want to build. Indirect rather than direct call
 # as there is lots of logic game controller handles (e.g cost to build, etc.)
 # For now. Simplified and tile map just picks it up.
-signal build_requested(global_mouse_pos: Vector2)
+signal build_requested(global_mouse_pos: Vector2, build_id: int)
  
 # Enum for what mode the player is currently in
 enum mode { MELEE, SHOOT, DELETE, BUILD }
@@ -31,17 +31,14 @@ var cur_speed
 var cur_health
 var cur_stamina
 var cur_mode  # Current mode player is in (e.g Build mode)
-
+var cur_build_selection 
 
 const bullet_stamina_use = 2
 
 @export var bullet_scene: PackedScene
 const Bullet = preload("res://Scenes/Bullet/bullet.gd") # For type annotation
-const Placeable = preload("res://Scenes/Placeables/Placeable.gd") # For type annotation
+const Placeable = preload("res://Scenes/Placeables/Placeable.gd")
 
-# Placeables - related fields
-var cur_build_selection # Will be an int of Placeable.placeables or null  
-var favourite_builds = [null, null, null, null]  # Can favourite up to 4 placeables. 
 
 
 func _ready():
@@ -53,6 +50,8 @@ func _ready():
 	
 	# Starting, default mode is melee
 	cur_mode = mode.MELEE
+	# Starting build selection is player wall
+	cur_build_selection = Placeable.placeables.PLAYER_WALL
 
 
 func _process(_delta):
@@ -152,8 +151,10 @@ func shoot():
 		bullet.init(position, rotation, bullet_speed, bullet_direction, bullet_damage)
 		bullet.fire()
 
+
 func build():
-	build_requested.emit(get_global_mouse_position())
+	build_requested.emit(get_global_mouse_position(), cur_build_selection)
+
 
 func stamina_check():
 	if(cur_stamina <= 0):
