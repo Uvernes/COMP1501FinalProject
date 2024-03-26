@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c515pf471vy3k"]
+[gd_scene load_steps=12 format=3 uid="uid://c515pf471vy3k"]
 
 [ext_resource type="Script" path="res://Scripts/GameController.gd" id="1_rgqgc"]
 [ext_resource type="PackedScene" uid="uid://cbej05v14rtms" path="res://Scenes/Enemy/Enemy.tscn" id="2_t6k24"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://b7oecv531ru7h" path="res://Scenes/Resources/resource_manager.tscn" id="8_r1hkf"]
 [ext_resource type="PackedScene" uid="uid://bjdqvr0d6xkj3" path="res://Scenes/ResourceSpawners/dirt_spawner.tscn" id="9_uoj5a"]
 [ext_resource type="PackedScene" uid="uid://o7wxb7v0a732" path="res://Scenes/ResourceSpawners/leaves_spawner.tscn" id="10_syl04"]
+[ext_resource type="PackedScene" uid="uid://c0rlyf5ahmurg" path="res://Scenes/WorldStructures/HomeBase.tscn" id="11_4q45y"]
 
 [node name="PrototypeWorld" type="Node2D"]
 script = ExtResource("1_rgqgc")
@@ -49,6 +50,8 @@ position = Vector2(-242, -239)
 
 [node name="LeavesSpawner" parent="." instance=ExtResource("10_syl04")]
 position = Vector2(270, -248)
+
+[node name="HomeBase" parent="." instance=ExtResource("11_4q45y")]
 
 [connection signal="build_requested" from="Player" to="." method="_on_player_build_requested"]
 [connection signal="health_changed" from="Player" to="HUD" method="_on_player_health_changed"]

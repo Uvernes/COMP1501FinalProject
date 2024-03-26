@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0rlyf5ahmurg"]
+
+[ext_resource type="Script" path="res://Scenes/WorldStructures/HomeBase.gd" id="1_k3hj7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_thuke"]
+size = Vector2(128, 128)
+
+[node name="HomeBase" type="Area2D"]
+script = ExtResource("1_k3hj7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_thuke")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -128.0
+offset_top = -128.0
+offset_right = 128.0
+offset_bottom = 128.0
+color = Color(0.866667, 0.643137, 0, 1)
+
+[node name="RegenTimer" type="Timer" parent="."]
+wait_time = 45.0
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="RegenTimer" to="." method="_on_regen_timer_timeout"]
