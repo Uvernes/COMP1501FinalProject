@@ -15,8 +15,9 @@ func _on_player_ready():
 	# Initialize Stamina bar
 	$StaminaBar.max_value = player.max_stamina
 	$StaminaBar.value = player.cur_stamina
-	# Init hotbar
+	# Init hotbar and sidebar
 	_on_player_mode_changed(player.cur_mode)
+	_on_player_build_selection_changed(player.cur_build_selection)
 
 func _on_player_health_changed(new_health):
 	$HealthBar.value = new_health
@@ -28,12 +29,22 @@ func _on_player_stamina_changed(new_stamina):
 # Update the player mode hotbar
 # NOTE: The GUI must be kept in sync with player's modes 
 func _on_player_mode_changed(new_mode):
-	# Hide background fot all hotbar items
+	# Hide background for all hotbar items
 	var hotBarItems = $HotBar/Children.get_children()
 	for hotBarItem in hotBarItems:
 		hotBarItem.get_node("Background").hide()
 	# Add background for the selected mode
 	hotBarItems[new_mode].get_node("Background").show()
+	
+
+func _on_player_build_selection_changed(new_build_selection):
+	# Hide background for all sidebar items
+	var buildSiderbar = $BuildSidebar/Children.get_children()
+	for buildItem in buildSiderbar:
+		buildItem.get_node("Background").hide()
+	# Add background for the selected mode
+	buildSiderbar[new_build_selection].get_node("Background").show()
+
 
 func update_resource(type, new_amount):
 	if type == "dirt":
@@ -55,4 +66,3 @@ func update_all_resources(resource_amounts: Dictionary):
 	$ResourceDisplay/Wood/Label.text = "Wood: " + str(resource_amounts["wood"])
 	$ResourceDisplay/Mobdrops/Label.text = "Mobdrops: " + str(resource_amounts["mobdrops"])
 
-	

@@ -75,4 +75,3 @@ func _on_player_build_requested(global_mouse_pos, build_id):
 	$RoughWorkTileMap.place_build(global_mouse_pos, build_instance)
 	# Update resources HUD
 	$HUD.update_all_resources($ResourceManager.resources)
-

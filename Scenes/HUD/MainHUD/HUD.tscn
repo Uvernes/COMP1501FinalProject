@@ -188,70 +188,286 @@ offset_bottom = 23.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "BUILD"
 
-[node name="BuildMenu" type="Control" parent="."]
+[node name="BuildSidebar" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -78.0
+offset_top = -49.0
+offset_right = -38.0
+offset_bottom = -9.0
+grow_horizontal = 0
+grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="BuildMenu"]
+[node name="ColorRect" type="ColorRect" parent="BuildSidebar"]
 layout_mode = 0
-offset_left = 1061.0
-offset_top = 153.0
-offset_right = 1101.0
-offset_bottom = 193.0
+offset_left = -6.0
+offset_top = -69.0
+offset_right = 34.0
+offset_bottom = -29.0
 scale = Vector2(1.98089, 7.96039)
 
-[node name="Children" type="Control" parent="BuildMenu"]
+[node name="Children" type="Control" parent="BuildSidebar"]
+layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 15.0
+offset_top = -39.0
+offset_right = 55.0
+offset_bottom = 1.0
 
-[node name="Wall" type="Control" parent="BuildMenu/Children"]
+[node name="Torch" type="Control" parent="BuildSidebar/Children"]
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 7.0
+offset_top = -14.0
+offset_right = 47.0
+offset_bottom = 26.0
 
-[node name="Background" type="ColorRect" parent="BuildMenu/Children/Wall"]
+[node name="Background" type="ColorRect" parent="BuildSidebar/Children/Torch"]
 layout_mode = 0
-offset_left = 1070.0
-offset_top = 162.0
-offset_right = 1110.0
-offset_bottom = 202.0
+offset_left = -19.0
+offset_top = -2.0
+offset_right = 21.0
+offset_bottom = 38.0
 scale = Vector2(1.54154, 1.11915)
 color = Color(1, 0.2, 0.176471, 1)
 
-[node name="Label" type="Label" parent="BuildMenu/Children/Wall"]
+[node name="Label" type="Label" parent="BuildSidebar/Children/Torch"]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
-offset_left = 1079.0
-offset_top = 172.0
-offset_right = 1123.0
-offset_bottom = 195.0
+offset_left = -17.0
+offset_top = 9.0
+offset_right = 38.0
+offset_bottom = 32.0
+text = "TORCH"
+
+[node name="Index" type="Control" parent="BuildSidebar/Children/Torch"]
+anchors_preset = 0
+offset_left = -58.0
+offset_top = -2.0
+offset_right = -18.0
+offset_bottom = 38.0
+
+[node name="Background" type="ColorRect" parent="BuildSidebar/Children/Torch/Index"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 24.0
+offset_bottom = 32.0
+scale = Vector2(1.54154, 1.11915)
+
+[node name="Label" type="Label" parent="BuildSidebar/Children/Torch/Index"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 14.0
+offset_top = 10.0
+offset_right = 35.0
+offset_bottom = 40.0
+theme_override_font_sizes/font_size = 15
+text = "1"
+
+[node name="Wall" type="Control" parent="BuildSidebar/Children"]
+anchors_preset = 0
+offset_left = -12.0
+offset_top = 46.0
+offset_right = 28.0
+offset_bottom = 86.0
+
+[node name="Background" type="ColorRect" parent="BuildSidebar/Children/Wall"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(1.54154, 1.11915)
+color = Color(1, 0.2, 0.176471, 1)
+
+[node name="Label" type="Label" parent="BuildSidebar/Children/Wall"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 8.0
+offset_top = 11.0
+offset_right = 52.0
+offset_bottom = 34.0
 text = "WALL"
 
-[node name="Torch" type="Control" parent="BuildMenu/Children"]
+[node name="Index" type="Control" parent="BuildSidebar/Children/Wall"]
+layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
+offset_left = -40.0
 offset_bottom = 40.0
 
-[node name="Background" type="ColorRect" parent="BuildMenu/Children/Torch"]
+[node name="Background" type="ColorRect" parent="BuildSidebar/Children/Wall/Index"]
 layout_mode = 0
-offset_left = 1070.0
-offset_top = 216.0
-offset_right = 1110.0
-offset_bottom = 256.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 24.0
+offset_bottom = 32.0
+scale = Vector2(1.54154, 1.11915)
+
+[node name="Label" type="Label" parent="BuildSidebar/Children/Wall/Index"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 15.0
+offset_top = 10.0
+offset_right = 36.0
+offset_bottom = 40.0
+theme_override_font_sizes/font_size = 15
+text = "2"
+
+[node name="Web" type="Control" parent="BuildSidebar/Children"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -11.0
+offset_top = 106.0
+offset_right = 29.0
+offset_bottom = 146.0
+
+[node name="Background" type="ColorRect" parent="BuildSidebar/Children/Web"]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 1.0
+offset_right = 38.0
+offset_bottom = 41.0
 scale = Vector2(1.54154, 1.11915)
 color = Color(1, 0.2, 0.176471, 1)
 
-[node name="Label" type="Label" parent="BuildMenu/Children/Torch"]
+[node name="Label" type="Label" parent="BuildSidebar/Children/Web"]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
-offset_left = 1072.0
-offset_top = 227.0
-offset_right = 1127.0
-offset_bottom = 250.0
-text = "TORCH"
+offset_left = 13.0
+offset_top = 11.0
+offset_right = 57.0
+offset_bottom = 34.0
+text = "WEB"
+
+[node name="Index" type="Control" parent="BuildSidebar/Children/Web"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -40.0
+offset_bottom = 40.0
+
+[node name="Background" type="ColorRect" parent="BuildSidebar/Children/Web/Index"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 24.0
+offset_bottom = 32.0
+scale = Vector2(1.54154, 1.11915)
+
+[node name="Label" type="Label" parent="BuildSidebar/Children/Web/Index"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 14.0
+offset_top = 11.0
+offset_right = 35.0
+offset_bottom = 41.0
+theme_override_font_sizes/font_size = 15
+text = "3"
+
+[node name="Mine" type="Control" parent="BuildSidebar/Children"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -11.0
+offset_top = 166.0
+offset_right = 29.0
+offset_bottom = 206.0
+
+[node name="Background" type="ColorRect" parent="BuildSidebar/Children/Mine"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 3.0
+offset_right = 39.0
+offset_bottom = 43.0
+scale = Vector2(1.54154, 1.11915)
+color = Color(1, 0.2, 0.176471, 1)
+
+[node name="Label" type="Label" parent="BuildSidebar/Children/Mine"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 9.0
+offset_top = 11.0
+offset_right = 53.0
+offset_bottom = 34.0
+text = "MINE"
+
+[node name="Index" type="Control" parent="BuildSidebar/Children/Mine"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -41.0
+offset_top = 3.0
+offset_right = -1.0
+offset_bottom = 43.0
+
+[node name="Background" type="ColorRect" parent="BuildSidebar/Children/Mine/Index"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 24.0
+offset_bottom = 32.0
+scale = Vector2(1.54154, 1.11915)
+
+[node name="Label" type="Label" parent="BuildSidebar/Children/Mine/Index"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 14.0
+offset_top = 10.0
+offset_right = 35.0
+offset_bottom = 40.0
+theme_override_font_sizes/font_size = 15
+text = "4"
+
+[node name="Tower" type="Control" parent="BuildSidebar/Children"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 7.0
+offset_top = 232.0
+offset_right = 47.0
+offset_bottom = 272.0
+
+[node name="Background" type="ColorRect" parent="BuildSidebar/Children/Tower"]
+layout_mode = 0
+offset_left = -19.0
+offset_top = -2.0
+offset_right = 21.0
+offset_bottom = 38.0
+scale = Vector2(1.54154, 1.11915)
+color = Color(1, 0.2, 0.176471, 1)
+
+[node name="Label" type="Label" parent="BuildSidebar/Children/Tower"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = -16.0
+offset_top = 9.0
+offset_right = 40.0
+offset_bottom = 32.0
+text = "TOWER"
+
+[node name="Index" type="Control" parent="BuildSidebar/Children/Tower"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -59.0
+offset_top = -3.0
+offset_right = -19.0
+offset_bottom = 37.0
+
+[node name="Background" type="ColorRect" parent="BuildSidebar/Children/Tower/Index"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 11.0
+offset_right = 24.0
+offset_bottom = 33.0
+scale = Vector2(1.54154, 1.11915)
+
+[node name="Label" type="Label" parent="BuildSidebar/Children/Tower/Index"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 14.0
+offset_top = 12.0
+offset_right = 35.0
+offset_bottom = 42.0
+theme_override_font_sizes/font_size = 15
+text = "5"
 
 [node name="ResourceDisplay" type="BoxContainer" parent="."]
 clip_contents = true

@@ -3,11 +3,13 @@ extends CharacterBody2D
 signal health_changed(new_health: int)
 signal stamina_changed(new_stamina: int)
 signal mode_changed(new_mode: int)
+signal build_selection_changed(new_build_selection: int)
 
  # Player signals that they want to build. Indirect rather than direct call
 # as there is lots of logic game controller handles (e.g cost to build, etc.)
 # For now. Simplified and tile map just picks it up.
 signal build_requested(global_mouse_pos: Vector2, build_id: int)
+
  
 # Enum for what mode the player is currently in
 enum mode { MELEE, SHOOT, DELETE, BUILD }
@@ -31,7 +33,7 @@ var cur_speed
 var cur_health
 var cur_stamina
 var cur_mode  # Current mode player is in (e.g Build mode)
-var cur_build_selection 
+var cur_build_selection: int # holds id for the corresponding build enum value
 
 const bullet_stamina_use = 2
 
@@ -50,23 +52,29 @@ func _ready():
 	
 	# Starting, default mode is melee
 	cur_mode = mode.MELEE
-	# Starting build selection is player wall
-	cur_build_selection = Placeable.placeables.PLAYER_WALL
+	# Starting build selection is the first build (torch)
+	cur_build_selection = 0
 
 
 func _process(_delta):
 	_update_mode()
-		
-	# handle left mouse click
+	
+	if Input.is_action_just_pressed("tab"):
+		_handle_tab_pressed()
 	if Input.is_action_just_pressed("LMB"):
 		_handle_left_mouse_click()
 	if Input.is_action_just_pressed("RMB"):
 		_handle_right_mouse_click()
 
+
 func _physics_process(delta):
 	look_at(get_global_mouse_position())
 	player_movement(delta)
 
+
+func _input(event: InputEvent):
+	pass
+	
 
 # get updated direction value for player
 func get_direction():
@@ -106,6 +114,15 @@ func _update_mode():
 	if mode_has_changed:
 		mode_changed.emit(cur_mode)
 
+
+# Pressing tab changes the build to the one below. Wrap around to top if at bottom
+func _handle_tab_pressed():
+	cur_build_selection += 1
+	if cur_build_selection >= Placeable.placeables.size():
+		cur_build_selection = 0
+	build_selection_changed.emit(cur_build_selection)
+	
+	
 func _handle_left_mouse_click():
 	if cur_mode == mode.SHOOT:
 		shoot()
