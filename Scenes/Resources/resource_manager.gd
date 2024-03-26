@@ -8,11 +8,11 @@ extends Node2D
 
 # Resource field
 var resources = {
-	"dirt": 0,
-	"stone": 0,
-	"leaves": 0,
-	"wood": 0,
-	"mobdrops": 0
+	"dirt": 100,
+	"stone": 100,
+	"leaves": 100,
+	"wood": 100,
+	"mobdrops": 100
 }
 
 var Placeable = preload("res://Scenes/Placeables/Placeable.gd")
