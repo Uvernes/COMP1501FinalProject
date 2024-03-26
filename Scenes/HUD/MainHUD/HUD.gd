@@ -15,9 +15,10 @@ func _on_player_ready():
 	# Initialize Stamina bar
 	$StaminaBar.max_value = player.max_stamina
 	$StaminaBar.value = player.cur_stamina
-	# Init hotbar and sidebar
+	# Initial render for everything
 	_on_player_mode_changed(player.cur_mode)
 	_on_player_build_selection_changed(player.cur_build_selection)
+	update_all_resources(get_parent().get_node("ResourceManager").resources)
 
 func _on_player_health_changed(new_health):
 	$HealthBar.value = new_health

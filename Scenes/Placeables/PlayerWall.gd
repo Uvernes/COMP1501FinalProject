@@ -9,14 +9,3 @@ func _ready():
 func _process(delta):
 	pass
 
-
-# Define resources cost
-static func get_cost() -> Dictionary:
-	return {
-		"dirt": 0,
-		"stone": 0,
-		"leaves": 0,
-		"wood": 10
-	}
-	
-
