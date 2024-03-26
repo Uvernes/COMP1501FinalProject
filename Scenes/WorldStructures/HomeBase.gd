@@ -21,7 +21,6 @@ func _process(delta):
 	
 func decrease_pop(amount):
 	current_pop -= amount
-	print("Current population is: ", current_pop)
 	if current_pop <= 0:
 		current_pop = 0
 		population_zero.emit()
