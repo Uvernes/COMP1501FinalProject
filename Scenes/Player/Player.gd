@@ -89,15 +89,6 @@ func player_movement(delta):
 		velocity = velocity.limit_length(cur_speed)
 		
 	move_and_slide()
-	for i in get_slide_collision_count():
-		handle_collision(get_slide_collision(i))
-		
-func handle_collision(collision: KinematicCollision2D):
-	var collider = collision.get_collider()
-	if collider.name == "EnemyHead":
-		hit(collider.get_melee_damage())
-		collider.update_hit_player()
-		
 
 func _update_mode():
 	# Check if mode changed

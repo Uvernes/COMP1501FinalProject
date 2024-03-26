@@ -44,10 +44,10 @@ texture_scale = 10.0
 
 [node name="StaminaTimer" type="Timer" parent="."]
 
-[node name="Head" type="CharacterBody2D" parent="."]
+[node name="Head" type="Area2D" parent="."]
+z_index = 1
 position = Vector2(18, 0)
 collision_layer = 2
-collision_mask = 0
 script = ExtResource("5_jbtl3")
 
 [node name="HeadHitBox" type="CollisionShape2D" parent="Head"]
@@ -68,4 +68,5 @@ wait_time = 0.2
 one_shot = true
 
 [connection signal="timeout" from="StaminaTimer" to="." method="_on_stamina_timer_timeout"]
+[connection signal="body_entered" from="Head" to="Head" method="_on_body_entered"]
 [connection signal="timeout" from="Head/AttackTimer" to="Head" method="_on_attack_timer_timeout"]

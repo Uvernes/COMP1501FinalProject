@@ -36,11 +36,10 @@ one_shot = true
 wait_time = 0.4
 one_shot = true
 
-[node name="EnemyHead" type="CharacterBody2D" parent="."]
+[node name="EnemyHead" type="Area2D" parent="."]
 position = Vector2(18, 0)
 scale = Vector2(1.5, 1.5)
-collision_layer = 4
-collision_mask = 0
+collision_mask = 2
 script = ExtResource("4_s6wme")
 
 [node name="HeadHitBox" type="CollisionShape2D" parent="EnemyHead"]
@@ -58,4 +57,5 @@ wait_time = 0.2
 one_shot = true
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="body_entered" from="EnemyHead" to="EnemyHead" method="_on_body_entered"]
 [connection signal="timeout" from="EnemyHead/AttackDurationTimer" to="EnemyHead" method="_on_attack_duration_timer_timeout"]
