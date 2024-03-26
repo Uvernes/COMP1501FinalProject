@@ -21,15 +21,20 @@ const max_spawn_distance_from_base = 1000
 const min_spawn_distance_from_player = 250 #should be far enough that the player can never see an enemy spawn
 const max_spawn_distance_from_player = 500
 
+const respawn_price = 10
+
 var random = RandomNumberGenerator.new()
 
 var spawn_location_around_base
 var spawn_location_around_player
 var player
+var homebase
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	player = get_node("Player")
+	homebase = get_node("HomeBase")
+	player.connect("player_death", handle_player_death)
 	$EnemySpawnTimerForBase.start()
 	$EnemySpawnTimerForPlayer.start()
 	
@@ -75,3 +80,17 @@ func _on_player_build_requested(global_mouse_pos, build_id):
 	$RoughWorkTileMap.place_build(global_mouse_pos, build_instance)
 	# Update resources HUD
 	$HUD.update_all_resources($ResourceManager.resources)
+	
+func handle_player_death():
+	if homebase.current_pop > respawn_price:
+		get_tree().call_group("Enemy", "queue_free") #for now, all enemies are deleted upon death
+		homebase.decrease_pop(respawn_price)
+		player.respawn()
+	else:
+		#game over
+		print("Game Over")
+		get_tree().quit()
+	
+
+	
+

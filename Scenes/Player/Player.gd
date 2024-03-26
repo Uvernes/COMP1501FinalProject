@@ -4,6 +4,7 @@ signal health_changed(new_health: int)
 signal stamina_changed(new_stamina: int)
 signal mode_changed(new_mode: int)
 signal build_selection_changed(new_build_selection: int)
+signal player_death()
 
  # Player signals that they want to build. Indirect rather than direct call
 # as there is lots of logic game controller handles (e.g cost to build, etc.)
@@ -139,8 +140,7 @@ func hit(amount):
 	cur_health -= amount
 	health_changed.emit(cur_health)
 	if (cur_health <= 0):
-		# TODO - send out player_death signal. Game controller should handle death
-		get_tree().quit()
+		player_death.emit()
 
 func shoot():
 	# compares the current stamina to the amount of stamina needed to fire a bullet.
@@ -182,3 +182,12 @@ func sprint():
 		print("shift")
 	if Input.is_action_just_released("shift"):
 		cur_speed = walk_speed
+
+func respawn():
+	cur_health = max_health
+	health_changed.emit(cur_health)
+	cur_stamina = max_stamina
+	stamina_changed.emit(cur_stamina)
+	velocity = Vector2(0,0)
+	cur_speed = walk_speed
+	position = Vector2(0,0)
