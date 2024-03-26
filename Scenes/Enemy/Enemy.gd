@@ -9,7 +9,7 @@ var moving = true
 
 const homebase_pos = Vector2(0,0)
 const distance_to_see_player = 400
-const attack_range = 90
+const attack_range = 100
 var health = 3
 const damage = 2
 const min_distance_from_player = 70
