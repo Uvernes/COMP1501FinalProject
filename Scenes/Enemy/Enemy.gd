@@ -8,10 +8,11 @@ const accel = 500
 var moving = true
 
 const homebase_pos = Vector2(0,0)
-const distance_to_see_player = 300
-const attack_range = 150
+const distance_to_see_player = 400
+const attack_range = 90
 var health = 3
 const damage = 2
+const min_distance_from_player = 70
 
 var player # Reference to player object
 var dead = false
@@ -21,6 +22,10 @@ func _ready():
 	$AttackTimer.start()
 
 func _physics_process(delta):
+	if (player.position - position).length() <= min_distance_from_player:
+		moving = false
+	else:
+		moving = true
 	if moving:
 		# change enemy movement accordingly
 		if (player.position - position).length() > distance_to_see_player:
@@ -31,8 +36,8 @@ func _physics_process(delta):
 			velocity += ((player.position - position).normalized() * accel * delta)
 		velocity = velocity.limit_length(MAX_SPEED)
 		move_and_slide()
-	for i in get_slide_collision_count():
-		handle_collision(get_slide_collision(i))
+	if (player.position - position).length() <= attack_range && $AttackTimer.time_left == 0:
+		start_attack_process()
 
 # Method for receiving damage
 func take_damage(amount):
@@ -68,22 +73,14 @@ func take_damage(amount):
 		queue_free()
 
 # handle enemy attack when possible
-func _on_attack_timer_timeout():
-	if (player.position - position).length() <= attack_range:
-		# when hitting player, reset speed (since they need to stop for a successful hit)
-		velocity = Vector2.ZERO
-		$EnemyHead.start_attack()
-		# force enemy to stop moving after hit
-		moving = false
-		await get_tree().create_timer(1.0).timeout
-		# after timer, make everything resume
-		moving = true
+func start_attack_process():
+	# when hitting player, reset speed (since they need to stop for a successful hit)
+	velocity = Vector2.ZERO
+	$EnemyHead.start_attack()
 	$AttackTimer.start()
-
-func handle_collision(collision: KinematicCollision2D):
-	var collider = collision.get_collider()
-	if collider != null:
-		if collider.name == "Head":
-			if $TakeDamageTimer.time_left == 0:
-				take_damage(collider.get_melee_damage())
-				$TakeDamageTimer.start()
+	# force enemy to stop moving after hit
+	moving = false
+	await get_tree().create_timer(1.0).timeout
+	# after timer, make everything resume
+	moving = true
+		
