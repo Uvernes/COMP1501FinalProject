@@ -191,3 +191,15 @@ func respawn():
 	velocity = Vector2(0,0)
 	cur_speed = walk_speed
 	position = Vector2(0,0)
+
+func increase_max_health(amount):
+	max_health += amount
+	print("Max health has been increased to: ", max_health) #for testing
+
+func increase_max_stamina(amount):
+	max_stamina += amount
+	print("Max stamina has been increased to: ", max_stamina) #for testing
+
+func increase_melee_damage(amount):
+	$Head.increse_melee_damage(amount)
+	

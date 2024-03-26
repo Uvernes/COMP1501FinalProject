@@ -83,4 +83,8 @@ func start_attack_process():
 	await get_tree().create_timer(1.0).timeout
 	# after timer, make everything resume
 	moving = true
-		
+
+func attack_base():
+	pass
+func stop_attacking_base():
+	pass

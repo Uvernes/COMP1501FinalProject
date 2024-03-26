@@ -1,5 +1,8 @@
 extends Area2D
 
+signal player_on_home_base()
+signal player_off_home_base()
+
 var current_pop
 var max_pop
 
@@ -33,17 +36,13 @@ func _on_regen_timer_timeout():
 func _on_body_entered(body):
 	if body != null:
 		if body.name == "Player":
-			pass
-			#tell player they can press e and open menu
+			player_on_home_base.emit()
 		if body.is_in_group("Enemy"):
-			pass
-			#tell enemy to begin attacking base
+			body.attack_base()
 
 func _on_body_exited(body):
 	if body != null:
 		if body.name == "Player":
-			pass
-			#tell player they can no longer press e and open menu
+			player_off_home_base.emit()
 		if body.is_in_group("Enemy"):
-			pass
-			#tell enemy to stop attacking base
+			body.stop_attacking_base()

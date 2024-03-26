@@ -1,10 +1,16 @@
 extends CanvasLayer
 
 var player
+var homebase
+var can_open_upgrade_menu
 
 
 func _ready():
 	player = get_parent().get_node("Player")
+	homebase = get_parent().get_node("HomeBase")
+	can_open_upgrade_menu = false
+	homebase.connect("player_on_home_base", update_upgrade_menu_open.bind(true))
+	homebase.connect("player_off_home_base", update_upgrade_menu_open.bind(false))
 	#$HScrollBar.set_focus()
 
 # Cannot initialize HUD until player is initialized (otherwise undefined values)
@@ -67,3 +73,10 @@ func update_all_resources(resource_amounts: Dictionary):
 	$ResourceDisplay/Wood/Label.text = "Wood: " + str(resource_amounts["wood"])
 	$ResourceDisplay/Mobdrops/Label.text = "Mobdrops: " + str(resource_amounts["mobdrops"])
 
+func update_upgrade_menu_open(state):
+	can_open_upgrade_menu = state
+
+func _input(ev):
+	if Input.is_action_pressed("interact") && can_open_upgrade_menu == true:
+		pass
+		#open or close upgrade menu here
