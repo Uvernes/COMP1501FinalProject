@@ -18,6 +18,12 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+func get_attacked(amount):
+	decrease_pop(amount)
+	if $AttackMessageCooldown.time_left == 0:
+		#send message that base is being attacked to wherever needed
+		$AttackMessageCooldown.start()
 	
 func decrease_pop(amount):
 	current_pop -= amount
@@ -55,3 +61,8 @@ func _on_area_exited(area):
 	if area != null:
 		if area.is_in_group("EnemyHeads"):
 			area.get_parent().stop_attacking_base()
+
+
+func _on_attack_message_cooldown_timeout():
+	#send message that base has not been attacked recently to wherever needed
+	pass

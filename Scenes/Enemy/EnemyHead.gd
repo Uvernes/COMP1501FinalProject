@@ -55,4 +55,4 @@ func handle_overlapping_areas(area):
 		if area != null:
 			if area.name == "HomeBase" && hit_something == false:
 				hit_something = true
-				area.decrease_pop(damage_to_base)
+				area.get_attacked(damage_to_base)

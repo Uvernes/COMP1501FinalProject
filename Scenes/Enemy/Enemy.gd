@@ -90,11 +90,9 @@ func start_attack_process():
 	moving = true
 
 func attack_base():
-	print("attack base")
 	attacking_base = true
 	moving = false
 
 func stop_attacking_base():
-	print("stop")
 	attacking_base = false
 	moving = true
