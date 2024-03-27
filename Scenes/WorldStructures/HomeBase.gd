@@ -38,12 +38,20 @@ func _on_body_entered(body):
 	if body != null:
 		if body.name == "Player":
 			player_on_home_base.emit()
-		if body.is_in_group("Enemy"):
-			body.attack_base()
+
 
 func _on_body_exited(body):
 	if body != null:
 		if body.name == "Player":
 			player_off_home_base.emit()
-		if body.is_in_group("Enemy"):
-			body.stop_attacking_base()
+
+
+func _on_area_entered(area):
+	if area != null:
+		if area.is_in_group("EnemyHeads"):
+			area.get_parent().attack_base()
+
+func _on_area_exited(area):
+	if area != null:
+		if area.is_in_group("EnemyHeads"):
+			area.get_parent().stop_attacking_base()
