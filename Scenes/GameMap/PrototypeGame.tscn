@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c515pf471vy3k"]
+[gd_scene load_steps=12 format=3 uid="uid://cdwl1a1vdml1e"]
 
 [ext_resource type="Script" path="res://Scripts/GameController.gd" id="1_rgqgc"]
 [ext_resource type="PackedScene" uid="uid://cbej05v14rtms" path="res://Scenes/Enemy/Enemy.tscn" id="2_t6k24"]
@@ -21,7 +21,7 @@ enemy_scene = ExtResource("2_t6k24")
 [node name="Player" parent="." instance=ExtResource("3_ikerl")]
 position = Vector2(131, 68)
 
-[node name="WorldMap" parent="." instance=ExtResource("4_okh0x")]
+[node name="RoughWorkTileMap" parent="." instance=ExtResource("4_okh0x")]
 
 [node name="EnemySpawnTimerForBase" type="Timer" parent="."]
 wait_time = 2.0
@@ -51,9 +51,8 @@ position = Vector2(270, -248)
 [node name="HomeBase" parent="." instance=ExtResource("11_4q45y")]
 
 [connection signal="build_requested" from="Player" to="." method="_on_player_build_requested"]
-[connection signal="build_selection_changed" from="Player" to="HUD" method="_on_player_build_selection_changed"]
 [connection signal="health_changed" from="Player" to="HUD" method="_on_player_health_changed"]
 [connection signal="mode_changed" from="Player" to="HUD" method="_on_player_mode_changed"]
-[connection signal="mode_changed" from="Player" to="WorldMap" method="_on_player_mode_changed"]
+[connection signal="mode_changed" from="Player" to="RoughWorkTileMap" method="_on_player_mode_changed"]
 [connection signal="ready" from="Player" to="HUD" method="_on_player_ready"]
 [connection signal="stamina_changed" from="Player" to="HUD" method="_on_player_stamina_changed"]

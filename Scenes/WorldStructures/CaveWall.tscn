@@ -3,19 +3,19 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wttac"]
 size = Vector2(64, 64)
 
-[node name="CaveWall" type="StaticBody2D"]
+[node name="CaveWall" type="StaticBody2D" groups=["Obstruction"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Obstruction"]]
 shape = SubResource("RectangleShape2D_wttac")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." groups=["Obstruction"]]
 offset_left = -32.0
 offset_top = -32.0
 offset_right = 32.0
 offset_bottom = 32.0
 metadata/_edit_use_anchors_ = true
 
-[node name="ColorRect2" type="ColorRect" parent="."]
+[node name="ColorRect2" type="ColorRect" parent="." groups=["Obstruction"]]
 offset_left = -31.0
 offset_top = -31.0
 offset_right = 9.0

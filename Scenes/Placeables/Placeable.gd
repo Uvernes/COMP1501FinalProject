@@ -55,13 +55,9 @@ const costs: Dictionary = {
 }
 
 # Fields
-@export var can_traverse = false   # If false, the player and other objects cannot move through the object
+# If false, the player and other objects cannot move through the object
+@export var can_traverse = false   
 
-## Resources cost <-- Redefine in child classes
-#static func get_cost()-> Dictionary:
-	#return {
-		#"dirt": 0,
-		#"stone": 0,
-		#"leaves": 0,
-		#"wood": 0
-	#}
+# Call with super() in all sublcasses so all of them have the base init ran
+func _ready():
+	add_to_group("Placeable")

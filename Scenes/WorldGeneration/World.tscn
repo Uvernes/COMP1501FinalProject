@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://c2npfte3awq2m"]
 
 [ext_resource type="Script" path="res://Scenes/WorldGeneration/World.gd" id="1_p2g32"]
-[ext_resource type="TileSet" uid="uid://byrdsnd3rf0iv" path="res://Scenes/WorldMap/ExampleTileMap.tres" id="2_dwnei"]
+[ext_resource type="TileSet" uid="uid://dywsctklklji8" path="res://Scenes/GameMap/ExampleTileMap.tres" id="2_dwnei"]
 [ext_resource type="PackedScene" uid="uid://1y1ksdxpo2ps" path="res://Scenes/Player/Player.tscn" id="3_lroji"]
-[ext_resource type="Script" path="res://Scenes/WorldMap/TileMapController.gd" id="3_xp7k6"]
+[ext_resource type="Script" path="res://Scenes/GameMap/GameMap.gd" id="3_xp7k6"]
 
 [sub_resource type="Gradient" id="Gradient_6l4b7"]
 interpolation_mode = 1

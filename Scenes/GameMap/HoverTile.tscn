@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://do23gcptel8rb"]
+
+[ext_resource type="Script" path="res://Scenes/GameMap/HoverTile.gd" id="1_cgilp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1m4pd"]
+size = Vector2(60, 60)
+
+[node name="HoverTile" type="Area2D"]
+z_index = 100
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_cgilp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1m4pd")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+color = Color(0, 0.756863, 0.219608, 0.235294)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
+offset_left = -31.0
+offset_top = -31.0
+offset_right = 9.0
+offset_bottom = 9.0
+scale = Vector2(1.55008, 1.55008)
+color = Color(0.388235, 0.180392, 0.0156863, 1)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

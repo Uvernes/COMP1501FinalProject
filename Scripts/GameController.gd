@@ -70,7 +70,8 @@ func _process(_delta):
 # Handle player build request and delegate accordingly
 func _on_player_build_requested(global_mouse_pos, build_id):
 	# Check if can build at area using tilemap controller
-	# TODO
+	if not $WorldMap.can_place_build(global_mouse_pos, build_id):
+		return
 	
 	# Attempt purchase
 	var build_instance = $ResourceManager.attempt_build_purchase(build_id)
@@ -78,7 +79,7 @@ func _on_player_build_requested(global_mouse_pos, build_id):
 	if build_instance == null:
 		return
 	# Pass build to tilemap controller so it places it
-	$RoughWorkTileMap.place_build(global_mouse_pos, build_instance)
+	$WorldMap.place_build(global_mouse_pos, build_instance)
 	# Update resources HUD
 	$HUD.update_all_resources($ResourceManager.resources)
 	

@@ -1,0 +1,119 @@
+[gd_scene load_steps=7 format=3 uid="uid://dpmkttqov262x"]
+
+[ext_resource type="Script" path="res://Scenes/GameMap/delete.gd" id="1_sc4ho"]
+[ext_resource type="Texture2D" uid="uid://doylxy08g5a0d" path="res://Assets/red.png" id="2_qo1nk"]
+[ext_resource type="Texture2D" uid="uid://bqxm7whjg8o2s" path="res://Assets/ants/redAntHead.png" id="3_1qpc5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_au6qf"]
+size = Vector2(83.5, 82)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ln52u"]
+radius = 15.0
+height = 52.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ojxr"]
+size = Vector2(12.4167, 16)
+
+[node name="Delete" type="Node2D"]
+position = Vector2(101, 80)
+script = ExtResource("1_sc4ho")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, -3)
+shape = SubResource("RectangleShape2D_au6qf")
+
+[node name="Enemy" type="CharacterBody2D" parent="." groups=["Enemy"]]
+z_index = 1
+position = Vector2(-15, -24)
+collision_mask = 3
+
+[node name="BodyHitBox" type="CollisionShape2D" parent="Enemy" groups=["Enemy"]]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ln52u")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy" groups=["Enemy"]]
+scale = Vector2(0.824219, 0.59375)
+texture = ExtResource("2_qo1nk")
+metadata/_edit_group_ = true
+
+[node name="AttackTimer" type="Timer" parent="Enemy" groups=["Enemy"]]
+wait_time = 2.0
+one_shot = true
+
+[node name="TakeDamageTimer" type="Timer" parent="Enemy"]
+wait_time = 0.4
+one_shot = true
+
+[node name="EnemyHead" type="Area2D" parent="Enemy"]
+z_index = 2
+position = Vector2(18, 0)
+scale = Vector2(1.5, 1.5)
+collision_mask = 2
+
+[node name="HeadHitBox" type="CollisionShape2D" parent="Enemy/EnemyHead"]
+position = Vector2(11.5417, 0)
+shape = SubResource("RectangleShape2D_5ojxr")
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy/EnemyHead"]
+position = Vector2(6, 0)
+rotation = 1.5708
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_1qpc5")
+
+[node name="AttackDurationTimer" type="Timer" parent="Enemy/EnemyHead"]
+wait_time = 0.2
+one_shot = true
+
+[node name="Enemy2" type="CharacterBody2D" parent="." groups=["Enemy"]]
+z_index = 1
+position = Vector2(18, 20)
+collision_mask = 3
+
+[node name="BodyHitBox" type="CollisionShape2D" parent="Enemy2" groups=["Enemy"]]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ln52u")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy2" groups=["Enemy"]]
+scale = Vector2(0.824219, 0.59375)
+texture = ExtResource("2_qo1nk")
+metadata/_edit_group_ = true
+
+[node name="AttackTimer" type="Timer" parent="Enemy2" groups=["Enemy"]]
+wait_time = 2.0
+one_shot = true
+
+[node name="TakeDamageTimer" type="Timer" parent="Enemy2"]
+wait_time = 0.4
+one_shot = true
+
+[node name="EnemyHead" type="Area2D" parent="Enemy2"]
+z_index = 2
+position = Vector2(18, 0)
+scale = Vector2(1.5, 1.5)
+collision_mask = 2
+
+[node name="HeadHitBox" type="CollisionShape2D" parent="Enemy2/EnemyHead"]
+position = Vector2(11.5417, 0)
+shape = SubResource("RectangleShape2D_5ojxr")
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy2/EnemyHead"]
+position = Vector2(6, 0)
+rotation = 1.5708
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_1qpc5")
+
+[node name="AttackDurationTimer" type="Timer" parent="Enemy2/EnemyHead"]
+wait_time = 0.2
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Enemy/AttackTimer" to="Enemy" method="_on_attack_timer_timeout"]
+[connection signal="body_entered" from="Enemy/EnemyHead" to="Enemy/EnemyHead" method="_on_body_entered"]
+[connection signal="timeout" from="Enemy/EnemyHead/AttackDurationTimer" to="Enemy/EnemyHead" method="_on_attack_duration_timer_timeout"]
+[connection signal="timeout" from="Enemy2/AttackTimer" to="Enemy2" method="_on_attack_timer_timeout"]
+[connection signal="body_entered" from="Enemy2/EnemyHead" to="Enemy2/EnemyHead" method="_on_body_entered"]
+[connection signal="timeout" from="Enemy2/EnemyHead/AttackDurationTimer" to="Enemy2/EnemyHead" method="_on_attack_duration_timer_timeout"]
