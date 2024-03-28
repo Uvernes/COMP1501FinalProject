@@ -63,6 +63,7 @@ func _process(_delta):
 			var enemy = enemy_scene.instantiate()
 			enemy.position = spawn_position
 			enemy.add_to_group("Enemy")
+			enemy.get_node("EnemyHead").add_to_group("EnemyHeads") #used to determine if head is touching homebase
 			add_child(enemy)
 			$EnemySpawnTimerForPlayer.start()
 			
