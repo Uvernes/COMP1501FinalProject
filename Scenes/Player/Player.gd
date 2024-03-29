@@ -6,11 +6,10 @@ signal mode_changed(new_mode: int)
 signal build_selection_changed(new_build_selection: int)
 signal player_death()
 
- # Player signals that they want to build. Indirect rather than direct call
+ # Player signals that they want to build / delete. Indirect rather than direct call
 # as there is lots of logic game controller handles (e.g cost to build, etc.)
-# For now. Simplified and tile map just picks it up.
 signal build_requested(global_mouse_pos: Vector2, build_id: int)
-
+signal delete_requested(global_mouse_pos: Vector2)
  
 # Enum for what mode the player is currently in
 enum mode { MELEE, SHOOT, DELETE, BUILD }
@@ -41,7 +40,6 @@ const bullet_stamina_use = 2
 @export var bullet_scene: PackedScene
 const Bullet = preload("res://Scenes/Bullet/bullet.gd") # For type annotation
 const Placeable = preload("res://Scenes/Placeables/Placeable.gd")
-
 
 
 func _ready():
@@ -129,6 +127,8 @@ func _handle_left_mouse_click():
 		shoot()
 	elif cur_mode == mode.BUILD:
 		build()
+	elif cur_mode == mode.DELETE:
+		delete()
 	# TODO. Other mode logic
 
 func _handle_right_mouse_click():
@@ -163,6 +163,10 @@ func shoot():
 func build():
 	build_requested.emit(get_global_mouse_position(), cur_build_selection)
 
+
+func delete():
+	delete_requested.emit(get_global_mouse_position())
+	
 
 func stamina_check():
 	if(cur_stamina <= 0):

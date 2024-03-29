@@ -24,7 +24,7 @@ var player_mode
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	player_mode = get_parent().get_node("Player").cur_mode
-	if player_mode != Player.mode.BUILD:
+	if player_mode != Player.mode.BUILD and player_mode != Player.mode.DELETE:
 		$HoverTile.hide()
 
 
@@ -34,8 +34,8 @@ func _process(delta):
 
 
 func _physics_process(delta):
-	# If in build mode, move hover tile to center of tile cell mouse is on
-	if player_mode == Player.mode.BUILD:
+	# If in build or delete mode, move hover tile to center of tile cell mouse is on
+	if  player_mode == Player.mode.BUILD or player_mode == Player.mode.DELETE:
 		move_hover_tile_to_moused_over_cell()
 
 		#var tile_cell = $BackgroundTileMap.get_cell_source_id(1, tile_coords)
@@ -79,10 +79,10 @@ func move_hover_tile_to_moused_over_cell():
 # is at (i.e where the hover tile is at).
 # This check is done by looking at what is currently inside of the hover tile.
 func can_place_build(global_mouse_pos, build_id):
-	print("A------")
-	for object in $HoverTile.objects_in_area:
-		print(object.get_class() + " " + str(object.get_groups()))
-	print("B------")
+	#print("A------")
+	#for object in $HoverTile.objects_in_area:
+		#print(object.get_class() + " " + str(object.get_groups()))
+	#print("B------")
 	for object in $HoverTile.objects_in_area:
 		if object.is_in_group("Player"):
 			return false
@@ -95,24 +95,35 @@ func can_place_build(global_mouse_pos, build_id):
 	return true
 	
 	
-func place_build(global_mouse_pos, build_instance):
-	var tile_coords = $BackgroundTileMap.local_to_map(global_mouse_pos)
-	var tile_cell = $BackgroundTileMap.get_cell_source_id(1, tile_coords)
+func place_build_at_hover_tile(build_instance):
+	# var tile_coords = $BackgroundTileMap.local_to_map(global_mouse_pos)
+	# var tile_cell = $BackgroundTileMap.get_cell_source_id(1, tile_coords)
 	#print(global_mouse_pos)
 	#print(tile_coords)
 	#print(tile_cell)
 	#
-	var global_tile_center_pos = $BackgroundTileMap.map_to_local(tile_coords)
-	build_instance.position = global_tile_center_pos
+	# var global_tile_center_pos = $BackgroundTileMap.map_to_local(tile_coords)
+	# build_instance.position = global_tile_center_pos
+	
+	build_instance.position = $HoverTile.position
+	
 	get_tree().root.add_child(build_instance)
 	#print(map_to_local(tile_coords))
 	
 	#set_cell(1, tile_coords, wall)
 
 
+#  For now we assume only up to one build (placeable) can be on given tile at a time
+func get_build_at_hover_tile():
+	for object in $HoverTile.objects_in_area:
+		if object.is_in_group("Placeable"):
+			return object
+	return null
+
+
 func _on_player_mode_changed(new_mode):
 	player_mode = new_mode
-	if player_mode == Player.mode.BUILD:
+	if player_mode == Player.mode.BUILD or player_mode == Player.mode.DELETE:
 		move_hover_tile_to_moused_over_cell()
 		$HoverTile.show()
 	else:

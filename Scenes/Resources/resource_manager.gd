@@ -39,3 +39,15 @@ func attempt_build_purchase(build_id):
 	var build_scene = Placeable.packed_scenes[build_id]
 	var build_instance = build_scene.instantiate()
 	return build_instance
+
+
+# Calculates and returns the resources from the deletion of the building (placeable)
+# instance passed in. Currently half the amount it costs to build for now (rounded down)
+func return_resources_from_delete(build_instance):
+	var build_cost  = Placeable.costs[build_instance.build_id]
+	# print(build_cost)
+	for resource in build_cost:
+		#print("cost: " + str(build_cost[resource]))
+		#print(int(ceil(build_cost[resource]/2.0)))
+		resources[resource] += int(floor(build_cost[resource]/2.0))
+

@@ -26,7 +26,7 @@ const costs: Dictionary = {
 		"dirt": 0,
 		"stone": 0,
 		"leaves": 2,
-		"wood": 2
+		"wood": 3
 		},
 	placeables.PLAYER_WALL: {
 		"dirt": 1,
@@ -56,7 +56,9 @@ const costs: Dictionary = {
 
 # Fields
 # If false, the player and other objects cannot move through the object
-@export var can_traverse = false   
+@export var can_traverse = false 
+var build_id  # Each build specifies its build id in the placeables enum
+
 
 # Call with super() in all sublcasses so all of them have the base init ran
 func _ready():

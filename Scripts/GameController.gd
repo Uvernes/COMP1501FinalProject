@@ -80,9 +80,26 @@ func _on_player_build_requested(global_mouse_pos, build_id):
 	if build_instance == null:
 		return
 	# Pass build to tilemap controller so it places it
-	$WorldMap.place_build(global_mouse_pos, build_instance)
+	# $WorldMap.place_build(global_mouse_pos, build_instance)
+	$WorldMap.place_build_at_hover_tile(build_instance)
 	# Update resources HUD
 	$HUD.update_all_resources($ResourceManager.resources)
+	
+
+# Handle player delete request and delegate accordingly
+func _on_player_delete_requested(global_mouse_pos):
+	# Remove build from the world at the tile the mouse is hovering over 
+	var build_instance = $WorldMap.get_build_at_hover_tile()
+	# If nothing to delete, return
+	if build_instance == null:
+		return
+	# Get some resources returned back from delete
+	$ResourceManager.return_resources_from_delete(build_instance)
+	# Update resource HUD
+	$HUD.update_all_resources($ResourceManager.resources)
+
+	# Delete build
+	build_instance.queue_free()
 	
 func handle_player_death():
 	if homebase.current_pop > respawn_price:
@@ -94,11 +111,10 @@ func handle_player_death():
 		print("Player died and could not respawn: Game Over")
 		get_tree().quit()
 
+
 func handle_homebase_death():
 	#game over
 	print("Population reached zero: Game Over")
 	get_tree().quit()
-	
-
 	
 
