@@ -163,7 +163,6 @@ func _on_melee_dmg_button_pressed():
 	melee_dmg_button_pressed.emit()
 
 
-
-
-
-
+func _on_home_base_population_changed():
+	#update population display
+	pass

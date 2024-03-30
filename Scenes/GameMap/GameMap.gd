@@ -59,6 +59,23 @@ func _physics_process(delta):
 		#print(tile_coords)
 		#print(tile_cell)
 		# erase_cell(0, tile_coords)
+
+func move_spawn_tile_to_cell_at_pos(pos):
+	var tile_coords_map = $BackgroundTileMap.local_to_map(pos)
+	var tile_coords_local = $BackgroundTileMap.map_to_local(tile_coords_map)
+	$SpawnTile.position = tile_coords_local
+
+func can_spawn_mob(pos):
+	for object in $SpawnTile.objects_in_area:
+		if object.is_in_group("Player"):
+			return false
+		if object.is_in_group("Enemy"):
+			return false
+		if object.is_in_group("Placeable"):
+			return false
+		if object.is_in_group("Obstruction"):
+			return false
+	return true
 	
 	
 func move_hover_tile_to_moused_over_cell():

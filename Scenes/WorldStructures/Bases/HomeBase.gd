@@ -3,6 +3,7 @@ extends Area2D
 signal player_on_home_base()
 signal player_off_home_base()
 signal population_zero()
+signal population_changed()
 
 var current_pop
 var max_pop
