@@ -15,7 +15,15 @@ var resources = {
 	"mobdrops": 100
 }
 
+var hud
+
 var Placeable = preload("res://Scenes/Placeables/Placeable.gd")
+
+func check_upgrade_cost(amount):
+	if resources["mobdrops"] < amount:
+		return false
+	resources["mobdrops"] -= amount
+	return true
 
 
 func resource_picked_up(type, amount):

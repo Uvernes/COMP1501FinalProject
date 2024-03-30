@@ -1,19 +1,26 @@
 extends CanvasLayer
 
+signal health_button_pressed()
+signal stamina_button_pressed()
+signal melee_dmg_button_pressed()
+
 var player
 var homebase
 var can_open_upgrade_menu
 var can_build_base
+var upgrade_menu_open
 
 var currentSubBase
 var subBases
 
 
 func _ready():
+	$UpgradeMenu.hide()
 	player = get_parent().get_node("Player")
 	homebase = get_parent().get_node("HomeBase")
 	can_open_upgrade_menu = false
 	can_build_base = false
+	upgrade_menu_open = false
 	subBases = []
 	currentSubBase = null
 	homebase.connect("player_on_home_base", update_upgrade_menu_open.bind(true))
@@ -49,6 +56,12 @@ func _on_player_health_changed(new_health):
 
 func _on_player_stamina_changed(new_stamina):
 	$StaminaBar.value = new_stamina
+	
+func _on_player_max_stamina_changed(new_max):
+	$StaminaBar.max_value = new_max
+	
+func _on_player_max_health_changed(new_max):
+	$HealthBar.max_value = new_max
 
 # Update the player mode hotbar
 # NOTE: The GUI must be kept in sync with player's modes 
@@ -90,16 +103,20 @@ func update_all_resources(resource_amounts: Dictionary):
 	$ResourceDisplay/Wood/Label.text = "Wood: " + str(resource_amounts["wood"])
 	$ResourceDisplay/Mobdrops/Label.text = "Mobdrops: " + str(resource_amounts["mobdrops"])
 
+
 func update_upgrade_menu_open(state):
 	can_open_upgrade_menu = state
+	if state == false:
+		show_upgrade_menu(false)
 
 func _input(ev):
 	if Input.is_action_pressed("interact"):
 		if can_open_upgrade_menu == true:
-			pass
-			#open or close upgrade menu here
+			if upgrade_menu_open == true:
+				show_upgrade_menu(false)
+			else:
+				show_upgrade_menu(true)
 		elif can_build_base == true:
-			print(currentSubBase)
 			if currentSubBase != null:
 				#check for ressources, build base if possible
 				currentSubBase.changeActiveStatus(true)
@@ -125,3 +142,28 @@ func update_build_base_option(state):
 	else:
 		pass
 		#hide build base pop up
+
+func show_upgrade_menu(state):
+	if state == true:
+		$UpgradeMenu.show()
+		upgrade_menu_open = true
+	else:
+		$UpgradeMenu.hide()
+		upgrade_menu_open = false
+
+
+#buttons send signals to game controller
+func _on_health_button_pressed():
+	health_button_pressed.emit()
+
+func _on_stamina_button_pressed():
+	stamina_button_pressed.emit()
+
+func _on_melee_dmg_button_pressed():
+	melee_dmg_button_pressed.emit()
+
+
+
+
+
+

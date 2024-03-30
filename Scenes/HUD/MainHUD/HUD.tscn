@@ -596,3 +596,202 @@ grow_vertical = 2
 text = "Mobdrops: 0"
 label_settings = SubResource("LabelSettings_j2epg")
 horizontal_alignment = 1
+
+[node name="UpgradeMenu" type="Control" parent="."]
+layout_mode = 3
+anchor_left = 0.499
+anchor_top = 0.5
+anchor_right = 0.499
+anchor_bottom = 0.5
+offset_left = -249.848
+offset_top = -149.0
+offset_right = 250.152
+offset_bottom = 101.0
+
+[node name="ColorRect" type="ColorRect" parent="UpgradeMenu"]
+layout_mode = 2
+offset_right = 500.0
+offset_bottom = 250.0
+
+[node name="Title" type="Label" parent="UpgradeMenu"]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 16.0
+offset_right = 368.0
+offset_bottom = 58.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Player Upgrades"
+horizontal_alignment = 1
+
+[node name="UpgradeHealth" type="Control" parent="UpgradeMenu"]
+layout_mode = 1
+anchor_left = 0.21
+anchor_top = 0.5
+anchor_right = 0.21
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -55.0
+offset_right = 55.0
+offset_bottom = 75.0
+
+[node name="ColorRect" type="ColorRect" parent="UpgradeMenu/UpgradeHealth"]
+layout_mode = 0
+offset_right = 130.0
+offset_bottom = 130.0
+color = Color(1, 0.141176, 0.211765, 1)
+
+[node name="Type" type="Label" parent="UpgradeMenu/UpgradeHealth"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 10.0
+offset_right = 97.0
+offset_bottom = 38.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Health"
+
+[node name="Cost" type="Label" parent="UpgradeMenu/UpgradeHealth"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.517
+anchor_top = 0.758
+anchor_right = 0.517
+anchor_bottom = 0.758
+offset_left = -35.21
+offset_top = 1.46
+offset_right = 29.79
+offset_bottom = 24.46
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Cost: 10"
+
+[node name="Button" type="Button" parent="UpgradeMenu/UpgradeHealth"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.333
+anchor_right = 0.5
+anchor_bottom = 0.333
+offset_left = -50.0
+offset_top = -3.29
+offset_right = 50.0
+offset_bottom = 56.71
+text = "Upgrade"
+icon_alignment = 1
+
+[node name="UpgradeStamina" type="Control" parent="UpgradeMenu"]
+layout_mode = 1
+anchor_left = 0.21
+anchor_top = 0.5
+anchor_right = 0.21
+anchor_bottom = 0.5
+offset_left = 80.0
+offset_top = -55.0
+offset_right = 210.0
+offset_bottom = 75.0
+
+[node name="ColorRect" type="ColorRect" parent="UpgradeMenu/UpgradeStamina"]
+layout_mode = 0
+offset_right = 130.0
+offset_bottom = 130.0
+color = Color(0.270588, 0.737255, 0.184314, 1)
+
+[node name="Type" type="Label" parent="UpgradeMenu/UpgradeStamina"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 10.0
+offset_right = 105.0
+offset_bottom = 38.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Stamina"
+
+[node name="Cost" type="Label" parent="UpgradeMenu/UpgradeStamina"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.517
+anchor_top = 0.758
+anchor_right = 0.517
+anchor_bottom = 0.758
+offset_left = -35.21
+offset_top = 1.46
+offset_right = 29.79
+offset_bottom = 24.46
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Cost: 10"
+
+[node name="Button" type="Button" parent="UpgradeMenu/UpgradeStamina"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.333
+anchor_right = 0.5
+anchor_bottom = 0.333
+offset_left = -50.0
+offset_top = -3.29
+offset_right = 50.0
+offset_bottom = 56.71
+text = "Upgrade"
+icon_alignment = 1
+
+[node name="UpgradeMeleeDmg" type="Control" parent="UpgradeMenu"]
+layout_mode = 1
+anchor_left = 0.21
+anchor_top = 0.5
+anchor_right = 0.21
+anchor_bottom = 0.5
+offset_left = 235.0
+offset_top = -55.0
+offset_right = 365.0
+offset_bottom = 75.0
+
+[node name="ColorRect" type="ColorRect" parent="UpgradeMenu/UpgradeMeleeDmg"]
+layout_mode = 0
+offset_right = 130.0
+offset_bottom = 130.0
+color = Color(0.360784, 0.65098, 0.878431, 1)
+
+[node name="Type" type="Label" parent="UpgradeMenu/UpgradeMeleeDmg"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 10.0
+offset_right = 128.0
+offset_bottom = 38.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Melee Damage"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Cost" type="Label" parent="UpgradeMenu/UpgradeMeleeDmg"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.517
+anchor_top = 0.758
+anchor_right = 0.517
+anchor_bottom = 0.758
+offset_left = -35.21
+offset_top = 1.46
+offset_right = 29.79
+offset_bottom = 24.46
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Cost: 10"
+
+[node name="Button" type="Button" parent="UpgradeMenu/UpgradeMeleeDmg"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.333
+anchor_right = 0.5
+anchor_bottom = 0.333
+offset_left = -50.0
+offset_top = -3.29
+offset_right = 50.0
+offset_bottom = 56.71
+text = "Upgrade"
+icon_alignment = 1
+
+[connection signal="focus_entered" from="UpgradeMenu" to="." method="_on_upgrade_menu_focus_entered"]
+[connection signal="pressed" from="UpgradeMenu/UpgradeHealth/Button" to="." method="_on_health_button_pressed"]
+[connection signal="pressed" from="UpgradeMenu/UpgradeStamina/Button" to="." method="_on_stamina_button_pressed"]
+[connection signal="pressed" from="UpgradeMenu/UpgradeMeleeDmg/Button" to="." method="_on_melee_dmg_button_pressed"]

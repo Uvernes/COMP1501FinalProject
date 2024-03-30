@@ -54,6 +54,8 @@ position = Vector2(270, -248)
 [connection signal="build_selection_changed" from="Player" to="HUD" method="_on_player_build_selection_changed"]
 [connection signal="delete_requested" from="Player" to="." method="_on_player_delete_requested"]
 [connection signal="health_changed" from="Player" to="HUD" method="_on_player_health_changed"]
+[connection signal="max_health_changed" from="Player" to="HUD" method="_on_player_max_health_changed"]
+[connection signal="max_stamina_changed" from="Player" to="HUD" method="_on_player_max_stamina_changed"]
 [connection signal="mode_changed" from="Player" to="HUD" method="_on_player_mode_changed"]
 [connection signal="mode_changed" from="Player" to="WorldMap" method="_on_player_mode_changed"]
 [connection signal="ready" from="Player" to="HUD" method="_on_player_ready"]

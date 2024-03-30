@@ -36,6 +36,9 @@ func _ready():
 	homebase = get_node("HomeBase")
 	player.connect("player_death", handle_player_death)
 	homebase.connect("population_zero", handle_homebase_death)
+	$HUD.connect("health_button_pressed", handle_upgrade.bind(0))
+	$HUD.connect("stamina_button_pressed", handle_upgrade.bind(1))
+	$HUD.connect("melee_dmg_button_pressed", handle_upgrade.bind(2))
 	$EnemySpawnTimerForBase.start()
 	$EnemySpawnTimerForPlayer.start()
 	
@@ -116,5 +119,14 @@ func handle_homebase_death():
 	#game over
 	print("Population reached zero: Game Over")
 	get_tree().quit()
-	
 
+func handle_upgrade(type):
+	if $ResourceManager.check_upgrade_cost(10) == true:
+		if type == 0:
+			player.increase_max_health(2)
+		elif type == 1:
+			player.increase_max_stamina(2)
+		elif type == 2:
+			player.increase_melee_damage(1)
+		$HUD.update_all_resources($ResourceManager.resources)
+	

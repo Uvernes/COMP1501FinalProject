@@ -5,6 +5,8 @@ signal stamina_changed(new_stamina: int)
 signal mode_changed(new_mode: int)
 signal build_selection_changed(new_build_selection: int)
 signal player_death()
+signal max_health_changed(new_max)
+signal max_stamina_changed(new_max)
 
  # Player signals that they want to build / delete. Indirect rather than direct call
 # as there is lots of logic game controller handles (e.g cost to build, etc.)
@@ -198,12 +200,16 @@ func respawn():
 
 func increase_max_health(amount):
 	max_health += amount
-	print("Max health has been increased to: ", max_health) #for testing
+	cur_health += amount
+	max_health_changed.emit(max_health)
+	health_changed.emit(cur_health)
 
 func increase_max_stamina(amount):
 	max_stamina += amount
-	print("Max stamina has been increased to: ", max_stamina) #for testing
+	cur_stamina += amount
+	max_stamina_changed.emit(max_stamina)
+	stamina_changed.emit(cur_stamina)
 
 func increase_melee_damage(amount):
-	$Head.increse_melee_damage(amount)
+	$Head.increase_melee_damage(amount)
 	

@@ -46,5 +46,4 @@ func handle_overlap(body):
 
 func increase_melee_damage(amount):
 	melee_damage += amount
-	print("Melee damage has been increased to: ", melee_damage) #for testing
 
