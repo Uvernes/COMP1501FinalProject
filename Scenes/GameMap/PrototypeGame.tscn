@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://b7oecv531ru7h" path="res://Scenes/Resources/resource_manager.tscn" id="8_r1hkf"]
 [ext_resource type="PackedScene" uid="uid://bjdqvr0d6xkj3" path="res://Scenes/ResourceSpawners/dirt_spawner.tscn" id="9_uoj5a"]
 [ext_resource type="PackedScene" uid="uid://o7wxb7v0a732" path="res://Scenes/ResourceSpawners/leaves_spawner.tscn" id="10_syl04"]
-[ext_resource type="PackedScene" uid="uid://c0rlyf5ahmurg" path="res://Scenes/WorldStructures/HomeBase.tscn" id="11_4q45y"]
+[ext_resource type="PackedScene" uid="uid://c0rlyf5ahmurg" path="res://Scenes/WorldStructures/Bases/HomeBase.tscn" id="11_4q45y"]
 
 [node name="PrototypeWorld" type="Node2D"]
 script = ExtResource("1_rgqgc")

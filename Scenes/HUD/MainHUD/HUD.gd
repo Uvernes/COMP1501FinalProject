@@ -3,14 +3,31 @@ extends CanvasLayer
 var player
 var homebase
 var can_open_upgrade_menu
+var can_build_base
+
+var currentSubBase
+var subBases
 
 
 func _ready():
 	player = get_parent().get_node("Player")
 	homebase = get_parent().get_node("HomeBase")
 	can_open_upgrade_menu = false
+	can_build_base = false
+	subBases = []
+	currentSubBase = null
 	homebase.connect("player_on_home_base", update_upgrade_menu_open.bind(true))
 	homebase.connect("player_off_home_base", update_upgrade_menu_open.bind(false))
+	
+	#repeat for each sub base (change name):
+	#subBases.append(get_parent().get_node("SubBase"))
+	
+	for i in subBases.size():
+		subBases[i].connect("player_on_sub_base", update_current_subBase.bind(subBases[i], true))
+		subBases[i].connect("player_off_sub_base", update_current_subBase.bind(subBases[i], false))
+	
+	
+	
 	#$HScrollBar.set_focus()
 
 # Cannot initialize HUD until player is initialized (otherwise undefined values)
@@ -77,6 +94,34 @@ func update_upgrade_menu_open(state):
 	can_open_upgrade_menu = state
 
 func _input(ev):
-	if Input.is_action_pressed("interact") && can_open_upgrade_menu == true:
+	if Input.is_action_pressed("interact"):
+		if can_open_upgrade_menu == true:
+			pass
+			#open or close upgrade menu here
+		elif can_build_base == true:
+			print(currentSubBase)
+			if currentSubBase != null:
+				#check for ressources, build base if possible
+				currentSubBase.changeActiveStatus(true)
+				update_build_base_option(false)
+				update_upgrade_menu_open(true)
+			
+
+func update_current_subBase(base, state):
+	if base.active == true:
+		update_upgrade_menu_open(state)
+	else:
+		update_build_base_option(state)
+	if state == true:
+		currentSubBase = base
+	else:
+		currentSubBase = null
+
+func update_build_base_option(state):
+	can_build_base = state
+	if state == true:
 		pass
-		#open or close upgrade menu here
+		#show build base pop up
+	else:
+		pass
+		#hide build base pop up

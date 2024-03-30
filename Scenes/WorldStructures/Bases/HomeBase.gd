@@ -21,6 +21,7 @@ func _process(delta):
 
 func get_attacked(amount):
 	decrease_pop(amount)
+
 	if $AttackMessageCooldown.time_left == 0:
 		#send message that base is being attacked to wherever needed
 		$AttackMessageCooldown.start()
@@ -30,6 +31,8 @@ func decrease_pop(amount):
 	if current_pop <= 0:
 		current_pop = 0
 		population_zero.emit()
+	elif $RegenTimer.time_left == 0:
+		$RegenTimer.start()
 
 func increase_pop(amount):
 	current_pop += amount
@@ -38,6 +41,8 @@ func increase_pop(amount):
 
 func _on_regen_timer_timeout():
 	increase_pop(1)
+	if current_pop != max_pop:
+		$RegenTimer.start()
 	
 
 func _on_body_entered(body):
