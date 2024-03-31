@@ -57,8 +57,6 @@ func _process(_delta):
 				add_child(enemy)
 				$EnemySpawnTimerForBase.start()
 				
-	
-	
 	if player.position.length() > min_player_distance_from_base:
 		if $EnemySpawnTimerForPlayer.time_left == 0:
 			var distance = random.randf_range(min_spawn_distance_from_player, max_spawn_distance_from_player)

@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://dwccup8cb8fe3"]
+[gd_scene load_steps=2 format=3 uid="uid://dwccup8cb8fe3"]
+
+[ext_resource type="Script" path="res://Scenes/Bugs/Ant.gd" id="1_0mhnb"]
 
 [node name="Ant" type="Node2D"]
+script = ExtResource("1_0mhnb")
