@@ -13,7 +13,6 @@ var upgrade_menu_open
 var currentSubBase
 var subBases
 
-
 func _ready():
 	$UpgradeMenu.hide()
 	player = get_parent().get_node("Player")
@@ -33,8 +32,6 @@ func _ready():
 		subBases[i].connect("player_on_sub_base", update_current_subBase.bind(subBases[i], true))
 		subBases[i].connect("player_off_sub_base", update_current_subBase.bind(subBases[i], false))
 	
-	
-	
 	#$HScrollBar.set_focus()
 
 # Cannot initialize HUD until player is initialized (otherwise undefined values)
@@ -45,6 +42,7 @@ func _on_player_ready():
 	# Initialize Stamina bar
 	$StaminaBar.max_value = player.max_stamina
 	$StaminaBar.value = player.cur_stamina
+	
 	# Initial render for everything
 	_on_player_mode_changed(player.cur_mode)
 	_on_player_build_selection_changed(player.cur_build_selection)
@@ -52,7 +50,6 @@ func _on_player_ready():
 
 func _on_player_health_changed(new_health):
 	$HealthBar.value = new_health
-
 
 func _on_player_stamina_changed(new_stamina):
 	$StaminaBar.value = new_stamina
@@ -162,7 +159,5 @@ func _on_stamina_button_pressed():
 func _on_melee_dmg_button_pressed():
 	melee_dmg_button_pressed.emit()
 
-
-func _on_home_base_population_changed():
-	#update population display
-	pass
+func _on_home_base_population_changed(new_population):
+	$PopulationBar.value = new_population

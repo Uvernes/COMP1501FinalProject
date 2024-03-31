@@ -91,7 +91,6 @@ func _on_player_build_requested(global_mouse_pos, build_id):
 	$WorldMap.place_build_at_hover_tile(build_instance)
 	# Update resources HUD
 	$HUD.update_all_resources($ResourceManager.resources)
-	
 
 # Handle player delete request and delegate accordingly
 func _on_player_delete_requested(global_mouse_pos):

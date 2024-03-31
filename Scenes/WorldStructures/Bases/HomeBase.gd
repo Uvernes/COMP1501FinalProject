@@ -8,13 +8,11 @@ signal population_changed()
 var current_pop
 var max_pop
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	current_pop = 100
 	max_pop = 100
 	position = Vector2(0,0)
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -29,6 +27,7 @@ func get_attacked(amount):
 	
 func decrease_pop(amount):
 	current_pop -= amount
+	population_changed.emit(current_pop)
 	if current_pop <= 0:
 		current_pop = 0
 		population_zero.emit()
@@ -37,6 +36,7 @@ func decrease_pop(amount):
 
 func increase_pop(amount):
 	current_pop += amount
+	population_changed.emit(current_pop)
 	if current_pop > max_pop:
 		current_pop = max_pop
 

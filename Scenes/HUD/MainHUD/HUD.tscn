@@ -472,9 +472,9 @@ text = "5"
 [node name="ResourceDisplay" type="BoxContainer" parent="."]
 clip_contents = true
 offset_left = 15.0
-offset_top = 15.0
+offset_top = 46.0
 offset_right = 175.0
-offset_bottom = 165.0
+offset_bottom = 196.0
 vertical = true
 
 [node name="Dirt" type="Control" parent="ResourceDisplay"]
@@ -790,6 +790,14 @@ offset_right = 50.0
 offset_bottom = 56.71
 text = "Upgrade"
 icon_alignment = 1
+
+[node name="PopulationBar" type="ProgressBar" parent="."]
+offset_left = 15.0
+offset_top = 13.0
+offset_right = 174.0
+offset_bottom = 40.0
+step = 1.0
+show_percentage = false
 
 [connection signal="focus_entered" from="UpgradeMenu" to="." method="_on_upgrade_menu_focus_entered"]
 [connection signal="pressed" from="UpgradeMenu/UpgradeHealth/Button" to="." method="_on_health_button_pressed"]
