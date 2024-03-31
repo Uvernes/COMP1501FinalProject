@@ -16,7 +16,7 @@ const packed_scenes: Dictionary = {
 	# TODO - create actual scenes + update paths
 	placeables.WEB: preload("res://Scenes/Placeables/Road.tscn"),
 	placeables.MINE: preload("res://Scenes/Placeables/Road.tscn"),
-	placeables.TOWER: preload("res://Scenes/Placeables/Road.tscn"),
+	placeables.TOWER: preload("res://Scenes/Placeables/Tower.tscn"),
 }
 
 # All resource costs defined here. Done here so we don't need to load 
