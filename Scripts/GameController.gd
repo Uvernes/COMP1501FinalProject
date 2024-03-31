@@ -48,9 +48,9 @@ func _process(_delta):
 		var direction = Vector2(randf_range(-1,1),randf_range(-1,1))
 		var spawn_position = direction * distance
 		
-		$WorldMap.move_spawn_tile_to_cell_at_pos(spawn_position)
-		if $WorldMap.can_spawn_mob(spawn_position) == true:
-			if(spawn_position - player.position).length() > min_distance_from_player && (spawn_position - homebase.position).length() > min_spawn_distance_from_base:
+		spawn_position = $WorldMap.move_spawn_tile_to_cell_at_pos(spawn_position)
+		if(spawn_position - player.position).length() > min_distance_from_player && (spawn_position - homebase.position).length() > min_spawn_distance_from_base:
+			if $WorldMap.can_spawn_mob() == true:
 				var enemy = enemy_scene.instantiate()
 				enemy.position = spawn_position
 				enemy.add_to_group("Enemy")
@@ -65,9 +65,9 @@ func _process(_delta):
 			var direction = Vector2(randf_range(-1,1),randf_range(-1,1))
 			var spawn_position = player.position + (direction * distance)
 			
-			$WorldMap.move_spawn_tile_to_cell_at_pos(spawn_position)
-			if $WorldMap.can_spawn_mob(spawn_position) == true:
-				if(spawn_position - player.position).length() > min_distance_from_player:
+			spawn_position = $WorldMap.move_spawn_tile_to_cell_at_pos(spawn_position)
+			if(spawn_position - player.position).length() > min_distance_from_player:
+				if $WorldMap.can_spawn_mob() == true:
 					var enemy = enemy_scene.instantiate()
 					enemy.position = spawn_position
 					enemy.add_to_group("Enemy")

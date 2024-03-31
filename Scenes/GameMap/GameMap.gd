@@ -64,8 +64,9 @@ func move_spawn_tile_to_cell_at_pos(pos):
 	var tile_coords_map = $BackgroundTileMap.local_to_map(pos)
 	var tile_coords_local = $BackgroundTileMap.map_to_local(tile_coords_map)
 	$SpawnTile.position = tile_coords_local
+	return $SpawnTile.position
 
-func can_spawn_mob(pos):
+func can_spawn_mob():
 	for object in $SpawnTile.objects_in_area:
 		if object.is_in_group("Player"):
 			return false
