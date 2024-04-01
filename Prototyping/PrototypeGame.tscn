@@ -38,9 +38,7 @@ color = Color(0.0196078, 0.0196078, 0.0196078, 1)
 scale = Vector2(3, 3)
 
 [node name="ResourceManager" parent="." instance=ExtResource("8_r1hkf")]
-visible = false
 position = Vector2(3000, 3000)
-metadata/_edit_lock_ = true
 
 [node name="DirtSpawner" parent="." instance=ExtResource("9_uoj5a")]
 position = Vector2(-242, -239)
@@ -60,4 +58,3 @@ position = Vector2(270, -248)
 [connection signal="mode_changed" from="Player" to="WorldMap" method="_on_player_mode_changed"]
 [connection signal="ready" from="Player" to="HUD" method="_on_player_ready"]
 [connection signal="stamina_changed" from="Player" to="HUD" method="_on_player_stamina_changed"]
-[connection signal="population_changed" from="HomeBase" to="HUD" method="_on_home_base_population_changed"]
