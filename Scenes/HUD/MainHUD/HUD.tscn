@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://npbjmbt4um60"]
+[gd_scene load_steps=16 format=3 uid="uid://npbjmbt4um60"]
 
 [ext_resource type="Script" path="res://Scenes/HUD/MainHUD/HUD.gd" id="1_niqmd"]
 
@@ -79,6 +79,22 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s18ot"]
+bg_color = Color(0.247059, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0.164706, 0, 0, 0.6)
+shadow_size = 5
+
+[sub_resource type="SystemFont" id="SystemFont_il2mq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_o1qhi"]
+line_spacing = 0.0
+font = SubResource("SystemFont_il2mq")
+font_size = 11
 
 [sub_resource type="LabelSettings" id="LabelSettings_lywem"]
 line_spacing = 0.0
@@ -553,6 +569,30 @@ offset_right = 35.0
 offset_bottom = 42.0
 theme_override_font_sizes/font_size = 15
 text = "5"
+
+[node name="BuildInstruction" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1080.0
+offset_top = 592.0
+offset_right = 1135.0
+offset_bottom = 632.0
+
+[node name="Label" type="Label" parent="BuildInstruction"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.993333, 1.00424)
+theme_override_styles/normal = SubResource("StyleBoxFlat_s18ot")
+text = "TAB 
+To Cycle"
+label_settings = SubResource("LabelSettings_o1qhi")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="ResourceDisplayShadow" type="ColorRect" parent="."]
 modulate = Color(0.52549, 0.52549, 0.52549, 1)

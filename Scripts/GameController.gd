@@ -113,13 +113,13 @@ func handle_player_death():
 	else:
 		#game over
 		print("Player died and could not respawn: Game Over")
-		get_tree().quit()
+		get_tree().change_scene_to_file("res://Scenes/Menus/MainMenu/MainMenu.tscn")
 
 
 func handle_homebase_death():
 	#game over
 	print("Population reached zero: Game Over")
-	get_tree().quit()
+	get_tree().change_scene_to_file("res://Scenes/Menus/MainMenu/MainMenu.tscn")
 
 func handle_upgrade(type):
 	if $ResourceManager.check_upgrade_cost(10) == true:
