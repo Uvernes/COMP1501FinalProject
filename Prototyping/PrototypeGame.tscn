@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://c515pf471vy3k"]
+[gd_scene load_steps=12 format=3 uid="uid://c515pf471vy3k"]
 
 [ext_resource type="Script" path="res://Scripts/GameController.gd" id="1_rgqgc"]
+[ext_resource type="PackedScene" uid="uid://cbej05v14rtms" path="res://Scenes/Enemy/Enemy.tscn" id="2_t6k24"]
 [ext_resource type="PackedScene" uid="uid://1y1ksdxpo2ps" path="res://Scenes/Player/Player.tscn" id="3_ikerl"]
 [ext_resource type="PackedScene" uid="uid://npbjmbt4um60" path="res://Scenes/HUD/MainHUD/HUD.tscn" id="3_wqtu2"]
 [ext_resource type="PackedScene" uid="uid://7lgbxm51b76s" path="res://Scenes/GameMap/GameMap.tscn" id="4_okh0x"]
@@ -13,6 +14,7 @@
 
 [node name="PrototypeWorld" type="Node2D"]
 script = ExtResource("1_rgqgc")
+enemy_scene = ExtResource("2_t6k24")
 
 [node name="HUD" parent="." instance=ExtResource("3_wqtu2")]
 
@@ -20,6 +22,14 @@ script = ExtResource("1_rgqgc")
 position = Vector2(131, 68)
 
 [node name="WorldMap" parent="." instance=ExtResource("4_okh0x")]
+
+[node name="EnemySpawnTimerForBase" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="EnemySpawnTimerForPlayer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
 
 [node name="Darkness" parent="." instance=ExtResource("6_hbrf3")]
 color = Color(0.0196078, 0.0196078, 0.0196078, 1)
