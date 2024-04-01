@@ -8,11 +8,11 @@ extends Node2D
 
 # Resource field
 var resources = {
-	"dirt": 100,
-	"stone": 100,
-	"leaves": 100,
-	"wood": 100,
-	"mobdrops": 100
+	"dirt": 10,
+	"stone": 10,
+	"leaves": 10,
+	"wood": 10,
+	"mobdrops": 10
 }
 
 var hud
