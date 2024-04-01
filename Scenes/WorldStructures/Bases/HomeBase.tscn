@@ -1,9 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0rlyf5ahmurg"]
+[gd_scene load_steps=6 format=3 uid="uid://c0rlyf5ahmurg"]
 
 [ext_resource type="Script" path="res://Scenes/WorldStructures/Bases/HomeBase.gd" id="1_k3hj7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_thuke"]
 size = Vector2(128, 128)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_atm2r"]
+bg_color = Color(0.54902, 0.435294, 0.0901961, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0.498387, 0.394524, 0.0779838, 1)
+shadow_size = 5
+
+[sub_resource type="SystemFont" id="SystemFont_il2mq"]
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_0i6yk"]
+line_spacing = 0.0
+font = SubResource("SystemFont_il2mq")
+font_size = 11
+font_color = Color(0, 0, 0, 1)
 
 [node name="HomeBase" type="Area2D"]
 collision_mask = 3
@@ -27,6 +45,29 @@ one_shot = true
 [node name="AttackMessageCooldown" type="Timer" parent="."]
 wait_time = 20.0
 one_shot = true
+
+[node name="UpgradeMenuInstruction" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -30.0
+offset_top = -20.0
+offset_right = 30.0
+offset_bottom = 20.0
+
+[node name="Label" type="Label" parent="UpgradeMenuInstruction"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.993333, 1.00424)
+theme_override_styles/normal = SubResource("StyleBoxFlat_atm2r")
+text = "Press \"E\""
+label_settings = SubResource("LabelSettings_0i6yk")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]

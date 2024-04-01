@@ -89,11 +89,12 @@ corner_radius_bottom_left = 10
 shadow_color = Color(0.164706, 0, 0, 0.6)
 shadow_size = 5
 
-[sub_resource type="SystemFont" id="SystemFont_il2mq"]
+[sub_resource type="SystemFont" id="SystemFont_6sdfh"]
+subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_o1qhi"]
 line_spacing = 0.0
-font = SubResource("SystemFont_il2mq")
+font = SubResource("SystemFont_6sdfh")
 font_size = 11
 
 [sub_resource type="LabelSettings" id="LabelSettings_lywem"]
