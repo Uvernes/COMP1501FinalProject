@@ -19,7 +19,7 @@ var player # Reference to player object
 var dead = false
 
 func _ready():
-	player = get_parent().get_node("Player")
+	player = get_tree().get_first_node_in_group("Player")
 	$AttackTimer.start()
 
 func _physics_process(delta):
