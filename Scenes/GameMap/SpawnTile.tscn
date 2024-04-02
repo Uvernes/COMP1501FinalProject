@@ -3,15 +3,22 @@
 [ext_resource type="Script" path="res://Scenes/GameMap/SpawnTile.gd" id="1_o4fqi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_etdgw"]
-size = Vector2(64, 64)
+size = Vector2(60, 60)
 
 [node name="SpawnTile" type="Area2D"]
 collision_layer = 3
 collision_mask = 3
+priority = 1
 script = ExtResource("1_o4fqi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_etdgw")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -29.0
+offset_top = -31.0
+offset_right = 30.0
+offset_bottom = 30.0
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]

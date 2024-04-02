@@ -3,17 +3,23 @@ extends Area2D
 signal player_on_sub_base()
 signal player_off_sub_base()
 signal base_destroyed()
+signal startWave()
 
 var current_pop
 var max_pop
 var active
+var safe
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	position = Vector2(500,100)#for testing
 	current_pop = 0
-	max_pop = 20
+	max_pop = 100
 	active = false
+	safe = false
+	$ActivateBasePopUp.hide()
+	$ActivateBasePopUp.position = Vector2(-70,-90)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -51,12 +57,15 @@ func _on_body_entered(body):
 	if body != null:
 		if body.name == "Player":
 			player_on_sub_base.emit()
+			if active == false:
+				$ActivateBasePopUp.show()
 
 
 func _on_body_exited(body):
 	if body != null:
 		if body.name == "Player":
 			player_off_sub_base.emit()
+			$ActivateBasePopUp.hide()
 
 
 func _on_area_entered(area):
@@ -78,12 +87,25 @@ func _on_attack_message_cooldown_timeout():
 
 func changeActiveStatus(status):
 	if status == true:
+		$ActivateBasePopUp.hide()
 		active = true
-		increase_pop(5)
+		increase_pop(100)
 		$RegenTimer.start()
 	elif status == false:
 		active = false
 		stopAllEnemyAttacks()
+
+func becomeSafe():
+	safe = true
+	get_parent().get_node("HUD").can_open_upgrade_menu = true
+
+func _input(ev):
+	if Input.is_action_pressed("interact"):
+		if active == false:
+			#check for ressources
+			changeActiveStatus(true)
+			startWave.emit()#not received anywhere yet
+			
 		
 func stopAllEnemyAttacks():
 	var overlapping_areas = get_overlapping_areas()

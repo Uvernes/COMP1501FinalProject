@@ -49,6 +49,7 @@ func _process(_delta):
 		var spawn_position = direction * distance
 		
 		spawn_position = $WorldMap.move_spawn_tile_to_cell_at_pos(spawn_position)
+		
 		if(spawn_position - player.position).length() > min_distance_from_player && (spawn_position - homebase.position).length() > min_spawn_distance_from_base:
 			if $WorldMap.can_spawn_mob() == true:
 				var enemy = enemy_scene.instantiate()
@@ -113,13 +114,13 @@ func handle_player_death():
 	else:
 		#game over
 		print("Player died and could not respawn: Game Over")
-		get_tree().change_scene_to_file("res://Scenes/Menus/MainMenu/MainMenu.tscn")
+		get_tree().quit()
 
 
 func handle_homebase_death():
 	#game over
 	print("Population reached zero: Game Over")
-	get_tree().change_scene_to_file("res://Scenes/Menus/MainMenu/MainMenu.tscn")
+	get_tree().quit()
 
 func handle_upgrade(type):
 	if $ResourceManager.check_upgrade_cost(10) == true:

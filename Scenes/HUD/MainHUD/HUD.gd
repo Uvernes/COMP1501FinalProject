@@ -25,8 +25,9 @@ func _ready():
 	homebase.connect("player_on_home_base", update_upgrade_menu_open.bind(true))
 	homebase.connect("player_off_home_base", update_upgrade_menu_open.bind(false))
 	
+	#
 	#repeat for each sub base (change name):
-	#subBases.append(get_parent().get_node("SubBase"))
+	subBases.append(get_parent().get_node("SubBase"))
 	
 	for i in subBases.size():
 		subBases[i].connect("player_on_sub_base", update_current_subBase.bind(subBases[i], true))
@@ -113,32 +114,15 @@ func _input(ev):
 				show_upgrade_menu(false)
 			else:
 				show_upgrade_menu(true)
-		elif can_build_base == true:
-			if currentSubBase != null:
-				#check for ressources, build base if possible
-				currentSubBase.changeActiveStatus(true)
-				update_build_base_option(false)
-				update_upgrade_menu_open(true)
 			
 
 func update_current_subBase(base, state):
-	if base.active == true:
+	if base.safe == true:
 		update_upgrade_menu_open(state)
-	else:
-		update_build_base_option(state)
 	if state == true:
 		currentSubBase = base
 	else:
 		currentSubBase = null
-
-func update_build_base_option(state):
-	can_build_base = state
-	if state == true:
-		pass
-		#show build base pop up
-	else:
-		pass
-		#hide build base pop up
 
 func show_upgrade_menu(state):
 	if state == true:
