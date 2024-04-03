@@ -56,22 +56,22 @@ func take_damage(amount):
 		var randomizer = randf()
 		if randomizer < 0.25:
 			var dirt = resource_scene.instantiate()
-			dirt.init("dirt", "res://Assets/Resources/dirt_resource.png")
+			dirt.init("dirt", "res://FinalAssets/Resources/dirt.png")
 			dirt.position = Vector2((position.x)+3, (position.y)+3)
 			get_parent().add_child(dirt)
 		elif randomizer < 0.5:
 			var stone = resource_scene.instantiate()
-			stone.init("stone", "res://Assets/Resources/stone_resource.png")
+			stone.init("stone", "res://FinalAssets/Resources/rock.png")
 			stone.position = Vector2((position.x)+3, (position.y)+3)
 			get_parent().add_child(stone)
 		elif randomizer < 0.75:
 			var leaves = resource_scene.instantiate()
-			leaves.init("leaves", "res://Assets/Resources/leaves_resource.png")
+			leaves.init("leaves", "res://FinalAssets/Resources/leaf.png")
 			leaves.position = Vector2((position.x)+3, (position.y)+3)
 			get_parent().add_child(leaves)
 		else:
 			var wood = resource_scene.instantiate()
-			wood.init("wood", "res://Assets/Resources/wood_resource.png")
+			wood.init("wood", "res://FinalAssets/Resources/wood.png")
 			wood.position = Vector2((position.x)+3, (position.y)+3)
 			get_parent().add_child(wood)
 		self.dead = true
