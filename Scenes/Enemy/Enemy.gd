@@ -5,16 +5,18 @@ extends CharacterBody2D
 
 const MAX_SPEED = 100
 const accel = 500
-const rotation_speed = 5
+const rotation_speed = 4
 var moving = true
 var attacking_base = false
 
 const homebase_pos = Vector2(0,0)
 const distance_to_see_player = 400
 const attack_range = 100
+const max_attack_angle = 0.7
 var health = 3
 const damage = 2
 const min_distance_from_player = 70
+var angle_to_face
 
 var player # Reference to player object
 var dead = false
@@ -22,6 +24,7 @@ var dead = false
 func _ready():
 	player = get_parent().get_node("Player")
 	$AttackTimer.start()
+	angle_to_face = 0
 
 func _physics_process(delta):
 	if attacking_base == false: #for now, once an enemy starts attacking the base they won't stop
@@ -32,17 +35,23 @@ func _physics_process(delta):
 		if moving:
 			# change enemy movement accordingly
 			if (player.position - position).length() > distance_to_see_player:
-				var angle_to_base = (homebase_pos - position).angle()
-				rotation =  lerp_angle(rotation, angle_to_base, delta * rotation_speed)
+				angle_to_face = (homebase_pos - position).angle()
+				rotation =  lerp_angle(rotation, angle_to_face, delta * rotation_speed)
 				velocity += ((homebase_pos - position).normalized() * accel * delta)
 			else:
-				var angle_to_player = (player.position - position).angle()
-				rotation = lerp_angle(rotation, angle_to_player, delta * rotation_speed)
+				angle_to_face = (player.position - position).angle()
+				rotation = lerp_angle(rotation, angle_to_face, delta * rotation_speed)
 				velocity += ((player.position - position).normalized() * accel * delta)
 			velocity = velocity.limit_length(MAX_SPEED)
 			move_and_slide()
+		elif abs((player.position - position).angle() - rotation) > max_attack_angle:
+			velocity -= ((player.position - position).normalized() * accel * delta)
+			velocity = velocity.limit_length(MAX_SPEED)
+			move_and_slide()
 		if (player.position - position).length() <= attack_range && $AttackTimer.time_left == 0:
-			start_attack_process()
+			angle_to_face = (player.position - position).angle()
+			if abs(angle_to_face - rotation) < max_attack_angle:
+				start_attack_process()
 	elif $AttackTimer.time_left == 0:
 		start_attack_process()
 
