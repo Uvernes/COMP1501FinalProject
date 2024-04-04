@@ -5,6 +5,7 @@ extends CharacterBody2D
 
 const MAX_SPEED = 100
 const accel = 500
+const rotation_speed = 5
 var moving = true
 var attacking_base = false
 
@@ -31,10 +32,12 @@ func _physics_process(delta):
 		if moving:
 			# change enemy movement accordingly
 			if (player.position - position).length() > distance_to_see_player:
-				look_at(homebase_pos)
+				var angle_to_base = (homebase_pos - position).angle()
+				rotation =  lerp_angle(rotation, angle_to_base, delta * rotation_speed)
 				velocity += ((homebase_pos - position).normalized() * accel * delta)
 			else:
-				look_at(player.position)
+				var angle_to_player = (player.position - position).angle()
+				rotation = lerp_angle(rotation, angle_to_player, delta * rotation_speed)
 				velocity += ((player.position - position).normalized() * accel * delta)
 			velocity = velocity.limit_length(MAX_SPEED)
 			move_and_slide()
