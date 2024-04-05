@@ -29,6 +29,7 @@ color = Color(0.0196078, 0.0196078, 0.0196078, 1)
 [node name="ResourceManager" parent="." instance=ExtResource("7_8cil1")]
 
 [connection signal="build_requested" from="Player" to="." method="_on_player_build_requested"]
+[connection signal="build_selection_changed" from="Player" to="HUD" method="_on_player_build_selection_changed"]
 [connection signal="delete_requested" from="Player" to="." method="_on_player_delete_requested"]
 [connection signal="health_changed" from="Player" to="HUD" method="_on_player_health_changed"]
 [connection signal="mode_changed" from="Player" to="HUD" method="_on_player_mode_changed"]
