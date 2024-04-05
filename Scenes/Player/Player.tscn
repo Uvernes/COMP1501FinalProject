@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://1y1ksdxpo2ps"]
+[gd_scene load_steps=10 format=3 uid="uid://1y1ksdxpo2ps"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_88ct0"]
 [ext_resource type="PackedScene" uid="uid://cnpk6ul0cvh8u" path="res://Scenes/Bullet/bullet.tscn" id="2_tj8lh"]
 [ext_resource type="Texture2D" uid="uid://ccpfp8st1r1uk" path="res://PrototypeAssets/ants/front.png" id="3_yyxff"]
 [ext_resource type="Texture2D" uid="uid://cecwh4twkhrw5" path="res://PrototypeAssets/light_tpbg_white.png" id="4_fe1vo"]
 [ext_resource type="Script" path="res://Scenes/Player/Head.gd" id="5_jbtl3"]
+[ext_resource type="Script" path="res://Scenes/Player/PlayerLight.gd" id="5_rdf0n"]
 [ext_resource type="Texture2D" uid="uid://brgnkoxbceqc" path="res://PrototypeAssets/ants/anthead.png" id="6_b0dpf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2af3w"]
@@ -42,6 +43,7 @@ color = Color(0.494118, 0.494118, 0.494118, 1)
 energy = 1.5
 texture = ExtResource("4_fe1vo")
 texture_scale = 10.0
+script = ExtResource("5_rdf0n")
 
 [node name="StaminaTimer" type="Timer" parent="."]
 
