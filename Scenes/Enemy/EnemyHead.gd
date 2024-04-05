@@ -1,7 +1,7 @@
 extends Area2D
 
 const attack_speed = Vector2(100, 0)
-var knock_back_force = 16
+var knock_back_force = 15
 var melee_damage
 var damage_to_base
 var attacking

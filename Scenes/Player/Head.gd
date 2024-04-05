@@ -6,7 +6,7 @@ var attacking
 var head_retracting
 var already_hit
 var overlapping_bodies
-var knock_back_force = 20
+var knock_back_force = 16
 
 func _ready():
 	attacking = false

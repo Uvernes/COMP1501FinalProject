@@ -38,7 +38,7 @@ wait_time = 0.4
 one_shot = true
 
 [node name="StunTimer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.27
 one_shot = true
 
 [node name="EnemyHead" type="Area2D" parent="." groups=["EnemyHeads"]]

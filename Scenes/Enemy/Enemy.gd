@@ -46,7 +46,7 @@ func _physics_process(delta):
 				velocity += ((player.position - position).normalized() * accel * delta)
 			velocity = velocity.limit_length(MAX_SPEED)
 			move_and_slide()
-		elif $StunTimer.time_left > 0.1:#needed for taking knockback
+		elif $StunTimer.time_left > 0:#needed for taking knockback
 				move_and_slide()
 		elif abs((player.position - position).angle() - rotation) > max_attack_angle:
 			velocity -= ((player.position - position).normalized() * accel * delta)
@@ -92,7 +92,7 @@ func take_damage(amount,knockback=Vector2.ZERO,force=0):
 			get_parent().add_child(wood)
 		self.dead = true
 		queue_free()
-	velocity += (knockback * accel * force * get_physics_process_delta_time())
+	velocity = (knockback * accel * force * get_physics_process_delta_time())#+= makes knockback look very inconsistent
 	$StunTimer.start()
 	move_and_slide()
 
