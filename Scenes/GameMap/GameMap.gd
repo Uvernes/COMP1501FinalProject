@@ -45,11 +45,12 @@ var player_mode
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# Init world map
 	# Starting room of the main world is the center row, left most room
 	starting_room_index = [floor((n_rows - 1)/2), 0]
 	init_game_map()
 	
-	return
+	# Init whether or not hover tile appears
 	player_mode = get_parent().get_node("Player").cur_mode
 	if player_mode != Player.mode.BUILD and player_mode != Player.mode.DELETE:
 		$HoverTile.hide()
@@ -257,7 +258,7 @@ func init_new_room(room_index, entrance):
 		cur_room.get_node("ClosedExits/left").queue_free()
 
 	# Have player start in room at the specified entrance
-	get_node("Player").global_position = \
+	get_parent().get_node("Player").global_position = \
 		cur_room.get_node("Entrances").get_node(entrance).global_position
 	cur_room.get_node("Entrances").hide()  # Entrances are just markers for the inspector, can hide
 
