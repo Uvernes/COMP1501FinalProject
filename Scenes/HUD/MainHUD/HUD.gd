@@ -5,36 +5,28 @@ signal stamina_button_pressed()
 signal melee_dmg_button_pressed()
 
 var player
-var homebase
+var base
 var can_open_upgrade_menu
 var can_build_base
 var upgrade_menu_open
 
-var currentSubBase
-var subBases
-
 func _ready():
 	$UpgradeMenu.hide()
+	$PopulationBar.hide()
 	player = get_parent().get_node("Player")
-	homebase = get_parent().get_node("base")
 	can_open_upgrade_menu = false
 	can_build_base = false
 	upgrade_menu_open = false
-	subBases = []
-	currentSubBase = null
-	if homebase:
-		homebase.connect("player_on_home_base", update_upgrade_menu_open.bind(true))
-		homebase.connect("player_off_home_base", update_upgrade_menu_open.bind(false))
-		
-	#repeat for each sub base (change name):
-	
-	return # todo - fix
-	
-	subBases.append(get_parent().get_node("SubBase"))
-	
-	for i in subBases.size():
-		subBases[i].connect("player_on_sub_base", update_current_subBase.bind(subBases[i], true))
-		subBases[i].connect("player_off_sub_base", update_current_subBase.bind(subBases[i], false))
+
+
+func room_changed(base):
+	$PopulationBar.hide()
+	if base != null:
+		base.connect("player_on_base", update_current_base.bind(base, true))
+		base.connect("player_off_base", update_current_base.bind(base,false))
+		base.connect("population_changed", base_population_changed)
+		base.connect("status_changed", base_status_changed)
+
 	
 	#$HScrollBar.set_focus()
 
@@ -119,13 +111,19 @@ func _input(ev):
 				show_upgrade_menu(true)
 			
 
-func update_current_subBase(base, state):
+func update_current_base(base, state):
 	if base.safe == true:
 		update_upgrade_menu_open(state)
-	if state == true:
-		currentSubBase = base
-	else:
-		currentSubBase = null
+
+func base_status_changed(type):
+	if type == "safe":
+		can_open_upgrade_menu = true
+		$PopulationBar.hide()
+	if type == "under attack":
+		$PopulationBar.show()
+	if type == "inactive":
+		can_open_upgrade_menu = false
+		$PopulationBar.hide()
 
 func show_upgrade_menu(state):
 	if state == true:
@@ -146,5 +144,5 @@ func _on_stamina_button_pressed():
 func _on_melee_dmg_button_pressed():
 	melee_dmg_button_pressed.emit()
 
-func _on_home_base_population_changed(new_population):
+func base_population_changed(new_population):
 	$PopulationBar.value = new_population

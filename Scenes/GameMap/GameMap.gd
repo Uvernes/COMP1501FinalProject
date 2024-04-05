@@ -9,6 +9,8 @@ extends Node2D
 @export var n_rows = 5
 @export var n_cols = 5
 
+signal room_changed()
+
 
 #@export var hover_tile_source_id: int
 #@export var hover_tile_atlas_coords: Vector2
@@ -18,6 +20,7 @@ var Player = load("res://Scenes/Player/Player.gd")
 # Add all possible rooms here!
 const all_room_scene_paths = 	[
 	"res://Scenes/GameMap/Rooms/Main/WithBase/template_room_with_base.tscn",
+	"res://Scenes/GameMap/Rooms/Main/NoBase/template_room_no_base.tscn"
 	]
 	
 # A 2D array of the rooms making up the game map for the current playthrough.
@@ -303,4 +306,4 @@ func handle_room_exit(direction):
 		entrance = direction  
 	
 	init_new_room(new_room_index, entrance)
-
+	room_changed.emit()

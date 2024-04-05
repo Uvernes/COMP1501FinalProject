@@ -55,6 +55,6 @@ func handle_overlapping_bodies(body):
 func handle_overlapping_areas(area):
 	if attacking == true:
 		if area != null:
-			if area.name == "HomeBase" && hit_something == false:
+			if area.name == "Base" && hit_something == false:
 				hit_something = true
 				area.get_attacked(damage_to_base)

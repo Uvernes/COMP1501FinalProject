@@ -58,8 +58,8 @@ func _ready():
 
 
 func _process(_delta):
-	print("Player mode:")
-	print(cur_mode)
+	#print("Player mode:")
+	#print(cur_mode)
 	
 	_update_mode()
 	

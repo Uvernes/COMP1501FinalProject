@@ -29,17 +29,19 @@ var random = RandomNumberGenerator.new()
 var spawn_location_around_base
 var spawn_location_around_player
 var player
-var homebase
+var gameMap
+var roomController
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	player = get_node("Player")
-	# homebase = get_node("HomeBase")
-	#player.connect("player_death", handle_player_death)
-	# homebase.connect("population_zero", handle_homebase_death)
+	gameMap = get_node("GameMap")
+	player.connect("player_death", _handle_player_death)
 	$HUD.connect("health_button_pressed", handle_upgrade.bind(0))
 	$HUD.connect("stamina_button_pressed", handle_upgrade.bind(1))
 	$HUD.connect("melee_dmg_button_pressed", handle_upgrade.bind(2))
+	gameMap.connect("room_changed", handle_room_change)
+	handle_room_change()
 	# $EnemySpawnTimerForBase.start()
 	# $EnemySpawnTimerForPlayer.start()
 	
@@ -109,20 +111,9 @@ func _on_player_delete_requested(global_mouse_pos):
 
 
 func _handle_player_death():
-	if homebase.current_pop > respawn_price:
-		get_tree().call_group("Enemy", "queue_free") #for now, all enemies are deleted upon death
-		homebase.decrease_pop(respawn_price)
-		player.respawn()
-	else:
 		#game over
-		print("Player died and could not respawn: Game Over")
+		print("Player died: Game Over")
 		get_tree().quit()
-
-
-func handle_homebase_death():
-	#game over
-	print("Population reached zero: Game Over")
-	get_tree().quit()
 
 
 func handle_upgrade(type):
@@ -134,4 +125,8 @@ func handle_upgrade(type):
 		elif type == 2:
 			player.increase_melee_damage(1)
 		$HUD.update_all_resources($ResourceManager.resources)
+
+func handle_room_change():
+	var base = gameMap.cur_room.return_base()
+	$HUD.room_changed(base)
 	

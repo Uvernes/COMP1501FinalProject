@@ -15,6 +15,9 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+	
+func return_base():
+	return get_node("Base")
 
 
 # Detect when player exits the room and from which side, and relay this to

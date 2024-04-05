@@ -1,9 +1,9 @@
 extends Area2D
 
-signal player_on_sub_base()
-signal player_off_sub_base()
-signal base_destroyed()
-signal startWave()
+signal player_on_base()
+signal player_off_base()
+signal population_changed(new_pop)
+signal status_changed(type)#types: "under attack", "inactive", "safe"
 
 var current_pop
 var max_pop
@@ -13,7 +13,7 @@ var safe
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	position = Vector2(500,100)#for testing
+	position = Vector2.ZERO
 	current_pop = 0
 	max_pop = 100
 	active = false
@@ -35,15 +35,17 @@ func get_attacked(amount):
 	
 func decrease_pop(amount):
 	current_pop -= amount
+	population_changed.emit(current_pop)
 	if current_pop <= 0:
 		current_pop = 0
-		base_destroyed.emit() #currently not received anywhere
+		status_changed.emit("inactive")
 		changeActiveStatus(false)
 	elif $RegenTimer.time_left == 0:
 		$RegenTimer.start()
 
 func increase_pop(amount):
 	current_pop += amount
+	population_changed.emit(current_pop)
 	if current_pop > max_pop:
 		current_pop = max_pop
 
@@ -56,7 +58,7 @@ func _on_regen_timer_timeout():
 func _on_body_entered(body):
 	if body != null:
 		if body.name == "Player":
-			player_on_sub_base.emit()
+			player_on_base.emit()
 			if active == false:
 				$ActivateBasePopUp.show()
 
@@ -64,7 +66,7 @@ func _on_body_entered(body):
 func _on_body_exited(body):
 	if body != null:
 		if body.name == "Player":
-			player_off_sub_base.emit()
+			player_off_base.emit()
 			$ActivateBasePopUp.hide()
 
 
@@ -93,18 +95,19 @@ func changeActiveStatus(status):
 		$RegenTimer.start()
 	elif status == false:
 		active = false
+		
 		stopAllEnemyAttacks()
 
 func becomeSafe():
 	safe = true
-	get_parent().get_node("HUD").can_open_upgrade_menu = true
+	status_changed.emit("safe")#use to stop mob spawns, and update HUD
 
 func _input(ev):
 	if Input.is_action_pressed("interact"):
 		if active == false:
 			#check for ressources
 			changeActiveStatus(true)
-			startWave.emit()#not received anywhere yet
+			status_changed.emit("under attack")#use to start enemy wave, and update HUD
 			
 		
 func stopAllEnemyAttacks():
