@@ -17,7 +17,7 @@ var Player = load("res://Scenes/Player/Player.gd")
 
 # Add all possible rooms here!
 const all_room_scene_paths = 	[
-	"res://Scenes/GameMap/Rooms/template_room.tscn",
+	"res://Scenes/GameMap/Rooms/Main/WithBase/template_room_with_base.tscn",
 	]
 	
 # A 2D array of the rooms making up the game map for the current playthrough.

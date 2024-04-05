@@ -1,11 +1,16 @@
-[gd_scene load_steps=10 format=3 uid="uid://cuh3222ph0w2x"]
+[gd_scene load_steps=15 format=3 uid="uid://1o8ffghssc2m"]
 
-[ext_resource type="Texture2D" uid="uid://dts1vnk2d4y8q" path="res://PrototypeAssets/TileSets/kenney_abstract-platformer/Tilesheet/tilesheet_complete.png" id="1_kda18"]
-[ext_resource type="PackedScene" uid="uid://ct5lgyoushw53" path="res://Scenes/WorldStructures/CaveWall.tscn" id="2_v6ktx"]
-[ext_resource type="Script" path="res://Scenes/GameMap/Rooms/RoomController.gd" id="3_ns6oy"]
+[ext_resource type="Texture2D" uid="uid://dts1vnk2d4y8q" path="res://PrototypeAssets/TileSets/kenney_abstract-platformer/Tilesheet/tilesheet_complete.png" id="1_4syfj"]
+[ext_resource type="PackedScene" uid="uid://ct5lgyoushw53" path="res://Scenes/WorldStructures/CaveWall.tscn" id="2_pgtdv"]
+[ext_resource type="Script" path="res://Scenes/GameMap/Rooms/Main/RoomController.gd" id="3_2t5xp"]
+[ext_resource type="PackedScene" uid="uid://dqq1eqx2408k" path="res://Scenes/Enemies/EnemySpawner.tscn" id="4_khx7q"]
+[ext_resource type="PackedScene" uid="uid://bjdqvr0d6xkj3" path="res://Scenes/ResourceSpawners/dirt_spawner.tscn" id="4_lnhwa"]
+[ext_resource type="PackedScene" uid="uid://cbej05v14rtms" path="res://Scenes/Enemy/Enemy.tscn" id="5_1r06l"]
+[ext_resource type="PackedScene" uid="uid://o7wxb7v0a732" path="res://Scenes/ResourceSpawners/leaves_spawner.tscn" id="5_h4jyc"]
+[ext_resource type="PackedScene" uid="uid://duc3mjrijegti" path="res://Scenes/WorldStructures/Bases/SubBase.tscn" id="6_dertm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o6vjd"]
-texture = ExtResource("1_kda18")
+texture = ExtResource("1_4syfj")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 11:11/0 = 0
@@ -39,7 +44,7 @@ texture_region_size = Vector2i(64, 64)
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_wna03"]
 resource_name = "ScenesCollection"
-scenes/1/scene = ExtResource("2_v6ktx")
+scenes/1/scene = ExtResource("2_pgtdv")
 
 [sub_resource type="TileSet" id="TileSet_1nx1o"]
 tile_size = Vector2i(64, 64)
@@ -51,7 +56,7 @@ size = Vector2(3840, 3840)
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_i5xd3"]
 resource_name = "ScenesCollection"
-scenes/1/scene = ExtResource("2_v6ktx")
+scenes/1/scene = ExtResource("2_pgtdv")
 
 [sub_resource type="TileSet" id="TileSet_qsyt6"]
 tile_size = Vector2i(64, 64)
@@ -66,7 +71,7 @@ layer_1/name = "Foreground"
 layer_1/tile_data = PackedInt32Array(-1900574, 2, 65536, -1835038, 2, 65536, -1769502, 2, 65536, -1703966, 2, 65536, -1638430, 2, 65536, -1572894, 2, 65536, -1507358, 2, 65536, -1441822, 2, 65536, -1376286, 2, 65536, -1310750, 2, 65536, -1245214, 2, 65536, -1179678, 2, 65536, -1114142, 2, 65536, -1048606, 2, 65536, -983070, 2, 65536, -917534, 2, 65536, -851998, 2, 65536, -786462, 2, 65536, -720926, 2, 65536, -655390, 2, 65536, -589854, 2, 65536, -524318, 2, 65536, -458782, 2, 65536, -393246, 2, 65536, -327710, 2, 65536, -262174, 2, 65536, -196638, 2, 65536, -131102, 2, 65536, 196578, 2, 65536, 262114, 2, 65536, 327650, 2, 65536, 393186, 2, 65536, 458722, 2, 65536, 524258, 2, 65536, 589794, 2, 65536, 655330, 2, 65536, 720866, 2, 65536, 786402, 2, 65536, 851938, 2, 65536, 917474, 2, 65536, 983010, 2, 65536, 1048546, 2, 65536, 1114082, 2, 65536, 1179618, 2, 65536, 1245154, 2, 65536, 1310690, 2, 65536, 1376226, 2, 65536, 1441762, 2, 65536, 1507298, 2, 65536, 1572834, 2, 65536, 1638370, 2, 65536, 1703906, 2, 65536, 1769442, 2, 65536, 1834978, 2, 65536, 1900514, 2, 65536, 1966050, 2, 65536, 1966052, 2, 65536, 1966053, 2, 65536, 1966054, 2, 65536, 1966055, 2, 65536, 1966056, 2, 65536, 1966057, 2, 65536, 1966058, 2, 65536, 1966059, 2, 65536, 1966060, 2, 65536, 1966061, 2, 65536, 1966062, 2, 65536, 1966063, 2, 65536, 1966064, 2, 65536, 1966065, 2, 65536, 1966066, 2, 65536, 1966067, 2, 65536, 1966051, 2, 65536, 1900553, 2, 65536, 1900552, 2, 65536, 1900551, 2, 65536, 1900550, 2, 65536, 1900549, 2, 65536, 1900548, 2, 65536, 1900547, 2, 65536, 1900546, 2, 65536, 1966077, 2, 65536, 1966076, 2, 65536, 1966075, 2, 65536, 1966074, 2, 65536, 1966073, 2, 65536, 1966072, 2, 65536, 1966071, 2, 65536, 1966070, 2, 65536, 1966069, 2, 65536, 1966068, 2, 65536, 1900555, 2, 65536, 1900556, 2, 65536, 1900557, 2, 65536, 1900558, 2, 65536, 1900559, 2, 65536, 1900560, 2, 65536, 1900561, 2, 65536, 1900562, 2, 65536, 1900554, 2, 65536, 1900563, 2, 65536, 1900564, 2, 65536, 1900565, 2, 65536, 1900566, 2, 65536, 1900567, 2, 65536, 1900568, 2, 65536, 1900569, 2, 65536, 1900570, 2, 65536, 1900571, 2, 65536, 1900572, 2, 65536, 1900573, 2, 65536, 1835037, 2, 65536, 1769501, 2, 65536, 1703965, 2, 65536, 1638429, 2, 65536, 1572893, 2, 65536, 1507357, 2, 65536, 1441821, 2, 65536, 1376285, 2, 65536, 1310749, 2, 65536, 1245213, 2, 65536, 1179677, 2, 65536, 1114141, 2, 65536, 1048605, 2, 65536, 983069, 2, 65536, 917533, 2, 65536, 851997, 2, 65536, 786461, 2, 65536, 720925, 2, 65536, 655389, 2, 65536, 589853, 2, 65536, 524317, 2, 65536, 458781, 2, 65536, 393245, 2, 65536, 327709, 2, 65536, 262173, 2, 65536, 196637, 2, 65536, 131101, 2, 65536, -196579, 2, 65536, -262115, 2, 65536, -327651, 2, 65536, -393187, 2, 65536, -458723, 2, 65536, -524259, 2, 65536, -589795, 2, 65536, -655331, 2, 65536, -720867, 2, 65536, -786403, 2, 65536, -851939, 2, 65536, -917475, 2, 65536, -983011, 2, 65536, -1048547, 2, 65536, -1572835, 2, 65536, -1114083, 2, 65536, -1179619, 2, 65536, -1245155, 2, 65536, -1310691, 2, 65536, -1376227, 2, 65536, -1441763, 2, 65536, -1507299, 2, 65536, -1638371, 2, 65536, -1703907, 2, 65536, -1769443, 2, 65536, -1834979, 2, 65536, -1900515, 2, 65536, -1966051, 2, 65536, -1966052, 2, 65536, -1966053, 2, 65536, -1966054, 2, 65536, -1966055, 2, 65536, -1966056, 2, 65536, -1966057, 2, 65536, -1966058, 2, 65536, -1966059, 2, 65536, -1966060, 2, 65536, -1966061, 2, 65536, -1966062, 2, 65536, -1966063, 2, 65536, -1966064, 2, 65536, -1966065, 2, 65536, -1966066, 2, 65536, -1966067, 2, 65536, -1966068, 2, 65536, -1966069, 2, 65536, -1966070, 2, 65536, -1966071, 2, 65536, -1966072, 2, 65536, -1966073, 2, 65536, -1966074, 2, 65536, -1966075, 2, 65536, -1966076, 2, 65536, -1966077, 2, 65536, -1900547, 2, 65536, -1900548, 2, 65536, -1900549, 2, 65536, -1900550, 2, 65536, -1900551, 2, 65536, -1900552, 2, 65536, -1900553, 2, 65536, -1900554, 2, 65536, -1900555, 2, 65536, -1900556, 2, 65536, -1900557, 2, 65536, -1900558, 2, 65536, -1900559, 2, 65536, -1900560, 2, 65536, -1900561, 2, 65536, -1900562, 2, 65536, -1900570, 2, 65536, -1900571, 2, 65536, -1900572, 2, 65536, -1900573, 2, 65536, -1900568, 2, 65536, -1900569, 2, 65536, -1900567, 2, 65536, -1900566, 2, 65536, -1900565, 2, 65536, -1900564, 2, 65536, -1900563, 2, 65536, -1966078, 2, 65536)
 layer_2/name = "Exits"
 layer_2/tile_data = PackedInt32Array()
-script = ExtResource("3_ns6oy")
+script = ExtResource("3_2t5xp")
 
 [node name="Area2D" type="Area2D" parent="."]
 visible = false
@@ -124,5 +129,16 @@ layer_0/tile_data = PackedInt32Array(-1900546, 1, 65536, -1900545, 1, 65536, -19
 tile_set = SubResource("TileSet_qsyt6")
 format = 2
 layer_0/tile_data = PackedInt32Array(1966078, 1, 65536, 1966079, 1, 65536, 1900544, 1, 65536, 1900545, 1, 65536)
+
+[node name="DirtSpawner" parent="." instance=ExtResource("4_lnhwa")]
+position = Vector2(-242, -239)
+
+[node name="LeavesSpawner" parent="." instance=ExtResource("5_h4jyc")]
+position = Vector2(270, -248)
+
+[node name="Base" parent="." instance=ExtResource("6_dertm")]
+
+[node name="EnemySpawner" parent="." instance=ExtResource("4_khx7q")]
+enemy_scene = ExtResource("5_1r06l")
 
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

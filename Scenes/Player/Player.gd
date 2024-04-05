@@ -58,6 +58,9 @@ func _ready():
 
 
 func _process(_delta):
+	print("Player mode:")
+	print(cur_mode)
+	
 	_update_mode()
 	
 	if Input.is_action_just_pressed("tab"):

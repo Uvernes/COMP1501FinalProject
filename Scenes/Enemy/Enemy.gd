@@ -24,7 +24,7 @@ var dead = false
 var itemdropdistancerange = 20
 
 func _ready():
-	player = get_parent().get_node("Player")
+	player = get_tree().get_current_scene().get_node("Player")
 	$AttackTimer.start()
 	angle_to_face = 0
 

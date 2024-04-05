@@ -16,17 +16,20 @@ var subBases
 func _ready():
 	$UpgradeMenu.hide()
 	player = get_parent().get_node("Player")
-	homebase = get_parent().get_node("HomeBase")
+	homebase = get_parent().get_node("base")
 	can_open_upgrade_menu = false
 	can_build_base = false
 	upgrade_menu_open = false
 	subBases = []
 	currentSubBase = null
-	homebase.connect("player_on_home_base", update_upgrade_menu_open.bind(true))
-	homebase.connect("player_off_home_base", update_upgrade_menu_open.bind(false))
-	
-	#
+	if homebase:
+		homebase.connect("player_on_home_base", update_upgrade_menu_open.bind(true))
+		homebase.connect("player_off_home_base", update_upgrade_menu_open.bind(false))
+		
 	#repeat for each sub base (change name):
+	
+	return # todo - fix
+	
 	subBases.append(get_parent().get_node("SubBase"))
 	
 	for i in subBases.size():
@@ -64,6 +67,7 @@ func _on_player_max_health_changed(new_max):
 # Update the player mode hotbar
 # NOTE: The GUI must be kept in sync with player's modes 
 func _on_player_mode_changed(new_mode):
+	print("Player mode!")
 	# Hide background for all hotbar items
 	var hotBarItems = $HotBar/Children.get_children()
 	for hotBarItem in hotBarItems:
