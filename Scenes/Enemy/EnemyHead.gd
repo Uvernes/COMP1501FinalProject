@@ -1,6 +1,7 @@
 extends Area2D
 
 const attack_speed = Vector2(100, 0)
+var knock_back_force = 16
 var melee_damage
 var damage_to_base
 var attacking
@@ -48,7 +49,8 @@ func handle_overlapping_bodies(body):
 		if body != null:
 			if body.name == "Player" && hit_something == false:
 				hit_something = true
-				body.hit(melee_damage)
+				var facing = (body.position - get_parent().position).normalized()
+				body.hit(melee_damage, facing, knock_back_force)
 
 func handle_overlapping_areas(area):
 	if attacking == true:

@@ -37,6 +37,10 @@ one_shot = true
 wait_time = 0.4
 one_shot = true
 
+[node name="StunTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
 [node name="EnemyHead" type="Area2D" parent="." groups=["EnemyHeads"]]
 z_index = 2
 position = Vector2(18, 0)

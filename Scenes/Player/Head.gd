@@ -6,6 +6,7 @@ var attacking
 var head_retracting
 var already_hit
 var overlapping_bodies
+var knock_back_force = 20
 
 func _ready():
 	attacking = false
@@ -42,7 +43,8 @@ func handle_overlap(body):
 		if body != null:
 			if body.is_in_group("Enemy") && already_hit.find(body) == -1:
 				already_hit.append(body)
-				body.take_damage(melee_damage)
+				var facing = (body.position - get_parent().position).normalized()
+				body.take_damage(melee_damage,facing,knock_back_force)
 
 func increase_melee_damage(amount):
 	melee_damage += amount

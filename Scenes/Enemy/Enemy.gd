@@ -30,7 +30,7 @@ func _ready():
 
 func _physics_process(delta):
 	if attacking_base == false: #for now, once an enemy starts attacking the base they won't stop
-		if (player.position - position).length() <= min_distance_from_player:
+		if (player.position - position).length() <= min_distance_from_player || $StunTimer.time_left > 0:
 			moving = false
 		else:
 			moving = true
@@ -46,6 +46,8 @@ func _physics_process(delta):
 				velocity += ((player.position - position).normalized() * accel * delta)
 			velocity = velocity.limit_length(MAX_SPEED)
 			move_and_slide()
+		elif $StunTimer.time_left > 0.1:#needed for taking knockback
+				move_and_slide()
 		elif abs((player.position - position).angle() - rotation) > max_attack_angle:
 			velocity -= ((player.position - position).normalized() * accel * delta)
 			velocity = velocity.limit_length(MAX_SPEED)
@@ -58,7 +60,7 @@ func _physics_process(delta):
 		start_attack_process()
 
 # Method for receiving damage
-func take_damage(amount):
+func take_damage(amount,knockback=Vector2.ZERO,force=0):
 	health = health - amount
 	stop_attacking_base() #remove to prioritze attacking base over player
 	if (health <= 0):
@@ -90,6 +92,9 @@ func take_damage(amount):
 			get_parent().add_child(wood)
 		self.dead = true
 		queue_free()
+	velocity += (knockback * accel * force * get_physics_process_delta_time())
+	$StunTimer.start()
+	move_and_slide()
 
 # handle enemy attack when possible
 func start_attack_process():
