@@ -98,7 +98,8 @@ func changeActiveStatus(status):
 		
 		stopAllEnemyAttacks()
 
-func becomeSafe():
+func becomeSafe(): #can be called when re-entering a room with a claimed base
+	active = true
 	safe = true
 	status_changed.emit("safe")#use to stop mob spawns, and update HUD
 
