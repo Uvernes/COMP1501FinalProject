@@ -62,10 +62,10 @@ texture = ExtResource("2_ngodx")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 modulate = Color(0.521569, 0.521569, 0.521569, 1)
 texture_filter = 1
-position = Vector2(0, -45)
-scale = Vector2(4.0625, 4.0625)
+position = Vector2(0, -44)
+scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_tuced")
-frame_progress = 0.937276
+frame_progress = 0.188695
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 texture_filter = 1

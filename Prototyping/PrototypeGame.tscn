@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c515pf471vy3k"]
+[gd_scene load_steps=13 format=3 uid="uid://c515pf471vy3k"]
 
 [ext_resource type="Script" path="res://Scripts/GameController.gd" id="1_rgqgc"]
 [ext_resource type="PackedScene" uid="uid://cbej05v14rtms" path="res://Scenes/Enemy/Enemy.tscn" id="2_t6k24"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bjdqvr0d6xkj3" path="res://Scenes/ResourceSpawners/dirt_spawner.tscn" id="9_uoj5a"]
 [ext_resource type="PackedScene" uid="uid://o7wxb7v0a732" path="res://Scenes/ResourceSpawners/leaves_spawner.tscn" id="10_syl04"]
 [ext_resource type="PackedScene" uid="uid://c0rlyf5ahmurg" path="res://Scenes/WorldStructures/Bases/HomeBase.tscn" id="11_4q45y"]
+[ext_resource type="PackedScene" uid="uid://dgwwc726rr5xm" path="res://Scenes/Menus/Pause/PauseMenu.tscn" id="12_3rn8h"]
 [ext_resource type="PackedScene" uid="uid://duc3mjrijegti" path="res://Scenes/WorldStructures/Bases/SubBase.tscn" id="12_tdp2r"]
 
 [node name="PrototypeWorld" type="Node2D"]
@@ -46,6 +47,12 @@ position = Vector2(270, -248)
 [node name="SubBase" parent="." instance=ExtResource("12_tdp2r")]
 
 [node name="HomeBase" parent="." instance=ExtResource("11_4q45y")]
+
+[node name="PauseMenu" parent="." instance=ExtResource("12_3rn8h")]
+offset_left = -530.0
+offset_top = -351.0
+offset_right = -530.0
+offset_bottom = -351.0
 
 [connection signal="build_requested" from="Player" to="." method="_on_player_build_requested"]
 [connection signal="build_selection_changed" from="Player" to="HUD" method="_on_player_build_selection_changed"]

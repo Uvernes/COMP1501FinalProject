@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_88ct0"]
 [ext_resource type="PackedScene" uid="uid://cnpk6ul0cvh8u" path="res://Scenes/Bullet/bullet.tscn" id="2_tj8lh"]
-[ext_resource type="Texture2D" uid="uid://ccpfp8st1r1uk" path="res://PrototypeAssets/ants/front.png" id="3_7w88q"]
-[ext_resource type="Texture2D" uid="uid://cecwh4twkhrw5" path="res://PrototypeAssets/light_tpbg_white.png" id="4_4ynsi"]
+[ext_resource type="Texture2D" uid="uid://ccpfp8st1r1uk" path="res://PrototypeAssets/ants/front.png" id="3_yyxff"]
+[ext_resource type="Texture2D" uid="uid://cecwh4twkhrw5" path="res://PrototypeAssets/light_tpbg_white.png" id="4_fe1vo"]
 [ext_resource type="Script" path="res://Scenes/Player/Head.gd" id="5_jbtl3"]
-[ext_resource type="Texture2D" uid="uid://brgnkoxbceqc" path="res://PrototypeAssets/ants/anthead.png" id="5_v00cx"]
+[ext_resource type="Texture2D" uid="uid://brgnkoxbceqc" path="res://PrototypeAssets/ants/anthead.png" id="6_b0dpf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2af3w"]
 radius = 15.0
@@ -30,7 +30,7 @@ shape = SubResource("CapsuleShape2D_2af3w")
 [node name="Sprite2D" type="Sprite2D" parent="." groups=["Player"]]
 rotation = 1.5708
 scale = Vector2(0.460938, 0.453125)
-texture = ExtResource("3_7w88q")
+texture = ExtResource("3_yyxff")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
 
@@ -40,7 +40,7 @@ texture = ExtResource("3_7w88q")
 texture_filter = 1
 color = Color(0.494118, 0.494118, 0.494118, 1)
 energy = 1.5
-texture = ExtResource("4_4ynsi")
+texture = ExtResource("4_fe1vo")
 texture_scale = 10.0
 
 [node name="StaminaTimer" type="Timer" parent="."]
@@ -61,7 +61,7 @@ metadata/_edit_group_ = true
 position = Vector2(2, 0)
 rotation = 1.5708
 scale = Vector2(0.466941, 0.431098)
-texture = ExtResource("5_v00cx")
+texture = ExtResource("6_b0dpf")
 metadata/_edit_group_ = true
 
 [node name="AttackTimer" type="Timer" parent="Head"]
