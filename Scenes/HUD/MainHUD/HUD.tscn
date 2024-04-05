@@ -787,6 +787,7 @@ offset_bottom = 38.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "Health"
+horizontal_alignment = 1
 
 [node name="Cost" type="Label" parent="UpgradeMenu/UpgradeHealth"]
 layout_mode = 1
@@ -796,11 +797,12 @@ anchor_top = 0.758
 anchor_right = 0.517
 anchor_bottom = 0.758
 offset_left = -35.21
-offset_top = 1.46
+offset_top = 6.46
 offset_right = 29.79
-offset_bottom = 24.46
+offset_bottom = 29.46
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Cost: 10"
+horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="UpgradeMenu/UpgradeHealth"]
 layout_mode = 1
@@ -831,7 +833,7 @@ offset_bottom = 75.0
 layout_mode = 0
 offset_right = 130.0
 offset_bottom = 130.0
-color = Color(0.270588, 0.737255, 0.184314, 1)
+color = Color(0.0862745, 0.364706, 0.635294, 1)
 
 [node name="Type" type="Label" parent="UpgradeMenu/UpgradeStamina"]
 layout_mode = 0
@@ -842,6 +844,7 @@ offset_bottom = 38.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "Stamina"
+horizontal_alignment = 1
 
 [node name="Cost" type="Label" parent="UpgradeMenu/UpgradeStamina"]
 layout_mode = 1
@@ -851,11 +854,12 @@ anchor_top = 0.758
 anchor_right = 0.517
 anchor_bottom = 0.758
 offset_left = -35.21
-offset_top = 1.46
+offset_top = 6.46
 offset_right = 29.79
-offset_bottom = 24.46
+offset_bottom = 29.46
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Cost: 10"
+horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="UpgradeMenu/UpgradeStamina"]
 layout_mode = 1
@@ -871,7 +875,7 @@ offset_bottom = 56.71
 text = "Upgrade"
 icon_alignment = 1
 
-[node name="UpgradeMeleeDmg" type="Control" parent="UpgradeMenu"]
+[node name="UpgradeDmg" type="Control" parent="UpgradeMenu"]
 layout_mode = 1
 anchor_left = 0.21
 anchor_top = 0.5
@@ -882,25 +886,25 @@ offset_top = -55.0
 offset_right = 365.0
 offset_bottom = 75.0
 
-[node name="ColorRect" type="ColorRect" parent="UpgradeMenu/UpgradeMeleeDmg"]
+[node name="ColorRect" type="ColorRect" parent="UpgradeMenu/UpgradeDmg"]
 layout_mode = 0
 offset_right = 130.0
 offset_bottom = 130.0
-color = Color(0.360784, 0.65098, 0.878431, 1)
+color = Color(0.737255, 0.611765, 0.109804, 1)
 
-[node name="Type" type="Label" parent="UpgradeMenu/UpgradeMeleeDmg"]
+[node name="Type" type="Label" parent="UpgradeMenu/UpgradeDmg"]
 layout_mode = 0
-offset_left = 2.0
-offset_top = 10.0
-offset_right = 128.0
-offset_bottom = 38.0
+offset_left = 3.0
+offset_top = 6.0
+offset_right = 129.0
+offset_bottom = 34.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 16
-text = "Melee Damage"
+text = "Attack Damage"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Cost" type="Label" parent="UpgradeMenu/UpgradeMeleeDmg"]
+[node name="Cost" type="Label" parent="UpgradeMenu/UpgradeDmg"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.517
@@ -908,13 +912,14 @@ anchor_top = 0.758
 anchor_right = 0.517
 anchor_bottom = 0.758
 offset_left = -35.21
-offset_top = 1.46
+offset_top = 6.46
 offset_right = 29.79
-offset_bottom = 24.46
+offset_bottom = 29.46
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Cost: 10"
+horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="UpgradeMenu/UpgradeMeleeDmg"]
+[node name="Button" type="Button" parent="UpgradeMenu/UpgradeDmg"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -931,4 +936,4 @@ icon_alignment = 1
 [connection signal="focus_entered" from="UpgradeMenu" to="." method="_on_upgrade_menu_focus_entered"]
 [connection signal="pressed" from="UpgradeMenu/UpgradeHealth/Button" to="." method="_on_health_button_pressed"]
 [connection signal="pressed" from="UpgradeMenu/UpgradeStamina/Button" to="." method="_on_stamina_button_pressed"]
-[connection signal="pressed" from="UpgradeMenu/UpgradeMeleeDmg/Button" to="." method="_on_melee_dmg_button_pressed"]
+[connection signal="pressed" from="UpgradeMenu/UpgradeDmg/Button" to="." method="_on_dmg_button_pressed"]

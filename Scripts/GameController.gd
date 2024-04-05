@@ -39,7 +39,7 @@ func _ready():
 	player.connect("player_death", _handle_player_death)
 	$HUD.connect("health_button_pressed", handle_upgrade.bind(0))
 	$HUD.connect("stamina_button_pressed", handle_upgrade.bind(1))
-	$HUD.connect("melee_dmg_button_pressed", handle_upgrade.bind(2))
+	$HUD.connect("dmg_button_pressed", handle_upgrade.bind(2))
 	gameMap.connect("room_changed", handle_room_change)
 	handle_room_change()
 	# $EnemySpawnTimerForBase.start()
@@ -123,7 +123,7 @@ func handle_upgrade(type):
 		elif type == 1:
 			player.increase_max_stamina(2)
 		elif type == 2:
-			player.increase_melee_damage(1)
+			player.increase_damage(1)
 		$HUD.update_all_resources($ResourceManager.resources)
 
 func handle_room_change():

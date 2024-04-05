@@ -215,6 +215,7 @@ func increase_max_stamina(amount):
 	max_stamina_changed.emit(max_stamina)
 	stamina_changed.emit(cur_stamina)
 
-func increase_melee_damage(amount):
+func increase_damage(amount):
 	$Head.increase_melee_damage(amount)
+	bullet_damage += amount
 	

@@ -2,7 +2,7 @@ extends CanvasLayer
 
 signal health_button_pressed()
 signal stamina_button_pressed()
-signal melee_dmg_button_pressed()
+signal dmg_button_pressed()
 
 var player
 var base
@@ -141,8 +141,8 @@ func _on_health_button_pressed():
 func _on_stamina_button_pressed():
 	stamina_button_pressed.emit()
 
-func _on_melee_dmg_button_pressed():
-	melee_dmg_button_pressed.emit()
+func _on_dmg_button_pressed():
+	dmg_button_pressed.emit()
 
 func base_population_changed(new_population):
 	$PopulationBar.value = new_population
