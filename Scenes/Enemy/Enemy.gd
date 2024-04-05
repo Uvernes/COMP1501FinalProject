@@ -21,6 +21,8 @@ var angle_to_face
 var player # Reference to player object
 var dead = false
 
+var itemdropdistancerange = 20
+
 func _ready():
 	player = get_parent().get_node("Player")
 	$AttackTimer.start()
@@ -62,29 +64,29 @@ func take_damage(amount):
 	if (health <= 0):
 		# create mobdrop on enemy death
 		var mobdrop = resource_scene.instantiate()
-		mobdrop.init("mobdrops", "res://Assets/Resources/mobdrop_resource.png")
-		mobdrop.position = Vector2((position.x)-3, (position.y)-3)
+		mobdrop.init("mobdrops","res://Assets/Resources/body.png")
+		mobdrop.position = Vector2((position.x)-(randf_range(-itemdropdistancerange, itemdropdistancerange)), (position.y)-(randf_range(-itemdropdistancerange, itemdropdistancerange)))
 		get_parent().add_child(mobdrop)
 		var randomizer = randf()
 		if randomizer < 0.25:
 			var dirt = resource_scene.instantiate()
-			dirt.init("dirt", "res://FinalAssets/Resources/dirt.png")
-			dirt.position = Vector2((position.x)+3, (position.y)+3)
+			dirt.init("dirt", "res://Assets/Resources/dirt.png")
+			dirt.position = Vector2((position.x)+(randf_range(-itemdropdistancerange, itemdropdistancerange)), (position.y)+(randf_range(-itemdropdistancerange, itemdropdistancerange)))
 			get_parent().add_child(dirt)
 		elif randomizer < 0.5:
 			var stone = resource_scene.instantiate()
-			stone.init("stone", "res://FinalAssets/Resources/rock.png")
-			stone.position = Vector2((position.x)+3, (position.y)+3)
+			stone.init("stone", "res://Assets/Resources/rock.png")
+			stone.position = Vector2((position.x)+(randf_range(-itemdropdistancerange, itemdropdistancerange)), (position.y)+(randf_range(-itemdropdistancerange, itemdropdistancerange)))
 			get_parent().add_child(stone)
 		elif randomizer < 0.75:
 			var leaves = resource_scene.instantiate()
-			leaves.init("leaves", "res://FinalAssets/Resources/leaf.png")
-			leaves.position = Vector2((position.x)+3, (position.y)+3)
+			leaves.init("leaves", "res://Assets/Resources/leaf.png")
+			leaves.position = Vector2((position.x)+(randf_range(-itemdropdistancerange, itemdropdistancerange)), (position.y)+(randf_range(-itemdropdistancerange, itemdropdistancerange)))
 			get_parent().add_child(leaves)
 		else:
 			var wood = resource_scene.instantiate()
-			wood.init("wood", "res://FinalAssets/Resources/wood.png")
-			wood.position = Vector2((position.x)+3, (position.y)+3)
+			wood.init("wood", "res://Assets/Resources/wood.png")
+			wood.position = Vector2((position.x)+(randf_range(-itemdropdistancerange, itemdropdistancerange)), (position.y)+(randf_range(-itemdropdistancerange, itemdropdistancerange)))
 			get_parent().add_child(wood)
 		self.dead = true
 		queue_free()

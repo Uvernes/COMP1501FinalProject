@@ -8,7 +8,7 @@ func _ready():
 
 func _on_spawn_timer_timeout():
 	var leaves = resource_scene.instantiate()
-	leaves.init("leaves", "res://Assets/Resources/leaves_resource.png")
+	leaves.init("leaves", "res://Assets/Resources/leaf.png")
 	add_child(leaves)
 
 func _on_child_exiting_tree(node):

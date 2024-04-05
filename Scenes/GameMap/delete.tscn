@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://dpmkttqov262x"]
 
 [ext_resource type="Script" path="res://Scenes/GameMap/delete.gd" id="1_sc4ho"]
-[ext_resource type="Texture2D" uid="uid://doylxy08g5a0d" path="res://Assets/red.png" id="2_qo1nk"]
-[ext_resource type="Texture2D" uid="uid://bqxm7whjg8o2s" path="res://Assets/ants/redAntHead.png" id="3_1qpc5"]
+[ext_resource type="Texture2D" uid="uid://doylxy08g5a0d" path="res://PrototypeAssets/red.png" id="2_qo1nk"]
+[ext_resource type="Texture2D" uid="uid://bqxm7whjg8o2s" path="res://PrototypeAssets/ants/redAntHead.png" id="3_1qpc5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_au6qf"]
 size = Vector2(83.5, 82)

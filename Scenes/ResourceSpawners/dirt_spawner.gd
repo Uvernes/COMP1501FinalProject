@@ -8,7 +8,7 @@ func _ready():
 
 func _on_spawn_timer_timeout():
 	var dirt = resource_scene.instantiate()
-	dirt.init("dirt", "res://Assets/Resources/dirt_resource.png")
+	dirt.init("dirt", "res://Assets/Resources/dirt.png")
 	add_child(dirt)
 
 func _on_child_exiting_tree(node):
