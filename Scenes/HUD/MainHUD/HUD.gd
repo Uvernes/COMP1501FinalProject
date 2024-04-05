@@ -70,7 +70,6 @@ func _on_player_mode_changed(new_mode):
 		hotBarItem.get_node("Background").hide()
 	# Add background for the selected mode
 	hotBarItems[new_mode].get_node("Background").show()
-	
 
 func _on_player_build_selection_changed(new_build_selection):
 	# Hide background for all sidebar items

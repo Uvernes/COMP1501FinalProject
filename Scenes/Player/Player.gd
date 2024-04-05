@@ -138,11 +138,13 @@ func _handle_right_mouse_click():
 		$Head.start_attack()
 
 # Method for recieving damage
-func hit(amount):
+func hit(amount,knockback=Vector2.ZERO,force=0):
 	cur_health -= amount
 	health_changed.emit(cur_health)
 	if (cur_health <= 0):
 		player_death.emit()
+	velocity += (knockback * accel * force * get_physics_process_delta_time())
+	move_and_slide()
 
 func shoot():
 	# compares the current stamina to the amount of stamina needed to fire a bullet.

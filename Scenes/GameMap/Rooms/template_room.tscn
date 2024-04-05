@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://cuh3222ph0w2x"]
 
-[ext_resource type="Texture2D" uid="uid://dts1vnk2d4y8q" path="res://Assets/TileSets/kenney_abstract-platformer/Tilesheet/tilesheet_complete.png" id="1_kda18"]
+[ext_resource type="Texture2D" uid="uid://dts1vnk2d4y8q" path="res://PrototypeAssets/TileSets/kenney_abstract-platformer/Tilesheet/tilesheet_complete.png" id="1_kda18"]
 [ext_resource type="PackedScene" uid="uid://ct5lgyoushw53" path="res://Scenes/WorldStructures/CaveWall.tscn" id="2_v6ktx"]
 [ext_resource type="Script" path="res://Scenes/GameMap/Rooms/RoomController.gd" id="3_ns6oy"]
 

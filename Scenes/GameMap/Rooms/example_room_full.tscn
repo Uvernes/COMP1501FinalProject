@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://b3bym8118llat"]
 
-[ext_resource type="Texture2D" uid="uid://dts1vnk2d4y8q" path="res://Assets/TileSets/kenney_abstract-platformer/Tilesheet/tilesheet_complete.png" id="1_21hjo"]
+[ext_resource type="Texture2D" uid="uid://dts1vnk2d4y8q" path="res://PrototypeAssets/TileSets/kenney_abstract-platformer/Tilesheet/tilesheet_complete.png" id="1_21hjo"]
 [ext_resource type="PackedScene" uid="uid://ct5lgyoushw53" path="res://Scenes/WorldStructures/CaveWall.tscn" id="2_hmc88"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o6vjd"]

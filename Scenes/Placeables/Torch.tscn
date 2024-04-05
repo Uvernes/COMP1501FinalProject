@@ -1,11 +1,51 @@
-[gd_scene load_steps=5 format=3 uid="uid://cefwrbfmupn0"]
+[gd_scene load_steps=14 format=3 uid="uid://cefwrbfmupn0"]
 
 [ext_resource type="Script" path="res://Scenes/Placeables/Torch.gd" id="1_4gjva"]
-[ext_resource type="Texture2D" uid="uid://c8tn5v5n7gqia" path="res://Assets/torchtexture.png" id="1_ik7re"]
-[ext_resource type="Texture2D" uid="uid://cecwh4twkhrw5" path="res://Assets/light_tpbg_white.png" id="2_7pui1"]
+[ext_resource type="Texture2D" uid="uid://b0nxy14k6nfwf" path="res://Assets/Buildings/torchbody.png" id="2_ngodx"]
+[ext_resource type="Texture2D" uid="uid://1373tn8l4up0" path="res://Assets/Buildings/TorchFrames/torch1.png" id="3_1xmtp"]
+[ext_resource type="Texture2D" uid="uid://cecwh4twkhrw5" path="res://PrototypeAssets/light_tpbg_white.png" id="3_t2iuo"]
+[ext_resource type="Texture2D" uid="uid://cjwg4k83utve4" path="res://Assets/Buildings/TorchFrames/torch2.png" id="4_63ivv"]
+[ext_resource type="Texture2D" uid="uid://7yr6k1mdpnq0" path="res://Assets/Buildings/TorchFrames/torch3.png" id="5_v347f"]
+[ext_resource type="Texture2D" uid="uid://ckt8levcsahb3" path="res://Assets/Buildings/TorchFrames/torch4.png" id="6_i1l28"]
+[ext_resource type="Texture2D" uid="uid://c2xmrgqhydrhq" path="res://Assets/Buildings/TorchFrames/torch5.png" id="7_fqrc4"]
+[ext_resource type="Texture2D" uid="uid://c8uj8dtp08hbj" path="res://Assets/Buildings/TorchFrames/torch6.png" id="8_clbhw"]
+[ext_resource type="Texture2D" uid="uid://dghoaieym7g5w" path="res://Assets/Buildings/TorchFrames/torch7.png" id="9_ruv87"]
+[ext_resource type="Texture2D" uid="uid://dhdo33xvtok4e" path="res://Assets/Buildings/TorchFrames/torch8.png" id="10_b4x2f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hfvhp"]
 size = Vector2(64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tuced"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_1xmtp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_63ivv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_v347f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_i1l28")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_fqrc4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_clbhw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ruv87")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_b4x2f")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Torch" type="Area2D"]
 script = ExtResource("1_4gjva")
@@ -14,13 +54,22 @@ script = ExtResource("1_4gjva")
 shape = SubResource("RectangleShape2D_hfvhp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.317647, 0.317647, 0.317647, 1)
 texture_filter = 1
 scale = Vector2(4, 4)
-texture = ExtResource("1_ik7re")
+texture = ExtResource("2_ngodx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.521569, 0.521569, 0.521569, 1)
+texture_filter = 1
+position = Vector2(0, -44)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_tuced")
+frame_progress = 0.188695
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 texture_filter = 1
 color = Color(0.952941, 0.898039, 0.768627, 1)
 energy = 3.0
-texture = ExtResource("2_7pui1")
-texture_scale = 5.0
+texture = ExtResource("3_t2iuo")
+texture_scale = 8.0
