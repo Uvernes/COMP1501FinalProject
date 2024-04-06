@@ -249,16 +249,21 @@ func init_new_room(room_index, entrance):
 	print(cur_room_index)
 	if cur_room_index[0] > 0:
 		cur_room.get_node("ClosedExits/up").queue_free()
+		cur_room.add_exit("up")
 	if cur_room_index[0] < n_rows - 1:
 		cur_room.get_node("ClosedExits/down").queue_free()
+		cur_room.add_exit("down")
 	if cur_room_index[1] > 0:
 		cur_room.get_node("ClosedExits/left").queue_free()
+		cur_room.add_exit("left")
 	if cur_room_index[1] < n_cols - 1:
 		cur_room.get_node("ClosedExits/right").queue_free()
+		cur_room.add_exit("right")
 	# Special case. Exit open if in the starting room of the main map. This is since there are 
 	# tutorial rooms to the left of this room.
 	if cur_room_index == starting_room_index :
 		cur_room.get_node("ClosedExits/left").queue_free()
+		cur_room.add_exit("left")
 
 	# Have player start in room at the specified entrance
 	get_parent().get_node("Player").global_position = \

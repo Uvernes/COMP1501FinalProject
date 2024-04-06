@@ -13,6 +13,7 @@ var upgrade_menu_open
 func _ready():
 	$UpgradeMenu.hide()
 	$PopulationBar.hide()
+	$Warning.hide()
 	player = get_parent().get_node("Player")
 	can_open_upgrade_menu = false
 	can_build_base = false
@@ -21,6 +22,7 @@ func _ready():
 
 func room_changed(base):
 	$PopulationBar.hide()
+	$Warning.hide()
 	if base != null:
 		base.connect("player_on_base", update_current_base.bind(base, true))
 		base.connect("player_off_base", update_current_base.bind(base,false))
@@ -146,3 +148,9 @@ func _on_dmg_button_pressed():
 
 func base_population_changed(new_population):
 	$PopulationBar.value = new_population
+
+func show_warning(state):
+	if state == true:
+		$Warning.show()
+	else:
+		$Warning.hide()

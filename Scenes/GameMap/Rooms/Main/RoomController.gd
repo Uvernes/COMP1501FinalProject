@@ -6,20 +6,56 @@ Handles logic such as detecting when the player exits the room
 """
 extends TileMap
 
+signal player_close_to_exit(state)
+
+var player
+var base
+var exits = [] #list of all open exits
+const exit_range = 150
+
+#used to prevent player_close_to_exit signal from constantly being sent
+var already_warned
+var already_unwarned
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	player = get_parent().get_parent().get_node("Player")
+	base = get_node("Base")
+	exits = []
+	already_warned = false
+	already_unwarned = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	check_if_close_to_exit()
+
+#called by game map each time an exit is cleared
+func add_exit(type):
+	if exits != null:
+		exits.append(get_node("Entrances").get_node(type).position)
 	
-func return_base():
-	return get_node("Base")
-
-
+#checks if the player is close to an open exit
+#sends signal to game controller if base is under attack to show/hide leaving warning
+#should only send signal if it hasn't already been sent
+func check_if_close_to_exit():
+	var close = false
+	for i in exits.size():
+		if player.position.x > exits[i].x - exit_range && player.position.x < exits[i].x + exit_range && player.position.y > exits[i].y - exit_range && player.position.y < exits[i].y + exit_range:
+			close = true
+			if base != null:
+				if !base.safe && base.active:
+					if already_warned == false:
+						player_close_to_exit.emit(true)
+						already_warned = true
+						already_unwarned = false
+	if close == false:
+		if already_unwarned == false:
+			player_close_to_exit.emit(false)
+			already_warned = false
+			already_unwarned = true
+			
 # Detect when player exits the room and from which side, and relay this to
 # the game map controller (parent).
 # Possible exit sides: "left", "right", "up", "down"

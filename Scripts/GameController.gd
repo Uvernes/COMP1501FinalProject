@@ -40,6 +40,7 @@ func _ready():
 	$HUD.connect("health_button_pressed", handle_upgrade.bind(0))
 	$HUD.connect("stamina_button_pressed", handle_upgrade.bind(1))
 	$HUD.connect("dmg_button_pressed", handle_upgrade.bind(2))
+	gameMap.cur_room.connect("player_close_to_exit",handle_player_close_to_exit)
 	gameMap.connect("room_changed", handle_room_change)
 	handle_room_change()
 	# $EnemySpawnTimerForBase.start()
@@ -127,6 +128,10 @@ func handle_upgrade(type):
 		$HUD.update_all_resources($ResourceManager.resources)
 
 func handle_room_change():
-	var base = gameMap.cur_room.return_base()
+	gameMap.cur_room.connect("player_close_to_exit",handle_player_close_to_exit)
+	var base = gameMap.cur_room.base
 	$HUD.room_changed(base)
+	
+func handle_player_close_to_exit(state):
+	$HUD.show_warning(state)
 	

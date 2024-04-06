@@ -933,6 +933,17 @@ offset_bottom = 56.71
 text = "Upgrade"
 icon_alignment = 1
 
+[node name="Warning" type="Label" parent="."]
+offset_left = 206.0
+offset_top = 150.0
+offset_right = 944.0
+offset_bottom = 198.0
+pivot_offset = Vector2(768, -132)
+theme_override_font_sizes/font_size = 25
+text = "Warning! Leaving while your base is under attack will reset it."
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="focus_entered" from="UpgradeMenu" to="." method="_on_upgrade_menu_focus_entered"]
 [connection signal="pressed" from="UpgradeMenu/UpgradeHealth/Button" to="." method="_on_health_button_pressed"]
 [connection signal="pressed" from="UpgradeMenu/UpgradeStamina/Button" to="." method="_on_stamina_button_pressed"]
