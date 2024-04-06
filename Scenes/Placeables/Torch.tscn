@@ -71,5 +71,6 @@ frame_progress = 0.188695
 texture_filter = 1
 color = Color(0.952941, 0.898039, 0.768627, 1)
 energy = 3.0
+blend_mode = 2
 texture = ExtResource("3_t2iuo")
 texture_scale = 8.0

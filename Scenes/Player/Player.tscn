@@ -41,6 +41,7 @@ texture = ExtResource("3_yyxff")
 texture_filter = 1
 color = Color(0.494118, 0.494118, 0.494118, 1)
 energy = 1.5
+blend_mode = 2
 texture = ExtResource("4_fe1vo")
 texture_scale = 10.0
 script = ExtResource("5_rdf0n")
