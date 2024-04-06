@@ -14,8 +14,8 @@ const packed_scenes: Dictionary = {
 	placeables.TORCH: preload("res://Scenes/Placeables/Torch.tscn"),
 	placeables.PLAYER_WALL: preload("res://Scenes/Placeables/PlayerWall.tscn"),
 	# TODO - create actual scenes + update paths
-	placeables.WEB: preload("res://Scenes/Placeables/Road.tscn"),
-	placeables.MINE: preload("res://Scenes/Placeables/Road.tscn"),
+	placeables.WEB: preload("res://Scenes/Placeables/Web.tscn"),
+	placeables.MINE: preload("res://Scenes/Placeables/Mine.tscn"),
 	placeables.TOWER: preload("res://Scenes/Placeables/Tower.tscn"),
 }
 
