@@ -96,7 +96,7 @@ func _on_player_build_requested(global_mouse_pos, build_id):
 	$HUD.update_all_resources($ResourceManager.resources)
 
 # Handle player delete request and delegate accordingly
-func _on_player_delete_requested(global_mouse_pos):
+func _on_player_delete_requested(_global_mouse_pos):
 	# Remove build from the world at the tile the mouse is hovering over 
 	var build_instance = $GameMap.get_build_at_hover_tile()
 	# If nothing to delete, return
@@ -114,7 +114,7 @@ func _on_player_delete_requested(global_mouse_pos):
 func _handle_player_death():
 		#game over
 		print("Player died: Game Over")
-		get_tree().quit()
+		get_tree().change_scene_to_file("res://Scenes/Menus/MainMenu/MainMenu.tscn")
 
 
 func handle_upgrade(type):
