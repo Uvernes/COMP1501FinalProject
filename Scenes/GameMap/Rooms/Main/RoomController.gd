@@ -28,7 +28,7 @@ func _ready():
 	already_unwarned = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	check_if_close_to_exit()
 
 #called by game map each time an exit is cleared

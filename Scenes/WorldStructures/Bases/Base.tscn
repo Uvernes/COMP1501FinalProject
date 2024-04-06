@@ -5,7 +5,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_thuke"]
 size = Vector2(166.667, 168)
 
-[node name="Base" type="Area2D"]
+[node name="Base" type="Area2D" groups=["Base"]]
 collision_mask = 3
 script = ExtResource("1_qfgen")
 

@@ -59,12 +59,7 @@ func _ready():
 		$HoverTile.hide()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
-func _physics_process(delta):
+func _physics_process(_delta):
 	# If in build or delete mode, move hover tile to center of tile cell mouse is on
 	if  player_mode == Player.mode.BUILD or player_mode == Player.mode.DELETE:
 		move_hover_tile_to_moused_over_cell()
@@ -169,7 +164,7 @@ func move_hover_tile_to_moused_over_cell():
 # Determines whether or not the given build can be placed on the tile where global_mouse_pos
 # is at (i.e where the hover tile is at).
 # This check is done by looking at what is currently inside of the hover tile.
-func can_place_build(global_mouse_pos, build_id):
+func can_place_build(_global_mouse_pos, _build_id):
 	#print("A------")
 	#for object in $HoverTile.objects_in_area:
 		#print(object.get_class() + " " + str(object.get_groups()))

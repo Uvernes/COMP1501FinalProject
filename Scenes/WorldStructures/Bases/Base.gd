@@ -21,11 +21,6 @@ func _ready():
 	$ActivateBasePopUp.hide()
 	$ActivateBasePopUp.position = Vector2(-70,-90)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 func get_attacked(amount):
 	decrease_pop(amount)
 

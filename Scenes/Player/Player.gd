@@ -76,10 +76,6 @@ func _physics_process(delta):
 	player_movement(delta)
 
 
-func _input(event: InputEvent):
-	pass
-	
-
 # get updated direction value for player
 func get_direction():
 	direction.x = int(Input.is_action_pressed("move_right")) - int(Input.is_action_pressed("move_left"))

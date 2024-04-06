@@ -6,7 +6,3 @@ func _ready():
 	super()
 	build_id = placeables.TORCH
 	_animated_sprite.play()
-
-func _process(delta):
-	pass
-

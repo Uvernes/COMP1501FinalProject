@@ -5,9 +5,3 @@ extends "res://Scenes/Placeables/Placeable.gd"
 func _ready():
 	super()
 	build_id = placeables.PLAYER_WALL
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-

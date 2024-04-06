@@ -15,7 +15,7 @@ func _ready():
 	$ShootCooldown.start()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if $ShootCooldown.time_left == 0:
 		if enemies_in_sight.is_empty() == false:
 			for i in enemies_in_sight.size():
