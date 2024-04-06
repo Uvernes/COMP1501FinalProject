@@ -19,7 +19,7 @@ func _process(delta):
 	if $ShootCooldown.time_left == 0:
 		if enemies_in_sight.is_empty() == false:
 			for i in enemies_in_sight.size():
-				if i < (enemies_in_sight.size() + 1) && i <= 5: #ensures enemy will be chosen, sets loop cap at 5
+				if i < (enemies_in_sight.size() + 1) && i <= 4: #ensures enemy will be chosen, sets loop cap at 5
 					if random.randi_range(0,1) == 1: # 1/2 chance to choose to shoot enemy i
 						shoot_enemy(enemies_in_sight[i].position)
 						break

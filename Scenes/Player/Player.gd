@@ -194,15 +194,6 @@ func sprint():
 	if Input.is_action_just_released("shift"):
 		cur_speed = walk_speed
 
-func respawn():
-	cur_health = max_health
-	health_changed.emit(cur_health)
-	cur_stamina = max_stamina
-	stamina_changed.emit(cur_stamina)
-	velocity = Vector2(0,0)
-	cur_speed = walk_speed
-	position = Vector2(0,0)
-
 func increase_max_health(amount):
 	max_health += amount
 	cur_health += amount

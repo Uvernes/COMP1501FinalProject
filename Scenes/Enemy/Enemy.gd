@@ -9,7 +9,7 @@ const rotation_speed = 4
 var moving = true
 var attacking_base = false
 
-const homebase_pos = Vector2(0,0)
+const base_pos = Vector2(0,0)
 const distance_to_see_player = 400
 const attack_range = 100
 const max_attack_angle = 0.7
@@ -29,7 +29,8 @@ func _ready():
 	angle_to_face = 0
 
 func _physics_process(delta):
-	if attacking_base == false: #for now, once an enemy starts attacking the base they won't stop
+	if attacking_base == false:
+		#Stops moving when too close to player, or when stunned by knockback (will still be moved by knockback)
 		if (player.position - position).length() <= min_distance_from_player || $StunTimer.time_left > 0:
 			moving = false
 		else:
@@ -37,25 +38,30 @@ func _physics_process(delta):
 		if moving:
 			# change enemy movement accordingly
 			if (player.position - position).length() > distance_to_see_player:
-				angle_to_face = (homebase_pos - position).angle()
+				angle_to_face = (base_pos - position).angle()
 				rotation =  lerp_angle(rotation, angle_to_face, delta * rotation_speed)
-				velocity += ((homebase_pos - position).normalized() * accel * delta)
+				velocity += ((base_pos - position).normalized() * accel * delta)
 			else:
 				angle_to_face = (player.position - position).angle()
 				rotation = lerp_angle(rotation, angle_to_face, delta * rotation_speed)
 				velocity += ((player.position - position).normalized() * accel * delta)
 			velocity = velocity.limit_length(MAX_SPEED)
 			move_and_slide()
-		elif $StunTimer.time_left > 0:#needed for taking knockback
+		#if taking knockback:
+		elif $StunTimer.time_left > 0:
 				move_and_slide()
+		#if not moving, not taking knockback, checks if enemy can hit player
+		#will back up from player if not moving and too close to hit
 		elif abs((player.position - position).angle() - rotation) > max_attack_angle:
 			velocity -= ((player.position - position).normalized() * accel * delta)
 			velocity = velocity.limit_length(MAX_SPEED)
 			move_and_slide()
+		#will attack player if in attack range and at correct angle for hit to land
 		if (player.position - position).length() <= attack_range && $AttackTimer.time_left == 0:
 			angle_to_face = (player.position - position).angle()
 			if abs(angle_to_face - rotation) < max_attack_angle:
 				start_attack_process()
+	#for attacking base:
 	elif $AttackTimer.time_left == 0:
 		start_attack_process()
 
@@ -108,10 +114,12 @@ func start_attack_process():
 	# after timer, make everything resume
 	moving = true
 
+#called by base when enemy enters it
 func attack_base():
 	attacking_base = true
 	moving = false
 
+#called by base when enemy exits it, called by enemy when damaged
 func stop_attacking_base():
 	attacking_base = false
 	moving = true

@@ -98,7 +98,7 @@ func update_all_resources(resource_amounts: Dictionary):
 	$ResourceDisplay/Wood/Label.text = "Wood: " + str(resource_amounts["wood"])
 	$ResourceDisplay/Mobdrops/Label.text = "Mobdrops: " + str(resource_amounts["mobdrops"])
 
-
+#updates if the upgrade menu can be opened
 func update_upgrade_menu_open(state):
 	can_open_upgrade_menu = state
 	if state == false:
@@ -111,8 +111,8 @@ func _input(ev):
 				show_upgrade_menu(false)
 			else:
 				show_upgrade_menu(true)
-			
 
+#received when player moves on/off base
 func update_current_base(base, state):
 	if base.safe == true:
 		update_upgrade_menu_open(state)
@@ -127,6 +127,7 @@ func base_status_changed(type):
 		can_open_upgrade_menu = false
 		$PopulationBar.hide()
 
+#shows/hides upgrade menu
 func show_upgrade_menu(state):
 	if state == true:
 		$UpgradeMenu.show()
@@ -146,9 +147,11 @@ func _on_stamina_button_pressed():
 func _on_dmg_button_pressed():
 	dmg_button_pressed.emit()
 
+#received from base
 func base_population_changed(new_population):
 	$PopulationBar.value = new_population
 
+#called by game controller
 func show_warning(state):
 	if state == true:
 		$Warning.show()
