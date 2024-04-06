@@ -15,10 +15,6 @@ run/main_scene="res://Scenes/Menus/MainMenu/MainMenu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://PrototypeAssets/icon.svg"
 
-[autoload]
-
-GlobalSingleton="res://Scripts/Global_Singleton.gd"
-
 [display]
 
 window/size/mode=2
