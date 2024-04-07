@@ -25,6 +25,14 @@ func check_upgrade_cost(amount):
 	resources["mobdrops"] -= amount
 	return true
 
+func attempt_base_purchase():
+	if resources["dirt"] < 10 || resources["stone"] < 6 || resources["leaves"] < 8:
+		return false
+	resources["dirt"] -= 10
+	resources["stone"] -= 6
+	resources["leaves"] -= 8
+	return true
+
 
 func resource_picked_up(type, amount):
 	resources[type] += amount

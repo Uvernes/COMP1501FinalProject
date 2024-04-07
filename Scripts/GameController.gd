@@ -31,6 +31,8 @@ var spawn_location_around_player
 var player
 var gameMap
 var roomController
+var room
+var base
 
 var enemy_death_count
 var next_heal
@@ -39,11 +41,13 @@ var next_heal
 func _ready():
 	player = get_node("Player")
 	gameMap = get_node("GameMap")
+	room = gameMap.cur_room
+	base = room.base
 	player.connect("player_death", _handle_player_death)
 	$HUD.connect("health_button_pressed", handle_upgrade.bind(0))
 	$HUD.connect("stamina_button_pressed", handle_upgrade.bind(1))
 	$HUD.connect("dmg_button_pressed", handle_upgrade.bind(2))
-	gameMap.cur_room.connect("player_close_to_exit",handle_player_close_to_exit)
+	room.connect("player_close_to_exit",handle_player_close_to_exit)
 	gameMap.connect("room_changed", handle_room_change)
 	handle_room_change()
 	enemy_death_count = 0
@@ -132,13 +136,20 @@ func handle_upgrade(type):
 			player.increase_damage(1)
 		$HUD.update_all_resources($ResourceManager.resources)
 
+func attempt_base_claim():
+	if $ResourceManager.attempt_base_purchase() == true:
+		base.build()
+		$HUD.update_all_resources($ResourceManager.resources)
+	
+
 func handle_room_change():
-	var room = gameMap.cur_room
+	room = gameMap.cur_room
 	room.connect("player_close_to_exit",handle_player_close_to_exit)
-	var base = gameMap.cur_room.base
+	base = room.base
 	$HUD.room_changed(base)
 	if base != null:
 		base.connect("fully_heal_player", heal_player.bind(1000))
+		base.connect("attempt_claim", attempt_base_claim)
 	
 func handle_player_close_to_exit(state):
 	$HUD.show_warning(state)

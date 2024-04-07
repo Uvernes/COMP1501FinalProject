@@ -5,6 +5,7 @@ signal player_off_base()
 signal population_changed(new_pop)
 signal status_changed(type)#types: "under attack", "inactive", "safe"
 signal fully_heal_player()
+signal attempt_claim()
 
 var current_pop
 var max_pop
@@ -109,11 +110,13 @@ func becomeSafe(): #can be called when re-entering a room with a claimed base
 func _input(ev):
 	if player_at_base && Input.is_action_pressed("interact"):
 		if active == false:
-			#check for ressources
-			changeActiveStatus(true)
-			status_changed.emit("under attack")#use to start enemy wave, and update HUD
-			
-		
+			attempt_claim.emit()#checks for ressources
+
+#called by game controller
+func build():
+	changeActiveStatus(true)
+	status_changed.emit("under attack")#use to start enemy wave, and update HUD
+
 func stopAllEnemyAttacks():
 	var overlapping_areas = get_overlapping_areas()
 	for i in overlapping_areas.size():
