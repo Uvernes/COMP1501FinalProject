@@ -1,12 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://1o8ffghssc2m"]
+[gd_scene load_steps=11 format=3 uid="uid://1o8ffghssc2m"]
 
 [ext_resource type="Texture2D" uid="uid://dts1vnk2d4y8q" path="res://PrototypeAssets/TileSets/kenney_abstract-platformer/Tilesheet/tilesheet_complete.png" id="1_4syfj"]
 [ext_resource type="PackedScene" uid="uid://ct5lgyoushw53" path="res://Scenes/WorldStructures/CaveWall.tscn" id="2_pgtdv"]
 [ext_resource type="Script" path="res://Scenes/GameMap/Rooms/Main/RoomController.gd" id="3_2t5xp"]
-[ext_resource type="PackedScene" uid="uid://dqq1eqx2408k" path="res://Scenes/Enemies/EnemySpawner.tscn" id="4_khx7q"]
-[ext_resource type="PackedScene" uid="uid://bjdqvr0d6xkj3" path="res://Scenes/Spawners/ResourceSpawners/dirt_spawner.tscn" id="4_lnhwa"]
-[ext_resource type="PackedScene" uid="uid://cbej05v14rtms" path="res://Scenes/Enemy/Enemy.tscn" id="5_1r06l"]
-[ext_resource type="PackedScene" uid="uid://o7wxb7v0a732" path="res://Scenes/Spawners/ResourceSpawners/leaves_spawner.tscn" id="5_h4jyc"]
 [ext_resource type="PackedScene" uid="uid://duc3mjrijegti" path="res://Scenes/WorldStructures/Bases/Base.tscn" id="6_dertm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o6vjd"]
@@ -130,15 +126,6 @@ tile_set = SubResource("TileSet_qsyt6")
 format = 2
 layer_0/tile_data = PackedInt32Array(1966078, 1, 65536, 1966079, 1, 65536, 1900544, 1, 65536, 1900545, 1, 65536)
 
-[node name="DirtSpawner" parent="." instance=ExtResource("4_lnhwa")]
-position = Vector2(-242, -239)
-
-[node name="LeavesSpawner" parent="." instance=ExtResource("5_h4jyc")]
-position = Vector2(270, -248)
-
 [node name="Base" parent="." instance=ExtResource("6_dertm")]
-
-[node name="EnemySpawner" parent="." instance=ExtResource("4_khx7q")]
-enemy_scene = ExtResource("5_1r06l")
 
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
