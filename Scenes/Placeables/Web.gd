@@ -34,4 +34,4 @@ func _on_body_exited(body):
 	touching.erase(body)
 
 func _on_break_timer_timeout():
-	queue_free()
+	remove()

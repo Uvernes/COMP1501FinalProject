@@ -36,4 +36,4 @@ func explode():
 			else:
 				in_blast_radius[i].hit(0, distance_vector, knockback_force * distance)
 	#await get_tree().create_timer(0.1)
-	queue_free()
+	remove()

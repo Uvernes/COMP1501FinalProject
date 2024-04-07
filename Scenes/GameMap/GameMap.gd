@@ -16,6 +16,7 @@ signal room_changed()
 #@export var hover_tile_atlas_coords: Vector2
 
 var Player = load("res://Scenes/Player/Player.gd")
+var Placeable = preload("res://Scenes/Placeables/Placeable.gd")
 
 # Add all possible rooms here!
 const all_room_scene_paths = 	[
@@ -33,7 +34,7 @@ var starting_room_index
 
 # Nested dictionary remembering all of the builds currently placed by the player 
 # for each room. Mapping:
-# (Room index) -> Dictionary( (tile position) -> build_index )
+# (Room index) -> Dictionary( (build global position) -> build_index )
 var room_index_to_builds: Dictionary
 #var wall_scene = load("res://Scenes/WorldStructures/CaveWall.tscn")
 #var wall_scene_id
@@ -93,6 +94,11 @@ func init_game_map():
 			# Select and instance room to place at rooms[i][j]
 			# For now, starting room is in the top left corner. TODO - have it be in the center   
 			game_map[i].append(all_room_scene_paths.pick_random())
+	
+	# Init storage keeping track of builds (placeables) in each room
+	for i in n_rows:
+		for j in n_cols:
+			room_index_to_builds[[i,j]] = Dictionary()
 	
 	# First room of non-tutorial map entered from the left
 	init_new_room(starting_room_index, "left") 
@@ -190,10 +196,17 @@ func place_build_at_hover_tile(build_instance):
 	#
 	# var global_tile_center_pos = $BackgroundTileMap.map_to_local(tile_coords)
 	# build_instance.position = global_tile_center_pos
-	
 	build_instance.position = $HoverTile.position
+	# Add build as child of room 
+	cur_room.add_child(build_instance)
+	# Connect to build removed signal 
+	build_instance.removed.connect(_on_build_removed)
 	
-	get_tree().root.add_child(build_instance)
+	# Track the build
+	room_index_to_builds[cur_room_index][build_instance.position] = build_instance.build_id
+	
+	#print(room_index_to_builds)
+	
 	#print(map_to_local(tile_coords))
 	
 	#set_cell(1, tile_coords, wall)
@@ -224,6 +237,10 @@ func _on_player_mode_changed(new_mode):
 			#cur_hover_tile_coords = null  # No tile longer hovered
 
 
+func _on_build_removed(build):
+	room_index_to_builds[cur_room_index].erase(build.position)
+
+
 # Initialize the room just entered (either at start of the game or when entered from a dif. room).
 # Initialization involves:'
 # -Create room instance
@@ -239,9 +256,9 @@ func init_new_room(room_index, entrance):
 	
 	# By default all exits are closed. Remove the closing for all exits that are valid
 	# (e.g can't enter the right-side exit if in a room on the right-most side of the map)
-	print(cur_room.get_node("ClosedExits").modulate)
+	#print(cur_room.get_node("ClosedExits").modulate)
 	cur_room.get_node("ClosedExits").modulate.a = 1  # Alpha changed in inspector for dinstinguishing
-	print(cur_room_index)
+	#print(cur_room_index)
 	if cur_room_index[0] > 0:
 		cur_room.get_node("ClosedExits/up").queue_free()
 		cur_room.add_exit("up")
@@ -265,7 +282,15 @@ func init_new_room(room_index, entrance):
 		cur_room.get_node("Entrances").get_node(entrance).global_position
 	cur_room.get_node("Entrances").hide()  # Entrances are just markers for the inspector, can hide
 
-	# TODO - restore any pre-existing builds
+	# Restore any pre-existing builds
+	#print(room_index_to_builds)
+	for build_position in room_index_to_builds[cur_room_index]:
+		var build_id = room_index_to_builds[cur_room_index][build_position]
+		var build_instance = Placeable.packed_scenes[build_id].instantiate()
+		build_instance.position = build_position
+		cur_room.add_child(build_instance)
+		build_instance.removed.connect(_on_build_removed)
+
 
 # When player exits a room, delete the current room scene and change to the next room.
 func handle_room_exit(direction):
