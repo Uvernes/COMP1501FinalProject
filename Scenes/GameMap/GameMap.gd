@@ -20,7 +20,7 @@ var Player = load("res://Scenes/Player/Player.gd")
 # Add all possible rooms here!
 const all_room_scene_paths = 	[
 	"res://Scenes/GameMap/Rooms/Main/WithBase/template_room_with_base.tscn",
-	"res://Scenes/GameMap/Rooms/Main/NoBase/template_room_no_base.tscn",
+	"res://Scenes/GameMap/Rooms/Main/NoBase/template_room_no_base.tscn"
 	]
 #Rooms that can be added:
 #"res://Scenes/GameMap/Rooms/Main/NoBase/room_no_base_1.tscn"
@@ -226,7 +226,8 @@ func _on_player_mode_changed(new_mode):
 		## -1 source_id (3rd argument) means to erase the tile at tile_coords on layer 2
 			#set_cell(2, cur_hover_tile_coords, -1) 
 			#cur_hover_tile_coords = null  # No tile longer hovered
-
+func init_tutorial_room():
+	pass
 
 # Initialize the room just entered (either at start of the game or when entered from a dif. room).
 # Initialization involves:'
