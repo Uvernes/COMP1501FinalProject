@@ -1,10 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://cg4keaky2urjy"]
+[gd_scene load_steps=3 format=3 uid="uid://cg4keaky2urjy"]
 
 [ext_resource type="Script" path="res://Scenes/Spawners/ResourceSpawners/wood_spawner.gd" id="1_ncttn"]
+[ext_resource type="PackedScene" uid="uid://b6imdyagxnjg7" path="res://Scenes/Resources/resource.tscn" id="2_wwuka"]
 
 [node name="WoodSpawner" type="Node2D"]
 position = Vector2(1, 0)
 script = ExtResource("1_ncttn")
+resource_scene = ExtResource("2_wwuka")
 
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 20.0

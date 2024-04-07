@@ -1,10 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://c7617irk3mfcb"]
+[gd_scene load_steps=3 format=3 uid="uid://c7617irk3mfcb"]
 
 [ext_resource type="Script" path="res://Scenes/Spawners/ResourceSpawners/stone_spawner.gd" id="1_up6uu"]
+[ext_resource type="PackedScene" uid="uid://b6imdyagxnjg7" path="res://Scenes/Resources/resource.tscn" id="2_b72e5"]
 
 [node name="StoneSpawner" type="Node2D"]
 position = Vector2(1, 0)
 script = ExtResource("1_up6uu")
+resource_scene = ExtResource("2_b72e5")
 
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 20.0
