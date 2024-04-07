@@ -21,8 +21,12 @@ var Placeable = preload("res://Scenes/Placeables/Placeable.gd")
 # Add all possible rooms here!
 const all_room_scene_paths = 	[
 	"res://Scenes/GameMap/Rooms/Main/WithBase/template_room_with_base.tscn",
-	"res://Scenes/GameMap/Rooms/Main/NoBase/template_room_no_base.tscn"
+	"res://Scenes/GameMap/Rooms/Main/NoBase/template_room_no_base.tscn",
 	]
+#Rooms that can be added:
+#"res://Scenes/GameMap/Rooms/Main/NoBase/room_no_base_1.tscn"
+#"res://Scenes/GameMap/Rooms/Main/NoBase/room_no_base_2.tscn"
+
 	
 # A 2D array of the rooms making up the game map for the current playthrough.
 # Entries are scene paths
