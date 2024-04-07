@@ -5,7 +5,8 @@ that is overlayed with nxn room (tile map) scenes making up the world.
 """
 extends Node2D
 
-# Nnumber of rows and cols of rooms to have. total num rooms = n_rows x n_cols
+# Number of rows and cols of rooms to have in main map (so not including tutorial rooms) 
+# Total num rooms = n_rows x n_cols
 @export var n_rows = 5
 @export var n_cols = 5
 
@@ -18,11 +19,20 @@ signal room_changed()
 var Player = load("res://Scenes/Player/Player.gd")
 var Placeable = preload("res://Scenes/Placeables/Placeable.gd")
 
-# Add all possible rooms here!
-const all_room_scene_paths = 	[
-	"res://Scenes/GameMap/Rooms/Main/WithBase/template_room_with_base.tscn",
+# Gameplay begins with tutorial rooms placed sequentially from left to right
+const tutorial_room_scene_paths = [
+	"res://Scenes/GameMap/Rooms/Main/NoBase/template_room_no_base.tscn",
 	"res://Scenes/GameMap/Rooms/Main/NoBase/template_room_no_base.tscn"
+]
+
+
+# Add all possible non-tutorial rooms 
+const main_room_scene_paths = 	[
+	"res://Scenes/GameMap/Rooms/Main/WithBase/template_room_with_base.tscn",
+	#"res://Scenes/GameMap/Rooms/Main/NoBase/template_room_no_base.tscn"
 	]
+	
+
 #Rooms that can be added:
 #"res://Scenes/GameMap/Rooms/Main/NoBase/room_no_base_1.tscn"
 #"res://Scenes/GameMap/Rooms/Main/NoBase/room_no_base_2.tscn"
@@ -32,9 +42,12 @@ const all_room_scene_paths = 	[
 # Entries are scene paths
 var game_map: Array
 
-var cur_room_index  # A tuple: (row, col) in map
+# cur_room_index is an integer if in tutorial rooms (since linear).
+# It is a tuple of the form (row, col) if in map
+var cur_room_index  
 var cur_room: TileMap
-var starting_room_index
+var starting_room_index  # Index of very first room when game is loaded (will be a tutorial one)
+var main_map_start_index  # Index of the starting room in the main map
 
 # Nested dictionary remembering all of the builds currently placed by the player 
 # for each room. Mapping:
@@ -53,9 +66,10 @@ var player_mode
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	# Init world map
+	# Init world map (both main map and tutorial rooms)
+	starting_room_index = 0
 	# Starting room of the main world is the center row, left most room
-	starting_room_index = [floor((n_rows - 1)/2), 0]
+	main_map_start_index = [floor((n_rows - 1)/2), 0]
 	init_game_map()
 	
 	# Init whether or not hover tile appears
@@ -92,19 +106,22 @@ func _physics_process(_delta):
 		# erase_cell(0, tile_coords)
 
 func init_game_map():
+	# Init what rooms are in the main map
 	for i in n_rows:
 		game_map.append([])
 		for j in n_cols:
 			# Select and instance room to place at rooms[i][j]
-			# For now, starting room is in the top left corner. TODO - have it be in the center   
-			game_map[i].append(all_room_scene_paths.pick_random())
+			# For now, startin_rog room is in the top left corner. TODO - have it be in the center   
+			game_map[i].append(main_room_scene_paths.pick_random())
 	
-	# Init storage keeping track of builds (placeables) in each room
+	# Init storage keeping track of builds (placeables) in each room, including tutorial ones
 	for i in n_rows:
 		for j in n_cols:
 			room_index_to_builds[[i,j]] = Dictionary()
+	for i in tutorial_room_scene_paths.size():
+		room_index_to_builds[i] = Dictionary()
 	
-	# First room of non-tutorial map entered from the left
+	# First tutorial room entered from the left (which has room index 0)
 	init_new_room(starting_room_index, "left") 
 
 
@@ -239,8 +256,7 @@ func _on_player_mode_changed(new_mode):
 		## -1 source_id (3rd argument) means to erase the tile at tile_coords on layer 2
 			#set_cell(2, cur_hover_tile_coords, -1) 
 			#cur_hover_tile_coords = null  # No tile longer hovered
-func init_tutorial_room():
-	pass
+
 
 func _on_build_removed(build):
 	room_index_to_builds[cur_room_index].erase(build.position)
@@ -255,32 +271,22 @@ func _on_build_removed(build):
 func init_new_room(room_index, entrance):
 	# Create instance of room just entered
 	cur_room_index = room_index
-	var cur_room_scene_path = game_map[cur_room_index[0]][cur_room_index[1]]
+	var is_tutorial_room = _is_tutorial_room(room_index)
+	var cur_room_scene_path
+	if _is_tutorial_room(room_index):
+		cur_room_scene_path = tutorial_room_scene_paths[room_index]
+	else:
+		cur_room_scene_path = game_map[cur_room_index[0]][cur_room_index[1]]
 	cur_room = load(cur_room_scene_path).instantiate()
 	add_child(cur_room)
 	
-	# By default all exits are closed. Remove the closing for all exits that are valid
-	# (e.g can't enter the right-side exit if in a room on the right-most side of the map)
-	#print(cur_room.get_node("ClosedExits").modulate)
-	cur_room.get_node("ClosedExits").modulate.a = 1  # Alpha changed in inspector for dinstinguishing
-	#print(cur_room_index)
-	if cur_room_index[0] > 0:
-		cur_room.get_node("ClosedExits/up").queue_free()
-		cur_room.add_exit("up")
-	if cur_room_index[0] < n_rows - 1:
-		cur_room.get_node("ClosedExits/down").queue_free()
-		cur_room.add_exit("down")
-	if cur_room_index[1] > 0:
-		cur_room.get_node("ClosedExits/left").queue_free()
-		cur_room.add_exit("left")
-	if cur_room_index[1] < n_cols - 1:
-		cur_room.get_node("ClosedExits/right").queue_free()
-		cur_room.add_exit("right")
-	# Special case. Exit open if in the starting room of the main map. This is since there are 
-	# tutorial rooms to the left of this room.
-	if cur_room_index == starting_room_index :
-		cur_room.get_node("ClosedExits/left").queue_free()
-		cur_room.add_exit("left")
+	print(is_tutorial_room)
+	print(game_map)
+	print(room_index_to_builds)
+	print(cur_room_index)
+	
+	# Open any valid exits (e.g if room to the right, open exit to the right)
+	_init_room_exits(cur_room, room_index, is_tutorial_room)
 
 	# Have player start in room at the specified entrance
 	get_parent().get_node("Player").global_position = \
@@ -297,6 +303,42 @@ func init_new_room(room_index, entrance):
 		build_instance.removed.connect(_on_build_removed)
 
 
+func _is_tutorial_room(room_index):
+	return typeof(room_index) == TYPE_INT
+
+# By default all exits are closed. Remove the closing for all exits that are valid
+# (e.g can't enter the right-side exit if in a room on the right-most side of the map)
+func _init_room_exits(room, room_index, is_tutorial_room):
+	room.get_node("ClosedExits").modulate.a = 1  # Alpha changed in inspector for dinstinguishing
+	# If in tutorial room, room index is an int
+	if is_tutorial_room:
+		if room_index > 0:
+			room.get_node("ClosedExits/left").queue_free()
+			room.add_exit("left") 
+		# Can always exit right. Whether that is to another tutorial room or main map
+		room.get_node("ClosedExits/right").queue_free()
+		room.add_exit("right")
+	# If in main map, room index is a tuple
+	else:	
+		if room_index[0] > 0:
+			room.get_node("ClosedExits/up").queue_free()
+			room.add_exit("up")
+		if room_index[0] < n_rows - 1:
+			room.get_node("ClosedExits/down").queue_free()
+			room.add_exit("down")
+		if room_index[1] > 0:
+			room.get_node("ClosedExits/left").queue_free()
+			room.add_exit("left")
+		if room_index[1] < n_cols - 1:
+			room.get_node("ClosedExits/right").queue_free()
+			room.add_exit("right")
+	# Special case. Exit open if in the starting room of the main map. This is since there are 
+	# tutorial rooms to the left of this room.
+	if not is_tutorial_room and cur_room_index == main_map_start_index :
+		cur_room.get_node("ClosedExits/left").queue_free()
+		cur_room.add_exit("left")
+
+
 # When player exits a room, delete the current room scene and change to the next room.
 func handle_room_exit(direction):
 	# Free the previous room
@@ -306,34 +348,56 @@ func handle_room_exit(direction):
 	# e.g if exited to the right then they enter the new room from the left
 	var entrance 
 	
-	# Compute new room index and entrance
-	var new_room_index = cur_room_index
-	if direction == "up":
-		new_room_index[0] -= 1
-		entrance = "down"
-	elif direction == "down":
-		new_room_index[0] += 1
-		entrance = "up"
-	elif direction == "left":
-		new_room_index[1] -= 1
+	# Compute new room index and entrance.
+	var new_room_index
+	# Case where a tutorial room exited
+	if _is_tutorial_room(cur_room_index):
+		# Go to main map if in right most tutorial room and moved right
+		if direction == "right" and cur_room_index == tutorial_room_scene_paths.size() - 1:
+			new_room_index = main_map_start_index
+			entrance = "left"
+		elif direction == "right":
+			new_room_index = cur_room_index + 1
+			entrance = "left"
+		elif direction == "left" and cur_room_index > 0:
+			new_room_index = cur_room_index - 1
+			entrance = "right"
+		# Case where you move exit from the left in 1st tutorial room (but shouldn't be possible)
+		else:
+			new_room_index = cur_room_index
+			entrance = "right"
+	# Special case. Main map room exited and it leads back to a tutorial room
+	elif cur_room_index == main_map_start_index and direction == "left":
+		new_room_index = tutorial_room_scene_paths.size() - 1
 		entrance = "right"
-	elif direction == "right":
-		new_room_index[1] += 1
-		entrance = "left"
-	
-	# Sanity check error handling (but shouldn't occur)
-	if new_room_index[0] < 0:
-		new_room_index[0] = 0
-		entrance = direction  # Simulates staying in room
-	if new_room_index[0] > n_rows - 1:
-		new_room_index[0] = n_rows - 1
-		entrance = direction  
-	if new_room_index[1] < 0:
-		new_room_index[1] = 0
-		entrance = direction  
-	if new_room_index[1] > n_cols - 1:
-		new_room_index[1] = n_cols - 1
-		entrance = direction  
+	# Case where a main map room exited and we stay in the main map
+	else:
+		new_room_index = cur_room_index
+		if direction == "up":
+			new_room_index[0] -= 1
+			entrance = "down"
+		elif direction == "down":
+			new_room_index[0] += 1
+			entrance = "up"
+		elif direction == "left":
+			new_room_index[1] -= 1
+			entrance = "right"
+		elif direction == "right":
+			new_room_index[1] += 1
+			entrance = "left"
+		# Sanity check error handling (but shouldn't occur)
+		if new_room_index[0] < 0:
+			new_room_index[0] = 0
+			entrance = direction  # Simulates staying in room
+		if new_room_index[0] > n_rows - 1:
+			new_room_index[0] = n_rows - 1
+			entrance = direction  
+		if new_room_index[1] < 0:
+			new_room_index[1] = 0
+			entrance = direction  
+		if new_room_index[1] > n_cols - 1:
+			new_room_index[1] = n_cols - 1
+			entrance = direction  
 	
 	init_new_room(new_room_index, entrance)
 	room_changed.emit()

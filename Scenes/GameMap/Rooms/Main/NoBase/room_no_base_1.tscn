@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://dts1vnk2d4y8q" path="res://PrototypeAssets/TileSets/kenney_abstract-platformer/Tilesheet/tilesheet_complete.png" id="1_p8jxj"]
 [ext_resource type="PackedScene" uid="uid://ct5lgyoushw53" path="res://Scenes/WorldStructures/CaveWall.tscn" id="2_xc4qw"]
 [ext_resource type="Script" path="res://Scenes/GameMap/Rooms/Main/RoomController.gd" id="3_x2oqg"]
-[ext_resource type="PackedScene" uid="uid://bjdqvr0d6xkj3" path="res://Scenes/ResourceSpawners/dirt_spawner.tscn" id="4_skonp"]
-[ext_resource type="PackedScene" uid="uid://o7wxb7v0a732" path="res://Scenes/ResourceSpawners/leaves_spawner.tscn" id="5_m0i15"]
+[ext_resource type="PackedScene" uid="uid://bjdqvr0d6xkj3" path="res://Scenes/Spawners/ResourceSpawners/dirt_spawner.tscn" id="4_skonp"]
+[ext_resource type="PackedScene" uid="uid://o7wxb7v0a732" path="res://Scenes/Spawners/ResourceSpawners/leaves_spawner.tscn" id="5_m0i15"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o6vjd"]
 texture = ExtResource("1_p8jxj")
