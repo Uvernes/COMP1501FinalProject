@@ -7,6 +7,7 @@ signal build_selection_changed(new_build_selection: int)
 signal player_death()
 signal max_health_changed(new_max)
 signal max_stamina_changed(new_max)
+signal direction_changed(new_direction)
 
  # Player signals that they want to build / delete. Indirect rather than direct call
 # as there is lots of logic game controller handles (e.g cost to build, etc.)
@@ -81,6 +82,10 @@ func get_direction():
 	direction.x = int(Input.is_action_pressed("move_right")) - int(Input.is_action_pressed("move_left"))
 	direction.y = int(Input.is_action_pressed("move_down")) - int(Input.is_action_pressed("move_up"))
 	return direction.normalized()
+
+func set_direction(new_direction):
+	direction = new_direction
+	emit_signal("direction_changed", new_direction)
 
 # handles player movement
 func player_movement(delta):

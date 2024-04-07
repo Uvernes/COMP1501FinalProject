@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://cefwrbfmupn0"]
 
 [ext_resource type="Script" path="res://Scenes/Placeables/Torch.gd" id="1_4gjva"]
-[ext_resource type="Texture2D" uid="uid://b0nxy14k6nfwf" path="res://Assets/Buildings/torchbody.png" id="2_ngodx"]
+[ext_resource type="Texture2D" uid="uid://gvpo1l6p8ste" path="res://Assets/Buildings/torch5.png" id="2_35jsc"]
 [ext_resource type="Texture2D" uid="uid://1373tn8l4up0" path="res://Assets/Buildings/TorchFrames/torch1.png" id="3_1xmtp"]
 [ext_resource type="Texture2D" uid="uid://cecwh4twkhrw5" path="res://PrototypeAssets/light_tpbg_white.png" id="3_t2iuo"]
 [ext_resource type="Texture2D" uid="uid://cjwg4k83utve4" path="res://Assets/Buildings/TorchFrames/torch2.png" id="4_63ivv"]
@@ -56,8 +56,9 @@ shape = SubResource("RectangleShape2D_hfvhp")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.317647, 0.317647, 0.317647, 1)
 texture_filter = 1
+position = Vector2(0, 32)
 scale = Vector2(4, 4)
-texture = ExtResource("2_ngodx")
+texture = ExtResource("2_35jsc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 modulate = Color(0.521569, 0.521569, 0.521569, 1)

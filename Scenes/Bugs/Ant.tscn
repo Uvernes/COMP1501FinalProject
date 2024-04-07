@@ -3,4 +3,5 @@
 [ext_resource type="Script" path="res://Scenes/Bugs/Ant.gd" id="1_0mhnb"]
 
 [node name="Ant" type="Node2D"]
+texture_filter = 1
 script = ExtResource("1_0mhnb")

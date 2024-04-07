@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bnnmfpby1oga3"
-path="res://.godot/imported/anthead-brown.png-104c07c8912f0d6167e95436e880cefa.ctex"
+uid="uid://c3xgockc1kw0d"
+path="res://.godot/imported/webs.png-899bdaeb8635ba6c7500746bef337c9c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Bugs/anthead-brown.png"
-dest_files=["res://.godot/imported/anthead-brown.png-104c07c8912f0d6167e95436e880cefa.ctex"]
+source_file="res://Assets/Buildings/webs.png"
+dest_files=["res://.godot/imported/webs.png-899bdaeb8635ba6c7500746bef337c9c.ctex"]
 
 [params]
 

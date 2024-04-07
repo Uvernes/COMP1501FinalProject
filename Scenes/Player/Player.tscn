@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://1y1ksdxpo2ps"]
+[gd_scene load_steps=11 format=3 uid="uid://1y1ksdxpo2ps"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_88ct0"]
 [ext_resource type="PackedScene" uid="uid://cnpk6ul0cvh8u" path="res://Scenes/Bullet/bullet.tscn" id="2_tj8lh"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scenes/Player/Head.gd" id="5_jbtl3"]
 [ext_resource type="Script" path="res://Scenes/Player/PlayerLight.gd" id="5_rdf0n"]
 [ext_resource type="Texture2D" uid="uid://brgnkoxbceqc" path="res://PrototypeAssets/ants/anthead.png" id="6_b0dpf"]
+[ext_resource type="PackedScene" uid="uid://dwccup8cb8fe3" path="res://Scenes/Bugs/Ant.tscn" id="8_josjx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2af3w"]
 radius = 15.0
@@ -71,6 +72,9 @@ metadata/_edit_group_ = true
 wait_time = 0.2
 one_shot = true
 
+[node name="Ant" parent="." instance=ExtResource("8_josjx")]
+
+[connection signal="direction_changed" from="." to="Ant" method="_on_player_direction_changed"]
 [connection signal="timeout" from="StaminaTimer" to="." method="_on_stamina_timer_timeout"]
 [connection signal="body_entered" from="Head" to="Head" method="_on_body_entered"]
 [connection signal="timeout" from="Head/AttackTimer" to="Head" method="_on_attack_timer_timeout"]
