@@ -17,16 +17,20 @@ var health = 3
 const damage = 2
 const min_distance_from_player = 70
 var angle_to_face
+var difficulty
 
 var player # Reference to player object
+var game_controller # Reference to game controller
 var dead = false
 
 var itemdropdistancerange = 20
 
 func _ready():
 	player = get_tree().get_current_scene().get_node("Player")
+	game_controller = get_tree().get_current_scene()
 	$AttackTimer.start()
 	angle_to_face = 0
+	difficulty = 1
 
 func _physics_process(delta):
 	if attacking_base == false:
@@ -97,6 +101,7 @@ func take_damage(amount,knockback=Vector2.ZERO,force=0):
 			wood.position = Vector2((position.x)+(randf_range(-itemdropdistancerange, itemdropdistancerange)), (position.y)+(randf_range(-itemdropdistancerange, itemdropdistancerange)))
 			get_parent().add_child(wood)
 		self.dead = true
+		game_controller.update_enemy_death_count(difficulty)
 		queue_free()
 	velocity = (knockback * accel * force * get_physics_process_delta_time())#+= makes knockback look very inconsistent
 	$StunTimer.start()

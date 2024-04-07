@@ -4,6 +4,7 @@ signal player_on_base()
 signal player_off_base()
 signal population_changed(new_pop)
 signal status_changed(type)#types: "under attack", "inactive", "safe"
+signal fully_heal_player()
 
 var current_pop
 var max_pop
@@ -59,6 +60,9 @@ func _on_body_entered(body):
 			player_at_base = true
 			if active == false:
 				$ActivateBasePopUp.show()
+			if safe == true:
+				fully_heal_player.emit()#sent to game controller
+				
 
 
 func _on_body_exited(body):

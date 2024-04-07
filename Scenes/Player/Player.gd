@@ -149,6 +149,13 @@ func hit(amount,knockback=Vector2.ZERO,force=0):
 		player_death.emit()
 	velocity += (knockback * accel * force * get_physics_process_delta_time())
 	move_and_slide()
+	
+func heal(amount):
+	if(amount + cur_health > max_health):
+		cur_health = max_health
+	else:
+		cur_health += amount
+	health_changed.emit(cur_health)
 
 func shoot():
 	# compares the current stamina to the amount of stamina needed to fire a bullet.
