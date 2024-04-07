@@ -21,8 +21,8 @@ var Placeable = preload("res://Scenes/Placeables/Placeable.gd")
 
 # Gameplay begins with tutorial rooms placed sequentially from left to right
 const tutorial_room_scene_paths = [
-	"res://Scenes/GameMap/Rooms/Main/NoBase/template_room_no_base.tscn",
-	"res://Scenes/GameMap/Rooms/Main/NoBase/template_room_no_base.tscn"
+	"res://Scenes/GameMap/Rooms/Tutorials/tutorial_1.tscn",
+	"res://Scenes/GameMap/Rooms/Tutorials/tutorial_2.tscn"
 ]
 
 
@@ -32,7 +32,6 @@ const main_room_scene_paths = 	[
 	#"res://Scenes/GameMap/Rooms/Main/NoBase/template_room_no_base.tscn"
 	]
 	
-
 #Rooms that can be added:
 #"res://Scenes/GameMap/Rooms/Main/NoBase/room_no_base_1.tscn"
 #"res://Scenes/GameMap/Rooms/Main/NoBase/room_no_base_2.tscn"
@@ -292,7 +291,7 @@ func init_new_room(room_index, entrance):
 	get_parent().get_node("Player").global_position = \
 		cur_room.get_node("Entrances").get_node(entrance).global_position
 	cur_room.get_node("Entrances").hide()  # Entrances are just markers for the inspector, can hide
-
+	
 	# Restore any pre-existing builds
 	#print(room_index_to_builds)
 	for build_position in room_index_to_builds[cur_room_index]:
