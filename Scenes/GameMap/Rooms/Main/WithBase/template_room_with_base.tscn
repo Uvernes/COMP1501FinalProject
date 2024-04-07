@@ -4,9 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://ct5lgyoushw53" path="res://Scenes/WorldStructures/CaveWall.tscn" id="2_pgtdv"]
 [ext_resource type="Script" path="res://Scenes/GameMap/Rooms/Main/RoomController.gd" id="3_2t5xp"]
 [ext_resource type="PackedScene" uid="uid://dqq1eqx2408k" path="res://Scenes/Enemies/EnemySpawner.tscn" id="4_khx7q"]
-[ext_resource type="PackedScene" uid="uid://bjdqvr0d6xkj3" path="res://Scenes/ResourceSpawners/dirt_spawner.tscn" id="4_lnhwa"]
+[ext_resource type="PackedScene" uid="uid://bjdqvr0d6xkj3" path="res://Scenes/Spawners/ResourceSpawners/dirt_spawner.tscn" id="4_lnhwa"]
 [ext_resource type="PackedScene" uid="uid://cbej05v14rtms" path="res://Scenes/Enemy/Enemy.tscn" id="5_1r06l"]
-[ext_resource type="PackedScene" uid="uid://o7wxb7v0a732" path="res://Scenes/ResourceSpawners/leaves_spawner.tscn" id="5_h4jyc"]
+[ext_resource type="PackedScene" uid="uid://o7wxb7v0a732" path="res://Scenes/Spawners/ResourceSpawners/leaves_spawner.tscn" id="5_h4jyc"]
 [ext_resource type="PackedScene" uid="uid://duc3mjrijegti" path="res://Scenes/WorldStructures/Bases/Base.tscn" id="6_dertm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o6vjd"]

@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://7lgbxm51b76s" path="res://Scenes/GameMap/GameMap.tscn" id="4_okh0x"]
 [ext_resource type="PackedScene" uid="uid://sior3tw6cm58" path="res://Scenes/WorldStructures/Darkness.tscn" id="6_hbrf3"]
 [ext_resource type="PackedScene" uid="uid://b7oecv531ru7h" path="res://Scenes/Resources/resource_manager.tscn" id="8_r1hkf"]
-[ext_resource type="PackedScene" uid="uid://bjdqvr0d6xkj3" path="res://Scenes/ResourceSpawners/dirt_spawner.tscn" id="9_uoj5a"]
-[ext_resource type="PackedScene" uid="uid://o7wxb7v0a732" path="res://Scenes/ResourceSpawners/leaves_spawner.tscn" id="10_syl04"]
+[ext_resource type="PackedScene" uid="uid://bjdqvr0d6xkj3" path="res://Scenes/Spawners/ResourceSpawners/dirt_spawner.tscn" id="9_uoj5a"]
+[ext_resource type="PackedScene" uid="uid://o7wxb7v0a732" path="res://Scenes/Spawners/ResourceSpawners/leaves_spawner.tscn" id="10_syl04"]
 [ext_resource type="PackedScene" uid="uid://dgwwc726rr5xm" path="res://Scenes/Menus/Pause/PauseMenu.tscn" id="12_3rn8h"]
 [ext_resource type="PackedScene" uid="uid://duc3mjrijegti" path="res://Scenes/WorldStructures/Bases/Base.tscn" id="12_tdp2r"]
 
