@@ -571,6 +571,10 @@ offset_bottom = 42.0
 theme_override_font_sizes/font_size = 15
 text = "5"
 
+[node name="HideBuildSidebarTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
 [node name="BuildInstruction" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
@@ -944,6 +948,7 @@ text = "Warning! Leaving while your base is under attack will reset it."
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[connection signal="timeout" from="HideBuildSidebarTimer" to="." method="_on_hide_build_sidebar_timer_timeout"]
 [connection signal="focus_entered" from="UpgradeMenu" to="." method="_on_upgrade_menu_focus_entered"]
 [connection signal="pressed" from="UpgradeMenu/UpgradeHealth/Button" to="." method="_on_health_button_pressed"]
 [connection signal="pressed" from="UpgradeMenu/UpgradeStamina/Button" to="." method="_on_stamina_button_pressed"]

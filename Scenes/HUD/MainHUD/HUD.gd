@@ -14,6 +14,7 @@ func _ready():
 	$UpgradeMenu.hide()
 	$PopulationBar.hide()
 	$Warning.hide()
+	$BuildSidebar.hide()
 	player = get_parent().get_node("Player")
 	can_open_upgrade_menu = false
 	can_build_base = false
@@ -68,6 +69,13 @@ func _on_player_mode_changed(new_mode):
 		hotBarItem.get_node("Background").hide()
 	# Add background for the selected mode
 	hotBarItems[new_mode].get_node("Background").show()
+	
+	#shows build sidebar or starts hide timer
+	if new_mode == 3:
+		$BuildSidebar.show()
+		$HideBuildSidebarTimer.stop()
+	else:
+		$HideBuildSidebarTimer.start()
 
 func _on_player_build_selection_changed(new_build_selection):
 	# Hide background for all sidebar items
@@ -77,6 +85,8 @@ func _on_player_build_selection_changed(new_build_selection):
 	# Add background for the selected mode
 	buildSiderbar[new_build_selection].get_node("Background").show()
 
+func _on_hide_build_sidebar_timer_timeout():
+	$BuildSidebar.hide()
 
 func update_resource(type, new_amount):
 	if type == "dirt":
@@ -157,3 +167,5 @@ func show_warning(state):
 		$Warning.show()
 	else:
 		$Warning.hide()
+
+
