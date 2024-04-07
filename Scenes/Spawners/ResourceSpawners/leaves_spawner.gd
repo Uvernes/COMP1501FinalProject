@@ -4,7 +4,9 @@ extends Node2D
 @export var resource_scene: PackedScene
 
 func _ready():
-	$SpawnTimer.start()
+	var leaves = resource_scene.instantiate()
+	leaves.init("leaves", "res://Assets/Resources/leaf.png")
+	add_child(leaves)
 
 func _on_spawn_timer_timeout():
 	var leaves = resource_scene.instantiate()
@@ -12,5 +14,6 @@ func _on_spawn_timer_timeout():
 	add_child(leaves)
 
 func _on_child_exiting_tree(node):
-	if node.type == "leaves":
-		$SpawnTimer.start()
+	if node.name != "SpawnTimer":
+		if node.type == "leaves":
+			$SpawnTimer.start()
