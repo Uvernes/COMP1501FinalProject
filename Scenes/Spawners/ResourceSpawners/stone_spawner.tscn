@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7617irk3mfcb"]
+
+[ext_resource type="Script" path="res://Scenes/Spawners/ResourceSpawners/stone_spawner.gd" id="1_up6uu"]
+
+[node name="StoneSpawner" type="Node2D"]
+position = Vector2(1, 0)
+script = ExtResource("1_up6uu")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 20.0
+one_shot = true
+
+[connection signal="child_exiting_tree" from="." to="." method="_on_child_exiting_tree"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
