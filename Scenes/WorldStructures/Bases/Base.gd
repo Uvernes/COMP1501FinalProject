@@ -9,6 +9,7 @@ var current_pop
 var max_pop
 var active
 var safe
+var player_at_base
 
 
 # Called when the node enters the scene tree for the first time.
@@ -20,6 +21,7 @@ func _ready():
 	safe = false
 	$ActivateBasePopUp.hide()
 	$ActivateBasePopUp.position = Vector2(-70,-90)
+	player_at_base = false
 
 func get_attacked(amount):
 	decrease_pop(amount)
@@ -54,6 +56,7 @@ func _on_body_entered(body):
 	if body != null:
 		if body.name == "Player":
 			player_on_base.emit()
+			player_at_base = true
 			if active == false:
 				$ActivateBasePopUp.show()
 
@@ -62,6 +65,7 @@ func _on_body_exited(body):
 	if body != null:
 		if body.name == "Player":
 			player_off_base.emit()
+			player_at_base = false
 			$ActivateBasePopUp.hide()
 
 
@@ -99,7 +103,7 @@ func becomeSafe(): #can be called when re-entering a room with a claimed base
 	status_changed.emit("safe")#use to stop mob spawns, and update HUD
 
 func _input(ev):
-	if Input.is_action_pressed("interact"):
+	if player_at_base && Input.is_action_pressed("interact"):
 		if active == false:
 			#check for ressources
 			changeActiveStatus(true)

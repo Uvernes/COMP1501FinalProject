@@ -26,8 +26,9 @@ func _process(delta):
 		touching[i].velocity -= touching[i].velocity * 25 * delta
 
 func _on_body_entered(body):
-	if touching.find(body) == -1:
-		touching.append(body)
+	if body.is_in_group("Enemy") || body.name == "Player":
+		if touching.find(body) == -1:
+			touching.append(body)
 
 func _on_body_exited(body):
 	touching.erase(body)
