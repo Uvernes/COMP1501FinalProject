@@ -1,5 +1,7 @@
 extends Node2D
 
+signal removed(build)  # Emitted when a placeable is deleted by the player or broken / used up
+
 # Enum for all buildings
 enum placeables {
 	TORCH,
@@ -63,3 +65,9 @@ var build_id  # Each build specifies its build id in the placeables enum
 # Call with super() in all sublcasses so all of them have the base init ran
 func _ready():
 	add_to_group("Placeable")
+	
+	
+func remove():
+	removed.emit(self)
+	queue_free()
+

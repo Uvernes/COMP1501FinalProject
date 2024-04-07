@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://7lgbxm51b76s"]
+
+[ext_resource type="Script" path="res://Scenes/GameMap/GameMap.gd" id="3_0vj0n"]
+[ext_resource type="PackedScene" uid="uid://do23gcptel8rb" path="res://Scenes/GameMap/HoverTile.tscn" id="3_pkgeg"]
+[ext_resource type="PackedScene" uid="uid://c2en5h64n3ntj" path="res://Scenes/GameMap/SpawnTile.tscn" id="4_cbo4k"]
+
+[sub_resource type="TileSet" id="TileSet_67emb"]
+tile_size = Vector2i(64, 64)
+
+[node name="GameMap" type="Node2D"]
+script = ExtResource("3_0vj0n")
+n_rows = 2
+n_cols = 2
+
+[node name="BackgroundTileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_67emb")
+format = 2
+
+[node name="HoverTile" parent="." instance=ExtResource("3_pkgeg")]
+
+[node name="SpawnTile" parent="." instance=ExtResource("4_cbo4k")]
+
+[node name="Rooms" type="Node2D" parent="."]

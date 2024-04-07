@@ -117,7 +117,7 @@ func _on_player_delete_requested(_global_mouse_pos):
 	$HUD.update_all_resources($ResourceManager.resources)
 
 	# Delete build
-	build_instance.queue_free()
+	build_instance.remove()
 
 
 func _handle_player_death():

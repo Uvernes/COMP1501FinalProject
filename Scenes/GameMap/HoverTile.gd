@@ -10,19 +10,16 @@ var objects_in_area = []  # Objects currently in hover tile area
 
 func _on_area_entered(area):
 	objects_in_area.append(area)
-	print(objects_in_area)
-	pass # Replace with function body.
+	#print(objects_in_area)
 
 
 func _on_body_entered(body):
 	objects_in_area.append(body)
-	print(objects_in_area)
-	pass # Replace with function body.
+	#print(objects_in_area)
 
 
 func _on_area_exited(area):
 	objects_in_area.erase(area)
-	pass # Replace with function body.
 
 
 func _on_body_exited(body):
