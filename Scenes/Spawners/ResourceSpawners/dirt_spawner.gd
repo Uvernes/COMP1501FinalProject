@@ -4,9 +4,7 @@ extends Node2D
 @export var resource_scene: PackedScene
 
 func _ready():
-	var dirt = resource_scene.instantiate()
-	dirt.init("dirt", "res://Assets/Resources/dirt.png")
-	add_child(dirt)
+	$SpawnTimer.start()
 
 func _on_spawn_timer_timeout():
 	var dirt = resource_scene.instantiate()
