@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c717feo543ays"]
+[gd_scene load_steps=15 format=3 uid="uid://c717feo543ays"]
 
 [ext_resource type="Texture2D" uid="uid://dts1vnk2d4y8q" path="res://PrototypeAssets/TileSets/kenney_abstract-platformer/Tilesheet/tilesheet_complete.png" id="1_c40wl"]
 [ext_resource type="PackedScene" uid="uid://ct5lgyoushw53" path="res://Scenes/WorldStructures/CaveWall.tscn" id="2_jsgyp"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://o7wxb7v0a732" path="res://Scenes/Spawners/ResourceSpawners/leaves_spawner.tscn" id="5_65hc2"]
 [ext_resource type="PackedScene" uid="uid://cg4keaky2urjy" path="res://Scenes/Spawners/ResourceSpawners/wood_spawner.tscn" id="6_uu5as"]
 [ext_resource type="PackedScene" uid="uid://c7617irk3mfcb" path="res://Scenes/Spawners/ResourceSpawners/stone_spawner.tscn" id="7_03osc"]
+[ext_resource type="PackedScene" uid="uid://bhua62guu3842" path="res://Scenes/Placeables/UnbreakableTorch.tscn" id="8_hm3vr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o6vjd"]
 texture = ExtResource("1_c40wl")
@@ -130,7 +131,7 @@ format = 2
 layer_0/tile_data = PackedInt32Array(1966078, 1, 65536, 1966079, 1, 65536, 1900544, 1, 65536, 1900545, 1, 65536)
 
 [node name="DirtSpawner" parent="." instance=ExtResource("4_1rfk5")]
-position = Vector2(930, -11)
+position = Vector2(799, -13)
 
 [node name="DirtSpawner2" parent="." instance=ExtResource("4_1rfk5")]
 position = Vector2(-1354, -1318)
@@ -139,10 +140,10 @@ position = Vector2(-1354, -1318)
 position = Vector2(1275, -1181)
 
 [node name="TempDirtSpawner" parent="." instance=ExtResource("4_1rfk5")]
-position = Vector2(329, -37)
+position = Vector2(396, -137)
 
 [node name="TempDirtSpawner2" parent="." instance=ExtResource("4_1rfk5")]
-position = Vector2(1574, 99)
+position = Vector2(1516, 112)
 
 [node name="TempLeavesSpawner" parent="." instance=ExtResource("5_65hc2")]
 position = Vector2(1177, -924)
@@ -164,5 +165,14 @@ position = Vector2(-1090, -1269)
 
 [node name="TempStoneSpawner3" parent="." instance=ExtResource("7_03osc")]
 position = Vector2(-1433, -1510)
+
+[node name="UnbreakableTorch" parent="." instance=ExtResource("8_hm3vr")]
+position = Vector2(200, -10)
+
+[node name="UnbreakableTorch2" parent="." instance=ExtResource("8_hm3vr")]
+position = Vector2(1391, -10)
+
+[node name="UnbreakableTorch3" parent="." instance=ExtResource("8_hm3vr")]
+position = Vector2(738, -484)
 
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

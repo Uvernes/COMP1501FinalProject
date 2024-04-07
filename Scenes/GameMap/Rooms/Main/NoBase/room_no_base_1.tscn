@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://cmofrpposus6v"]
+[gd_scene load_steps=13 format=3 uid="uid://cmofrpposus6v"]
 
 [ext_resource type="Texture2D" uid="uid://dts1vnk2d4y8q" path="res://PrototypeAssets/TileSets/kenney_abstract-platformer/Tilesheet/tilesheet_complete.png" id="1_p8jxj"]
 [ext_resource type="PackedScene" uid="uid://ct5lgyoushw53" path="res://Scenes/WorldStructures/CaveWall.tscn" id="2_xc4qw"]
 [ext_resource type="Script" path="res://Scenes/GameMap/Rooms/Main/RoomController.gd" id="3_x2oqg"]
 [ext_resource type="PackedScene" uid="uid://bjdqvr0d6xkj3" path="res://Scenes/Spawners/ResourceSpawners/dirt_spawner.tscn" id="4_skonp"]
 [ext_resource type="PackedScene" uid="uid://o7wxb7v0a732" path="res://Scenes/Spawners/ResourceSpawners/leaves_spawner.tscn" id="5_m0i15"]
+[ext_resource type="PackedScene" uid="uid://c7617irk3mfcb" path="res://Scenes/Spawners/ResourceSpawners/stone_spawner.tscn" id="6_e2pwu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o6vjd"]
 texture = ExtResource("1_p8jxj")
@@ -135,5 +136,8 @@ position = Vector2(-1342, 1368)
 
 [node name="LeavesSpawner2" parent="." instance=ExtResource("5_m0i15")]
 position = Vector2(-1442, -1264)
+
+[node name="StoneSpawner" parent="." instance=ExtResource("6_e2pwu")]
+position = Vector2(1310, 1172)
 
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

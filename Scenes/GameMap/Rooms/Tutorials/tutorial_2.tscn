@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cvamy8ywllso6"]
+[gd_scene load_steps=17 format=3 uid="uid://cvamy8ywllso6"]
 
 [ext_resource type="Texture2D" uid="uid://dts1vnk2d4y8q" path="res://PrototypeAssets/TileSets/kenney_abstract-platformer/Tilesheet/tilesheet_complete.png" id="1_iauix"]
 [ext_resource type="PackedScene" uid="uid://ct5lgyoushw53" path="res://Scenes/WorldStructures/CaveWall.tscn" id="2_7ykkn"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dqq1eqx2408k" path="res://Scenes/Enemies/EnemySpawner.tscn" id="7_wrmu6"]
 [ext_resource type="PackedScene" uid="uid://cbej05v14rtms" path="res://Scenes/Enemy/Enemy.tscn" id="8_1plll"]
 [ext_resource type="PackedScene" uid="uid://c7617irk3mfcb" path="res://Scenes/Spawners/ResourceSpawners/stone_spawner.tscn" id="9_agvyq"]
+[ext_resource type="PackedScene" uid="uid://bhua62guu3842" path="res://Scenes/Placeables/UnbreakableTorch.tscn" id="10_pk73y"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o6vjd"]
 texture = ExtResource("1_iauix")
@@ -165,5 +166,11 @@ position = Vector2(367, 136)
 
 [node name="TempStoneSpawner2" parent="." instance=ExtResource("9_agvyq")]
 position = Vector2(-316, -318)
+
+[node name="UnbreakableTorch" parent="." instance=ExtResource("10_pk73y")]
+position = Vector2(-1449, -10)
+
+[node name="UnbreakableTorch2" parent="." instance=ExtResource("10_pk73y")]
+position = Vector2(-629, -10)
 
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
