@@ -24,6 +24,7 @@ func _ready():
 	$ActivateBasePopUp.hide()
 	$ActivateBasePopUp.position = Vector2(-70,-90)
 	player_at_base = false
+	$Light.hide()
 
 func get_attacked(amount):
 	decrease_pop(amount)
@@ -94,11 +95,13 @@ func _on_attack_message_cooldown_timeout():
 func changeActiveStatus(status):
 	if status == true:
 		$ActivateBasePopUp.hide()
+		$Light.show()
 		active = true
 		increase_pop(100)
 		$RegenTimer.start()
 	elif status == false:
 		active = false
+		$Light.hide()
 		
 		stopAllEnemyAttacks()
 
