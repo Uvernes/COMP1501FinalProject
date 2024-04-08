@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://npbjmbt4um60"]
+[gd_scene load_steps=22 format=3 uid="uid://npbjmbt4um60"]
 
 [ext_resource type="Script" path="res://Scenes/HUD/MainHUD/HUD.gd" id="1_niqmd"]
 
@@ -80,8 +80,33 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 shadow_size = 10
 
+[sub_resource type="LabelSettings" id="LabelSettings_isqni"]
+line_spacing = 0.0
+font_size = 22
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_bsc85"]
+line_spacing = 0.0
+font_size = 22
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dkmps"]
+line_spacing = 0.0
+font_size = 22
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_v8who"]
+line_spacing = 0.0
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5x635"]
+line_spacing = 0.0
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s18ot"]
-bg_color = Color(0.247059, 0, 0, 1)
+bg_color = Color(0.139014, 0.0126172, 0.00511362, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
@@ -89,13 +114,25 @@ corner_radius_bottom_left = 10
 shadow_color = Color(0.164706, 0, 0, 0.6)
 shadow_size = 5
 
-[sub_resource type="SystemFont" id="SystemFont_6sdfh"]
-subpixel_positioning = 0
-
 [sub_resource type="LabelSettings" id="LabelSettings_o1qhi"]
 line_spacing = 0.0
-font = SubResource("SystemFont_6sdfh")
-font_size = 11
+font_color = Color(0.305882, 0.305882, 0.305882, 1)
+outline_size = 3
+outline_color = Color(0.231373, 0.0313726, 0.0117647, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0dkvq"]
+bg_color = Color(0.235294, 0.235294, 0.235294, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_kf1ci"]
+line_spacing = 0.0
+font_color = Color(0.117647, 0.117647, 0.117647, 1)
+outline_size = 3
+outline_color = Color(0.301961, 0.301961, 0.301961, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_lywem"]
 line_spacing = 0.0
@@ -163,112 +200,113 @@ show_percentage = false
 
 [node name="HotBar" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 8
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+anchor_bottom = 1.0
+offset_left = -135.5
+offset_top = -139.0
+offset_right = 135.5
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 
 [node name="Background" type="ColorRect" parent="HotBar"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -151.0
-offset_top = 178.0
-offset_right = 120.0
-offset_bottom = 317.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Children" type="Control" parent="HotBar"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 266.0
-offset_top = 278.0
-offset_right = 306.0
-offset_bottom = 318.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Attack" type="Control" parent="HotBar/Children"]
-anchors_preset = 0
-offset_left = -364.0
-offset_top = 6.0
-offset_right = -364.0
-offset_bottom = 6.0
-scale = Vector2(1, 0.997176)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -33.5
+offset_top = 15.0
+offset_right = 33.5
+offset_bottom = 61.0
+grow_horizontal = 2
 
 [node name="Background" type="ColorRect" parent="HotBar/Children/Attack"]
 layout_mode = 0
-offset_left = -6.0
-offset_top = -11.0312
-offset_right = 55.0
-offset_bottom = 34.9688
+offset_right = 67.0
+offset_bottom = 46.0
 color = Color(1, 0.2, 0.176471, 1)
 
 [node name="Label" type="Label" parent="HotBar/Children/Attack"]
 layout_mode = 0
-offset_left = -3.0
-offset_top = 4.01133
-offset_right = 54.0
-offset_bottom = 27.0113
+offset_right = 67.0
+offset_bottom = 46.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "ATTACK"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Build" type="Control" parent="HotBar/Children"]
-anchors_preset = 0
-offset_left = -287.0
-offset_top = -50.0
-offset_right = -287.0
-offset_bottom = -50.0
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = -63.0
+offset_right = 92.0
+offset_bottom = -17.0
+grow_vertical = 0
 
 [node name="Background" type="ColorRect" parent="HotBar/Children/Build"]
 layout_mode = 0
-offset_left = -6.0
-offset_top = -11.0
-offset_right = 55.0
-offset_bottom = 35.0
+offset_right = 67.0
+offset_bottom = 46.0
 color = Color(1, 0.2, 0.176471, 1)
 
 [node name="Label" type="Label" parent="HotBar/Children/Build"]
 layout_mode = 0
-offset_left = 3.0
-offset_top = 4.0
-offset_right = 46.0
-offset_bottom = 27.0
+offset_right = 67.0
+offset_bottom = 46.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "BUILD"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Delete" type="Control" parent="HotBar/Children"]
-anchors_preset = 0
-offset_left = -158.0
-offset_top = -2.0
-offset_right = -158.0
-offset_bottom = -2.0
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -92.0
+offset_top = -63.0
+offset_right = -25.0
+offset_bottom = -17.0
+grow_horizontal = 0
+grow_vertical = 0
 
 [node name="Background" type="ColorRect" parent="HotBar/Children/Delete"]
 layout_mode = 0
-offset_left = -59.0
-offset_top = -3.0
-offset_right = 8.0
-offset_bottom = 43.0
+offset_right = 67.0
+offset_bottom = 46.0
 color = Color(1, 0.2, 0.176471, 1)
 
 [node name="Label" type="Label" parent="HotBar/Children/Delete"]
 layout_mode = 0
-offset_left = -55.0
-offset_top = 12.0
-offset_right = 3.0
-offset_bottom = 35.0
+offset_right = 67.0
+offset_bottom = 46.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "DELETE"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="BuildSidebar" type="Control" parent="."]
 layout_mode = 3
@@ -277,55 +315,61 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -78.0
-offset_top = -49.0
-offset_right = -38.0
-offset_bottom = -9.0
+offset_left = -92.0
+offset_top = -160.0
+offset_right = -12.0
+offset_bottom = 160.0
 grow_horizontal = 0
 grow_vertical = 2
 
 [node name="ColorRect" type="ColorRect" parent="BuildSidebar"]
-layout_mode = 0
-offset_left = -6.0
-offset_top = -69.0
-offset_right = 34.0
-offset_bottom = -29.0
-scale = Vector2(1.98089, 7.96039)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
 
-[node name="Children" type="Control" parent="BuildSidebar"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 15.0
-offset_top = -39.0
-offset_right = 55.0
-offset_bottom = 1.0
+[node name="Children" type="VBoxContainer" parent="BuildSidebar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Torch" type="Control" parent="BuildSidebar/Children"]
-anchors_preset = 0
-offset_left = 7.0
-offset_top = -14.0
-offset_right = 47.0
-offset_bottom = 26.0
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="Background" type="ColorRect" parent="BuildSidebar/Children/Torch"]
-layout_mode = 0
-offset_left = -19.0
-offset_top = -2.0
-offset_right = 21.0
-offset_bottom = 38.0
-scale = Vector2(1.54154, 1.11915)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(1, 0.2, 0.176471, 1)
 
 [node name="Label" type="Label" parent="BuildSidebar/Children/Torch"]
-modulate = Color(0, 0, 0, 1)
-layout_mode = 0
-offset_left = -17.0
-offset_top = 9.0
-offset_right = 38.0
-offset_bottom = 32.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "TORCH"
+label_settings = SubResource("LabelSettings_isqni")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Index" type="Control" parent="BuildSidebar/Children/Torch"]
+visible = false
 anchors_preset = 0
 offset_left = -58.0
 offset_top = -2.0
@@ -351,29 +395,32 @@ theme_override_font_sizes/font_size = 15
 text = "1"
 
 [node name="Wall" type="Control" parent="BuildSidebar/Children"]
-anchors_preset = 0
-offset_left = -12.0
-offset_top = 46.0
-offset_right = 28.0
-offset_bottom = 86.0
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="Background" type="ColorRect" parent="BuildSidebar/Children/Wall"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(1.54154, 1.11915)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(1, 0.2, 0.176471, 1)
 
 [node name="Label" type="Label" parent="BuildSidebar/Children/Wall"]
-modulate = Color(0, 0, 0, 1)
-layout_mode = 0
-offset_left = 8.0
-offset_top = 11.0
-offset_right = 52.0
-offset_bottom = 34.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "WALL"
+label_settings = SubResource("LabelSettings_bsc85")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Index" type="Control" parent="BuildSidebar/Children/Wall"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = -40.0
@@ -398,32 +445,32 @@ theme_override_font_sizes/font_size = 15
 text = "2"
 
 [node name="Web" type="Control" parent="BuildSidebar/Children"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = -11.0
-offset_top = 106.0
-offset_right = 29.0
-offset_bottom = 146.0
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="Background" type="ColorRect" parent="BuildSidebar/Children/Web"]
-layout_mode = 0
-offset_left = -2.0
-offset_top = 1.0
-offset_right = 38.0
-offset_bottom = 41.0
-scale = Vector2(1.54154, 1.11915)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(1, 0.2, 0.176471, 1)
 
 [node name="Label" type="Label" parent="BuildSidebar/Children/Web"]
-modulate = Color(0, 0, 0, 1)
-layout_mode = 0
-offset_left = 13.0
-offset_top = 11.0
-offset_right = 57.0
-offset_bottom = 34.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "WEB"
+label_settings = SubResource("LabelSettings_dkmps")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Index" type="Control" parent="BuildSidebar/Children/Web"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = -40.0
@@ -448,32 +495,32 @@ theme_override_font_sizes/font_size = 15
 text = "3"
 
 [node name="Mine" type="Control" parent="BuildSidebar/Children"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = -11.0
-offset_top = 166.0
-offset_right = 29.0
-offset_bottom = 206.0
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="Background" type="ColorRect" parent="BuildSidebar/Children/Mine"]
-layout_mode = 0
-offset_left = -1.0
-offset_top = 3.0
-offset_right = 39.0
-offset_bottom = 43.0
-scale = Vector2(1.54154, 1.11915)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(1, 0.2, 0.176471, 1)
 
 [node name="Label" type="Label" parent="BuildSidebar/Children/Mine"]
-modulate = Color(0, 0, 0, 1)
-layout_mode = 0
-offset_left = 9.0
-offset_top = 11.0
-offset_right = 53.0
-offset_bottom = 34.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "MINE"
+label_settings = SubResource("LabelSettings_v8who")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Index" type="Control" parent="BuildSidebar/Children/Mine"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = -41.0
@@ -500,32 +547,32 @@ theme_override_font_sizes/font_size = 15
 text = "4"
 
 [node name="Tower" type="Control" parent="BuildSidebar/Children"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 7.0
-offset_top = 232.0
-offset_right = 47.0
-offset_bottom = 272.0
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="Background" type="ColorRect" parent="BuildSidebar/Children/Tower"]
-layout_mode = 0
-offset_left = -19.0
-offset_top = -2.0
-offset_right = 21.0
-offset_bottom = 38.0
-scale = Vector2(1.54154, 1.11915)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(1, 0.2, 0.176471, 1)
 
 [node name="Label" type="Label" parent="BuildSidebar/Children/Tower"]
-modulate = Color(0, 0, 0, 1)
-layout_mode = 0
-offset_left = -16.0
-offset_top = 9.0
-offset_right = 40.0
-offset_bottom = 32.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "TOWER"
+label_settings = SubResource("LabelSettings_5x635")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Index" type="Control" parent="BuildSidebar/Children/Tower"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = -59.0
@@ -551,23 +598,23 @@ offset_bottom = 42.0
 theme_override_font_sizes/font_size = 15
 text = "5"
 
-[node name="HideBuildSidebarTimer" type="Timer" parent="."]
-wait_time = 5.0
-one_shot = true
+[node name="BuildInstruction" type="Control" parent="BuildSidebar"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -35.0
+offset_bottom = -5.0
+grow_horizontal = 2
 
-[node name="BuildInstruction" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 1080.0
-offset_top = 592.0
-offset_right = 1135.0
-offset_bottom = 632.0
-
-[node name="Label" type="Label" parent="BuildInstruction"]
+[node name="Label" type="Label" parent="BuildSidebar/BuildInstruction"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -5.0
+offset_right = 1.0
+offset_bottom = 5.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.993333, 1.00424)
@@ -578,6 +625,36 @@ label_settings = SubResource("LabelSettings_o1qhi")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+
+[node name="HideBuildSidebarTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="PauseInstruction" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -162.0
+offset_top = 12.0
+offset_right = -12.0
+offset_bottom = 37.0
+grow_horizontal = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="PauseInstruction"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_0dkvq")
+text = "Press Esc to Pause"
+label_settings = SubResource("LabelSettings_kf1ci")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ResourceDisplayShadow" type="ColorRect" parent="."]
 modulate = Color(0.52549, 0.52549, 0.52549, 1)
@@ -621,6 +698,7 @@ grow_vertical = 2
 text = "Dirt: 0"
 label_settings = SubResource("LabelSettings_lywem")
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Stone" type="Control" parent="ResourceDisplay"]
 layout_mode = 2
@@ -645,6 +723,7 @@ grow_vertical = 2
 text = "Stone: 0"
 label_settings = SubResource("LabelSettings_jifqf")
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Leaves" type="Control" parent="ResourceDisplay"]
 layout_mode = 2
@@ -669,6 +748,7 @@ grow_vertical = 2
 text = "Leaves: 0"
 label_settings = SubResource("LabelSettings_1yaxf")
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Wood" type="Control" parent="ResourceDisplay"]
 layout_mode = 2
@@ -693,6 +773,7 @@ grow_vertical = 2
 text = "Wood: 0"
 label_settings = SubResource("LabelSettings_c6w1b")
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Mobdrops" type="Control" parent="ResourceDisplay"]
 layout_mode = 2
@@ -717,6 +798,7 @@ grow_vertical = 2
 text = "Mobdrops: 0"
 label_settings = SubResource("LabelSettings_j2epg")
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="UpgradeMenu" type="Control" parent="."]
 layout_mode = 3

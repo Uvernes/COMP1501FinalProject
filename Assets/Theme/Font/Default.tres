@@ -4,6 +4,3 @@
 
 [resource]
 base_font = ExtResource("1_yl8lb")
-opentype_features = {
-1667329140: 0
-}

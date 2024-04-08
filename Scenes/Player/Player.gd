@@ -79,7 +79,7 @@ func _process(_delta):
 		_handle_left_mouse_click()
 	if Input.is_action_just_pressed("RMB"):
 		_handle_right_mouse_click()
-	if Input.is_action_just_pressed("space"):
+	if Input.is_action_just_pressed("shift"):
 		_handle_space_bar_pressed()
 
 

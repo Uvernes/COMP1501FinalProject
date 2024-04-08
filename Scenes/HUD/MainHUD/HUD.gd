@@ -62,7 +62,7 @@ func _on_player_max_health_changed(new_max):
 # Update the player mode hotbar
 # NOTE: The GUI must be kept in sync with player's modes 
 func _on_player_mode_changed(new_mode):
-	print("Player mode!")
+	#print("Player mode!")
 	# Hide background for all hotbar items
 	var hotBarItems = $HotBar/Children.get_children()
 	for hotBarItem in hotBarItems:
