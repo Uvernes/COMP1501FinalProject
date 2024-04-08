@@ -83,6 +83,16 @@ func _process(_delta):
 		_handle_shift_pressed()
 
 
+# Handles hotkey presses
+func _unhandled_input(event):
+	if event is InputEventKey:
+		for i in Placeable.placeables.size():
+			if event.pressed and event.keycode == KEY_1 + i:
+				cur_build_selection = i
+				build_selection_changed.emit(cur_build_selection)
+				break
+
+
 func _physics_process(delta):
 	look_at(get_global_mouse_position())
 	player_movement(delta)
