@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://by4p42g28kdn6"]
 
 [ext_resource type="Script" path="res://Scenes/Placeables/PlayerWall.gd" id="1_rksrj"]
-[ext_resource type="Texture2D" uid="uid://d2qcvbo5rfnds" path="res://Assets/Buildings/wall.png" id="2_duu30"]
+[ext_resource type="Texture2D" uid="uid://d2qcvbo5rfnds" path="res://Assets/Buildings/PlayerBuildings/wall.png" id="2_duu30"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wttac"]
 size = Vector2(64, 64)

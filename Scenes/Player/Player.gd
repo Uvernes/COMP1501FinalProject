@@ -267,13 +267,6 @@ func _on_stamina_timer_timeout():
 		cur_stamina = max_stamina
 	stamina_changed.emit(cur_stamina)
 
-func sprint():
-	if Input.is_action_just_pressed("shift"):
-		cur_speed = sprint_speed
-		print("shift")
-	if Input.is_action_just_released("shift"):
-		cur_speed = walk_speed
-
 func increase_max_health(amount):
 	max_health += amount
 	cur_health += amount

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjwg4k83utve4"
-path="res://.godot/imported/torch2.png-e11c73fdd46d4e4428ec38dc7af4c782.ctex"
+uid="uid://cpn7xhea6ecfv"
+path="res://.godot/imported/hole-spawner.png-3f54c34d59481bb40ff7bb1ce6c06ea3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Buildings/TorchFrames/torch2.png"
-dest_files=["res://.godot/imported/torch2.png-e11c73fdd46d4e4428ec38dc7af4c782.ctex"]
+source_file="res://Assets/Buildings/EnemyBuildings/hole-spawner.png"
+dest_files=["res://.godot/imported/hole-spawner.png-3f54c34d59481bb40ff7bb1ce6c06ea3.ctex"]
 
 [params]
 
