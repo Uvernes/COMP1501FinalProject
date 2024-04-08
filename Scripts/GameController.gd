@@ -43,17 +43,20 @@ func _ready():
 	gameMap = get_node("GameMap")
 	room = gameMap.cur_room
 	base = room.base
-	player.connect("player_death", _handle_player_death)
 	$HUD.connect("health_button_pressed", handle_upgrade.bind(0))
 	$HUD.connect("stamina_button_pressed", handle_upgrade.bind(1))
 	$HUD.connect("dmg_button_pressed", handle_upgrade.bind(2))
-	room.connect("player_close_to_exit",handle_player_close_to_exit)
+	#room.connect("player_close_to_exit",handle_player_close_to_exit)
 	gameMap.connect("room_changed", handle_room_change)
 	handle_room_change()
 	enemy_death_count = 0
 	next_heal = 0
 	# $EnemySpawnTimerForBase.start()
 	# $EnemySpawnTimerForPlayer.start()
+	
+func _process(delta):
+	#print(Engine.get_frames_per_second())
+	pass
 	
 #func _process(_delta):
 	#if($EnemySpawnTimerForBase.time_left == 0):

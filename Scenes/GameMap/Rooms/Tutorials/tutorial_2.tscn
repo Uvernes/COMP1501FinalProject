@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://o7wxb7v0a732" path="res://Scenes/Spawners/ResourceSpawners/leaves_spawner.tscn" id="5_svj8v"]
 [ext_resource type="PackedScene" uid="uid://duc3mjrijegti" path="res://Scenes/WorldStructures/Bases/Base.tscn" id="6_y0iya"]
 [ext_resource type="PackedScene" uid="uid://c7617irk3mfcb" path="res://Scenes/Spawners/ResourceSpawners/stone_spawner.tscn" id="9_agvyq"]
-[ext_resource type="PackedScene" path="res://Scenes/Placeables/UnbreakableTorch.tscn" id="10_pk73y"]
+[ext_resource type="PackedScene" uid="uid://bhua62guu3842" path="res://Scenes/Placeables/UnbreakableTorch.tscn" id="10_pk73y"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o6vjd"]
 texture = ExtResource("1_iauix")

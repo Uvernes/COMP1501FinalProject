@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1373tn8l4up0"
-path="res://.godot/imported/torch1.png-7a5bf317136e22004dd2bcd1ca86450b.ctex"
+uid="uid://dc8kbg6mm0mnw"
+path="res://.godot/imported/anthomebase6.png-e6a24cb4b542932bbad14a76a94649e7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Buildings/TorchFrames/torch1.png"
-dest_files=["res://.godot/imported/torch1.png-7a5bf317136e22004dd2bcd1ca86450b.ctex"]
+source_file="res://Assets/Buildings/HomeBases/anthomebase6.png"
+dest_files=["res://.godot/imported/anthomebase6.png-e6a24cb4b542932bbad14a76a94649e7.ctex"]
 
 [params]
 

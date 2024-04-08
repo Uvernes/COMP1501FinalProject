@@ -9,6 +9,7 @@ extends Node2D
 # Total num rooms = n_rows x n_cols
 @export var n_rows = 5
 @export var n_cols = 5
+@export var main_map_num_bases = 5  # Number of bases that need to be claimed in the main map
 
 signal room_changed()
 
@@ -19,20 +20,30 @@ signal room_changed()
 var Player = load("res://Scenes/Player/Player.gd")
 var Placeable = preload("res://Scenes/Placeables/Placeable.gd")
 
-# Gameplay begins with tutorial rooms placed sequentially from left to right
-const tutorial_room_scene_paths = [
-	"res://Scenes/GameMap/Rooms/Tutorials/tutorial_1.tscn",
-	"res://Scenes/GameMap/Rooms/Tutorials/tutorial_2.tscn"
+# Gameplay begins with tutorial rooms placed sequentially from left to right.
+# Each dict specifies path of room and whether or not it has a base
+const tutorial_rooms = [
+	{
+		"path": "res://Scenes/GameMap/Rooms/Tutorials/tutorial_1.tscn",
+		"has_base": false
+	},
+	{
+		"path": "res://Scenes/GameMap/Rooms/Tutorials/tutorial_2.tscn",
+		"has_base": true
+	},
 ]
 
-
 # Add all possible non-tutorial rooms 
-const main_room_scene_paths = 	[
-	"res://Scenes/GameMap/Rooms/Main/WithBase/template_room_with_base.tscn",
-	#"res://Scenes/GameMap/Rooms/Main/NoBase/template_room_no_base.tscn"
-	]
+const main_room_scene_paths = 	{
+	"with_base": [
+		"res://Scenes/GameMap/Rooms/Main/WithBase/template_room_with_base.tscn",
+	],
+	"no_base": [
+		"res://Scenes/GameMap/Rooms/Main/NoBase/template_room_no_base.tscn"
+	]	
+}
 	
-#Rooms that can be added:
+# rooms that can be added:
 #"res://Scenes/GameMap/Rooms/Main/NoBase/room_no_base_1.tscn"
 #"res://Scenes/GameMap/Rooms/Main/NoBase/room_no_base_2.tscn"
 #"res://Scenes/GameMap/Rooms/Main/NoBase/room_no_base_3.tscn"
@@ -55,6 +66,15 @@ var main_map_start_index  # Index of the starting room in the main map
 # for each room. Mapping:
 # (Room index) -> Dictionary( (build global position) -> build_index )
 var room_index_to_builds: Dictionary
+
+# Dictionary mapping from room index to true/false, where
+# true = base captured, false = base not captured yet.
+# Only contains keys for rooms with a base
+var room_index_with_base_to_captured: Dictionary
+
+# Maps a room index to true if visited, o.w false
+var room_index_to_visited: Dictionary
+
 #var wall_scene = load("res://Scenes/WorldStructures/CaveWall.tscn")
 #var wall_scene_id
 
@@ -108,22 +128,59 @@ func _physics_process(_delta):
 		# erase_cell(0, tile_coords)
 
 func init_game_map():
-	# Init what rooms are in the main map
+	# Make sure main # of main bases specified does not exceed number of main map rooms
+	if main_map_num_bases > n_rows * n_cols:
+		main_map_num_bases = n_rows * n_cols
+	
+	# Init visited rooms state
+	room_index_to_visited = {}
+	for i in n_rows:
+		for j in n_cols:
+			room_index_to_visited[[i,j]] = false
+	for i in tutorial_rooms.size():
+		room_index_to_visited[i] = false
+	
+	# Init what rooms are in the main map.
+	# First create empty main map
+	game_map = []
+	var main_map_room_indices = []
 	for i in n_rows:
 		game_map.append([])
 		for j in n_cols:
-			# Select and instance room to place at rooms[i][j]
-			# For now, startin_rog room is in the top left corner. TODO - have it be in the center   
-			game_map[i].append(main_room_scene_paths.pick_random())
-	
-	# Init storage keeping track of builds (placeables) in each room, including tutorial ones
+			game_map[i].append(null)
+			main_map_room_indices.append([i,j])
+	# Shuffle the room indices to randomize where base and no base rooms are placed.
+	main_map_room_indices.shuffle()
+	# Randomly place set amount of rooms with bases
+	for index in main_map_room_indices.slice(0, main_map_num_bases):
+		#print(game_map)
+		#print(index)
+		game_map[index[0]][index[1]] = main_room_scene_paths["with_base"].pick_random()
+	# Randomly place remaining rooms without bases
+	for index in main_map_room_indices.slice(main_map_num_bases):
+		game_map[index[0]][index[1]] = main_room_scene_paths["no_base"].pick_random()
+
+	# Init base captured status for rooms with bases
+	for index in main_map_room_indices.slice(0, main_map_num_bases):
+		room_index_with_base_to_captured[index] = false
+	for index in tutorial_rooms.size():
+		if tutorial_rooms[index]["has_base"]:
+			room_index_with_base_to_captured[index] = false
+
+	# Init storage keeping track of player builds (placeables) in each room
 	for i in n_rows:
 		for j in n_cols:
 			room_index_to_builds[[i,j]] = Dictionary()
-	for i in tutorial_room_scene_paths.size():
+	for i in tutorial_rooms.size():
 		room_index_to_builds[i] = Dictionary()
-	
-	# First tutorial room entered from the left (which has room index 0)
+			
+	#print("---")
+	#print(room_index_to_visited)
+	#print(room_index_to_builds)
+	#print(room_index_with_base_to_captured)
+	#print(game_map)
+	#
+	# First tutorial room edwntered from the left (which has room index 0)
 	init_new_room(starting_room_index, "left") 
 
 
@@ -270,23 +327,30 @@ func _on_build_removed(build):
 # -Have exits open only where valid and closed elsewhere
 # -Have player enter room from direction they were travelling
 # -Create any pre-existing builds the player has in the room entered (i.e if revisiting a room)
-func init_new_room(room_index, entrance):
+func init_new_room(room_index, entrance):		
+	#print("Entered:")
+	#print(room_index)
+	# Mark room as visited
+	room_index_to_visited[room_index] = true
+	#print(room_index_to_visited)
+	
 	# Create instance of room just entered
 	cur_room_index = room_index
 	var is_tutorial_room = _is_tutorial_room(room_index)
 	var cur_room_scene_path
 	if _is_tutorial_room(room_index):
-		cur_room_scene_path = tutorial_room_scene_paths[room_index]
+		cur_room_scene_path = tutorial_rooms[room_index]["path"]
 	else:
 		cur_room_scene_path = game_map[cur_room_index[0]][cur_room_index[1]]
 	cur_room = load(cur_room_scene_path).instantiate()
 	add_child(cur_room)
 	
-	print(is_tutorial_room)
-	print(game_map)
-	print(room_index_to_builds)
-	print(cur_room_index)
-	
+	#print("in init_new_room...")
+	#print(is_tutorial_room)
+	##print(game_map)
+	##print(room_index_to_builds)
+	#print(cur_room_index)
+	#
 	# Open any valid exits (e.g if room to the right, open exit to the right)
 	_init_room_exits(cur_room, room_index, is_tutorial_room)
 
@@ -307,6 +371,7 @@ func init_new_room(room_index, entrance):
 
 func _is_tutorial_room(room_index):
 	return typeof(room_index) == TYPE_INT
+
 
 # By default all exits are closed. Remove the closing for all exits that are valid
 # (e.g can't enter the right-side exit if in a room on the right-most side of the map)
@@ -343,6 +408,8 @@ func _init_room_exits(room, room_index, is_tutorial_room):
 
 # When player exits a room, delete the current room scene and change to the next room.
 func handle_room_exit(direction):
+	#print("start index main map: " + str(main_map_start_index))
+	#print("cur room index: " + str(cur_room_index))
 	# Free the previous room
 	cur_room.queue_free()
 	
@@ -355,8 +422,8 @@ func handle_room_exit(direction):
 	# Case where a tutorial room exited
 	if _is_tutorial_room(cur_room_index):
 		# Go to main map if in right most tutorial room and moved right
-		if direction == "right" and cur_room_index == tutorial_room_scene_paths.size() - 1:
-			new_room_index = main_map_start_index
+		if direction == "right" and cur_room_index == tutorial_rooms.size() - 1:
+			new_room_index = main_map_start_index.duplicate()
 			entrance = "left"
 		elif direction == "right":
 			new_room_index = cur_room_index + 1
@@ -370,11 +437,11 @@ func handle_room_exit(direction):
 			entrance = "right"
 	# Special case. Main map room exited and it leads back to a tutorial room
 	elif cur_room_index == main_map_start_index and direction == "left":
-		new_room_index = tutorial_room_scene_paths.size() - 1
+		new_room_index = tutorial_rooms.size() - 1
 		entrance = "right"
 	# Case where a main map room exited and we stay in the main map
 	else:
-		new_room_index = cur_room_index
+		new_room_index = cur_room_index.duplicate()
 		if direction == "up":
 			new_room_index[0] -= 1
 			entrance = "down"

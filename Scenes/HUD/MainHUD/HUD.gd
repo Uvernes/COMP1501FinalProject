@@ -71,7 +71,7 @@ func _on_player_mode_changed(new_mode):
 	hotBarItems[new_mode].get_node("Background").show()
 	
 	#shows build sidebar or starts hide timer
-	if new_mode == 3:
+	if new_mode == player.mode.BUILD:
 		$BuildSidebar.show()
 		$HideBuildSidebarTimer.stop()
 	else:

@@ -15,7 +15,7 @@ signal build_requested(global_mouse_pos: Vector2, build_id: int)
 signal delete_requested(global_mouse_pos: Vector2)
  
 # Enum for what mode the player is currently in
-enum mode { MELEE, SHOOT, DELETE, BUILD }
+enum mode { ATTACK, BUILD, DELETE }
 
 # Stats - can be upgraded over time
 var max_health = 10
@@ -52,8 +52,8 @@ func _ready():
 	
 	cur_speed = walk_speed
 	
-	# Starting, default mode is melee
-	cur_mode = mode.MELEE
+	# Starting, default mode is attack
+	cur_mode = mode.ATTACK
 	# Starting build selection is the first build (torch)
 	cur_build_selection = 0
 
@@ -129,16 +129,17 @@ func _handle_tab_pressed():
 	
 	
 func _handle_left_mouse_click():
-	if cur_mode == mode.SHOOT:
+	if cur_mode == mode.ATTACK:
 		shoot()
 	elif cur_mode == mode.BUILD:
 		build()
 	elif cur_mode == mode.DELETE:
 		delete()
-	# TODO. Other mode logic
+
 
 func _handle_right_mouse_click():
-	if cur_mode == mode.MELEE:
+	# Right click only used for attacking
+	if cur_mode == mode.ATTACK:
 		$Head.start_attack()
 
 # Method for recieving damage

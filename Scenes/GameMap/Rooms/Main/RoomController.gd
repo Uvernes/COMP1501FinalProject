@@ -22,7 +22,7 @@ var already_unwarned
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	player = get_parent().get_parent().get_node("Player")
-	base = get_node("Base")
+	base = get_node_or_null("Base")
 	exits = []
 	already_warned = false
 	already_unwarned = false

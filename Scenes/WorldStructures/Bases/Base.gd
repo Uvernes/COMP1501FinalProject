@@ -13,6 +13,7 @@ var active
 var safe
 var player_at_base
 
+var sprite_node = "NestSprite"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,6 +26,19 @@ func _ready():
 	$ActivateBasePopUp.position = Vector2(-70,-90)
 	player_at_base = false
 	$Light.hide()
+	var sprite = get_node(sprite_node)
+	sprite.texture = preload("res://Assets/Buildings/HomeBases/emptybase2.png")
+
+func update_sprite_based_on_population():
+	var sprite = get_node(sprite_node)
+	if current_pop > 65:
+		sprite.texture = preload("res://Assets/Buildings/HomeBases/anthomebase.png")
+	elif current_pop > 40:
+		sprite.texture = preload("res://Assets/Buildings/HomeBases/anthomebase3.png")
+	elif current_pop > 0:
+		sprite.texture = preload("res://Assets/Buildings/HomeBases/anthomebase6.png")
+	else:
+		sprite.texture = preload("res://Assets/Buildings/HomeBases/emptybase2.png")
 
 func get_attacked(amount):
 	decrease_pop(amount)
@@ -36,6 +50,7 @@ func get_attacked(amount):
 func decrease_pop(amount):
 	current_pop -= amount
 	population_changed.emit(current_pop)
+	update_sprite_based_on_population()
 	if current_pop <= 0:
 		current_pop = 0
 		status_changed.emit("inactive")
@@ -46,6 +61,7 @@ func decrease_pop(amount):
 func increase_pop(amount):
 	current_pop += amount
 	population_changed.emit(current_pop)
+	update_sprite_based_on_population()
 	if current_pop > max_pop:
 		current_pop = max_pop
 
