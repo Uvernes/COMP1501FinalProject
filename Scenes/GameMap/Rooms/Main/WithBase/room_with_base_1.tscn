@@ -163,7 +163,7 @@ position = Vector2(1520, -1274)
 
 [node name="EnemySpawnerStorage" type="Node" parent="."]
 
-[node name="PlaceableStorage" type="Node2D" parent="."]
+[node name="StructureStorage" type="Node2D" parent="."]
 y_sort_enabled = true
 
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

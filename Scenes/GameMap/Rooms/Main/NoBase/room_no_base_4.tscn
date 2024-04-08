@@ -148,7 +148,7 @@ position = Vector2(-491, 642)
 
 [node name="EnemySpawnerStorage" type="Node" parent="."]
 
-[node name="PlaceableStorage" type="Node2D" parent="."]
+[node name="StructureStorage" type="Node2D" parent="."]
 y_sort_enabled = true
 position = Vector2(-491, 642)
 

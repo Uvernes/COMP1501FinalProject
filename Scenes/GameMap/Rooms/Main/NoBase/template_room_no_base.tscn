@@ -129,7 +129,7 @@ layer_0/tile_data = PackedInt32Array(1966078, 1, 65536, 1966079, 1, 65536, 19005
 
 [node name="EnemySpawnerStorage" type="Node" parent="."]
 
-[node name="PlaceableStorage" type="Node2D" parent="."]
+[node name="StructureStorage" type="Node2D" parent="."]
 y_sort_enabled = true
 
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
