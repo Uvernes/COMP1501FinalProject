@@ -78,6 +78,7 @@ var room_index_to_visited: Dictionary
 #var wall_scene = load("res://Scenes/WorldStructures/CaveWall.tscn")
 #var wall_scene_id
 
+var player
 # Keep track of player's mode. If not in build mode, no hover tile displayed.
 var player_mode 
 
@@ -94,6 +95,7 @@ func _ready():
 	main_map_start_index = [floor((n_rows - 1)/2), 0]
 	init_game_map()
 	
+	player = get_parent().get_node("Player")
 	# Init whether or not hover tile appears
 	player_mode = get_parent().get_node("Player").cur_mode
 	if player_mode != Player.mode.BUILD and player_mode != Player.mode.DELETE:
@@ -235,9 +237,32 @@ func can_spawn_mob():
 	
 func move_hover_tile_to_moused_over_cell():
 	var global_mouse_pos = get_global_mouse_position()
+	
+	# If mouse hovering outside of room, just hide hovertile
+	if not cur_room.global_coordinates_in_room(global_mouse_pos):
+		$HoverTile.hide()
+		return
+	# Otherwise proceed to rendering
+	# Move hovertile to the tile mouse is over
 	var tile_coords_map = $BackgroundTileMap.local_to_map(global_mouse_pos)
 	var tile_coords_local = $BackgroundTileMap.map_to_local(tile_coords_map)
 	$HoverTile.position  = tile_coords_local
+	
+	# Update hovertile status. Different statuses result in dif colour rectangles being shown
+	if player_mode == Player.mode.BUILD:
+		if can_place_build($HoverTile.position, player.cur_build_selection):
+			$HoverTile.set_status($HoverTile.STATUSES.CAN_BUILD)
+		else:
+			$HoverTile.set_status($HoverTile.STATUSES.NO_OPTION)
+	# Should be the only other case
+	elif player_mode == Player.mode.DELETE:
+		if _hover_tile_on_placeable():
+			$HoverTile.set_status($HoverTile.STATUSES.CAN_DELETE)
+		else:
+			$HoverTile.set_status($HoverTile.STATUSES.NO_OPTION)
+	$HoverTile.show()
+
+	
 	# Remove old hover tile (if not null, i.e none yet)
 	#if cur_hover_tile_coords != null:
 		## -1 source_id (3rd argument) means to erase the tile at tile_coords on layer 2
@@ -247,13 +272,20 @@ func move_hover_tile_to_moused_over_cell():
 	#set_cell(2, new_hover_tile_coords, hover_tile_source_id, hover_tile_atlas_coords, 0)
 	#cur_hover_tile_coords = new_hover_tile_coords  # Update current hover tile coords
 
+
+# Check if mouse is in current room tilemap
+func _mouse_in_cur_room_tilemap():
+	cur_room
+	
+
 # Determines whether or not the given build can be placed on the tile where global_mouse_pos
 # is at (i.e where the hover tile is at).
 # This check is done by looking at what is currently inside of the hover tile.
-func can_place_build(_global_mouse_pos, _build_id):
-	#print("A------")
-	#for object in $HoverTile.objects_in_area:
-		#print(object.get_class() + " " + str(object.get_groups()))
+func can_place_build(global_mouse_pos, build_id):
+	# First check if mouse pos is in bounds
+	if not cur_room.global_coordinates_in_room(global_mouse_pos):
+		return
+
 	#print("B------")
 	for object in $HoverTile.objects_in_area:
 		if object.is_in_group("Player"):
@@ -266,6 +298,13 @@ func can_place_build(_global_mouse_pos, _build_id):
 			return false
 	return true
 	
+
+func _hover_tile_on_placeable():
+	for object in $HoverTile.objects_in_area:
+		if object.is_in_group("Placeable"):
+			return true
+	return false
+
 	
 func place_build_at_hover_tile(build_instance):
 	# var tile_coords = $BackgroundTileMap.local_to_map(global_mouse_pos)

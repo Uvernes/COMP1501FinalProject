@@ -79,3 +79,16 @@ func _on_area_2d_body_exited(body):
 		direction = "down"
 
 	get_parent().handle_room_exit(direction)
+	
+
+# Detect if the global coordinates passed in are in the room's tilemap
+func global_coordinates_in_room(global_coordinates):
+	var room_width = $Area2D/CollisionShape2D.shape.size.x
+	var room_height = $Area2D/CollisionShape2D.shape.size.y
+	return (
+		(global_coordinates.x > $Area2D/CollisionShape2D.global_position.x - room_width/2) and 
+		(global_coordinates.x < $Area2D/CollisionShape2D.global_position.x + room_width/2) and
+		(global_coordinates.y > $Area2D/CollisionShape2D.global_position.y - room_height/2) and 
+		(global_coordinates.y < $Area2D/CollisionShape2D.global_position.y + room_height/2)
+	)
+

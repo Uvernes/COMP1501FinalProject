@@ -10,3 +10,4 @@ position = Vector2(131, 68)
 
 [node name="RoughWorkTileMap" parent="." instance=ExtResource("2_6h2dq")]
 position = Vector2(469, 133)
+main_map_num_bases = 5

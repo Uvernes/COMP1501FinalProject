@@ -26,6 +26,7 @@ enemy_scene = ExtResource("2_t6k24")
 position = Vector2(131, 68)
 
 [node name="WorldMap" parent="." instance=ExtResource("4_okh0x")]
+main_map_num_bases = 5
 
 [node name="EnemySpawnTimerForBase" type="Timer" parent="."]
 wait_time = 2.0
