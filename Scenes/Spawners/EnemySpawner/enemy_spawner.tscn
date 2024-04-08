@@ -1,26 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://nni42ydnxiru"]
+[gd_scene load_steps=2 format=3 uid="uid://nni42ydnxiru"]
 
 [ext_resource type="Script" path="res://Scenes/Spawners/EnemySpawner/enemy_spawner.gd" id="1_fiuui"]
-[ext_resource type="Script" path="res://Scenes/Spawners/EnemySpawner/SpawnChecker.gd" id="2_517fc"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_s6wl2"]
-size = Vector2(60, 60)
 
 [node name="EnemySpawner" type="Node2D"]
 script = ExtResource("1_fiuui")
 spawn_delay = 15
-enemy_count = 5
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
 [node name="SpawnTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="SpawnChecker" type="Area2D" parent="."]
-script = ExtResource("2_517fc")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnChecker"]
-shape = SubResource("RectangleShape2D_s6wl2")
-
+[connection signal="child_exiting_tree" from="." to="." method="_on_child_exiting_tree"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
-[connection signal="body_entered" from="SpawnChecker" to="SpawnChecker" method="_on_body_entered"]
