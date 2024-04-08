@@ -1,15 +1,20 @@
 extends CanvasLayer
 
+var HUD
+
 func _ready():
 	$Controls2.hide()
+	HUD = get_parent().get_parent().get_node("HUD")
 	resume()
 
 func resume():
 	hide()
+	HUD.show()
 	get_tree().paused = false
 	
 func pause():
 	show()
+	HUD.hide()
 	get_tree().paused = true
 
 func _input(event):
