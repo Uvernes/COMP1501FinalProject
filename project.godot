@@ -21,6 +21,15 @@ window/size/mode=2
 window/size/extend_to_title=true
 window/stretch/mode="canvas_items"
 
+[file_customization]
+
+folder_colors={
+"res://Assets/": "red",
+"res://Audio/": "purple",
+"res://PrototypeAssets/": "green",
+"res://Prototyping/": "green"
+}
+
 [gui]
 
 theme/custom_font="res://Assets/Font/Default.tres"
