@@ -73,14 +73,14 @@ func _process(_delta):
 	
 	_update_mode()
 	
-	if Input.is_action_just_pressed("tab"):
-		_handle_tab_pressed()
+	if Input.is_action_just_pressed("space"):
+		_handle_space_bar_pressed()
 	if Input.is_action_just_pressed("LMB"):
 		_handle_left_mouse_click()
 	if Input.is_action_just_pressed("RMB"):
 		_handle_right_mouse_click()
 	if Input.is_action_just_pressed("shift"):
-		_handle_space_bar_pressed()
+		_handle_shift_pressed()
 
 
 func _physics_process(delta):
@@ -172,8 +172,8 @@ func _update_mode():
 		mode_changed.emit(cur_mode)
 
 
-# Pressing tab changes the build to the one below. Wrap around to top if at bottom
-func _handle_tab_pressed():
+# Pressing space bar changes the build to the one below. Wrap around to top if at bottom
+func _handle_space_bar_pressed():
 	cur_build_selection += 1
 	if cur_build_selection >= Placeable.placeables.size():
 		cur_build_selection = 0
@@ -194,9 +194,9 @@ func _handle_right_mouse_click():
 	if cur_mode == mode.ATTACK:
 		$Head.start_attack()
 
-# Pressing the space bar triggers a dash if player is not currently already
+# Pressing the shift triggers a dash if player is not currently already
 # dashing and they are able to dash (enough stamina and dash cooldown done)
-func _handle_space_bar_pressed():
+func _handle_shift_pressed():
 	if dashing:
 		return 
 	if not dashing and $DashCoolDownTimer.is_stopped() and cur_stamina >= dash_stamina_use:
