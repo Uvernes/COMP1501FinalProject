@@ -68,13 +68,8 @@ scale = Vector2(0.466941, 0.431098)
 texture = ExtResource("6_b0dpf")
 metadata/_edit_group_ = true
 
-[node name="AttackTimer" type="Timer" parent="Head"]
-wait_time = 0.2
-one_shot = true
-
 [node name="Ant" parent="." instance=ExtResource("8_josjx")]
 
 [connection signal="direction_changed" from="." to="Ant" method="_on_player_direction_changed"]
 [connection signal="timeout" from="StaminaTimer" to="." method="_on_stamina_timer_timeout"]
 [connection signal="body_entered" from="Head" to="Head" method="_on_body_entered"]
-[connection signal="timeout" from="Head/AttackTimer" to="Head" method="_on_attack_timer_timeout"]

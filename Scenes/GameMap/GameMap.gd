@@ -35,6 +35,9 @@ const main_room_scene_paths = 	[
 #Rooms that can be added:
 #"res://Scenes/GameMap/Rooms/Main/NoBase/room_no_base_1.tscn"
 #"res://Scenes/GameMap/Rooms/Main/NoBase/room_no_base_2.tscn"
+#"res://Scenes/GameMap/Rooms/Main/NoBase/room_no_base_3.tscn"
+#"res://Scenes/GameMap/Rooms/Main/WithBase/room_with_base_1.tscn"
+#"res://Scenes/GameMap/Rooms/Main/NoBase/room_no_base_4.tscn"
 
 	
 # A 2D array of the rooms making up the game map for the current playthrough.

@@ -83,9 +83,9 @@ shape = SubResource("RectangleShape2D_a1f2s")
 [node name="Entrances" type="Node2D" parent="."]
 
 [node name="left" type="ColorRect" parent="Entrances"]
-offset_left = -1810.0
+offset_left = -1868.0
 offset_top = -22.0
-offset_right = -1770.0
+offset_right = -1828.0
 offset_bottom = 18.0
 
 [node name="right" type="ColorRect" parent="Entrances"]

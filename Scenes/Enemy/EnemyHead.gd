@@ -20,8 +20,16 @@ func _ready():
 func _physics_process(delta):
 	if  attacking == true:
 		position += attack_speed * delta
+		if position >= Vector2(38,0):
+			position = Vector2(38,0)
+			attacking = false
+			head_retracting = true
 	elif head_retracting == true:
 		position -= attack_speed * delta
+		if position <= Vector2(18,0):
+			position = Vector2(18,0)
+			head_retracting = false
+			hit_something = false
 	overlapping_bodies = get_overlapping_bodies()
 	for i in overlapping_bodies.size():
 		handle_overlapping_bodies(overlapping_bodies[i])
@@ -33,16 +41,6 @@ func _physics_process(delta):
 func start_attack():
 	if attacking != true && head_retracting != true:
 		attacking = true
-		$AttackDurationTimer.start()
-
-func _on_attack_duration_timer_timeout():
-	if attacking == true:
-		attacking = false
-		head_retracting = true
-		$AttackDurationTimer.start()
-	elif head_retracting == true:
-		head_retracting = false
-		hit_something = false
 		
 func handle_overlapping_bodies(body):
 	if attacking == true:
