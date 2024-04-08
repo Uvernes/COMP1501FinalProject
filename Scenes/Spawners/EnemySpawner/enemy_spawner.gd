@@ -21,7 +21,7 @@ func _ready():
 func _on_spawn_timer_timeout():
 	if cur_enemy_count < max_enemy_count:
 		spawn_enemy()
-	$SpawnTimer.start()
+		$SpawnTimer.start()
 
 func spawn_enemy():
 	var enemy = enemy_scene.instantiate()
@@ -33,3 +33,4 @@ func spawn_enemy():
 func _on_child_exiting_tree(node):
 	if node.is_in_group("Enemy"):
 		cur_enemy_count -= 1
+		$SpawnTimer.start()
