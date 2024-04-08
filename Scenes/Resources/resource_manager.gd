@@ -8,11 +8,11 @@ extends Node2D
 
 # Resource field
 var resources = {
-	"dirt": 100,
-	"stone": 100,
-	"leaves": 100,
-	"wood": 100,
-	"mobdrops": 100
+	"dirt": 20,
+	"stone": 20,
+	"leaves": 20,
+	"wood": 20,
+	"mobdrops": 10
 }
 
 var hud
@@ -35,8 +35,9 @@ func attempt_base_purchase():
 
 
 func resource_picked_up(type, amount):
-	resources[type] += amount
-	get_parent().get_node("HUD").update_resource(type, resources[type])
+	if resources[type] < 999:
+		resources[type] += amount
+		get_parent().get_node("HUD").update_resource(type, resources[type])
 
 
 # Attempts to purchase a building. If enough resource, returns an instance of 
