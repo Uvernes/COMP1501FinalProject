@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 var HUD
+var controls = false
 
 func _ready():
 	$Controls2.hide()
@@ -22,12 +23,13 @@ func _input(event):
 		pause()
 	elif event.is_action_pressed("Escape") and get_tree().paused == true:
 		resume()
+		$Controls2.hide()
 
 func _on_resume_pressed():
 	resume()
 
 func _on_controls_pressed():
-	$MarginContainer.hide()
+	hide()
 	$Controls2.show()
 
 func _on_quit_pressed():
@@ -39,4 +41,4 @@ func _on_menu_pressed():
 
 func _on_back_pressed():
 	$Controls2.hide()
-	$MarginContainer.show()
+	show()
