@@ -343,7 +343,8 @@ func init_new_room(room_index, entrance):
 	else:
 		cur_room_scene_path = game_map[cur_room_index[0]][cur_room_index[1]]
 	cur_room = load(cur_room_scene_path).instantiate()
-	add_child(cur_room)
+	call_deferred("add_child", cur_room)
+	#add_child(cur_room)
 	
 	#print("in init_new_room...")
 	#print(is_tutorial_room)

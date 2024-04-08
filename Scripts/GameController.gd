@@ -14,14 +14,6 @@ extends Node2D
 
 @export var enemy_scene: PackedScene
 
-#const min_distance_from_player = 200
-#const min_player_distance_from_base = 1000
-#
-#const min_spawn_distance_from_base = 400
-#const max_spawn_distance_from_base = 1000
-#const min_spawn_distance_from_player = 250 #should be far enough that the player can never see an enemy spawn
-#const max_spawn_distance_from_player = 500
-
 const respawn_price = 10
 
 var random = RandomNumberGenerator.new()
@@ -51,44 +43,10 @@ func _ready():
 	handle_room_change()
 	enemy_death_count = 0
 	next_heal = 0
-	# $EnemySpawnTimerForBase.start()
-	# $EnemySpawnTimerForPlayer.start()
 	
 func _process(delta):
 	#print(Engine.get_frames_per_second())
 	pass
-	
-#func _process(_delta):
-	#if($EnemySpawnTimerForBase.time_left == 0):
-		#var distance = random.randf_range(min_spawn_distance_from_base, max_spawn_distance_from_base)
-		#var direction = Vector2(randf_range(-1,1),randf_range(-1,1))
-		#var spawn_position = direction * distance
-		#
-		#spawn_position = $WorldMap.move_spawn_tile_to_cell_at_pos(spawn_position)
-		#
-		#if(spawn_position - player.position).length() > min_distance_from_player && (spawn_position - homebase.position).length() > min_spawn_distance_from_base:
-			#if $WorldMap.can_spawn_mob() == true:
-				#var enemy = enemy_scene.instantiate()
-				#enemy.position = spawn_position
-				#enemy.add_to_group("Enemy")
-				#add_child(enemy)
-				#$EnemySpawnTimerForBase.start()
-				#
-	#if player.position.length() > min_player_distance_from_base:
-		#if $EnemySpawnTimerForPlayer.time_left == 0:
-			#var distance = random.randf_range(min_spawn_distance_from_player, max_spawn_distance_from_player)
-			#var direction = Vector2(randf_range(-1,1),randf_range(-1,1))
-			#var spawn_position = player.position + (direction * distance)
-			#
-			#spawn_position = $WorldMap.move_spawn_tile_to_cell_at_pos(spawn_position)
-			#if(spawn_position - player.position).length() > min_distance_from_player:
-				#if $WorldMap.can_spawn_mob() == true:
-					#var enemy = enemy_scene.instantiate()
-					#enemy.position = spawn_position
-					#enemy.add_to_group("Enemy")
-					#enemy.get_node("EnemyHead").add_to_group("EnemyHeads") #used to determine if head is touching homebase
-					#add_child(enemy)
-					#$EnemySpawnTimerForPlayer.start()
 
 # Handle player build request and delegate accordingly
 func _on_player_build_requested(global_mouse_pos, build_id):

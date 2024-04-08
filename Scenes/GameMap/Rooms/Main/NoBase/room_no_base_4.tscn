@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://jrjeopubtbxv"]
+[gd_scene load_steps=14 format=3 uid="uid://b01h8nak6rah8"]
 
 [ext_resource type="Texture2D" uid="uid://dts1vnk2d4y8q" path="res://PrototypeAssets/TileSets/kenney_abstract-platformer/Tilesheet/tilesheet_complete.png" id="1_0e632"]
 [ext_resource type="PackedScene" uid="uid://ct5lgyoushw53" path="res://Scenes/WorldStructures/CaveWall.tscn" id="2_l3c63"]

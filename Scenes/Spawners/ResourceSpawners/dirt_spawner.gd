@@ -6,7 +6,8 @@ extends Node2D
 func _ready():
 	var dirt = resource_scene.instantiate()
 	dirt.init("dirt", "res://Assets/Resources/dirt.png")
-	add_child(dirt)
+	call_deferred("add_child", dirt)
+	#add_child(dirt)
 
 func _on_spawn_timer_timeout():
 	var dirt = resource_scene.instantiate()

@@ -6,7 +6,8 @@ extends Node2D
 func _ready():
 	var wood = resource_scene.instantiate()
 	wood.init("wood", "res://Assets/Resources/wood.png")
-	add_child(wood)
+	call_deferred("add_child", wood)
+	#add_child(wood)
 
 func _on_spawn_timer_timeout():
 	var wood = resource_scene.instantiate()

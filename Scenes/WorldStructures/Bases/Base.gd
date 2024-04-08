@@ -69,7 +69,6 @@ func _on_regen_timer_timeout():
 	increase_pop(1)
 	if current_pop != max_pop:
 		$RegenTimer.start()
-	
 
 func _on_body_entered(body):
 	if body != null:
@@ -80,8 +79,6 @@ func _on_body_entered(body):
 				$ActivateBasePopUp.show()
 			if safe == true:
 				fully_heal_player.emit()#sent to game controller
-				
-
 
 func _on_body_exited(body):
 	if body != null:
