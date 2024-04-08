@@ -10,7 +10,7 @@ extends Node2D
 var resources = {
 	"dirt": 20,
 	"stone": 20,
-	"leaves": 20,
+	"leaves": 30,
 	"wood": 20,
 	"mobdrops": 10
 }
