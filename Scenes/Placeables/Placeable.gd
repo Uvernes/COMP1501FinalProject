@@ -15,7 +15,6 @@ enum placeables {
 const packed_scenes: Dictionary = {
 	placeables.TORCH: preload("res://Scenes/Placeables/Torch.tscn"),
 	placeables.PLAYER_WALL: preload("res://Scenes/Placeables/PlayerWall.tscn"),
-	# TODO - create actual scenes + update paths
 	placeables.WEB: preload("res://Scenes/Placeables/Web.tscn"),
 	placeables.MINE: preload("res://Scenes/Placeables/Mine.tscn"),
 	placeables.TOWER: preload("res://Scenes/Placeables/Tower.tscn"),
@@ -28,7 +27,7 @@ const costs: Dictionary = {
 		"dirt": 0,
 		"stone": 0,
 		"leaves": 2,
-		"wood": 3
+		"wood": 1
 		},
 	placeables.PLAYER_WALL: {
 		"dirt": 1,
@@ -37,20 +36,20 @@ const costs: Dictionary = {
 		"wood": 0
 		},
 	placeables.WEB: {
-		"dirt": 2,
+		"dirt": 1,
 		"stone": 0,
-		"leaves": 0,
+		"leaves": 3,
 		"wood": 0
 		},
 	placeables.MINE: {
-		"dirt": 2,
-		"stone": 0,
+		"dirt": 0,
+		"stone": 1,
 		"leaves": 0,
-		"wood": 0
+		"wood": 3
 		},
 	placeables.TOWER: {
-		"dirt": 2,
-		"stone": 0,
+		"dirt": 4,
+		"stone": 4,
 		"leaves": 0,
 		"wood": 0
 		},
