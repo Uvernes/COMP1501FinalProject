@@ -32,7 +32,8 @@ folder_colors={
 
 [gui]
 
-theme/custom_font="res://Assets/Font/Default.tres"
+theme/custom="res://Assets/Theme/DefaultTheme.tres"
+theme/custom_font="res://Assets/Theme/Font/Default.tres"
 
 [input]
 
