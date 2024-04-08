@@ -30,9 +30,18 @@ const friction = 1000
 # Represents direction to go into
 var direction = Vector2.ZERO
 
-var cur_speed
+# Dash-related variabled
+@export var dash_speed = 1000
+@export var dash_max_distance = 300  # Max distance. Less if you bump into world obstacle (e.g wall)
+@export var dash_stamina_use = 4
+@export var dash_knockback_force = 50
+# @export var dash_cooldown =  0.5  # In seconds
+var dashing = false 
+var cur_dash_distance = 0
+var time_since_last_dash
 
 # Current values
+var cur_speed
 var cur_health
 var cur_stamina
 var cur_mode  # Current mode player is in (e.g Build mode)
@@ -70,6 +79,8 @@ func _process(_delta):
 		_handle_left_mouse_click()
 	if Input.is_action_just_pressed("RMB"):
 		_handle_right_mouse_click()
+	if Input.is_action_just_pressed("space"):
+		_handle_space_bar_pressed()
 
 
 func _physics_process(delta):
@@ -89,7 +100,48 @@ func set_direction(new_direction):
 
 # handles player movement
 func player_movement(delta):
-	direction = get_direction()
+	if dashing:
+		_dash_movement(delta)
+	else: 
+		_regular_movement(delta)
+
+
+func _dash_movement(delta):
+	cur_dash_distance += dash_speed * delta
+	# Check if done dashing
+	if cur_dash_distance >= dash_max_distance:
+		dashing = false
+		velocity = Vector2.ZERO
+		$DashCoolDownTimer.start()
+		return
+	# Continue dashing
+	velocity = direction * dash_speed
+	
+	var collision = move_and_collide(velocity*delta)
+	if collision:
+		var collider = collision.get_collider()
+		if collider.is_in_group("Enemy"):
+			# Knockback direction is perpendicular to player direction
+			var knockback_direction = Vector2(-direction.y, direction.x)
+			
+			collider.take_damage(0.5, knockback_direction, dash_knockback_force)
+			
+	#
+	#return 
+	#for i in get_slide_collision_count():
+		#var collision = get_slide_collision(i)
+		#var collider = collision.get_collider()
+		#if collider.is_in_group("Enemy"):
+			## Knockback direction is perpendicular to player direction
+			#var knockback_direction = Vector2(-direction.y, direction.x)
+			#
+			#collider.take_damage(0, knockback_direction, dash_knockback_force)
+			#
+	#
+
+
+func _regular_movement(delta):
+	direction = get_direction()	
 	
 	if direction == Vector2.ZERO:
 		if velocity.length() > (friction * delta):
@@ -99,8 +151,8 @@ func player_movement(delta):
 	else:
 		velocity += (direction * accel * delta)
 		velocity = velocity.limit_length(cur_speed)
-		
 	move_and_slide()
+
 
 func _update_mode():
 	# Check if mode changed
@@ -141,6 +193,25 @@ func _handle_right_mouse_click():
 	# Right click only used for attacking
 	if cur_mode == mode.ATTACK:
 		$Head.start_attack()
+
+# Pressing the space bar triggers a dash if player is not currently already
+# dashing and they are able to dash (enough stamina and dash cooldown done)
+func _handle_space_bar_pressed():
+	if dashing:
+		return 
+	if not dashing and $DashCoolDownTimer.is_stopped() and cur_stamina >= dash_stamina_use:
+		# Reduce the amount of stamina a player has and sends signal to HUD
+		cur_stamina -= dash_stamina_use
+		stamina_changed.emit(cur_stamina)
+		#checks stamina and sets a timer for the stamina regeneration.
+		stamina_check()	
+		
+		# Begin dash in direction player is moving (not where mouse is pointing)
+		dashing = true
+		cur_dash_distance = 0 
+		velocity = direction * dash_speed 
+		$DashCoolDownTimer.start()
+
 
 # Method for recieving damage
 func hit(amount,knockback=Vector2.ZERO,force=0):

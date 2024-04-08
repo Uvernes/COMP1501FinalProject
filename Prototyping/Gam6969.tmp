@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://8y5tjw7ph5bt"]
+
+[ext_resource type="Script" path="res://Scripts/GameController.gd" id="1_72oun"]
+[ext_resource type="PackedScene" uid="uid://dgwwc726rr5xm" path="res://Scenes/Menus/Pause/PauseMenu.tscn" id="2_2ac2h"]
+[ext_resource type="PackedScene" uid="uid://npbjmbt4um60" path="res://Scenes/HUD/MainHUD/HUD.tscn" id="3_1ycpf"]
+[ext_resource type="PackedScene" uid="uid://1y1ksdxpo2ps" path="res://Scenes/Player/Player.tscn" id="4_wlka1"]
+[ext_resource type="PackedScene" uid="uid://7lgbxm51b76s" path="res://Scenes/GameMap/GameMap.tscn" id="5_m7ats"]
+[ext_resource type="PackedScene" uid="uid://sior3tw6cm58" path="res://Scenes/WorldStructures/Darkness.tscn" id="6_nweq1"]
+[ext_resource type="PackedScene" uid="uid://b7oecv531ru7h" path="res://Scenes/Resources/resource_manager.tscn" id="7_8cil1"]
+
+[node name="Gameplay" type="Node2D"]
+script = ExtResource("1_72oun")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("2_2ac2h")]
+metadata/_edit_use_anchors_ = true
+
+[node name="HUD" parent="." instance=ExtResource("3_1ycpf")]
+
+[node name="Player" parent="." instance=ExtResource("4_wlka1")]
+position = Vector2(131, 68)
+dash_speed = null
+dash_max_distance = null
+dash_stamina_use = null
+dash_knockback_force = null
+
+[node name="GameMap" parent="." instance=ExtResource("5_m7ats")]
+main_map_num_bases = 2
+
+[node name="Darkness" parent="." instance=ExtResource("6_nweq1")]
+color = Color(0.0196078, 0.0196078, 0.0196078, 1)
+
+[node name="ResourceManager" parent="." instance=ExtResource("7_8cil1")]
+
+[connection signal="build_requested" from="Player" to="." method="_on_player_build_requested"]
+[connection signal="build_selection_changed" from="Player" to="HUD" method="_on_player_build_selection_changed"]
+[connection signal="delete_requested" from="Player" to="." method="_on_player_delete_requested"]
+[connection signal="health_changed" from="Player" to="HUD" method="_on_player_health_changed"]
+[connection signal="mode_changed" from="Player" to="HUD" method="_on_player_mode_changed"]
+[connection signal="mode_changed" from="Player" to="GameMap" method="_on_player_mode_changed"]
+[connection signal="player_death" from="Player" to="." method="_handle_player_death"]
+[connection signal="ready" from="Player" to="HUD" method="_on_player_ready"]
+[connection signal="stamina_changed" from="Player" to="HUD" method="_on_player_stamina_changed"]

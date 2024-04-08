@@ -25,10 +25,6 @@ bullet_scene = ExtResource("2_tj8lh")
 
 [node name="Camera2D" type="Camera2D" parent="." groups=["Player"]]
 
-[node name="BodyHitBox" type="CollisionShape2D" parent="." groups=["Player"]]
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_2af3w")
-
 [node name="Sprite2D" type="Sprite2D" parent="." groups=["Player"]]
 rotation = 1.5708
 scale = Vector2(0.460938, 0.453125)
@@ -48,6 +44,14 @@ texture_scale = 10.0
 script = ExtResource("5_rdf0n")
 
 [node name="StaminaTimer" type="Timer" parent="."]
+
+[node name="DashCoolDownTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="BodyHitBox" type="CollisionShape2D" parent="." groups=["Player"]]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_2af3w")
 
 [node name="Head" type="Area2D" parent="."]
 z_index = 3
