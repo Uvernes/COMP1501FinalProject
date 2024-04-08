@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://clr2f35uyx1h2"]
+[gd_scene load_steps=3 format=3 uid="uid://clr2f35uyx1h2"]
 
-[ext_resource type="Script" path="res://Scenes/Menus/Settings/Settings.gd" id="1_7s1fr"]
+[ext_resource type="Script" path="res://Scenes/Menus/Controls/Controls.gd" id="1_c8bn7"]
+[ext_resource type="Texture2D" uid="uid://bnv2rualkjx5o" path="res://Assets/Background/instructionsbook.png" id="2_16ohu"]
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -9,14 +10,19 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_7s1fr")
+script = ExtResource("1_c8bn7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(7.2, 7.2)
+texture = ExtResource("2_16ohu")
+offset = Vector2(80, 45)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
-offset_left = 360.0
-offset_top = 293.0
-offset_right = 660.0
-offset_bottom = 333.0
+offset_left = 603.0
+offset_top = 76.0
+offset_right = 903.0
+offset_bottom = 116.0
 scale = Vector2(1.5, 1.5)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
