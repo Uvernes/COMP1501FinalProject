@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://clr2f35uyx1h2"]
+[gd_scene load_steps=4 format=3 uid="uid://clr2f35uyx1h2"]
 
 [ext_resource type="Script" path="res://Scenes/Menus/Controls/Controls.gd" id="1_c8bn7"]
 [ext_resource type="Texture2D" uid="uid://bnv2rualkjx5o" path="res://Assets/Background/instructionsbook.png" id="2_16ohu"]
+[ext_resource type="Texture2D" uid="uid://xxylxcai3ahi" path="res://Assets/Background/instructionsbookdrawings1.png" id="3_5ya6f"]
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -17,12 +18,161 @@ scale = Vector2(7.2, 7.2)
 texture = ExtResource("2_16ohu")
 offset = Vector2(80, 45)
 
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(0.772549, 0.760784, 0.74902, 1)
+position = Vector2(572, 355)
+scale = Vector2(7.06452, 7.11528)
+texture = ExtResource("3_5ya6f")
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(0.47451, 0.380392, 0.290196, 1)
+layout_mode = 0
+offset_left = 125.0
+offset_top = 145.0
+offset_right = 298.0
+offset_bottom = 160.0
+text = "WASD - Main Movement"
+
+[node name="Label4" type="Label" parent="."]
+modulate = Color(0.47451, 0.380392, 0.290196, 1)
+layout_mode = 0
+offset_left = 114.0
+offset_top = 366.0
+offset_right = 287.0
+offset_bottom = 381.0
+text = "WASD - Main Movement"
+
+[node name="Label3" type="Label" parent="."]
+modulate = Color(0.47451, 0.380392, 0.290196, 1)
+layout_mode = 0
+offset_left = 137.0
+offset_top = 456.0
+offset_right = 342.0
+offset_bottom = 471.0
+text = "Scroll Wheel - Change Mode"
+
+[node name="Label5" type="Label" parent="."]
+modulate = Color(0.47451, 0.380392, 0.290196, 1)
+layout_mode = 0
+offset_left = 774.0
+offset_top = 138.0
+offset_right = 979.0
+offset_bottom = 153.0
+text = "Attack Controls"
+
+[node name="Label12" type="Label" parent="."]
+modulate = Color(0.47451, 0.380392, 0.290196, 1)
+layout_mode = 0
+offset_left = 619.0
+offset_top = 344.0
+offset_right = 824.0
+offset_bottom = 359.0
+text = "Build Controls
+"
+
+[node name="Label6" type="Label" parent="."]
+modulate = Color(0.47451, 0.380392, 0.290196, 1)
+layout_mode = 0
+offset_left = 192.0
+offset_top = 104.0
+offset_right = 397.0
+offset_bottom = 119.0
+theme_override_font_sizes/font_size = 20
+text = "MAIN CONTROLS"
+horizontal_alignment = 1
+
+[node name="Label7" type="Label" parent="."]
+modulate = Color(0.47451, 0.380392, 0.290196, 1)
+layout_mode = 0
+offset_left = 729.0
+offset_top = 112.0
+offset_right = 934.0
+offset_bottom = 127.0
+theme_override_font_sizes/font_size = 20
+text = "MODE CONTROLS"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+modulate = Color(0.47451, 0.380392, 0.290196, 1)
+layout_mode = 0
+offset_left = 127.0
+offset_top = 194.0
+offset_right = 326.0
+offset_bottom = 245.0
+text = "Shift - Dash
+This will result in a loss of 
+Stamina"
+horizontal_alignment = 1
+
+[node name="Label9" type="Label" parent="."]
+modulate = Color(0.768627, 0.658824, 0.552941, 1)
+layout_mode = 0
+offset_left = 107.0
+offset_top = 273.0
+offset_right = 322.0
+offset_bottom = 324.0
+text = "Ants are very mobile and can
+get around very easily. Using 
+their six limps they can
+get from point A to B."
+
+[node name="Label11" type="Label" parent="."]
+modulate = Color(0.768627, 0.658824, 0.552941, 1)
+layout_mode = 0
+offset_left = 104.0
+offset_top = 410.0
+offset_right = 433.0
+offset_bottom = 479.0
+text = "Ants are always either building, or 
+Fighting. Its what they do."
+
+[node name="Label10" type="Label" parent="."]
+modulate = Color(0.768627, 0.658824, 0.552941, 1)
+layout_mode = 0
+offset_left = 639.0
+offset_top = 237.0
+offset_right = 977.0
+offset_bottom = 306.0
+text = "Ants Have Several ways to defend themselves. 
+Often they can shoot venomous spit bullets. O
+thertimes, use their head to fight enemies."
+
+[node name="Label8" type="Label" parent="."]
+modulate = Color(0.47451, 0.380392, 0.290196, 1)
+layout_mode = 0
+offset_left = 665.0
+offset_top = 299.0
+offset_right = 970.0
+offset_bottom = 350.0
+text = "Left Click - Shoots Venomous Spit Bullets
+Right Click - Ant Head Punt"
+horizontal_alignment = 1
+
+[node name="Label13" type="Label" parent="."]
+modulate = Color(0.47451, 0.380392, 0.290196, 1)
+layout_mode = 0
+offset_left = 600.0
+offset_top = 367.0
+offset_right = 1014.0
+offset_bottom = 526.0
+scale = Vector2(0.962431, 0.895935)
+theme_override_font_sizes/font_size = 15
+text = "In Delete Mode - 
+     Right Click - Deletes 
+     the selected Block
+
+In Build Mode -
+     Tab - change the
+     selected block
+
+	     Right Click - Build"
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
-offset_left = 603.0
-offset_top = 76.0
-offset_right = 903.0
-offset_bottom = 116.0
+offset_left = 349.0
+offset_top = 549.0
+offset_right = 649.0
+offset_bottom = 589.0
 scale = Vector2(1.5, 1.5)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
