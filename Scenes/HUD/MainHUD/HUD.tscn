@@ -197,83 +197,37 @@ offset_top = 278.0
 offset_right = 306.0
 offset_bottom = 318.0
 
-[node name="Melee" type="Control" parent="HotBar/Children"]
+[node name="Attack" type="Control" parent="HotBar/Children"]
 anchors_preset = 0
-offset_left = -378.0
-offset_top = -16.0
-offset_right = -378.0
-offset_bottom = -16.0
+offset_left = -364.0
+offset_top = 6.0
+offset_right = -364.0
+offset_bottom = 6.0
 scale = Vector2(1, 0.997176)
 
-[node name="Background" type="ColorRect" parent="HotBar/Children/Melee"]
+[node name="Background" type="ColorRect" parent="HotBar/Children/Attack"]
 layout_mode = 0
 offset_left = -6.0
-offset_top = -11.0
+offset_top = -11.0312
 offset_right = 55.0
-offset_bottom = 35.0
+offset_bottom = 34.9688
 color = Color(1, 0.2, 0.176471, 1)
 
-[node name="Label" type="Label" parent="HotBar/Children/Melee"]
+[node name="Label" type="Label" parent="HotBar/Children/Attack"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = -3.0
+offset_top = 4.01133
+offset_right = 54.0
+offset_bottom = 27.0113
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "MELEE"
-
-[node name="Shoot" type="Control" parent="HotBar/Children"]
-anchors_preset = 0
-offset_left = -277.0
-offset_top = -64.0
-offset_right = -277.0
-offset_bottom = -64.0
-
-[node name="Background" type="ColorRect" parent="HotBar/Children/Shoot"]
-layout_mode = 0
-offset_left = -18.0
-offset_top = -13.0
-offset_right = 46.0
-offset_bottom = 33.0
-color = Color(1, 0.2, 0.176471, 1)
-
-[node name="Label" type="Label" parent="HotBar/Children/Shoot"]
-layout_mode = 0
-offset_left = -14.0
-offset_top = -2.0
-offset_right = 42.0
-offset_bottom = 21.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "SHOOT"
-
-[node name="Delete" type="Control" parent="HotBar/Children"]
-anchors_preset = 0
-offset_left = 96.0
-offset_top = -33.0
-offset_right = 96.0
-offset_bottom = -33.0
-
-[node name="Background" type="ColorRect" parent="HotBar/Children/Delete"]
-layout_mode = 0
-offset_left = -301.0
-offset_top = 6.0
-offset_right = -234.0
-offset_bottom = 52.0
-color = Color(1, 0.2, 0.176471, 1)
-
-[node name="Label" type="Label" parent="HotBar/Children/Delete"]
-layout_mode = 0
-offset_left = -295.0
-offset_top = 17.0
-offset_right = -247.0
-offset_bottom = 40.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "DELETE"
+text = "ATTACK"
 
 [node name="Build" type="Control" parent="HotBar/Children"]
 anchors_preset = 0
-offset_left = -290.0
-offset_top = 19.0
-offset_right = -290.0
-offset_bottom = 19.0
+offset_left = -287.0
+offset_top = -50.0
+offset_right = -287.0
+offset_bottom = -50.0
 
 [node name="Background" type="ColorRect" parent="HotBar/Children/Build"]
 layout_mode = 0
@@ -285,10 +239,36 @@ color = Color(1, 0.2, 0.176471, 1)
 
 [node name="Label" type="Label" parent="HotBar/Children/Build"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 3.0
+offset_top = 4.0
+offset_right = 46.0
+offset_bottom = 27.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "BUILD"
+
+[node name="Delete" type="Control" parent="HotBar/Children"]
+anchors_preset = 0
+offset_left = -158.0
+offset_top = -2.0
+offset_right = -158.0
+offset_bottom = -2.0
+
+[node name="Background" type="ColorRect" parent="HotBar/Children/Delete"]
+layout_mode = 0
+offset_left = -59.0
+offset_top = -3.0
+offset_right = 8.0
+offset_bottom = 43.0
+color = Color(1, 0.2, 0.176471, 1)
+
+[node name="Label" type="Label" parent="HotBar/Children/Delete"]
+layout_mode = 0
+offset_left = -55.0
+offset_top = 12.0
+offset_right = 3.0
+offset_bottom = 35.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "DELETE"
 
 [node name="BuildSidebar" type="Control" parent="."]
 layout_mode = 3
