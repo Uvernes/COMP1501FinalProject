@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dmsugpjhf0s4k"
-path="res://.godot/imported/landmine2.png-85e340364ec116f2c788d64ecacd5c14.ctex"
+uid="uid://cjwg4k83utve4"
+path="res://.godot/imported/torch2.png-8dee085e2f342ec8e9e87a48da71e45f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Buildings/landmine2.png"
-dest_files=["res://.godot/imported/landmine2.png-85e340364ec116f2c788d64ecacd5c14.ctex"]
+source_file="res://Assets/Buildings/PlayerBuildings/TorchFrames/torch2.png"
+dest_files=["res://.godot/imported/torch2.png-8dee085e2f342ec8e9e87a48da71e45f.ctex"]
 
 [params]
 
