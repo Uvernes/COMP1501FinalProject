@@ -48,6 +48,7 @@ animations = [{
 }]
 
 [node name="Torch" type="Area2D"]
+z_index = 4
 script = ExtResource("1_4gjva")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

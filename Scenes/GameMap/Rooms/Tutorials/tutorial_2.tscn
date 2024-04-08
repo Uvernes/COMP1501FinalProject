@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://duc3mjrijegti" path="res://Scenes/WorldStructures/Bases/Base.tscn" id="6_y0iya"]
 [ext_resource type="PackedScene" uid="uid://c7617irk3mfcb" path="res://Scenes/Spawners/ResourceSpawners/stone_spawner.tscn" id="9_agvyq"]
 [ext_resource type="PackedScene" uid="uid://nni42ydnxiru" path="res://Scenes/Spawners/EnemySpawner/enemy_spawner.tscn" id="9_stskf"]
-[ext_resource type="PackedScene" path="res://Scenes/Placeables/UnbreakableTorch.tscn" id="10_pk73y"]
+[ext_resource type="PackedScene" uid="uid://b58ucrs6057p2" path="res://Scenes/Placeables/UnbreakableTorch.tscn" id="10_pk73y"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o6vjd"]
 texture = ExtResource("1_iauix")
@@ -133,42 +133,6 @@ layer_0/tile_data = PackedInt32Array(1966078, 1, 65536, 1966079, 1, 65536, 19005
 
 [node name="Base" parent="." instance=ExtResource("6_y0iya")]
 
-[node name="DirtSpawner" parent="." instance=ExtResource("4_novq3")]
-position = Vector2(-1268, -51)
-
-[node name="LeavesSpawner" parent="." instance=ExtResource("5_svj8v")]
-position = Vector2(-1002, -1291)
-
-[node name="StoneSpawner" parent="." instance=ExtResource("9_agvyq")]
-position = Vector2(1421, -690)
-
-[node name="TempLeavesSpawner" parent="." instance=ExtResource("5_svj8v")]
-position = Vector2(-36, 376)
-
-[node name="TempLeavesSpawner2" parent="." instance=ExtResource("5_svj8v")]
-position = Vector2(380, -233)
-
-[node name="TempDirtSpawner" parent="." instance=ExtResource("4_novq3")]
-position = Vector2(-360, 113)
-
-[node name="TempDirtSpawner2" parent="." instance=ExtResource("4_novq3")]
-position = Vector2(-374, 845)
-
-[node name="TempStoneSpawner" parent="." instance=ExtResource("9_agvyq")]
-position = Vector2(-817, 21)
-
-[node name="TempStoneSpawner3" parent="." instance=ExtResource("9_agvyq")]
-position = Vector2(367, 136)
-
-[node name="TempStoneSpawner2" parent="." instance=ExtResource("9_agvyq")]
-position = Vector2(-316, -318)
-
-[node name="UnbreakableTorch" parent="." instance=ExtResource("10_pk73y")]
-position = Vector2(-1449, -10)
-
-[node name="UnbreakableTorch2" parent="." instance=ExtResource("10_pk73y")]
-position = Vector2(-629, -10)
-
 [node name="EnemySpawnersStorage" type="Node" parent="."]
 
 [node name="EnemySpawner" parent="EnemySpawnersStorage" instance=ExtResource("9_stskf")]
@@ -195,5 +159,51 @@ max_enemy_count = 5
 position = Vector2(631, 940)
 spawn_delay = 8
 max_enemy_count = 5
+
+[node name="ResourceSpawnerStorage" type="Node" parent="."]
+
+[node name="DirtSpawner" parent="ResourceSpawnerStorage" instance=ExtResource("4_novq3")]
+position = Vector2(-1268, -51)
+
+[node name="LeavesSpawner" parent="ResourceSpawnerStorage" instance=ExtResource("5_svj8v")]
+position = Vector2(-1002, -1291)
+
+[node name="StoneSpawner" parent="ResourceSpawnerStorage" instance=ExtResource("9_agvyq")]
+position = Vector2(1421, -690)
+
+[node name="TempLeavesSpawner" parent="ResourceSpawnerStorage" instance=ExtResource("5_svj8v")]
+position = Vector2(-36, 376)
+
+[node name="TempLeavesSpawner2" parent="ResourceSpawnerStorage" instance=ExtResource("5_svj8v")]
+position = Vector2(380, -233)
+
+[node name="TempDirtSpawner" parent="ResourceSpawnerStorage" instance=ExtResource("4_novq3")]
+position = Vector2(-360, 113)
+
+[node name="TempDirtSpawner2" parent="ResourceSpawnerStorage" instance=ExtResource("4_novq3")]
+position = Vector2(-374, 845)
+
+[node name="TempStoneSpawner" parent="ResourceSpawnerStorage" instance=ExtResource("9_agvyq")]
+position = Vector2(-817, 21)
+
+[node name="TempStoneSpawner3" parent="ResourceSpawnerStorage" instance=ExtResource("9_agvyq")]
+position = Vector2(367, 136)
+
+[node name="TempStoneSpawner2" parent="ResourceSpawnerStorage" instance=ExtResource("9_agvyq")]
+position = Vector2(-316, -318)
+
+[node name="EnemySpawnerStorage" type="Node" parent="."]
+
+[node name="StructureStorage" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="UnbreakableTorch" parent="StructureStorage" instance=ExtResource("10_pk73y")]
+position = Vector2(-1376, 32)
+
+[node name="UnbreakableTorch2" parent="StructureStorage" instance=ExtResource("10_pk73y")]
+position = Vector2(-672, -32)
+
+[node name="UnbreakableTorch3" parent="StructureStorage" instance=ExtResource("10_pk73y")]
+position = Vector2(544, -32)
 
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

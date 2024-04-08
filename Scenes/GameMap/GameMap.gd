@@ -278,7 +278,7 @@ func place_build_at_hover_tile(build_instance):
 	# build_instance.position = global_tile_center_pos
 	build_instance.position = $HoverTile.position
 	# Add build as child of room 
-	cur_room.add_child(build_instance)
+	cur_room.get_node("StructureStorage").add_child(build_instance)
 	# Connect to build removed signal 
 	build_instance.removed.connect(_on_build_removed)
 	
@@ -365,7 +365,7 @@ func init_new_room(room_index, entrance):
 		var build_id = room_index_to_builds[cur_room_index][build_position]
 		var build_instance = Placeable.packed_scenes[build_id].instantiate()
 		build_instance.position = build_position
-		cur_room.add_child(build_instance)
+		cur_room.get_node("StructureStorage").add_child(build_instance)
 		build_instance.removed.connect(_on_build_removed)
 
 

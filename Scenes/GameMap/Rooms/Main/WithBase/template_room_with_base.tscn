@@ -44,8 +44,8 @@ scenes/1/scene = ExtResource("2_pgtdv")
 
 [sub_resource type="TileSet" id="TileSet_1nx1o"]
 tile_size = Vector2i(64, 64)
-sources/0 = SubResource("TileSetAtlasSource_o6vjd")
 sources/2 = SubResource("TileSetScenesCollectionSource_wna03")
+sources/0 = SubResource("TileSetAtlasSource_o6vjd")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a1f2s"]
 size = Vector2(3840, 3840)
@@ -127,5 +127,12 @@ format = 2
 layer_0/tile_data = PackedInt32Array(1966078, 1, 65536, 1966079, 1, 65536, 1900544, 1, 65536, 1900545, 1, 65536)
 
 [node name="Base" parent="." instance=ExtResource("6_dertm")]
+
+[node name="ResourceSpawnerStorage" type="Node" parent="."]
+
+[node name="EnemySpawnerStorage" type="Node" parent="."]
+
+[node name="PlaceableStorage" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

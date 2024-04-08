@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://o7wxb7v0a732" path="res://Scenes/Spawners/ResourceSpawners/leaves_spawner.tscn" id="5_65hc2"]
 [ext_resource type="PackedScene" uid="uid://cg4keaky2urjy" path="res://Scenes/Spawners/ResourceSpawners/wood_spawner.tscn" id="6_uu5as"]
 [ext_resource type="PackedScene" uid="uid://c7617irk3mfcb" path="res://Scenes/Spawners/ResourceSpawners/stone_spawner.tscn" id="7_03osc"]
-[ext_resource type="PackedScene" path="res://Scenes/Placeables/UnbreakableTorch.tscn" id="8_hm3vr"]
+[ext_resource type="PackedScene" uid="uid://b58ucrs6057p2" path="res://Scenes/Placeables/UnbreakableTorch.tscn" id="8_hm3vr"]
 [ext_resource type="PackedScene" uid="uid://nni42ydnxiru" path="res://Scenes/Spawners/EnemySpawner/enemy_spawner.tscn" id="9_08qel"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o6vjd"]
@@ -131,71 +131,76 @@ tile_set = SubResource("TileSet_qsyt6")
 format = 2
 layer_0/tile_data = PackedInt32Array(1966078, 1, 65536, 1966079, 1, 65536, 1900544, 1, 65536, 1900545, 1, 65536)
 
-[node name="DirtSpawner" parent="." instance=ExtResource("4_1rfk5")]
-position = Vector2(799, -13)
+[node name="EnemySpawnerStorage" type="Node" parent="."]
 
-[node name="DirtSpawner2" parent="." instance=ExtResource("4_1rfk5")]
-position = Vector2(-1354, -1318)
-
-[node name="LeavesSpawner" parent="." instance=ExtResource("5_65hc2")]
-position = Vector2(1275, -1181)
-
-[node name="TempDirtSpawner" parent="." instance=ExtResource("4_1rfk5")]
-position = Vector2(396, -137)
-
-[node name="TempDirtSpawner2" parent="." instance=ExtResource("4_1rfk5")]
-position = Vector2(1516, 112)
-
-[node name="TempLeavesSpawner" parent="." instance=ExtResource("5_65hc2")]
-position = Vector2(1177, -924)
-
-[node name="TempLeavesSpawner2" parent="." instance=ExtResource("5_65hc2")]
-position = Vector2(-38, 338)
-
-[node name="TempWoodSpawner" parent="." instance=ExtResource("6_uu5as")]
-position = Vector2(134, -352)
-
-[node name="TempWoodSpawner2" parent="." instance=ExtResource("6_uu5as")]
-position = Vector2(1056, -1345)
-
-[node name="TempStoneSpawner" parent="." instance=ExtResource("7_03osc")]
-position = Vector2(-1576, -1204)
-
-[node name="TempStoneSpawner2" parent="." instance=ExtResource("7_03osc")]
-position = Vector2(-1090, -1269)
-
-[node name="TempStoneSpawner3" parent="." instance=ExtResource("7_03osc")]
-position = Vector2(-1433, -1510)
-
-[node name="UnbreakableTorch" parent="." instance=ExtResource("8_hm3vr")]
-position = Vector2(200, -10)
-
-[node name="UnbreakableTorch2" parent="." instance=ExtResource("8_hm3vr")]
-position = Vector2(1391, -10)
-
-[node name="UnbreakableTorch3" parent="." instance=ExtResource("8_hm3vr")]
-position = Vector2(738, -484)
-
-[node name="EnemySpawnersStorage" type="Node" parent="."]
-
-[node name="EnemySpawner" parent="EnemySpawnersStorage" instance=ExtResource("9_08qel")]
+[node name="EnemySpawner" parent="EnemySpawnerStorage" instance=ExtResource("9_08qel")]
 position = Vector2(-1517, -1369)
 spawn_delay = 5
 max_enemy_count = 5
 
-[node name="EnemySpawner2" parent="EnemySpawnersStorage" instance=ExtResource("9_08qel")]
+[node name="EnemySpawner2" parent="EnemySpawnerStorage" instance=ExtResource("9_08qel")]
 position = Vector2(750, 320)
 spawn_delay = 5
 max_enemy_count = 5
 
-[node name="EnemySpawner3" parent="EnemySpawnersStorage" instance=ExtResource("9_08qel")]
+[node name="EnemySpawner3" parent="EnemySpawnerStorage" instance=ExtResource("9_08qel")]
 position = Vector2(1403, -955)
 spawn_delay = 5
 max_enemy_count = 5
 
-[node name="EnemySpawner4" parent="EnemySpawnersStorage" instance=ExtResource("9_08qel")]
+[node name="EnemySpawner4" parent="EnemySpawnerStorage" instance=ExtResource("9_08qel")]
 position = Vector2(-888, 179)
 spawn_delay = 5
 max_enemy_count = 5
+
+[node name="ResourceSpawnerStorage" type="Node" parent="."]
+
+[node name="DirtSpawner" parent="ResourceSpawnerStorage" instance=ExtResource("4_1rfk5")]
+position = Vector2(799, -13)
+
+[node name="DirtSpawner2" parent="ResourceSpawnerStorage" instance=ExtResource("4_1rfk5")]
+position = Vector2(-1354, -1318)
+
+[node name="LeavesSpawner" parent="ResourceSpawnerStorage" instance=ExtResource("5_65hc2")]
+position = Vector2(1275, -1181)
+
+[node name="TempDirtSpawner" parent="ResourceSpawnerStorage" instance=ExtResource("4_1rfk5")]
+position = Vector2(396, -137)
+
+[node name="TempDirtSpawner2" parent="ResourceSpawnerStorage" instance=ExtResource("4_1rfk5")]
+position = Vector2(1516, 112)
+
+[node name="TempLeavesSpawner" parent="ResourceSpawnerStorage" instance=ExtResource("5_65hc2")]
+position = Vector2(1177, -924)
+
+[node name="TempLeavesSpawner2" parent="ResourceSpawnerStorage" instance=ExtResource("5_65hc2")]
+position = Vector2(-38, 338)
+
+[node name="TempWoodSpawner" parent="ResourceSpawnerStorage" instance=ExtResource("6_uu5as")]
+position = Vector2(134, -352)
+
+[node name="TempWoodSpawner2" parent="ResourceSpawnerStorage" instance=ExtResource("6_uu5as")]
+position = Vector2(1056, -1345)
+
+[node name="TempStoneSpawner" parent="ResourceSpawnerStorage" instance=ExtResource("7_03osc")]
+position = Vector2(-1576, -1204)
+
+[node name="TempStoneSpawner2" parent="ResourceSpawnerStorage" instance=ExtResource("7_03osc")]
+position = Vector2(-1090, -1269)
+
+[node name="TempStoneSpawner3" parent="ResourceSpawnerStorage" instance=ExtResource("7_03osc")]
+position = Vector2(-1433, -1510)
+
+[node name="StructureStorage" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="UnbreakableTorch3" parent="StructureStorage" instance=ExtResource("8_hm3vr")]
+position = Vector2(800, -352)
+
+[node name="UnbreakableTorch2" parent="StructureStorage" instance=ExtResource("8_hm3vr")]
+position = Vector2(1312, -32)
+
+[node name="UnbreakableTorch" parent="StructureStorage" instance=ExtResource("8_hm3vr")]
+position = Vector2(288, -224)
 
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

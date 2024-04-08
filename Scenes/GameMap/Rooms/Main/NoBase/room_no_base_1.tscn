@@ -128,16 +128,23 @@ tile_set = SubResource("TileSet_qsyt6")
 format = 2
 layer_0/tile_data = PackedInt32Array(1966078, 1, 65536, 1966079, 1, 65536, 1900544, 1, 65536, 1900545, 1, 65536)
 
-[node name="DirtSpawner" parent="." instance=ExtResource("4_skonp")]
+[node name="ResourceSpawnerStorage" type="Node" parent="."]
+
+[node name="DirtSpawner" parent="ResourceSpawnerStorage" instance=ExtResource("4_skonp")]
 position = Vector2(-327, -476)
 
-[node name="LeavesSpawner" parent="." instance=ExtResource("5_m0i15")]
+[node name="LeavesSpawner" parent="ResourceSpawnerStorage" instance=ExtResource("5_m0i15")]
 position = Vector2(-1342, 1368)
 
-[node name="LeavesSpawner2" parent="." instance=ExtResource("5_m0i15")]
+[node name="LeavesSpawner2" parent="ResourceSpawnerStorage" instance=ExtResource("5_m0i15")]
 position = Vector2(-1442, -1264)
 
-[node name="StoneSpawner" parent="." instance=ExtResource("6_e2pwu")]
+[node name="StoneSpawner" parent="ResourceSpawnerStorage" instance=ExtResource("6_e2pwu")]
 position = Vector2(1310, 1172)
+
+[node name="EnemySpawnerStorage" type="Node" parent="."]
+
+[node name="PlaceableStorage" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

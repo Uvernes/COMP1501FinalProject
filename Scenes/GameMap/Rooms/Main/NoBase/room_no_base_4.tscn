@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://jrjeopubtbxv"]
+[gd_scene load_steps=14 format=3 uid="uid://b01h8nak6rah8"]
 
 [ext_resource type="Texture2D" uid="uid://dts1vnk2d4y8q" path="res://PrototypeAssets/TileSets/kenney_abstract-platformer/Tilesheet/tilesheet_complete.png" id="1_0e632"]
 [ext_resource type="PackedScene" uid="uid://ct5lgyoushw53" path="res://Scenes/WorldStructures/CaveWall.tscn" id="2_l3c63"]
@@ -129,19 +129,27 @@ tile_set = SubResource("TileSet_qsyt6")
 format = 2
 layer_0/tile_data = PackedInt32Array(1966078, 1, 65536, 1966079, 1, 65536, 1900544, 1, 65536, 1900545, 1, 65536)
 
-[node name="DirtSpawner" parent="." instance=ExtResource("4_usdtc")]
+[node name="ResourceSpawnerStorage" type="Node" parent="."]
+
+[node name="DirtSpawner" parent="ResourceSpawnerStorage" instance=ExtResource("4_usdtc")]
 position = Vector2(1228, 1113)
 
-[node name="DirtSpawner2" parent="." instance=ExtResource("4_usdtc")]
+[node name="DirtSpawner2" parent="ResourceSpawnerStorage" instance=ExtResource("4_usdtc")]
 position = Vector2(-1109, -439)
 
-[node name="StoneSpawner" parent="." instance=ExtResource("5_22fne")]
+[node name="StoneSpawner" parent="ResourceSpawnerStorage" instance=ExtResource("5_22fne")]
 position = Vector2(932, -1553)
 
-[node name="WoodSpawner" parent="." instance=ExtResource("6_aahrn")]
+[node name="WoodSpawner" parent="ResourceSpawnerStorage" instance=ExtResource("6_aahrn")]
 position = Vector2(-1439, 1289)
 
-[node name="LeavesSpawner" parent="." instance=ExtResource("7_5xi68")]
+[node name="LeavesSpawner" parent="ResourceSpawnerStorage" instance=ExtResource("7_5xi68")]
+position = Vector2(-491, 642)
+
+[node name="EnemySpawnerStorage" type="Node" parent="."]
+
+[node name="PlaceableStorage" type="Node2D" parent="."]
+y_sort_enabled = true
 position = Vector2(-491, 642)
 
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

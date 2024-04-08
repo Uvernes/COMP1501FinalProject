@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scenes/Spawners/ResourceSpawners/stone_spawner.gd" id="1_up6uu"]
 [ext_resource type="PackedScene" uid="uid://b6imdyagxnjg7" path="res://Scenes/Resources/resource.tscn" id="2_b72e5"]
 
-[node name="StoneSpawner" type="Node2D"]
+[node name="StoneSpawner" type="Node2D" groups=["Obstruction"]]
 position = Vector2(1, 0)
 script = ExtResource("1_up6uu")
 resource_scene = ExtResource("2_b72e5")

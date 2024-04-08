@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://k680srylxgw4"]
+[gd_scene load_steps=15 format=3 uid="uid://k680srylxgw4"]
 
 [ext_resource type="Texture2D" uid="uid://dts1vnk2d4y8q" path="res://PrototypeAssets/TileSets/kenney_abstract-platformer/Tilesheet/tilesheet_complete.png" id="1_5c6wx"]
 [ext_resource type="PackedScene" uid="uid://ct5lgyoushw53" path="res://Scenes/WorldStructures/CaveWall.tscn" id="2_2d4br"]
@@ -6,9 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bjdqvr0d6xkj3" path="res://Scenes/Spawners/ResourceSpawners/dirt_spawner.tscn" id="4_6yurf"]
 [ext_resource type="PackedScene" uid="uid://o7wxb7v0a732" path="res://Scenes/Spawners/ResourceSpawners/leaves_spawner.tscn" id="5_jjqbo"]
 [ext_resource type="PackedScene" uid="uid://duc3mjrijegti" path="res://Scenes/WorldStructures/Bases/Base.tscn" id="6_dimma"]
-[ext_resource type="PackedScene" uid="uid://dqq1eqx2408k" path="res://Scenes/Enemies/EnemySpawner.tscn" id="7_mcn5k"]
 [ext_resource type="PackedScene" uid="uid://c7617irk3mfcb" path="res://Scenes/Spawners/ResourceSpawners/stone_spawner.tscn" id="8_8b5qi"]
-[ext_resource type="PackedScene" uid="uid://cbej05v14rtms" path="res://Scenes/Enemy/Enemy.tscn" id="8_vl1db"]
 [ext_resource type="PackedScene" uid="uid://cg4keaky2urjy" path="res://Scenes/Spawners/ResourceSpawners/wood_spawner.tscn" id="9_0rxl0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o6vjd"]
@@ -134,34 +132,38 @@ layer_0/tile_data = PackedInt32Array(1966078, 1, 65536, 1966079, 1, 65536, 19005
 
 [node name="Base" parent="." instance=ExtResource("6_dimma")]
 
-[node name="DirtSpawner" parent="." instance=ExtResource("4_6yurf")]
+[node name="ResourceSpawnerStorage" type="Node" parent="."]
+
+[node name="DirtSpawner" parent="ResourceSpawnerStorage" instance=ExtResource("4_6yurf")]
 position = Vector2(1629, 536)
 
-[node name="EnemySpawner" parent="." instance=ExtResource("7_mcn5k")]
-enemy_scene = ExtResource("8_vl1db")
-
-[node name="StoneSpawner" parent="." instance=ExtResource("8_8b5qi")]
+[node name="StoneSpawner" parent="ResourceSpawnerStorage" instance=ExtResource("8_8b5qi")]
 position = Vector2(-111, -1628)
 
-[node name="DirtSpawner2" parent="." instance=ExtResource("4_6yurf")]
+[node name="DirtSpawner2" parent="ResourceSpawnerStorage" instance=ExtResource("4_6yurf")]
 position = Vector2(1563, 832)
 
-[node name="DirtSpawner3" parent="." instance=ExtResource("4_6yurf")]
+[node name="DirtSpawner3" parent="ResourceSpawnerStorage" instance=ExtResource("4_6yurf")]
 position = Vector2(24, 850)
 
-[node name="WoodSpawner" parent="." instance=ExtResource("9_0rxl0")]
+[node name="WoodSpawner" parent="ResourceSpawnerStorage" instance=ExtResource("9_0rxl0")]
 position = Vector2(-495, 1533)
 
-[node name="WoodSpawner2" parent="." instance=ExtResource("9_0rxl0")]
+[node name="WoodSpawner2" parent="ResourceSpawnerStorage" instance=ExtResource("9_0rxl0")]
 position = Vector2(581, -1539)
 
-[node name="LeavesSpawner" parent="." instance=ExtResource("5_jjqbo")]
+[node name="LeavesSpawner" parent="ResourceSpawnerStorage" instance=ExtResource("5_jjqbo")]
 position = Vector2(-224, 1644)
 
-[node name="LeavesSpawner2" parent="." instance=ExtResource("5_jjqbo")]
+[node name="LeavesSpawner2" parent="ResourceSpawnerStorage" instance=ExtResource("5_jjqbo")]
 position = Vector2(1630, -1096)
 
-[node name="LeavesSpawner3" parent="." instance=ExtResource("5_jjqbo")]
+[node name="LeavesSpawner3" parent="ResourceSpawnerStorage" instance=ExtResource("5_jjqbo")]
 position = Vector2(1520, -1274)
+
+[node name="EnemySpawnerStorage" type="Node" parent="."]
+
+[node name="PlaceableStorage" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

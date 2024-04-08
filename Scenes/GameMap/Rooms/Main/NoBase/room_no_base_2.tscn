@@ -129,22 +129,29 @@ tile_set = SubResource("TileSet_qsyt6")
 format = 2
 layer_0/tile_data = PackedInt32Array(1966078, 1, 65536, 1966079, 1, 65536, 1900544, 1, 65536, 1900545, 1, 65536)
 
-[node name="LeavesSpawner" parent="." instance=ExtResource("4_jysvk")]
+[node name="ResourceSpawnerStorage" type="Node" parent="."]
+
+[node name="LeavesSpawner" parent="ResourceSpawnerStorage" instance=ExtResource("4_jysvk")]
 position = Vector2(1376, -1579)
 
-[node name="WoodSpawner" parent="." instance=ExtResource("5_c5bgx")]
+[node name="WoodSpawner" parent="ResourceSpawnerStorage" instance=ExtResource("5_c5bgx")]
 position = Vector2(1286, -1313)
 
-[node name="DirtSpawner" parent="." instance=ExtResource("6_q6eu5")]
+[node name="DirtSpawner" parent="ResourceSpawnerStorage" instance=ExtResource("6_q6eu5")]
 position = Vector2(-162, -614)
 
-[node name="DirtSpawner2" parent="." instance=ExtResource("6_q6eu5")]
+[node name="DirtSpawner2" parent="ResourceSpawnerStorage" instance=ExtResource("6_q6eu5")]
 position = Vector2(863, 352)
 
-[node name="StoneSpawner" parent="." instance=ExtResource("7_a66kj")]
+[node name="StoneSpawner" parent="ResourceSpawnerStorage" instance=ExtResource("7_a66kj")]
 position = Vector2(995, 811)
 
-[node name="StoneSpawner2" parent="." instance=ExtResource("7_a66kj")]
+[node name="StoneSpawner2" parent="ResourceSpawnerStorage" instance=ExtResource("7_a66kj")]
 position = Vector2(-889, 1099)
+
+[node name="EnemySpawnerStorage" type="Node" parent="."]
+
+[node name="PlaceableStorage" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

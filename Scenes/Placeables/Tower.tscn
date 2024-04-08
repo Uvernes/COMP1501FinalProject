@@ -10,6 +10,7 @@ size = Vector2(48, 48)
 radius = 200.0
 
 [node name="Tower" type="StaticBody2D"]
+z_index = 4
 script = ExtResource("1_f5ojo")
 bullet_scene = ExtResource("2_cxm3t")
 

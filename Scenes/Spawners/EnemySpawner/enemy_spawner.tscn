@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/Spawners/EnemySpawner/enemy_spawner.gd" id="1_fiuui"]
 
-[node name="EnemySpawner" type="Node2D"]
+[node name="EnemySpawner" type="Node2D" groups=["Obstruction"]]
 script = ExtResource("1_fiuui")
 spawn_delay = 15
 

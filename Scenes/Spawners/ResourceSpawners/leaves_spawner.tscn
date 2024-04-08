@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scenes/Spawners/ResourceSpawners/leaves_spawner.gd" id="1_0vfpw"]
 [ext_resource type="PackedScene" uid="uid://b6imdyagxnjg7" path="res://Scenes/Resources/resource.tscn" id="2_v18x2"]
 
-[node name="LeavesSpawner" type="Node2D"]
+[node name="LeavesSpawner" type="Node2D" groups=["Obstruction"]]
 script = ExtResource("1_0vfpw")
 resource_scene = ExtResource("2_v18x2")
 

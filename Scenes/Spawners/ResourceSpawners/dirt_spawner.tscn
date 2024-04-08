@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scenes/Spawners/ResourceSpawners/dirt_spawner.gd" id="1_p26j0"]
 [ext_resource type="PackedScene" uid="uid://b6imdyagxnjg7" path="res://Scenes/Resources/resource.tscn" id="2_ujj8b"]
 
-[node name="DirtSpawner" type="Node2D"]
+[node name="DirtSpawner" type="Node2D" groups=["Obstruction"]]
 position = Vector2(1, 0)
 script = ExtResource("1_p26j0")
 resource_scene = ExtResource("2_ujj8b")
