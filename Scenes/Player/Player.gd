@@ -23,7 +23,7 @@ var max_stamina = 14
 var bullet_speed = 500
 var bullet_damage = 1
 
-const walk_speed = 1600 #300
+const walk_speed = 300
 const sprint_speed = 600
 const accel = 1500
 const friction = 1000
