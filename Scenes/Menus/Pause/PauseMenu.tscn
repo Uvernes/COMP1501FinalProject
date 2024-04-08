@@ -156,7 +156,7 @@ In Build Mode -
 offset_left = 461.0
 offset_top = 570.0
 offset_right = 611.0
-offset_bottom = 589.0
+offset_bottom = 595.0
 scale = Vector2(1.5, 1.5)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Controls2/MarginContainer"]
@@ -165,13 +165,14 @@ layout_mode = 2
 
 [node name="Back" type="Button" parent="Controls2/MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 text = "Back"
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 offset_left = 330.0
 offset_top = 261.0
 offset_right = 630.0
-offset_bottom = 362.0
+offset_bottom = 370.0
 scale = Vector2(1.5, 1.5)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
@@ -179,20 +180,24 @@ layout_mode = 2
 
 [node name="Resume" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 text = "Resume
 "
 
 [node name="Controls" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 text = "Controls"
 
 [node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 text = "Quit
 "
 
 [node name="Menu" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 text = "Return To Menu"
 
 [connection signal="pressed" from="Controls2/MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

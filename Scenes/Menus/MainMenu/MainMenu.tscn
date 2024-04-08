@@ -22,7 +22,7 @@ layout_mode = 0
 offset_left = 425.0
 offset_top = 259.0
 offset_right = 725.0
-offset_bottom = 360.0
+offset_bottom = 344.0
 scale = Vector2(1.5, 1.5)
 pivot_offset = Vector2(150, 0)
 
@@ -32,16 +32,19 @@ layout_mode = 2
 [node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
+size_flags_vertical = 3
 text = "Play"
 
 [node name="Settings" type="Button" parent="MarginContainer/VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
+size_flags_vertical = 3
 text = "Controls"
 
 [node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
+size_flags_vertical = 3
 text = "Quit "
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
