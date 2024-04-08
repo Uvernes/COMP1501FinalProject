@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cvamy8ywllso6"]
+[gd_scene load_steps=16 format=3 uid="uid://cvamy8ywllso6"]
 
 [ext_resource type="Texture2D" uid="uid://dts1vnk2d4y8q" path="res://PrototypeAssets/TileSets/kenney_abstract-platformer/Tilesheet/tilesheet_complete.png" id="1_iauix"]
 [ext_resource type="PackedScene" uid="uid://ct5lgyoushw53" path="res://Scenes/WorldStructures/CaveWall.tscn" id="2_7ykkn"]
@@ -7,7 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://o7wxb7v0a732" path="res://Scenes/Spawners/ResourceSpawners/leaves_spawner.tscn" id="5_svj8v"]
 [ext_resource type="PackedScene" uid="uid://duc3mjrijegti" path="res://Scenes/WorldStructures/Bases/Base.tscn" id="6_y0iya"]
 [ext_resource type="PackedScene" uid="uid://c7617irk3mfcb" path="res://Scenes/Spawners/ResourceSpawners/stone_spawner.tscn" id="9_agvyq"]
-[ext_resource type="PackedScene" uid="uid://bhua62guu3842" path="res://Scenes/Placeables/UnbreakableTorch.tscn" id="10_pk73y"]
+[ext_resource type="PackedScene" uid="uid://nni42ydnxiru" path="res://Scenes/Spawners/EnemySpawner/enemy_spawner.tscn" id="9_stskf"]
+[ext_resource type="PackedScene" path="res://Scenes/Placeables/UnbreakableTorch.tscn" id="10_pk73y"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o6vjd"]
 texture = ExtResource("1_iauix")
@@ -167,5 +168,32 @@ position = Vector2(-1449, -10)
 
 [node name="UnbreakableTorch2" parent="." instance=ExtResource("10_pk73y")]
 position = Vector2(-629, -10)
+
+[node name="EnemySpawnersStorage" type="Node" parent="."]
+
+[node name="EnemySpawner" parent="EnemySpawnersStorage" instance=ExtResource("9_stskf")]
+position = Vector2(-1085, -1047)
+spawn_delay = 5
+max_enemy_count = 5
+
+[node name="EnemySpawner2" parent="EnemySpawnersStorage" instance=ExtResource("9_stskf")]
+position = Vector2(-403, 699)
+spawn_delay = 5
+max_enemy_count = 5
+
+[node name="EnemySpawner3" parent="EnemySpawnersStorage" instance=ExtResource("9_stskf")]
+position = Vector2(292, -950)
+spawn_delay = 8
+max_enemy_count = 5
+
+[node name="EnemySpawner4" parent="EnemySpawnersStorage" instance=ExtResource("9_stskf")]
+position = Vector2(1292, 241)
+spawn_delay = 8
+max_enemy_count = 5
+
+[node name="EnemySpawner5" parent="EnemySpawnersStorage" instance=ExtResource("9_stskf")]
+position = Vector2(631, 940)
+spawn_delay = 8
+max_enemy_count = 5
 
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
