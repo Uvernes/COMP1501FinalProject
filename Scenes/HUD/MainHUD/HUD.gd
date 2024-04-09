@@ -10,6 +10,7 @@ var base
 var can_open_upgrade_menu
 var can_build_base
 var upgrade_menu_open
+var wave_num = 1
 
 func _ready():
 	$UpgradeMenu.hide()
@@ -22,6 +23,9 @@ func _ready():
 	can_build_base = false
 	upgrade_menu_open = false
 
+func _process(_delta):
+	if $PopulationBar.is_visible():
+		$PopulationBar/WaveInfo.text = "Wave " + str(wave_num) + ": " + str(snapped($PopulationBar/WaveTimer.time_left, 0.01))
 
 func room_changed(base):
 	$PopulationBar.hide()
@@ -119,12 +123,12 @@ func update_all_resources(resource_amounts: Dictionary):
 
 
 func update_rooms_visited():
-	$ProgressDisplay/RoomsVisited/NumbersLabel.text = \
+	$ProgressDisplay/RoomsVisited/TextLabel.text = "Rooms Visited: " +\
 		str(game_map.get_num_rooms_visited()) + "/" + str(game_map.total_rooms())
 
 
 func update_bases_captured():
-	$ProgressDisplay/BasesCaptured/NumbersLabel.text = \
+	$ProgressDisplay/BasesCaptured/TextLabel.text = "Bases Captured: " +\
 		str(game_map.get_num_bases_captured()) + "/" + str(game_map.total_bases())
 
 
@@ -150,12 +154,15 @@ func update_current_base(base, state):
 func base_status_changed(type):
 	if type == "safe":
 		can_open_upgrade_menu = true
-		$PopulationBar.hide()
+		$PopulationBar.show()
+		wave_num = 1
 	if type == "under attack":
 		$PopulationBar.show()
+		$PopulationBar/WaveTimer.start()
 	if type == "inactive":
 		can_open_upgrade_menu = false
 		$PopulationBar.hide()
+		wave_num = 1
 
 #shows/hides upgrade menu
 func show_upgrade_menu(state):
@@ -188,4 +195,9 @@ func show_warning(state):
 	else:
 		$Warning.hide()
 
-
+func _on_wave_timer_timeout():
+	if wave_num <= (2 * game_map.get_num_bases_captured() + 3) && $PopulationBar.is_visible():
+		wave_num += 1
+		$PopulationBar/WaveTimer.start()
+	else:
+		game_map.cur_room.get_node("Base").status_changed.emit("safe")

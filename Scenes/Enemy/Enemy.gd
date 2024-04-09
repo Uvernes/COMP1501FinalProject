@@ -102,7 +102,6 @@ func _physics_process(delta):
 
 # Method for receiving damage
 func take_damage(amount,attacker,knockback=Vector2.ZERO,force=0):
-	print(attacker)
 	health = health - amount
 	if (health <= 0):
 		# create mobdrop on enemy death

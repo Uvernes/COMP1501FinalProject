@@ -100,7 +100,6 @@ texture = ExtResource("9_v7v0r")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_postprocessing = 1
-debug_enabled = true
 
 [node name="PathUpdateTimer" type="Timer" parent="."]
 wait_time = 0.1
