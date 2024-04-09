@@ -18,8 +18,8 @@ signal delete_requested(global_mouse_pos: Vector2)
 enum mode { ATTACK, BUILD, DELETE }
 
 # Stats - can be upgraded over time
-var max_health = 10
-var max_stamina = 14
+var max_health = 20
+var max_stamina = 16
 var bullet_speed = 500
 var bullet_damage = 1
 
@@ -143,7 +143,7 @@ func _dash_movement(delta):
 			# Knockback direction is perpendicular to player direction
 			var knockback_direction = Vector2(-direction.y, direction.x)
 			
-			collider.take_damage(0.5, knockback_direction, dash_knockback_force)
+			collider.take_damage(0.5, self, knockback_direction, dash_knockback_force)
 			
 	#
 	#return 

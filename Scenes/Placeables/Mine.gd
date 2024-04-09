@@ -25,7 +25,7 @@ func explode():
 			distance_vector = in_blast_radius[i].position - position
 			distance = 1 / distance_vector.length()
 			distance_vector = distance_vector.normalized()
-			in_blast_radius[i].take_damage(max_damage * distance, distance_vector, knockback_force * distance * 1.8)
+			in_blast_radius[i].take_damage(max_damage * distance, get_tree().get_current_scene().get_node("Player"), distance_vector, knockback_force * distance * 1.8)
 		elif in_blast_radius[i].name == "Player":
 			distance_vector = in_blast_radius[i].position - position
 			distance = 1 / distance_vector.length()

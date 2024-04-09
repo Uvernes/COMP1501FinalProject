@@ -39,6 +39,7 @@ func _ready():
 		base.connect("status_changed", base_status_changed)
 
 func _on_spawn_timer_timeout():
+	print(cur_enemy_count)
 	if cur_enemy_count < max_enemy_count:
 		spawn_enemy()
 		$SpawnTimer.start()
@@ -68,7 +69,7 @@ func _on_child_exiting_tree(node):
 
 func base_status_changed(type): #types: "under attack", "inactive", "safe"
 	if type == "safe":
-		$SpawnTimer.pause()
+		$SpawnTimer.stop()
 		max_enemy_count = 0
 	elif type == "under attack":
 		trigger_wave_event()
