@@ -23,7 +23,7 @@ var base
 var difficulty
 var wave_countdown
 var max_wave_options = [3, 5, 7, 9, 11, 13]
-var spawn_interval_options = [6, 7, 9, 10, 12, 14] # 3, 2, 2, 1, 1
+var spawn_interval_options = [10, 11, 13, 15, 15, 19] # 3, 2, 2, 1, 1
 
 # set difficulty based on how many rooms captured from bottom of GameMap
 var cur_enemy_count = 0
@@ -33,7 +33,7 @@ func _ready():
 	#player = get_tree().get_current_scene().get_node("Player")
 	$SpawnTimer.wait_time = spawn_delay
 	$SpawnTimer.start()
-	base = get_parent().get_parent().get_parent().get_node_or_null("Base")
+	base = get_parent().get_parent().get_node_or_null("Base")
 	if base != null:
 		difficulty = get_tree().get_current_scene().get_node("GameMap").get_num_bases_captured()
 		base.connect("status_changed", base_status_changed)
@@ -71,7 +71,6 @@ func base_status_changed(type): #types: "under attack", "inactive", "safe"
 		$SpawnTimer.pause()
 		max_enemy_count = 0
 	elif type == "under attack":
-		# make wave timer display in HUD "Wave .../max: time" consider viewing Assignment 5
 		trigger_wave_event()
 	elif type == "inactive":
 		$SpawnTimer.wait_time = spawn_delay

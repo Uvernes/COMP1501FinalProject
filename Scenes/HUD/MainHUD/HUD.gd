@@ -154,7 +154,7 @@ func update_current_base(base, state):
 func base_status_changed(type):
 	if type == "safe":
 		can_open_upgrade_menu = true
-		$PopulationBar.show()
+		$PopulationBar.hide()
 		wave_num = 1
 	if type == "under attack":
 		$PopulationBar.show()
