@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scenes/Enemy/EnemyShooter.gd" id="1_bauo8"]
 [ext_resource type="PackedScene" uid="uid://b6imdyagxnjg7" path="res://Scenes/Resources/resource.tscn" id="2_ty2ds"]
 [ext_resource type="Texture2D" uid="uid://doylxy08g5a0d" path="res://PrototypeAssets/red.png" id="3_0686g"]
-[ext_resource type="PackedScene" uid="uid://bmtagqqgva46x" path="res://Scenes/Bullet/enemyBullet.tscn" id="3_vuwpt"]
+[ext_resource type="PackedScene" uid="uid://cxtoty4alywar" path="res://Scenes/Bullet/enemyBullet.tscn" id="3_vuwpt"]
 [ext_resource type="Script" path="res://Scenes/Enemy/EnemyHead.gd" id="4_mft1k"]
 [ext_resource type="Texture2D" uid="uid://bqxm7whjg8o2s" path="res://PrototypeAssets/ants/redAntHead.png" id="5_7vew0"]
 
