@@ -1,6 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://npbjmbt4um60"]
+[gd_scene load_steps=25 format=3 uid="uid://npbjmbt4um60"]
 
 [ext_resource type="Script" path="res://Scenes/HUD/MainHUD/HUD.gd" id="1_niqmd"]
+[ext_resource type="Texture2D" uid="uid://0sdnhlf8y0at" path="res://Assets/Theme/modeicon3.png" id="2_srhl4"]
+[ext_resource type="Texture2D" uid="uid://cp6bb614ucyds" path="res://Assets/Theme/Buttons/buttons.png" id="3_kb6pk"]
+[ext_resource type="Texture2D" uid="uid://dai788t8jm1vk" path="res://Assets/Theme/Buttons/side.png" id="3_rufl1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nwyko"]
 bg_color = Color(0, 0.439216, 0, 1)
@@ -206,18 +209,26 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -135.5
-offset_top = -139.0
+offset_top = -118.0
 offset_right = 135.5
+offset_bottom = 21.0
 grow_horizontal = 2
 grow_vertical = 0
+scale = Vector2(0.840001, 0.840001)
 
 [node name="Background" type="ColorRect" parent="HotBar"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Background2" type="Sprite2D" parent="HotBar"]
+position = Vector2(133.5, 139)
+scale = Vector2(5, 5)
+texture = ExtResource("2_srhl4")
 
 [node name="Children" type="Control" parent="HotBar"]
 layout_mode = 1
@@ -233,22 +244,22 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -33.5
-offset_top = 15.0
+offset_top = 36.0
 offset_right = 33.5
-offset_bottom = 61.0
+offset_bottom = 82.0
 grow_horizontal = 2
 
 [node name="Background" type="ColorRect" parent="HotBar/Children/Attack"]
 layout_mode = 0
 offset_right = 67.0
 offset_bottom = 46.0
-color = Color(1, 0.2, 0.176471, 1)
+color = Color(0.223529, 0.392157, 0.443137, 1)
 
 [node name="Label" type="Label" parent="HotBar/Children/Attack"]
 layout_mode = 0
 offset_right = 67.0
 offset_bottom = 46.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.368627, 0.588235, 0.658824, 1)
 text = "ATTACK"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -258,23 +269,23 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 25.0
-offset_top = -63.0
-offset_right = 92.0
-offset_bottom = -17.0
+offset_left = 34.5
+offset_top = -54.0
+offset_right = 101.5
+offset_bottom = -8.0
 grow_vertical = 0
 
 [node name="Background" type="ColorRect" parent="HotBar/Children/Build"]
 layout_mode = 0
 offset_right = 67.0
 offset_bottom = 46.0
-color = Color(1, 0.2, 0.176471, 1)
+color = Color(0.223529, 0.392157, 0.443137, 1)
 
 [node name="Label" type="Label" parent="HotBar/Children/Build"]
 layout_mode = 0
 offset_right = 67.0
 offset_bottom = 46.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.368627, 0.588235, 0.658824, 1)
 text = "BUILD"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -286,10 +297,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -92.0
-offset_top = -63.0
-offset_right = -25.0
-offset_bottom = -17.0
+offset_left = -102.5
+offset_top = -53.0
+offset_right = -35.5
+offset_bottom = -7.0
 grow_horizontal = 0
 grow_vertical = 0
 
@@ -297,13 +308,13 @@ grow_vertical = 0
 layout_mode = 0
 offset_right = 67.0
 offset_bottom = 46.0
-color = Color(1, 0.2, 0.176471, 1)
+color = Color(0.223529, 0.392157, 0.443137, 1)
 
 [node name="Label" type="Label" parent="HotBar/Children/Delete"]
 layout_mode = 0
 offset_right = 67.0
 offset_bottom = 46.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.368627, 0.588235, 0.658824, 1)
 text = "DELETE"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -322,14 +333,12 @@ offset_bottom = 160.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="BuildSidebar"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
+[node name="Background" type="Sprite2D" parent="BuildSidebar"]
+position = Vector2(38, 163)
+scale = Vector2(4, 3.52)
+texture = ExtResource("3_rufl1")
+region_enabled = true
+region_rect = Rect2(3, 65, 21, 93)
 
 [node name="Children" type="VBoxContainer" parent="BuildSidebar"]
 layout_mode = 1
@@ -354,7 +363,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(1, 0.2, 0.176471, 1)
+color = Color(1, 0.2, 0.176471, 0.588235)
 
 [node name="Label" type="Label" parent="BuildSidebar/Children/Torch"]
 layout_mode = 1
@@ -363,6 +372,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "TORCH"
 label_settings = SubResource("LabelSettings_isqni")
 horizontal_alignment = 1
@@ -404,7 +414,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(1, 0.2, 0.176471, 1)
+color = Color(1, 0.2, 0.176471, 0.588235)
 
 [node name="Label" type="Label" parent="BuildSidebar/Children/Wall"]
 layout_mode = 1
@@ -455,7 +465,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(1, 0.2, 0.176471, 1)
+color = Color(1, 0.2, 0.176471, 0.588235)
 
 [node name="Label" type="Label" parent="BuildSidebar/Children/Web"]
 layout_mode = 1
@@ -506,7 +516,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(1, 0.2, 0.176471, 1)
+color = Color(1, 0.2, 0.176471, 0.588235)
 
 [node name="Label" type="Label" parent="BuildSidebar/Children/Mine"]
 layout_mode = 1
@@ -557,7 +567,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(1, 0.2, 0.176471, 1)
+color = Color(1, 0.2, 0.176471, 0.588235)
 
 [node name="Label" type="Label" parent="BuildSidebar/Children/Tower"]
 layout_mode = 1
@@ -601,8 +611,8 @@ text = "5"
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = -35.0
-offset_bottom = -5.0
+offset_top = -46.0
+offset_bottom = -16.0
 grow_horizontal = 2
 
 [node name="Label" type="Label" parent="BuildSidebar/BuildInstruction"]
@@ -810,18 +820,20 @@ offset_top = -149.0
 offset_right = 250.152
 offset_bottom = 101.0
 
-[node name="ColorRect" type="ColorRect" parent="UpgradeMenu"]
-layout_mode = 2
-offset_right = 500.0
-offset_bottom = 250.0
+[node name="Sprite2D" type="Sprite2D" parent="UpgradeMenu"]
+position = Vector2(249, 119)
+scale = Vector2(4.4403, 4.42647)
+texture = ExtResource("3_kb6pk")
+region_enabled = true
+region_rect = Rect2(4, 4, 112, 51)
 
 [node name="Title" type="Label" parent="UpgradeMenu"]
 layout_mode = 0
 offset_left = 132.0
-offset_top = 16.0
+offset_top = 26.0
 offset_right = 368.0
-offset_bottom = 58.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+offset_bottom = 68.0
+theme_override_colors/font_color = Color(0.34902, 0.203922, 0.141176, 1)
 theme_override_font_sizes/font_size = 30
 text = "Player Upgrades"
 horizontal_alignment = 1
@@ -841,7 +853,7 @@ offset_bottom = 75.0
 layout_mode = 0
 offset_right = 130.0
 offset_bottom = 130.0
-color = Color(1, 0.141176, 0.211765, 1)
+color = Color(0.745098, 0, 0.117647, 0.588235)
 
 [node name="Type" type="Label" parent="UpgradeMenu/UpgradeHealth"]
 layout_mode = 0
@@ -898,7 +910,7 @@ offset_bottom = 75.0
 layout_mode = 0
 offset_right = 130.0
 offset_bottom = 130.0
-color = Color(0.0862745, 0.364706, 0.635294, 1)
+color = Color(0.0862745, 0.364706, 0.635294, 0.588235)
 
 [node name="Type" type="Label" parent="UpgradeMenu/UpgradeStamina"]
 layout_mode = 0
@@ -955,7 +967,7 @@ offset_bottom = 75.0
 layout_mode = 0
 offset_right = 130.0
 offset_bottom = 130.0
-color = Color(0.737255, 0.611765, 0.109804, 1)
+color = Color(0.759674, 0.59813, 0.19222, 0.588235)
 
 [node name="Type" type="Label" parent="UpgradeMenu/UpgradeDmg"]
 layout_mode = 0
