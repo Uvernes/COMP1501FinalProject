@@ -104,7 +104,7 @@ func _physics_process(delta):
 			move_and_slide()
 		#will attack player if in attack range and at correct angle for hit to land
 		# (and player not dashing)
-		if ((player.position - position).length() <= 1000 and $ShootTimer.time_left == 0
+		if ((player.position - position).length() <= 800 and $ShootTimer.time_left == 0
 			and not player.dashing):
 			angle_to_face = (player.position - position).angle()
 			if abs(angle_to_face - rotation) < max_attack_angle:

@@ -94,7 +94,6 @@ position = Vector2(-288, -160)
 
 [node name="EnemySpawner" parent="EnemySpawnerStorage" instance=ExtResource("5_l1s60")]
 position = Vector2(416, -224)
-spawn_delay = 0.0
 max_enemy_count = 5
 
 [node name="StructureStorage" type="Node2D" parent="."]
