@@ -27,7 +27,10 @@ texture = ExtResource("2_duu30")
 shape = SubResource("RectangleShape2D_u54ct")
 
 [node name="BreakingInterval" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 1.5
 one_shot = true
+autostart = true
 
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
 [connection signal="timeout" from="BreakingInterval" to="." method="_on_breaking_interval_timeout"]
