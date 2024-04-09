@@ -3,7 +3,8 @@ extends CharacterBody2D
 
 @export var resource_scene: PackedScene
 
-const base_pos = Vector2(0,0) # change
+var base
+var base_state
 const distance_to_see_player = 400
 const attack_range = 100 # to start attacking
 const max_attack_angle = 0.7
@@ -25,6 +26,7 @@ const min_distance_from_player = 70 # to stop moving
 var dead = false
 var angle_to_face
 var difficulty
+var target
 var moving = true
 var attacking_base = false
 
@@ -33,12 +35,16 @@ var itemdropdistancerange = 20
 
 func _ready():
 	player = get_tree().get_current_scene().get_node("Player")
+	base = get_parent().get_parent().get_parent().get_node_or_null("Base")
 	game_controller = get_tree().get_current_scene()
 	nav_agent = $NavigationAgent2D
 	$AttackTimer.start()
 	angle_to_face = 0
 	difficulty = 1
-	make_path()
+	select_target()
+
+func base_status_changed(type): #types: "under attack", "inactive", "safe"
+	base_state = type
 
 func _physics_process(delta):
 	if attacking_base == false:
@@ -48,21 +54,13 @@ func _physics_process(delta):
 		else:
 			moving = true
 		if moving:
-			# change enemy movement accordingly
-			if (player.position - position).length() > distance_to_see_player:
-				angle_to_face = (base_pos - position).angle()
-				rotation =  lerp_angle(rotation, angle_to_face, delta * rotation_speed)
-				"""change this area to make function for determnine target"""
-				var dir = (nav_agent.get_next_path_position()-global_position).normalized()
-				velocity += (dir * accel * delta)
-			else:
-				angle_to_face = (player.position - position).angle()
-				rotation = lerp_angle(rotation, angle_to_face, delta * rotation_speed)
-				var dir = (nav_agent.get_next_path_position()-global_position).normalized()
-				velocity += (dir * accel * delta)
+			angle_to_face = (target.position - position).angle()
+			rotation = lerp_angle(rotation, angle_to_face, delta * rotation_speed)
+			
+			var dir = (nav_agent.get_next_path_position()-global_position).normalized()
+			velocity += (dir * accel * delta)
 			velocity = velocity.limit_length(MAX_SPEED)
 			move_and_slide()
-			
 		#if taking knockback:
 		elif $StunTimer.time_left > 0:
 			move_and_slide()
@@ -82,7 +80,8 @@ func _physics_process(delta):
 	#for attacking base:
 	elif $AttackTimer.time_left == 0:
 		start_attack_process()
-	
+
+# 50% chance of targeting what hit them (passed in parameter)
 # Method for receiving damage
 func take_damage(amount,knockback=Vector2.ZERO,force=0):
 	health = health - amount
@@ -143,8 +142,17 @@ func stop_attacking_base():
 	attacking_base = false
 	moving = true
 
-func make_path():
-	nav_agent.target_position = player.global_position
+func select_target():
+	if base == null:
+		target = player
+	else:
+		if (player.position - position).length() > distance_to_see_player:
+			target = base
+		else:
+			target = player
+
+func make_path(target):
+	nav_agent.target_position = target.global_position
 
 func _on_path_update_timer_timeout():
-	make_path()
+	make_path(target)

@@ -12,6 +12,7 @@ var base
 var wave_countdown
 var max_wave = 7 # make value change according to difficulty // num of bases claimed
 
+# set difficulty based on how many rooms captured from bottom of GameMap
 var cur_enemy_count = 0
 
 # Called when the node enters the scene tree for the first time.

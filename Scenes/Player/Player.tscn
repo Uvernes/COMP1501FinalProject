@@ -24,6 +24,7 @@ script = ExtResource("1_88ct0")
 bullet_scene = ExtResource("2_tj8lh")
 
 [node name="Camera2D" type="Camera2D" parent="." groups=["Player"]]
+zoom = Vector2(0.65, 0.65)
 
 [node name="Sprite2D" type="Sprite2D" parent="." groups=["Player"]]
 rotation = 1.5708

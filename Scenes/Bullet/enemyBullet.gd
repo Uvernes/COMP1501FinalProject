@@ -49,7 +49,7 @@ func handle_collision(collision: KinematicCollision2D):
 	var collider = collision.get_collider()
 	if collider != null:
 		if collider.name == "Player" && already_hit == false:
-				already_hit = true
-				collider.hit(damage)
+			already_hit = true
+			collider.hit(damage)
 		# Delete bullet if it collides with anything
 	queue_free()

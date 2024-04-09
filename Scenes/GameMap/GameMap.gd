@@ -292,7 +292,7 @@ func can_place_build(global_mouse_pos, build_id):
 		# Cannot play a torch in another torch's no build zone, to prevent torches being too close.
 		if object.is_in_group("no_torch_build_zone"):
 			if build_id == Placeable.placeables.TORCH:
-				return false 
+				return false
 			continue
 		if object.is_in_group("Player"):
 			return false

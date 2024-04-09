@@ -53,6 +53,7 @@ const bullet_stamina_use = 2
 const Bullet = preload("res://Scenes/Bullet/bullet.gd") # For type annotation
 const Placeable = preload("res://Scenes/Placeables/Placeable.gd")
 
+var enemies_following = 0
 
 func _ready():
 	position = Vector2(0,0)
@@ -214,7 +215,7 @@ func _handle_space_bar_pressed():
 		cur_stamina -= dash_stamina_use
 		stamina_changed.emit(cur_stamina)
 		#checks stamina and sets a timer for the stamina regeneration.
-		stamina_check()	
+		stamina_check()
 		
 		# Begin dash in direction player is moving (not where mouse is pointing)
 		dashing = true

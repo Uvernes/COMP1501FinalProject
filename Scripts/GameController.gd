@@ -29,12 +29,16 @@ var base
 var enemy_death_count
 var next_heal
 
+# value to store tree when it exists
+var tree
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	player = get_node("Player")
 	gameMap = get_node("GameMap")
 	room = gameMap.cur_room
 	base = room.base
+	tree = get_tree()
 	$HUD.connect("health_button_pressed", handle_upgrade.bind(0))
 	$HUD.connect("stamina_button_pressed", handle_upgrade.bind(1))
 	$HUD.connect("dmg_button_pressed", handle_upgrade.bind(2))
@@ -83,8 +87,8 @@ func _on_player_delete_requested(_global_mouse_pos):
 
 func _handle_player_death():
 		#game over
-		print("Player died: Game Over")
-		get_tree().change_scene_to_file("res://Scenes/Menus/MainMenu/MainMenu.tscn")
+		#print("Player died: Game Over")
+		tree.change_scene_to_file("res://Scenes/Menus/MainMenu/MainMenu.tscn")
 
 
 func handle_upgrade(type):
