@@ -559,3 +559,9 @@ func get_num_bases_captured():
 			num_bases_captured += 1
 	return num_bases_captured
 	
+
+# Returns true iff game won
+func is_game_won():
+	return get_num_bases_captured() == total_bases() 
+
+

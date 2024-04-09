@@ -128,8 +128,13 @@ func handle_base_captured(room):
 	print("Base captured!")
 	$HUD.update_bases_captured()
 	
-	# TODO - check if game won!
-	
+	if $GameMap.is_game_won():
+		handle_game_won()
+
+
+# TODO - implement
+func handle_game_won():
+	pass
 
 func heal_player(amount):
 	player.heal(amount)
