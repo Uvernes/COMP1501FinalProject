@@ -33,9 +33,9 @@ func spawn_enemy():
 	var enemy = enemy_scene.instantiate()
 	enemy.add_to_group("Enemy")
 	enemy.get_node("EnemyHead").add_to_group("EnemyHeads")
+	enemy.position = global_position
 	get_parent().get_parent().add_child(enemy)
 	#add_child(enemy)
-	enemy.position = global_position
 	cur_enemy_count += 1
 
 func _on_child_exiting_tree(node):
