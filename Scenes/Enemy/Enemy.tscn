@@ -16,7 +16,6 @@ size = Vector2(12.4167, 16)
 [node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
 z_index = 1
 collision_mask = 3
-motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_2m10n")
 resource_scene = ExtResource("2_jdubo")

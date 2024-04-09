@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://7lgbxm51b76s"]
+[gd_scene load_steps=6 format=3 uid="uid://7lgbxm51b76s"]
 
 [ext_resource type="Script" path="res://Scenes/GameMap/GameMap.gd" id="3_0vj0n"]
 [ext_resource type="PackedScene" uid="uid://do23gcptel8rb" path="res://Scenes/GameMap/HoverTile.tscn" id="3_pkgeg"]
@@ -6,6 +6,12 @@
 
 [sub_resource type="TileSet" id="TileSet_67emb"]
 tile_size = Vector2i(64, 64)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_m67gq"]
+vertices = PackedVector2Array(1757, 1756, -2063, 1756, -2063, -2064, 1757, -2064)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-2073, -2074, 1767, -2074, 1767, 1766, -2073, 1766)])
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [node name="GameMap" type="Node2D"]
 script = ExtResource("3_0vj0n")
@@ -21,3 +27,6 @@ format = 2
 [node name="SpawnTile" parent="." instance=ExtResource("4_cbo4k")]
 
 [node name="Rooms" type="Node2D" parent="."]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_m67gq")

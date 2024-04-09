@@ -1,6 +1,7 @@
-[gd_resource type="TileSet" load_steps=16 format=3 uid="uid://61os73epfg21"]
+[gd_resource type="TileSet" load_steps=18 format=3 uid="uid://61os73epfg21"]
 
 [ext_resource type="Texture2D" uid="uid://i3h1qvnewqnn" path="res://Assets/CompletedTileMap/TileMapLarge.png" id="1_1svai"]
+[ext_resource type="PackedScene" uid="uid://ct5lgyoushw53" path="res://Scenes/WorldStructures/CaveWall.tscn" id="1_41cb7"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_11s3b"]
 vertices = PackedVector2Array(32, 32, -32, 32, -32, -32, 32, -32)
@@ -197,8 +198,12 @@ texture_region_size = Vector2i(64, 64)
 5:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 5:7/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_iqwlq")
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_0qxtk"]
+scenes/1/scene = ExtResource("1_41cb7")
+
 [resource]
 tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 1
 navigation_layer_0/layers = 1
 sources/1 = SubResource("TileSetAtlasSource_wypmv")
+sources/2 = SubResource("TileSetScenesCollectionSource_0qxtk")
