@@ -46,3 +46,10 @@ func shoot_enemy(enemy_pos):
 	bullet.init(position + 50*bullet_direction, position.angle_to_point(enemy_pos), bullet_speed, bullet_direction, bullet_damage)
 	bullet.fire()
 
+# instant death upon enemy contact
+func _on_body_area_entered(area):
+	if area.is_in_group("EnemyHeads"):
+		$Sprite2D.set_modulate(Color(1, 0, 0, 1))
+		await get_tree().create_timer(0.2).timeout
+		$Sprite2D.set_modulate(Color(1, 1, 1, 1))
+		queue_free()
