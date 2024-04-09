@@ -7,3 +7,7 @@ func _ready():
 	super()
 	build_id = placeables.PLAYER_WALL
 
+
+
+func _on_breaking_interval_timeout():
+	pass # Replace with function body.
