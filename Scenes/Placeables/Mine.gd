@@ -11,7 +11,9 @@ func _ready():
 
 func _on_body_entered(body):
 	if body != null:
-		if body.is_in_group("Enemy") || body.name == "Player":
+		if body.is_in_group("Enemy") || body.name == "Player" || body.is_in_group("player_projectile") || body.is_in_group("enemy_projectile"):
+			if body.is_in_group("player_projectile") || body.is_in_group("enemy_projectile"):
+				body.queue_free()
 			explode()
 
 func explode():
