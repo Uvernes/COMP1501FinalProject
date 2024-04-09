@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://npbjmbt4um60"]
+[gd_scene load_steps=26 format=3 uid="uid://npbjmbt4um60"]
 
 [ext_resource type="Script" path="res://Scenes/HUD/MainHUD/HUD.gd" id="1_niqmd"]
 [ext_resource type="Texture2D" uid="uid://0sdnhlf8y0at" path="res://Assets/Theme/modeicon3.png" id="2_srhl4"]
@@ -57,7 +57,7 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 shadow_size = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lclv5"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mtw7w"]
 bg_color = Color(0.556863, 0.0156863, 0, 1)
 border_width_left = 12
 border_width_top = 12
@@ -70,7 +70,7 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m23fn"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pkec5"]
 bg_color = Color(0.835294, 0, 0, 1)
 border_width_left = 5
 border_width_top = 5
@@ -82,6 +82,11 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 shadow_size = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_iwm3g"]
+font_size = 26
+font_color = Color(0.960784, 0, 0.0156863, 1)
+outline_size = 4
 
 [sub_resource type="LabelSettings" id="LabelSettings_isqni"]
 line_spacing = 0.0
@@ -194,12 +199,29 @@ show_percentage = false
 offset_left = 455.0
 offset_top = 15.0
 offset_right = 695.0
-offset_bottom = 42.0
-theme_override_styles/background = SubResource("StyleBoxFlat_lclv5")
-theme_override_styles/fill = SubResource("StyleBoxFlat_m23fn")
+offset_bottom = 54.0
+theme_override_styles/background = SubResource("StyleBoxFlat_mtw7w")
+theme_override_styles/fill = SubResource("StyleBoxFlat_pkec5")
 step = 1.0
 value = 100.0
-show_percentage = false
+
+[node name="WaveInfo" type="Label" parent="PopulationBar"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -135.0
+offset_top = 45.0
+offset_right = 135.0
+offset_bottom = 75.0
+grow_horizontal = 2
+text = "Wave 1: 20:00"
+label_settings = SubResource("LabelSettings_iwm3g")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WaveTimer" type="Timer" parent="PopulationBar"]
+wait_time = 20.0
 
 [node name="HotBar" type="Control" parent="."]
 layout_mode = 3
@@ -1021,57 +1043,46 @@ text = "Warning! Leaving while your base is under attack will reset it."
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ProgressDisplay" type="Control" parent="."]
+[node name="ProgressDisplay" type="VBoxContainer" parent="."]
 modulate = Color(1, 1, 1, 0.662745)
-layout_mode = 3
-anchors_preset = 0
+offset_left = 15.0
+offset_top = 170.0
+offset_right = 175.0
+offset_bottom = 210.0
+theme_override_constants/separation = -5
 
 [node name="RoomsVisited" type="Control" parent="ProgressDisplay"]
-anchors_preset = 0
-offset_left = 94.0
-offset_top = 180.0
-offset_right = 134.0
-offset_bottom = 220.0
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="TextLabel" type="Label" parent="ProgressDisplay/RoomsVisited"]
-layout_mode = 0
-offset_left = -73.0
-offset_top = -5.0
-offset_right = 87.0
-offset_bottom = 14.0
-text = "Rooms Visited:"
-
-[node name="NumbersLabel" type="Label" parent="ProgressDisplay/RoomsVisited"]
-layout_mode = 0
-offset_left = 37.0
-offset_top = -4.0
-offset_right = 78.0
-offset_bottom = 15.0
-text = "0/10"
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Rooms Visited: 0/10"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="BasesCaptured" type="Control" parent="ProgressDisplay"]
-anchors_preset = 0
-offset_left = 67.0
-offset_top = 203.0
-offset_right = 107.0
-offset_bottom = 243.0
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="TextLabel" type="Label" parent="ProgressDisplay/BasesCaptured"]
-layout_mode = 0
-offset_left = -55.0
-offset_top = -10.0
-offset_right = 62.0
-offset_bottom = 9.0
-text = "Bases captured:"
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Bases Captured: 0/6
+"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="NumbersLabel" type="Label" parent="ProgressDisplay/BasesCaptured"]
-layout_mode = 0
-offset_left = 64.0
-offset_top = -9.0
-offset_right = 105.0
-offset_bottom = 10.0
-text = "0/5"
-
+[connection signal="timeout" from="PopulationBar/WaveTimer" to="." method="_on_wave_timer_timeout"]
 [connection signal="timeout" from="HideBuildSidebarTimer" to="." method="_on_hide_build_sidebar_timer_timeout"]
 [connection signal="focus_entered" from="UpgradeMenu" to="." method="_on_upgrade_menu_focus_entered"]
 [connection signal="pressed" from="UpgradeMenu/UpgradeHealth/Button" to="." method="_on_health_button_pressed"]
