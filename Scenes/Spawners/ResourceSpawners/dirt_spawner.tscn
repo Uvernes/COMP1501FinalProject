@@ -1,12 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://bjdqvr0d6xkj3"]
+[gd_scene load_steps=5 format=3 uid="uid://bjdqvr0d6xkj3"]
 
 [ext_resource type="Script" path="res://Scenes/Spawners/ResourceSpawners/dirt_spawner.gd" id="1_p26j0"]
 [ext_resource type="PackedScene" uid="uid://b6imdyagxnjg7" path="res://Scenes/Resources/resource.tscn" id="2_ujj8b"]
+[ext_resource type="Texture2D" uid="uid://cpn7xhea6ecfv" path="res://Assets/Buildings/EnemyBuildings/hole-spawner.png" id="3_co0lj"]
 
-[node name="DirtSpawner" type="Node2D" groups=["Obstruction"]]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ljmpi"]
+size = Vector2(64, 64)
+
+[node name="DirtSpawner" type="Area2D" groups=["Obstruction"]]
 position = Vector2(1, 0)
 script = ExtResource("1_p26j0")
 resource_scene = ExtResource("2_ujj8b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ljmpi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("3_co0lj")
 
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 20.0

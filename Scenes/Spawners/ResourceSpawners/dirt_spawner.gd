@@ -15,6 +15,5 @@ func _on_spawn_timer_timeout():
 	add_child(dirt)
 
 func _on_child_exiting_tree(node):
-	if node.name != "SpawnTimer":
-		if node.type == "dirt":
-			$SpawnTimer.start()
+	if node.name == "Resource":
+		$SpawnTimer.start()
