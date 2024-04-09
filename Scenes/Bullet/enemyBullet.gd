@@ -13,7 +13,8 @@ var moving: bool = false # moving flag used to know when bullet is active
 var starting_pos: Vector2 # used to keep track of distance traveled by bullet since start
 # -lifespan used to keep track of when to make the bullet de-spawn/disappear
 # -treating lifespan as distance that diminishes (to compare to enemy engage radius)
-var bullet_lifespan = 280
+var bullet_lifespan = 400
+var already_hit
 
 func init(position, rotation, speed, direction, damage, bullet_lifespan=bullet_lifespan):
 	self.position = position
@@ -23,6 +24,7 @@ func init(position, rotation, speed, direction, damage, bullet_lifespan=bullet_l
 	self.direction = direction # Direction bullet will move in same as its rotation
 	self.damage = damage
 	self.bullet_lifespan = bullet_lifespan
+	already_hit = false
 	
 func fire():
 	moving = true
@@ -46,7 +48,8 @@ func _physics_process(_delta):
 func handle_collision(collision: KinematicCollision2D):
 	var collider = collision.get_collider()
 	if collider != null:
-		if collider.name == "Player":
+		if collider.name == "Player" && already_hit == false:
+				already_hit = true
 				collider.hit(damage)
 		# Delete bullet if it collides with anything
 	queue_free()

@@ -1030,6 +1030,7 @@ offset_bottom = 14.0
 text = "Rooms Visited:"
 
 [node name="NumbersLabel" type="Label" parent="ProgressDisplay/RoomsVisited"]
+layout_mode = 0
 offset_left = 37.0
 offset_top = -4.0
 offset_right = 78.0
@@ -1052,6 +1053,7 @@ offset_bottom = 9.0
 text = "Bases captured:"
 
 [node name="NumbersLabel" type="Label" parent="ProgressDisplay/BasesCaptured"]
+layout_mode = 0
 offset_left = 64.0
 offset_top = -9.0
 offset_right = 105.0

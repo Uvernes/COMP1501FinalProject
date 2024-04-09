@@ -6,7 +6,7 @@ extends CharacterBody2D
 @export var bullet_scene: PackedScene
 
 const base_pos = Vector2(0,0) # change
-const distance_to_see_player = 400
+const distance_to_see_player = 500
 const attack_range = 100 # to start attacking
 const max_attack_angle = 0.5
 
@@ -24,6 +24,7 @@ const damage = 2
 const min_distance_from_player = 70 # to stop moving
 var bullet_speed = 450
 var bullet_damage = 1
+var shoot_type #determines what pattern enemy will shoot in
 
 # enemy state
 var dead = false
@@ -43,6 +44,9 @@ func _ready():
 	$ShootTimer.start()
 	angle_to_face = 0
 	difficulty = 1
+	var random = RandomNumberGenerator.new()
+	shoot_type = random.randi_range(0,2) #randomizes shooting behaviour
+	print(shoot_type)
 	make_path()
 
 func _physics_process(delta):
@@ -79,7 +83,7 @@ func _physics_process(delta):
 			move_and_slide()
 		#will attack player if in attack range and at correct angle for hit to land
 		# (and player not dashing)
-		if ((player.position - position).length() <= 800 and $ShootTimer.time_left == 0
+		if ((player.position - position).length() <= 1000 and $ShootTimer.time_left == 0
 			and not player.dashing):
 			angle_to_face = (player.position - position).angle()
 			if abs(angle_to_face - rotation) < max_attack_angle:
@@ -127,13 +131,40 @@ func take_damage(amount,knockback=Vector2.ZERO,force=0):
 	move_and_slide()
 
 func shoot():
-	var bullet = bullet_scene.instantiate()
-	# add bullet as a child to keep track of its existence
-	$BulletStorage.add_child(bullet)
-	# we create a direction vector to move appropriately. It is the direction of the mouse pointer from the player
-	var bullet_direction = (player.position - position).normalized()
-	bullet.init(position, angle_to_face, bullet_speed, bullet_direction, bullet_damage)
-	bullet.fire()
+	var bullet
+	var bullet_direction
+	if shoot_type == 0 || 1:
+		bullet = bullet_scene.instantiate()
+		# add bullet as a child to keep track of its existence
+		$BulletStorage.add_child(bullet)
+		# we create a direction vector to move appropriately. It is the direction of the mouse pointer from the player
+		bullet_direction = (player.position - position).normalized()
+		bullet.init(position, angle_to_face, bullet_speed, bullet_direction, bullet_damage)
+		bullet.fire()
+	if shoot_type == 1:
+		bullet = bullet_scene.instantiate()
+		$BulletStorage.add_child(bullet)
+		bullet_direction = ((player.position - position).normalized()).rotated(0.4)
+		bullet.init(position, angle_to_face + 0.4, bullet_speed, bullet_direction, bullet_damage)
+		bullet.fire()
+		bullet = bullet_scene.instantiate()
+		$BulletStorage.add_child(bullet)
+		bullet_direction = ((player.position - position).normalized()).rotated(-0.4)
+		bullet.init(position, angle_to_face - 0.4, bullet_speed, bullet_direction, bullet_damage)
+		bullet.fire()
+	elif shoot_type == 2:
+		bullet = bullet_scene.instantiate()
+		$BulletStorage.add_child(bullet)
+		bullet_direction = ((player.position - position).normalized()).rotated(1.5)
+		bullet.init(position, angle_to_face + 1.5, bullet_speed, bullet_direction, bullet_damage)
+		bullet.fire()
+		bullet = bullet_scene.instantiate()
+		$BulletStorage.add_child(bullet)
+		bullet_direction = ((player.position - position).normalized()).rotated(-1.5)
+		bullet.init(position, angle_to_face - 1.5, bullet_speed, bullet_direction, bullet_damage)
+		bullet.fire()
+		bullet = bullet_scene.instantiate()
+		
 	$ShootTimer.start()
 
 # handle enemy attack when possible

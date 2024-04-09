@@ -30,6 +30,7 @@ func _ready():
 	sprite.texture = preload("res://Assets/Buildings/HomeBases/emptybase2.png")
 
 func update_sprite_based_on_population():
+
 	var sprite = get_node(sprite_node)
 	if current_pop > 65:
 		sprite.texture = preload("res://Assets/Buildings/HomeBases/anthomebase.png")
