@@ -82,7 +82,7 @@ color = Color(0.952941, 0.898039, 0.768627, 1)
 energy = 3.0
 blend_mode = 2
 texture = ExtResource("3_t2iuo")
-texture_scale = 8.0
+texture_scale = 16.0
 
 [node name="NoTorchBuildZone" type="Area2D" parent="." groups=["no_torch_build_zone"]]
 

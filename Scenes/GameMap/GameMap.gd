@@ -37,10 +37,15 @@ const tutorial_rooms = [
 # Add all possible non-tutorial rooms 
 const main_room_scene_paths = 	{
 	"with_base": [
-		"res://Scenes/GameMap/Rooms/Main/WithBase/template_room_with_base.tscn",
+		"res://Scenes/GameMap/Rooms/Main/WithBase/room_with_base_1.tscn",
+		"res://Scenes/GameMap/Rooms/Main/WithBase/room_with_base_10.tscn",
 	],
 	"no_base": [
-		"res://Scenes/GameMap/Rooms/Main/NoBase/template_room_no_base.tscn"
+		"res://Scenes/GameMap/Rooms/Main/NoBase/room_no_base_1.tscn",
+		"res://Scenes/GameMap/Rooms/Main/NoBase/room_no_base_2.tscn",
+		"res://Scenes/GameMap/Rooms/Main/NoBase/room_no_base_3.tscn",
+		"res://Scenes/GameMap/Rooms/Main/NoBase/room_no_base_4.tscn",
+		
 	]	
 }
 	
