@@ -94,59 +94,59 @@ layer_0/tile_data = PackedInt32Array(1966078, 1, 65536, 1966079, 1, 65536, 19005
 [node name="ResourceSpawnerStorage" type="Node" parent="."]
 
 [node name="DirtSpawner" parent="ResourceSpawnerStorage" instance=ExtResource("4_novq3")]
-position = Vector2(-1268, -51)
+position = Vector2(-1248, -32)
 
 [node name="LeavesSpawner" parent="ResourceSpawnerStorage" instance=ExtResource("5_svj8v")]
-position = Vector2(-1002, -1291)
+position = Vector2(-992, -1312)
 
 [node name="StoneSpawner" parent="ResourceSpawnerStorage" instance=ExtResource("9_agvyq")]
-position = Vector2(1421, -690)
+position = Vector2(1440, -672)
 
 [node name="TempLeavesSpawner" parent="ResourceSpawnerStorage" instance=ExtResource("5_svj8v")]
-position = Vector2(-36, 376)
+position = Vector2(-32, 352)
 
 [node name="TempLeavesSpawner2" parent="ResourceSpawnerStorage" instance=ExtResource("5_svj8v")]
-position = Vector2(380, -233)
+position = Vector2(352, -224)
 
 [node name="TempDirtSpawner" parent="ResourceSpawnerStorage" instance=ExtResource("4_novq3")]
-position = Vector2(-360, 113)
+position = Vector2(-352, 96)
 
 [node name="TempDirtSpawner2" parent="ResourceSpawnerStorage" instance=ExtResource("4_novq3")]
-position = Vector2(-374, 845)
+position = Vector2(-352, 864)
 
 [node name="TempStoneSpawner" parent="ResourceSpawnerStorage" instance=ExtResource("9_agvyq")]
-position = Vector2(-817, 21)
+position = Vector2(-800, 32)
 
 [node name="TempStoneSpawner3" parent="ResourceSpawnerStorage" instance=ExtResource("9_agvyq")]
-position = Vector2(367, 136)
+position = Vector2(352, 160)
 
 [node name="TempStoneSpawner2" parent="ResourceSpawnerStorage" instance=ExtResource("9_agvyq")]
-position = Vector2(-316, -318)
+position = Vector2(-288, -352)
 
 [node name="EnemySpawnerStorage" type="Node" parent="."]
 
 [node name="EnemySpawner" parent="EnemySpawnerStorage" instance=ExtResource("9_stskf")]
-position = Vector2(-1085, -1047)
+position = Vector2(-1120, -1056)
 spawn_delay = 5
 max_enemy_count = 5
 
 [node name="EnemySpawner2" parent="EnemySpawnerStorage" instance=ExtResource("9_stskf")]
-position = Vector2(-403, 699)
+position = Vector2(-416, 672)
 spawn_delay = 5
 max_enemy_count = 5
 
 [node name="EnemySpawner3" parent="EnemySpawnerStorage" instance=ExtResource("9_stskf")]
-position = Vector2(292, -950)
+position = Vector2(288, -992)
 spawn_delay = 8
 max_enemy_count = 5
 
 [node name="EnemySpawner4" parent="EnemySpawnerStorage" instance=ExtResource("9_stskf")]
-position = Vector2(1292, 241)
+position = Vector2(1248, 224)
 spawn_delay = 8
 max_enemy_count = 5
 
 [node name="EnemySpawner5" parent="EnemySpawnerStorage" instance=ExtResource("9_stskf")]
-position = Vector2(631, 940)
+position = Vector2(-736, 288)
 spawn_delay = 8
 max_enemy_count = 5
 
