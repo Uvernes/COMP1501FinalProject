@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bhua62guu3842"]
+[gd_scene load_steps=14 format=3 uid="uid://b58ucrs6057p2"]
 
 [ext_resource type="Script" path="res://Scenes/Placeables/UnbreakableTorch.gd" id="1_myu4d"]
 [ext_resource type="Texture2D" uid="uid://gvpo1l6p8ste" path="res://Assets/Buildings/PlayerBuildings/torch5.png" id="2_sy7t1"]

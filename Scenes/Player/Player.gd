@@ -211,10 +211,8 @@ func _handle_right_mouse_click():
 func _handle_space_bar_pressed():
 	if dashing:
 		return 
-	if (
-		not dashing and $DashCoolDownTimer.is_stopped() and 
+	if (not dashing and $DashCoolDownTimer.is_stopped() and 
 			cur_stamina >= dash_stamina_use and velocity.length() > 0):
-				
 		direction = velocity.normalized()
 		
 		# Reduce the amount of stamina a player has and sends signal to HUD
