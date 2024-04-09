@@ -22,7 +22,6 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(131, 68)
 
 [node name="GameMap" parent="." instance=ExtResource("5_m7ats")]
-main_map_num_bases = 5
 
 [node name="Darkness" parent="." instance=ExtResource("6_nweq1")]
 color = Color(0.0196078, 0.0196078, 0.0196078, 1)

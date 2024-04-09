@@ -288,6 +288,12 @@ func can_place_build(global_mouse_pos, build_id):
 
 	#print("B------")
 	for object in $HoverTile.objects_in_area:
+		# Special case for handling torches and the limit on # of pointlights.
+		# Cannot play a torch in another torch's no build zone, to prevent torches being too close.
+		if object.is_in_group("no_torch_build_zone"):
+			if build_id == Placeable.placeables.TORCH:
+				return false 
+			continue
 		if object.is_in_group("Player"):
 			return false
 		if object.is_in_group("Enemy"):
@@ -296,6 +302,7 @@ func can_place_build(global_mouse_pos, build_id):
 			return false
 		if object.is_in_group("Obstruction"):
 			return false
+
 	return true
 	
 
