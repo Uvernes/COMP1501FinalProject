@@ -164,6 +164,7 @@ func base_status_changed(type):
 		$PopulationBar.hide()
 		$PopulationBar/WaveTimer.stop()
 		$PopulationBar/WaveTimer.wait_time = 20
+		#game_map.
 		wave_num = 1
 	if type == "under attack":
 		$PopulationBar.show()
@@ -206,9 +207,6 @@ func show_warning(state):
 		$Warning.hide()
 
 func _on_wave_timer_timeout():
-	print("HUD trigger")
-	print(wave_num)
-	print(max_waves)
 	if wave_num < max_waves && $PopulationBar.is_visible():
 		wave_num += 1
 		$PopulationBar/WaveTimer.start()
