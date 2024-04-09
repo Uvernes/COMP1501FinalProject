@@ -17,7 +17,6 @@ var enemy_scenes = [enemy_melee_scene, enemy_ranged_scene]
 var melee_prob = 1
 var ranged_prob = melee_prob - 0.7
 
-var random = RandomNumberGenerator.new()
 var base
 
 # vars for wave event -> value varies according to difficulty // num of bases claimed
@@ -51,7 +50,7 @@ func spawn_enemy():
 	elif (include_ranged && !(include_melee)):
 		enemy = enemy_ranged_scene.instantiate()
 	else:
-		var index = random.randf()
+		var index = randf()
 		if index <= ranged_prob:
 			enemy = enemy_scenes[1].instantiate()
 		elif index <= melee_prob:

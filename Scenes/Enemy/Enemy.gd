@@ -4,15 +4,13 @@ extends CharacterBody2D
 @export var resource_scene: PackedScene
 @onready var _animated_sprite = $AnimatedSprite2D
 
-var base
-var base_state
-const distance_to_see_player = 400
 const attack_range = 100 # to start attacking
 const max_attack_angle = 0.7
 
 # external references
 var player: CharacterBody2D 
 var nav_agent: NavigationAgent2D
+var base
 var game_controller
 
 # enemy stats
@@ -39,10 +37,14 @@ func _ready():
 	base = get_parent().get_parent().get_parent().get_node_or_null("Base")
 	game_controller = get_tree().get_current_scene()
 	nav_agent = $NavigationAgent2D
+	
+	if base != null:
+		base.connect("status_changed", base_status_changed)
+	target = player
+	
 	$AttackTimer.start()
 	angle_to_face = 0
 	difficulty = 1
-	select_target()
 	
 func _process(_delta):
 	if moving:
@@ -51,7 +53,15 @@ func _process(_delta):
 		_animated_sprite.stop()
 
 func base_status_changed(type): #types: "under attack", "inactive", "safe"
-	base_state = type
+	if type == "inactive":
+		target = player
+	elif type == "safe":
+		queue_free()
+	elif type == "under attack":
+		if (player.global_position - global_position).length() > (base.global_position - global_position).length():
+			target = base
+		else:
+			target = player
 
 func _physics_process(delta):
 	if attacking_base == false:
@@ -88,11 +98,9 @@ func _physics_process(delta):
 	elif $AttackTimer.time_left == 0:
 		start_attack_process()
 
-# 50% chance of targeting what hit them (passed in parameter)
 # Method for receiving damage
-func take_damage(amount,knockback=Vector2.ZERO,force=0):
+func take_damage(amount,attacker,knockback=Vector2.ZERO,force=0):
 	health = health - amount
-	stop_attacking_base() #remove to prioritze attacking base over player
 	if (health <= 0):
 		# create mobdrop on enemy death
 		var mobdrop = resource_scene.instantiate()
@@ -123,6 +131,10 @@ func take_damage(amount,knockback=Vector2.ZERO,force=0):
 		self.dead = true
 		game_controller.update_enemy_death_count(difficulty)
 		queue_free()
+	# 40% chance of changing target upon taking damage
+	if randf() <= 0.4:
+		stop_attacking_base()
+		target = attacker
 	velocity = (knockback * accel * force * get_physics_process_delta_time())#+= makes knockback look very inconsistent
 	$StunTimer.start()
 	move_and_slide()
@@ -148,15 +160,6 @@ func attack_base():
 func stop_attacking_base():
 	attacking_base = false
 	moving = true
-
-func select_target():
-	if base == null:
-		target = player
-	else:
-		if (player.position - position).length() > distance_to_see_player:
-			target = base
-		else:
-			target = player
 
 func make_path(target):
 	nav_agent.target_position = target.global_position

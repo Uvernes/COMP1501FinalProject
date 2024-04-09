@@ -2,19 +2,16 @@ extends CharacterBody2D
 
 
 @export var resource_scene: PackedScene
-
 @export var bullet_scene: PackedScene
-
 @onready var _animated_sprite = $AnimatedSprite2D
 
-const base_pos = Vector2(0,0) # change
-const distance_to_see_player = 500
 const attack_range = 100 # to start attacking
 const max_attack_angle = 0.5
 
 # external references
 var player: CharacterBody2D 
 var nav_agent: NavigationAgent2D
+var base
 var game_controller
 
 # enemy stats
@@ -32,6 +29,7 @@ var shoot_type #determines what pattern enemy will shoot in
 var dead = false
 var angle_to_face
 var difficulty
+var target
 var moving = true
 var attacking_base = false
 
@@ -40,22 +38,36 @@ var itemdropdistancerange = 20
 
 func _ready():
 	player = get_tree().get_current_scene().get_node("Player")
+	base = get_parent().get_parent().get_parent().get_node_or_null("Base")
 	game_controller = get_tree().get_current_scene()
 	nav_agent = $NavigationAgent2D
+	
+	if base != null:
+		base.connect("status_changed", base_status_changed)
+	target = player
+	
 	$AttackTimer.start()
 	$ShootTimer.start()
 	angle_to_face = 0
 	difficulty = 1
-	var random = RandomNumberGenerator.new()
-	shoot_type = random.randi_range(0,2) #randomizes shooting behaviour
-	print(shoot_type)
-	make_path()
+	shoot_type = randi_range(0,2) #randomizes shooting behaviour/pattern
 
 func _process(_delta):
 	if moving:
 		_animated_sprite.play()
 	else:
 		_animated_sprite.stop()
+
+func base_status_changed(type): #types: "under attack", "inactive", "safe"
+	if type == "inactive":
+		target = player
+	elif type == "safe":
+		queue_free()
+	elif type == "under attack":
+		if (player.global_position - global_position).length() > (base.global_position - global_position).length():
+			target = base
+		else:
+			target = player
 
 func _physics_process(delta):
 	if attacking_base == false:
@@ -65,21 +77,13 @@ func _physics_process(delta):
 		else:
 			moving = true
 		if moving:
-			# change enemy movement accordingly
-			if (player.position - position).length() > distance_to_see_player:
-				angle_to_face = (base_pos - position).angle()
-				rotation =  lerp_angle(rotation, angle_to_face, delta * rotation_speed)
-				"""change this area to make function for determnine target"""
-				var dir = (nav_agent.get_next_path_position()-global_position).normalized()
-				velocity += (dir * accel * delta)
-			else:
-				angle_to_face = (player.position - position).angle()
-				rotation = lerp_angle(rotation, angle_to_face, delta * rotation_speed)
-				var dir = (nav_agent.get_next_path_position()-global_position).normalized()
-				velocity += (dir * accel * delta)
+			angle_to_face = (target.position - position).angle()
+			rotation = lerp_angle(rotation, angle_to_face, delta * rotation_speed)
+			
+			var dir = (nav_agent.get_next_path_position()-global_position).normalized()
+			velocity += (dir * accel * delta)
 			velocity = velocity.limit_length(MAX_SPEED)
 			move_and_slide()
-			
 		#if taking knockback:
 		elif $StunTimer.time_left > 0:
 			move_and_slide()
@@ -101,9 +105,8 @@ func _physics_process(delta):
 		start_attack_process()
 	
 # Method for receiving damage
-func take_damage(amount,knockback=Vector2.ZERO,force=0):
+func take_damage(amount,attacker,knockback=Vector2.ZERO,force=0):
 	health = health - amount
-	stop_attacking_base() #remove to prioritze attacking base over player
 	if (health <= 0):
 		# create mobdrop on enemy death
 		var mobdrop = resource_scene.instantiate()
@@ -134,6 +137,10 @@ func take_damage(amount,knockback=Vector2.ZERO,force=0):
 		self.dead = true
 		game_controller.update_enemy_death_count(difficulty)
 		queue_free()
+	# 40% chance of changing target upon taking damage
+	if randf() <= 0.4:
+		stop_attacking_base()
+		target = attacker
 	velocity = (knockback * accel * force * get_physics_process_delta_time())#+= makes knockback look very inconsistent
 	$StunTimer.start()
 	move_and_slide()
@@ -197,8 +204,8 @@ func stop_attacking_base():
 	attacking_base = false
 	moving = true
 
-func make_path():
-	nav_agent.target_position = player.global_position
+func make_path(target):
+	nav_agent.target_position = target.global_position
 
 func _on_path_update_timer_timeout():
-	make_path()
+	make_path(target)
