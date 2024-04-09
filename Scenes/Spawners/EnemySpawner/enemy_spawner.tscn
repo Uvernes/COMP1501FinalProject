@@ -22,6 +22,8 @@ one_shot = true
 
 [node name="WaveTimer" type="Timer" parent="."]
 wait_time = 20.0
+one_shot = true
 
 [connection signal="child_exiting_tree" from="." to="." method="_on_child_exiting_tree"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="WaveTimer" to="." method="_on_wave_timer_timeout"]
