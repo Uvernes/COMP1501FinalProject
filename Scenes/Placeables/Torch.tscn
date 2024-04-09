@@ -61,6 +61,7 @@ shape = SubResource("RectangleShape2D_hfvhp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.317647, 0.317647, 0.317647, 1)
+z_index = 4
 texture_filter = 1
 position = Vector2(0, 32)
 scale = Vector2(4, 4)
@@ -68,6 +69,7 @@ texture = ExtResource("2_35jsc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 modulate = Color(0.521569, 0.521569, 0.521569, 1)
+z_index = 4
 texture_filter = 1
 position = Vector2(0, -44)
 scale = Vector2(4, 4)
