@@ -302,7 +302,8 @@ func can_place_build(global_mouse_pos, build_id):
 			return false
 		if object.is_in_group("Obstruction"):
 			return false
-
+		if object.is_in_group("Base"):
+			return false
 	return true
 	
 
