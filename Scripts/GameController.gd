@@ -146,9 +146,8 @@ func heal_player(amount):
 
 func update_enemy_death_count(enemy_difficulty):
 	enemy_death_count += 1
-	next_heal += enemy_difficulty
+	next_heal += enemy_difficulty + 2
 	if next_heal >= 8:
 		next_heal = next_heal - 8
-		player.heal(1)
-	
+	player.heal(next_heal)
 	
