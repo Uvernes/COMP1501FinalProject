@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://btfmradpwqq4b"
-path="res://.godot/imported/antabdomen.png-b2c8fa768df2c8f61fc0391c3de1ab8d.ctex"
+uid="uid://bfquy47o2cy2a"
+path="res://.godot/imported/spit_bullet_enemy.png-b85f5ea19249dc00bdd9832c5d86c823.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Bugs/antabdomen.png"
-dest_files=["res://.godot/imported/antabdomen.png-b2c8fa768df2c8f61fc0391c3de1ab8d.ctex"]
+source_file="res://Assets/Sprites/spit_bullet_enemy.png"
+dest_files=["res://.godot/imported/spit_bullet_enemy.png-b85f5ea19249dc00bdd9832c5d86c823.ctex"]
 
 [params]
 

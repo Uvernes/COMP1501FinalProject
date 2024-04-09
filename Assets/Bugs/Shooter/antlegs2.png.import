@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxfqada640d0p"
-path="res://.godot/imported/antheah.png-75eb326fedb7684bf37f0165af12462b.ctex"
+uid="uid://cja47jyqy7pou"
+path="res://.godot/imported/antlegs2.png-39b94959483098b1ffe4fb37fd224ca3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Bugs/antheah.png"
-dest_files=["res://.godot/imported/antheah.png-75eb326fedb7684bf37f0165af12462b.ctex"]
+source_file="res://Assets/Bugs/Shooter/antlegs2.png"
+dest_files=["res://.godot/imported/antlegs2.png-39b94959483098b1ffe4fb37fd224ca3.ctex"]
 
 [params]
 

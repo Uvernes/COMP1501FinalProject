@@ -5,11 +5,11 @@
 [ext_resource type="PackedScene" uid="uid://bmtagqqgva46x" path="res://Scenes/Bullet/enemyBullet.tscn" id="3_vuwpt"]
 [ext_resource type="Script" path="res://Scenes/Enemy/EnemyHead.gd" id="4_mft1k"]
 [ext_resource type="Texture2D" uid="uid://b5mmkqcewmlt8" path="res://Assets/Bugs/Ants/empty.png" id="4_u4img"]
-[ext_resource type="Texture2D" uid="uid://cja47jyqy7pou" path="res://Assets/Bugs/antlegs2.png" id="5_xa5jt"]
-[ext_resource type="Texture2D" uid="uid://1b3oqwwapmi5" path="res://Assets/Bugs/antlegs.png" id="6_bvv8m"]
-[ext_resource type="Texture2D" uid="uid://c64x05bftk0l3" path="res://Assets/Bugs/antthorax.png" id="7_jvkso"]
-[ext_resource type="Texture2D" uid="uid://btfmradpwqq4b" path="res://Assets/Bugs/antabdomen.png" id="8_3k7nh"]
-[ext_resource type="Texture2D" uid="uid://cxfqada640d0p" path="res://Assets/Bugs/antheah.png" id="10_vqmdl"]
+[ext_resource type="Texture2D" uid="uid://cja47jyqy7pou" path="res://Assets/Bugs/Shooter/antlegs2.png" id="5_m67ps"]
+[ext_resource type="Texture2D" uid="uid://1b3oqwwapmi5" path="res://Assets/Bugs/Shooter/antlegs.png" id="6_ebh2e"]
+[ext_resource type="Texture2D" uid="uid://c64x05bftk0l3" path="res://Assets/Bugs/Shooter/antthorax.png" id="7_retew"]
+[ext_resource type="Texture2D" uid="uid://btfmradpwqq4b" path="res://Assets/Bugs/Shooter/antabdomen.png" id="8_8tsv0"]
+[ext_resource type="Texture2D" uid="uid://cxfqada640d0p" path="res://Assets/Bugs/Shooter/antheah.png" id="10_6ctpc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ln52u"]
 radius = 15.0
@@ -19,10 +19,10 @@ height = 52.0
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("5_xa5jt")
+"texture": ExtResource("5_m67ps")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_bvv8m")
+"texture": ExtResource("6_ebh2e")
 }],
 "loop": true,
 "name": &"Walk",
@@ -65,12 +65,12 @@ offset = Vector2(-15.0962, 21.6346)
 position = Vector2(25, 0.0115929)
 rotation = 1.5708
 scale = Vector2(4, 4)
-texture = ExtResource("7_jvkso")
+texture = ExtResource("7_retew")
 offset = Vector2(-0.00289807, 3.3105)
 
 [node name="Abdomen" type="Sprite2D" parent="Thorax"]
 position = Vector2(-0.00289796, 5.8105)
-texture = ExtResource("8_3k7nh")
+texture = ExtResource("8_8tsv0")
 offset = Vector2(0.0282909, 3.99592)
 
 [node name="AttackTimer" type="Timer" parent="." groups=["Enemy"]]
@@ -104,7 +104,7 @@ shape = SubResource("RectangleShape2D_5ojxr")
 position = Vector2(6, 0)
 rotation = -1.5708
 scale = Vector2(2.5, 2.5)
-texture = ExtResource("10_vqmdl")
+texture = ExtResource("10_6ctpc")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_postprocessing = 1

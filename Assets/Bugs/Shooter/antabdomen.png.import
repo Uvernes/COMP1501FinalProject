@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c64x05bftk0l3"
-path="res://.godot/imported/antthorax.png-2fd2fe8631da1c895def79e30f9e6282.ctex"
+uid="uid://btfmradpwqq4b"
+path="res://.godot/imported/antabdomen.png-ff90c9138e220635e176aaaea7a0456c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Bugs/antthorax.png"
-dest_files=["res://.godot/imported/antthorax.png-2fd2fe8631da1c895def79e30f9e6282.ctex"]
+source_file="res://Assets/Bugs/Shooter/antabdomen.png"
+dest_files=["res://.godot/imported/antabdomen.png-ff90c9138e220635e176aaaea7a0456c.ctex"]
 
 [params]
 
