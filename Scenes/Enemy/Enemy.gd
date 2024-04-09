@@ -148,7 +148,7 @@ func take_damage(amount,attacker,knockback=Vector2.ZERO,force=0):
 	if randf() <= 0.4:
 		stop_attacking_base()
 		target = attacker
-	velocity *= (knockback * accel * force * get_physics_process_delta_time())#+= makes knockback look very inconsistent
+	velocity = (knockback * accel * force * get_physics_process_delta_time())#+= makes knockback look very inconsistent
 	$StunTimer.start()
 	move_and_slide()
 
