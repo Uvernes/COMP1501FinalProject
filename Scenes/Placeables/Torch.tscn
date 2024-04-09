@@ -51,7 +51,7 @@ animations = [{
 size = Vector2(512, 512)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x65jl"]
-size = Vector2(1920, 1024)
+size = Vector2(2176, 1280)
 
 [node name="Torch" type="Area2D"]
 script = ExtResource("1_4gjva")
