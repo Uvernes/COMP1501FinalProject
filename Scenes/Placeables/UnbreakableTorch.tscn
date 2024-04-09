@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b58ucrs6057p2"]
+[gd_scene load_steps=16 format=3 uid="uid://b58ucrs6057p2"]
 
 [ext_resource type="Script" path="res://Scenes/Placeables/UnbreakableTorch.gd" id="1_myu4d"]
 [ext_resource type="Texture2D" uid="uid://gvpo1l6p8ste" path="res://Assets/Buildings/PlayerBuildings/torch5.png" id="2_sy7t1"]
@@ -12,10 +12,10 @@
 [ext_resource type="Texture2D" uid="uid://dhdo33xvtok4e" path="res://Assets/Buildings/PlayerBuildings/TorchFrames/torch8.png" id="10_r728l"]
 [ext_resource type="Texture2D" uid="uid://cecwh4twkhrw5" path="res://PrototypeAssets/light_tpbg_white.png" id="11_nbl38"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hfvhp"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3xy5w"]
 size = Vector2(64, 64)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_tuced"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_7derl"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -47,11 +47,17 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5jnnk"]
+size = Vector2(512, 512)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iqde8"]
+size = Vector2(2176, 1280)
+
 [node name="UnbreakableTorch" type="Area2D" groups=["Obstruction"]]
 script = ExtResource("1_myu4d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_hfvhp")
+shape = SubResource("RectangleShape2D_3xy5w")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.317647, 0.317647, 0.317647, 1)
@@ -67,8 +73,7 @@ z_index = 4
 texture_filter = 1
 position = Vector2(0, -44)
 scale = Vector2(4, 4)
-sprite_frames = SubResource("SpriteFrames_tuced")
-frame_progress = 0.188695
+sprite_frames = SubResource("SpriteFrames_7derl")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 texture_filter = 1
@@ -76,4 +81,15 @@ color = Color(0.952941, 0.898039, 0.768627, 1)
 energy = 3.0
 blend_mode = 2
 texture = ExtResource("11_nbl38")
-texture_scale = 8.0
+texture_scale = 16.0
+
+[node name="NoTorchBuildZone" type="Area2D" parent="." groups=["no_torch_build_zone"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NoTorchBuildZone"]
+shape = SubResource("RectangleShape2D_5jnnk")
+
+[node name="TorchEmissionZone" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TorchEmissionZone"]
+shape = SubResource("RectangleShape2D_iqde8")
