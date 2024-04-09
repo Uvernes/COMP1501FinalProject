@@ -234,6 +234,7 @@ func hit(amount,knockback=Vector2.ZERO,force=0):
 	health_changed.emit(cur_health)
 	if (cur_health <= 0):
 		player_death.emit()
+		return
 	velocity += (knockback * accel * force * get_physics_process_delta_time())
 	move_and_slide()
 	
