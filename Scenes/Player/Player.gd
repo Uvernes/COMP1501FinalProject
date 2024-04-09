@@ -206,11 +206,17 @@ func _handle_right_mouse_click():
 		$Head.start_attack()
 
 # Pressing the shift triggers a dash if player is not currently already
-# dashing and they are able to dash (enough stamina and dash cooldown done)
+# dashing and they are able to dash (enough stamina and dash cooldown done),
+# and they are moving.
 func _handle_space_bar_pressed():
 	if dashing:
 		return 
-	if not dashing and $DashCoolDownTimer.is_stopped() and cur_stamina >= dash_stamina_use:
+	if (
+		not dashing and $DashCoolDownTimer.is_stopped() and 
+			cur_stamina >= dash_stamina_use and velocity.length() > 0):
+				
+		direction = velocity.normalized()
+		
 		# Reduce the amount of stamina a player has and sends signal to HUD
 		cur_stamina -= dash_stamina_use
 		stamina_changed.emit(cur_stamina)
