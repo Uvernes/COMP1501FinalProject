@@ -1,12 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://nni42ydnxiru"]
+[gd_scene load_steps=4 format=3 uid="uid://nni42ydnxiru"]
 
 [ext_resource type="Script" path="res://Scenes/Spawners/EnemySpawner/enemy_spawner.gd" id="1_fiuui"]
+[ext_resource type="Texture2D" uid="uid://cpn7xhea6ecfv" path="res://Assets/Buildings/EnemyBuildings/hole-spawner.png" id="2_rjl3o"]
 
-[node name="EnemySpawner" type="Node2D" groups=["Obstruction"]]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v5c6c"]
+size = Vector2(64, 64)
+
+[node name="EnemySpawner" type="Area2D" groups=["Obstruction"]]
 script = ExtResource("1_fiuui")
 spawn_delay = 15
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_v5c6c")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("2_rjl3o")
 
 [node name="SpawnTimer" type="Timer" parent="."]
 one_shot = true
