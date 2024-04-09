@@ -1,7 +1,7 @@
 extends Node2D
 
 
-@export var spawn_delay: int
+@export var spawn_delay: float
 @export var max_enemy_count: int
 var original_max_enemy_count = max_enemy_count
 

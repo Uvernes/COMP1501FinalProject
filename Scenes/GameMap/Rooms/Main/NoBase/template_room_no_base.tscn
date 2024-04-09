@@ -39,10 +39,10 @@ shape = SubResource("RectangleShape2D_a1f2s")
 [node name="Entrances" type="Node2D" parent="."]
 
 [node name="left" type="ColorRect" parent="Entrances"]
-offset_left = -1876.0
-offset_top = -17.0
-offset_right = -1836.0
-offset_bottom = 23.0
+offset_left = -1828.0
+offset_top = -23.0
+offset_right = -1788.0
+offset_bottom = 17.0
 
 [node name="right" type="ColorRect" parent="Entrances"]
 offset_left = 1838.0
@@ -94,6 +94,8 @@ position = Vector2(-288, -160)
 
 [node name="EnemySpawner" parent="EnemySpawnerStorage" instance=ExtResource("5_l1s60")]
 position = Vector2(416, -224)
+spawn_delay = 0.0
+max_enemy_count = 5
 
 [node name="StructureStorage" type="Node2D" parent="."]
 y_sort_enabled = true
