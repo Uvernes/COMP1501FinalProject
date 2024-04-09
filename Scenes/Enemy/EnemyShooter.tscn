@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c88kjiaf8n56c"]
+[gd_scene load_steps=16 format=3 uid="uid://c88kjiaf8n56c"]
 
 [ext_resource type="Script" path="res://Scenes/Enemy/EnemyShooter.gd" id="1_bauo8"]
 [ext_resource type="PackedScene" uid="uid://b6imdyagxnjg7" path="res://Scenes/Resources/resource.tscn" id="2_ty2ds"]
@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://c64x05bftk0l3" path="res://Assets/Bugs/Shooter/antthorax.png" id="7_retew"]
 [ext_resource type="Texture2D" uid="uid://btfmradpwqq4b" path="res://Assets/Bugs/Shooter/antabdomen.png" id="8_8tsv0"]
 [ext_resource type="Texture2D" uid="uid://cxfqada640d0p" path="res://Assets/Bugs/Shooter/antheah.png" id="10_6ctpc"]
+[ext_resource type="AudioStream" uid="uid://23ah38ih18ij" path="res://Audio/SoundEffects/shooting.wav" id="11_pg2an"]
+[ext_resource type="AudioStream" uid="uid://d4ieqkhlpsx8x" path="res://Audio/SoundEffects/Walk2.wav" id="12_4kx26"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ln52u"]
 radius = 15.0
@@ -114,6 +116,14 @@ wait_time = 0.1
 autostart = true
 
 [node name="BulletStorage" type="Node" parent="."]
+
+[node name="Shoot" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_pg2an")
+pitch_scale = 0.7
+
+[node name="Walk" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_4kx26")
+volume_db = -4.71
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="body_entered" from="EnemyHead" to="EnemyHead" method="_on_body_entered"]

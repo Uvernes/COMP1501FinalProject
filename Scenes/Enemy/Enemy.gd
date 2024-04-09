@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 @export var resource_scene: PackedScene
 @onready var _animated_sprite = $AnimatedSprite2D
+@onready var walk_sound = $Walk
 
 const attack_range = 100 # to start attacking
 const max_attack_angle = 0.7
@@ -49,8 +50,12 @@ func _ready():
 func _process(_delta):
 	if moving:
 		_animated_sprite.play()
+		if not walk_sound.is_playing():
+			walk_sound.pitch_scale = randf_range(0.9, 1.1)
+			walk_sound.play()
 	else:
 		_animated_sprite.stop()
+		walk_sound.stop()
 
 func base_status_changed(type): #types: "under attack", "inactive", "safe"
 	if type == "inactive":

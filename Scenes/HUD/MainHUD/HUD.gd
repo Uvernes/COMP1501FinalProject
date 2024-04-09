@@ -12,6 +12,10 @@ var can_build_base
 var upgrade_menu_open
 var wave_num = 1
 
+@onready var mode_change_sound = $Mode_change
+@onready var build_change_sound = $Build_change
+@onready var resource_collect_sound = $Resource_collect
+
 func _ready():
 	$UpgradeMenu.hide()
 	$PopulationBar.hide()
@@ -59,7 +63,6 @@ func _on_game_map_ready():
 	update_rooms_visited()
 	update_bases_captured()
 
-
 func _on_player_health_changed(new_health):
 	$HealthBar.value = new_health
 
@@ -82,6 +85,8 @@ func _on_player_mode_changed(new_mode):
 		hotBarItem.get_node("Background").hide()
 	# Add background for the selected mode
 	hotBarItems[new_mode].get_node("Background").show()
+	mode_change_sound.play()
+	
 	
 	#shows build sidebar or starts hide timer
 	if new_mode == player.mode.BUILD:
@@ -97,6 +102,7 @@ func _on_player_build_selection_changed(new_build_selection):
 		buildItem.get_node("Background").hide()
 	# Add background for the selected mode
 	buildSiderbar[new_build_selection].get_node("Background").show()
+	build_change_sound.play()
 
 func _on_hide_build_sidebar_timer_timeout():
 	$BuildSidebar.hide()
@@ -112,6 +118,7 @@ func update_resource(type, new_amount):
 		$ResourceDisplay/Wood/Label.text = "Wood: " + str(new_amount)
 	elif type == "mobdrops":
 		$ResourceDisplay/Mobdrops/Label.text = "Mobdrops: " + str(new_amount)
+	resource_collect_sound.play()
 
 
 func update_all_resources(resource_amounts: Dictionary):
@@ -154,7 +161,7 @@ func update_current_base(base, state):
 func base_status_changed(type):
 	if type == "safe":
 		can_open_upgrade_menu = true
-		$PopulationBar.hide()
+		$PopulationBar.show()
 		wave_num = 1
 	if type == "under attack":
 		$PopulationBar.show()

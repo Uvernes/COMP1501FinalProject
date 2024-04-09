@@ -4,6 +4,8 @@ extends CharacterBody2D
 @export var resource_scene: PackedScene
 @export var bullet_scene: PackedScene
 @onready var _animated_sprite = $AnimatedSprite2D
+@onready var shooting_sound = $Shoot
+@onready var walk_sound = $Walk
 
 const attack_range = 100 # to start attacking
 const max_attack_angle = 0.5
@@ -55,8 +57,12 @@ func _ready():
 func _process(_delta):
 	if moving:
 		_animated_sprite.play()
+		if not walk_sound.is_playing():
+			walk_sound.pitch_scale = randf_range(0.9, 1.1)
+			walk_sound.play()
 	else:
 		_animated_sprite.stop()
+		walk_sound.stop()
 
 func base_status_changed(type): #types: "under attack", "inactive", "safe"
 	if type == "inactive":
@@ -150,6 +156,7 @@ func take_damage(amount,attacker,knockback=Vector2.ZERO,force=0):
 func shoot():
 	var bullet
 	var bullet_direction
+	shooting_sound.play()
 	if shoot_type == 0 || 1:
 		bullet = bullet_scene.instantiate()
 		# add bullet as a child to keep track of its existence

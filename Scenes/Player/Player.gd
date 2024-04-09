@@ -37,6 +37,9 @@ var direction = Vector2.ZERO
 @export var dash_knockback_force = 50
 
 @onready var _animated_sprite = $Thorax/AnimatedSprite2D
+@onready var dash_sound = $Dash
+@onready var shoot_sound = $Shoot
+@onready var walk_sound = $Walk
 # @export var dash_cooldown =  0.5  # In seconds
 var dashing = false 
 var cur_dash_distance = 0
@@ -87,10 +90,13 @@ func _process(_delta):
 		
 	if Input.is_action_pressed("move_right") or Input.is_action_pressed("move_left") or Input.is_action_pressed("move_up")or Input.is_action_pressed("move_down"):
 		_animated_sprite.play()
+		if not walk_sound.is_playing():
+			walk_sound.pitch_scale = randf_range(0.9, 1.1)
+			walk_sound.play()
 	else:
 		_animated_sprite.stop()
+		walk_sound.stop()
 	
-
 
 # Handles hotkey presses
 func _unhandled_input(event):
@@ -105,7 +111,6 @@ func _unhandled_input(event):
 func _physics_process(delta):
 	look_at(get_global_mouse_position())
 	player_movement(delta)
-
 
 # get updated direction value for player
 func get_direction():
@@ -231,6 +236,7 @@ func _handle_space_bar_pressed():
 		
 		# Begin dash in direction player is moving (not where mouse is pointing)
 		dashing = true
+		dash_sound.play()
 		cur_dash_distance = 0 
 		velocity = direction * dash_speed 
 		$DashCoolDownTimer.start()
@@ -268,6 +274,7 @@ func shoot():
 		# we create a direction vector to move appropriately. It is the direction of the mouse pointer from the player
 		var bullet_direction = (get_global_mouse_position() - position).normalized()
 		bullet.init(position, rotation, bullet_speed, bullet_direction, bullet_damage)
+		shoot_sound.play()
 		bullet.fire()
 
 

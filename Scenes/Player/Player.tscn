@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://1y1ksdxpo2ps"]
+[gd_scene load_steps=19 format=3 uid="uid://1y1ksdxpo2ps"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_88ct0"]
 [ext_resource type="PackedScene" uid="uid://cnpk6ul0cvh8u" path="res://Scenes/Bullet/bullet.tscn" id="2_tj8lh"]
@@ -11,6 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://b5mmkqcewmlt8" path="res://Assets/Bugs/Ants/empty.png" id="5_smxa6"]
 [ext_resource type="Texture2D" uid="uid://cejrptvplmjwc" path="res://Assets/Bugs/Ants/antlegs4.png" id="6_wy7hc"]
 [ext_resource type="Texture2D" uid="uid://bnnmfpby1oga3" path="res://Assets/Bugs/Ants/anthead-brown.png" id="7_dyjeh"]
+[ext_resource type="AudioStream" uid="uid://xq31x0lv2edb" path="res://Audio/SoundEffects/Dash.wav" id="12_q7t0q"]
+[ext_resource type="AudioStream" uid="uid://23ah38ih18ij" path="res://Audio/SoundEffects/shooting.wav" id="13_ssj1l"]
+[ext_resource type="AudioStream" uid="uid://dtrt3ilge6u47" path="res://Audio/Ambient/CaveAmbience.wav" id="14_q4whj"]
+[ext_resource type="AudioStream" uid="uid://41tw7nhel6g0" path="res://Audio/SoundEffects/Walk1.wav" id="15_vv3e4"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ebg0n"]
 animations = [{
@@ -109,6 +113,21 @@ rotation = -1.5708
 scale = Vector2(3.765, 3.765)
 texture = ExtResource("7_dyjeh")
 metadata/_edit_group_ = true
+
+[node name="Dash" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_q7t0q")
+pitch_scale = 3.0
+
+[node name="Shoot" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_ssj1l")
+
+[node name="Ambience" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_q4whj")
+volume_db = -9.369
+autoplay = true
+
+[node name="Walk" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_vv3e4")
 
 [connection signal="timeout" from="StaminaTimer" to="." method="_on_stamina_timer_timeout"]
 [connection signal="body_entered" from="Head" to="Head" method="_on_body_entered"]

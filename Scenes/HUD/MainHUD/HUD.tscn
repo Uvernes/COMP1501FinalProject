@@ -1,9 +1,12 @@
-[gd_scene load_steps=26 format=3 uid="uid://npbjmbt4um60"]
+[gd_scene load_steps=29 format=3 uid="uid://npbjmbt4um60"]
 
 [ext_resource type="Script" path="res://Scenes/HUD/MainHUD/HUD.gd" id="1_niqmd"]
 [ext_resource type="Texture2D" uid="uid://0sdnhlf8y0at" path="res://Assets/Theme/modeicon3.png" id="2_srhl4"]
 [ext_resource type="Texture2D" uid="uid://cp6bb614ucyds" path="res://Assets/Theme/Buttons/buttons.png" id="3_kb6pk"]
 [ext_resource type="Texture2D" uid="uid://dai788t8jm1vk" path="res://Assets/Theme/Buttons/side.png" id="3_rufl1"]
+[ext_resource type="AudioStream" uid="uid://bosuta7lum3hl" path="res://Audio/SoundEffects/mode_change.wav" id="5_0obxx"]
+[ext_resource type="AudioStream" uid="uid://rtnrg0c8ggdh" path="res://Audio/SoundEffects/build_change.wav" id="6_g4gbl"]
+[ext_resource type="AudioStream" uid="uid://qf7v8jj0gidd" path="res://Audio/SoundEffects/resource_collect.wav" id="7_mel5k"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nwyko"]
 bg_color = Color(0, 0.439216, 0, 1)
@@ -1081,6 +1084,15 @@ text = "Bases Captured: 0/6
 "
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Mode_change" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_0obxx")
+
+[node name="Build_change" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_g4gbl")
+
+[node name="Resource_collect" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_mel5k")
 
 [connection signal="timeout" from="PopulationBar/WaveTimer" to="." method="_on_wave_timer_timeout"]
 [connection signal="timeout" from="HideBuildSidebarTimer" to="." method="_on_hide_build_sidebar_timer_timeout"]
