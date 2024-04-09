@@ -11,6 +11,7 @@ var can_open_upgrade_menu
 var can_build_base
 var upgrade_menu_open
 var wave_num = 1
+var max_waves
 
 @onready var mode_change_sound = $Mode_change
 @onready var build_change_sound = $Build_change
@@ -167,6 +168,7 @@ func base_status_changed(type):
 	if type == "under attack":
 		$PopulationBar.show()
 		$PopulationBar/WaveTimer.start()
+		max_waves = (2 * game_map.get_num_bases_captured() + 3)
 	if type == "inactive":
 		can_open_upgrade_menu = false
 		$PopulationBar.hide()
@@ -204,7 +206,10 @@ func show_warning(state):
 		$Warning.hide()
 
 func _on_wave_timer_timeout():
-	if wave_num <= (2 * game_map.get_num_bases_captured() + 3) && $PopulationBar.is_visible():
+	print("HUD trigger")
+	print(wave_num)
+	print(max_waves)
+	if wave_num <= max_waves && $PopulationBar.is_visible():
 		wave_num += 1
 		$PopulationBar/WaveTimer.start()
 	else:
