@@ -47,6 +47,6 @@ func handle_collision(collision: KinematicCollision2D):
 	var collider = collision.get_collider()
 	if collider.is_in_group("Enemy"):
 		if !(collider.dead):
-			collider.take_damage(damage, self)
+			collider.take_damage(damage, get_parent().get_parent())
 	# Delete bullet if it collides with anything
 	queue_free()
