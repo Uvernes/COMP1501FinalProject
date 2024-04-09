@@ -19,10 +19,11 @@ enum mode { ATTACK, BUILD, DELETE }
 
 # Stats - can be upgraded over time
 var max_health = 20
-var max_stamina = 16
+var max_stamina = 20
 var bullet_speed = 500
 var bullet_damage = 1
 
+var stamina_percentage_regen = 0.20
 const walk_speed = 300
 const sprint_speed = 600
 const accel = 1500
@@ -52,7 +53,8 @@ var cur_stamina
 var cur_mode  # Current mode player is in (e.g Build mode)
 var cur_build_selection: int # holds id for the corresponding build enum value
 
-const bullet_stamina_use = 2
+
+const bullet_stamina_use = 1
 
 @export var bullet_scene: PackedScene
 const Bullet = preload("res://Scenes/Bullet/bullet.gd") # For type annotation
@@ -293,7 +295,7 @@ func stamina_check():
 
 func _on_stamina_timer_timeout():
 	if cur_stamina < max_stamina:
-		cur_stamina += 4
+		cur_stamina += floor(max_stamina * stamina_percentage_regen)
 	elif cur_stamina > max_stamina:
 		cur_stamina = max_stamina
 	stamina_changed.emit(cur_stamina)
