@@ -93,22 +93,22 @@ layer_0/tile_data = PackedInt32Array(1966078, 1, 65536, 1966079, 1, 65536, 19005
 
 [node name="EnemySpawner" parent="EnemySpawnerStorage" instance=ExtResource("9_08qel")]
 position = Vector2(-1504, -1376)
-spawn_delay = 0.0
+spawn_delay = 5.0
 max_enemy_count = 5
 
 [node name="EnemySpawner2" parent="EnemySpawnerStorage" instance=ExtResource("9_08qel")]
 position = Vector2(800, 288)
-spawn_delay = 0.0
+spawn_delay = 5.0
 max_enemy_count = 5
 
 [node name="EnemySpawner3" parent="EnemySpawnerStorage" instance=ExtResource("9_08qel")]
 position = Vector2(1376, -928)
-spawn_delay = 0.0
+spawn_delay = 8.0
 max_enemy_count = 5
 
 [node name="EnemySpawner4" parent="EnemySpawnerStorage" instance=ExtResource("9_08qel")]
 position = Vector2(-928, 160)
-spawn_delay = 0.0
+spawn_delay = 10.0
 max_enemy_count = 5
 
 [node name="ResourceSpawnerStorage" type="Node" parent="."]
