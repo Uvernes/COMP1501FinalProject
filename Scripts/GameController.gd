@@ -111,7 +111,7 @@ func attempt_base_claim():
 func handle_room_change():
 	room = gameMap.cur_room
 	room.connect("player_close_to_exit",handle_player_close_to_exit)
-	base = room.base
+	base = room.get_node_or_null("Base")
 	$HUD.room_changed(base)
 	if base != null:
 		base.connect("fully_heal_player", heal_player.bind(1000))
