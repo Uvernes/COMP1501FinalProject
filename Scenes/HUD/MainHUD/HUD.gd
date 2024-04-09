@@ -209,7 +209,7 @@ func _on_wave_timer_timeout():
 	print("HUD trigger")
 	print(wave_num)
 	print(max_waves)
-	if wave_num <= max_waves && $PopulationBar.is_visible():
+	if wave_num < max_waves && $PopulationBar.is_visible():
 		wave_num += 1
 		$PopulationBar/WaveTimer.start()
 	else:
