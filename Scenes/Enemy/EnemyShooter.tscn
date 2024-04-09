@@ -1,0 +1,80 @@
+[gd_scene load_steps=9 format=3 uid="uid://cfwa2pwq6ok5v"]
+
+[ext_resource type="Script" path="res://Scenes/Enemy/EnemyShooter.gd" id="1_bauo8"]
+[ext_resource type="PackedScene" uid="uid://b6imdyagxnjg7" path="res://Scenes/Resources/resource.tscn" id="2_ty2ds"]
+[ext_resource type="Texture2D" uid="uid://doylxy08g5a0d" path="res://PrototypeAssets/red.png" id="3_0686g"]
+[ext_resource type="PackedScene" uid="uid://bmtagqqgva46x" path="res://Scenes/Bullet/enemyBullet.tscn" id="3_vuwpt"]
+[ext_resource type="Script" path="res://Scenes/Enemy/EnemyHead.gd" id="4_mft1k"]
+[ext_resource type="Texture2D" uid="uid://bqxm7whjg8o2s" path="res://PrototypeAssets/ants/redAntHead.png" id="5_7vew0"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ln52u"]
+radius = 15.0
+height = 52.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ojxr"]
+size = Vector2(12.4167, 16)
+
+[node name="EnemyShooter" type="CharacterBody2D" groups=["Enemy"]]
+z_index = 1
+collision_mask = 3
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_bauo8")
+resource_scene = ExtResource("2_ty2ds")
+bullet_scene = ExtResource("3_vuwpt")
+
+[node name="BodyHitBox" type="CollisionShape2D" parent="." groups=["Enemy"]]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ln52u")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["Enemy"]]
+scale = Vector2(0.824219, 0.59375)
+texture = ExtResource("3_0686g")
+metadata/_edit_group_ = true
+
+[node name="AttackTimer" type="Timer" parent="." groups=["Enemy"]]
+wait_time = 2.0
+one_shot = true
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="TakeDamageTimer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
+[node name="StunTimer" type="Timer" parent="."]
+wait_time = 0.27
+one_shot = true
+
+[node name="EnemyHead" type="Area2D" parent="." groups=["EnemyHeads"]]
+z_index = 2
+position = Vector2(18, 0)
+scale = Vector2(1.5, 1.5)
+collision_mask = 3
+script = ExtResource("4_mft1k")
+
+[node name="HeadHitBox" type="CollisionShape2D" parent="EnemyHead"]
+position = Vector2(11.5417, 0)
+shape = SubResource("RectangleShape2D_5ojxr")
+
+[node name="Sprite2D" type="Sprite2D" parent="EnemyHead"]
+position = Vector2(6, 0)
+rotation = 1.5708
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("5_7vew0")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
+
+[node name="PathUpdateTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="BulletStorage" type="Node" parent="."]
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="body_entered" from="EnemyHead" to="EnemyHead" method="_on_body_entered"]
+[connection signal="timeout" from="PathUpdateTimer" to="." method="_on_path_update_timer_timeout"]

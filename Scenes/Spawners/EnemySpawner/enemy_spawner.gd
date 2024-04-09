@@ -4,7 +4,7 @@ extends Node2D
 @export var spawn_delay: int
 @export var max_enemy_count: int
 
-var enemy_scene: PackedScene = preload("res://Scenes/Enemy/Enemy.tscn")
+var enemy_scene: PackedScene = preload("res://Scenes/Enemy/EnemyShooter.tscn")
 var random = RandomNumberGenerator.new()
 var base
 
