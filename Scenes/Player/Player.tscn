@@ -104,9 +104,9 @@ shape = SubResource("RectangleShape2D_6qbbr")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Head"]
-position = Vector2(7, 0)
+position = Vector2(8, 0)
 rotation = -1.5708
-scale = Vector2(4.334, 4)
+scale = Vector2(3.765, 3.765)
 texture = ExtResource("7_dyjeh")
 metadata/_edit_group_ = true
 

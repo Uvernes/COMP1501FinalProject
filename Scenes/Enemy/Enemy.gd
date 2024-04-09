@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 
 @export var resource_scene: PackedScene
+@onready var _animated_sprite = $AnimatedSprite2D
 
 var base
 var base_state
@@ -42,6 +43,12 @@ func _ready():
 	angle_to_face = 0
 	difficulty = 1
 	select_target()
+	
+func _process(_delta):
+	if moving:
+		_animated_sprite.play()
+	else:
+		_animated_sprite.stop()
 
 func base_status_changed(type): #types: "under attack", "inactive", "safe"
 	base_state = type

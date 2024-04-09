@@ -5,6 +5,8 @@ extends CharacterBody2D
 
 @export var bullet_scene: PackedScene
 
+@onready var _animated_sprite = $AnimatedSprite2D
+
 const base_pos = Vector2(0,0) # change
 const distance_to_see_player = 500
 const attack_range = 100 # to start attacking
@@ -48,6 +50,12 @@ func _ready():
 	shoot_type = random.randi_range(0,2) #randomizes shooting behaviour
 	print(shoot_type)
 	make_path()
+
+func _process(_delta):
+	if moving:
+		_animated_sprite.play()
+	else:
+		_animated_sprite.stop()
 
 func _physics_process(delta):
 	if attacking_base == false:
