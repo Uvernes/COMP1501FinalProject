@@ -35,6 +35,8 @@ var direction = Vector2.ZERO
 @export var dash_max_distance = 300  # Max distance. Less if you bump into world obstacle (e.g wall)
 @export var dash_stamina_use = 4
 @export var dash_knockback_force = 50
+
+@onready var _animated_sprite = $Thorax/AnimatedSprite2D
 # @export var dash_cooldown =  0.5  # In seconds
 var dashing = false 
 var cur_dash_distance = 0
@@ -82,6 +84,12 @@ func _process(_delta):
 		_handle_right_mouse_click()
 	if Input.is_action_just_pressed("space"):
 		_handle_space_bar_pressed()
+		
+	if Input.is_action_pressed("move_right") or Input.is_action_pressed("move_left") or Input.is_action_pressed("move_up")or Input.is_action_pressed("move_down"):
+		_animated_sprite.play()
+	else:
+		_animated_sprite.stop()
+	
 
 
 # Handles hotkey presses

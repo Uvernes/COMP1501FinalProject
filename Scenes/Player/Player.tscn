@@ -1,13 +1,30 @@
-[gd_scene load_steps=11 format=3 uid="uid://1y1ksdxpo2ps"]
+[gd_scene load_steps=15 format=3 uid="uid://1y1ksdxpo2ps"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_88ct0"]
 [ext_resource type="PackedScene" uid="uid://cnpk6ul0cvh8u" path="res://Scenes/Bullet/bullet.tscn" id="2_tj8lh"]
-[ext_resource type="Texture2D" uid="uid://ccpfp8st1r1uk" path="res://PrototypeAssets/ants/front.png" id="3_yyxff"]
+[ext_resource type="Texture2D" uid="uid://bg2md460j0rnf" path="res://Assets/Bugs/Ants/antthorax.png" id="3_vrdng"]
 [ext_resource type="Texture2D" uid="uid://cecwh4twkhrw5" path="res://PrototypeAssets/light_tpbg_white.png" id="4_fe1vo"]
+[ext_resource type="Texture2D" uid="uid://bwg1rktgvis4d" path="res://Assets/Bugs/Ants/antabdomen.png" id="4_t17v3"]
+[ext_resource type="Texture2D" uid="uid://ct4mm5t8vdkjj" path="res://Assets/Bugs/Ants/antlegs2.png" id="5_1bhm8"]
 [ext_resource type="Script" path="res://Scenes/Player/Head.gd" id="5_jbtl3"]
 [ext_resource type="Script" path="res://Scenes/Player/PlayerLight.gd" id="5_rdf0n"]
-[ext_resource type="Texture2D" uid="uid://brgnkoxbceqc" path="res://PrototypeAssets/ants/anthead.png" id="6_b0dpf"]
-[ext_resource type="PackedScene" uid="uid://dwccup8cb8fe3" path="res://Scenes/Bugs/Ant.tscn" id="8_josjx"]
+[ext_resource type="Texture2D" uid="uid://b5mmkqcewmlt8" path="res://Assets/Bugs/Ants/empty.png" id="5_smxa6"]
+[ext_resource type="Texture2D" uid="uid://cejrptvplmjwc" path="res://Assets/Bugs/Ants/antlegs4.png" id="6_wy7hc"]
+[ext_resource type="Texture2D" uid="uid://bnnmfpby1oga3" path="res://Assets/Bugs/Ants/anthead-brown.png" id="7_dyjeh"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ebg0n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_1bhm8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_wy7hc")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2af3w"]
 radius = 15.0
@@ -26,10 +43,30 @@ bullet_scene = ExtResource("2_tj8lh")
 [node name="Camera2D" type="Camera2D" parent="." groups=["Player"]]
 zoom = Vector2(0.7, 0.7)
 
+[node name="Thorax" type="Sprite2D" parent="."]
+position = Vector2(25, 0.0115929)
+rotation = 1.5708
+scale = Vector2(4, 4)
+texture = ExtResource("3_vrdng")
+offset = Vector2(-0.00289807, 3.3105)
+
+[node name="Abdomen" type="Sprite2D" parent="Thorax"]
+position = Vector2(-0.00289796, 5.8105)
+texture = ExtResource("4_t17v3")
+offset = Vector2(0.0282909, 3.99592)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Thorax"]
+position = Vector2(-0.00289803, 4.25)
+scale = Vector2(0.65, 0.65)
+sprite_frames = SubResource("SpriteFrames_ebg0n")
+animation = &"Walk"
+frame = 1
+frame_progress = 0.682694
+
 [node name="Sprite2D" type="Sprite2D" parent="." groups=["Player"]]
 rotation = 1.5708
 scale = Vector2(0.460938, 0.453125)
-texture = ExtResource("3_yyxff")
+texture = ExtResource("5_smxa6")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
 
@@ -56,7 +93,7 @@ shape = SubResource("CapsuleShape2D_2af3w")
 
 [node name="Head" type="Area2D" parent="."]
 z_index = 3
-position = Vector2(18, 0)
+position = Vector2(17, 0)
 collision_layer = 2
 script = ExtResource("5_jbtl3")
 
@@ -67,14 +104,11 @@ shape = SubResource("RectangleShape2D_6qbbr")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Head"]
-position = Vector2(2, 0)
-rotation = 1.5708
-scale = Vector2(0.466941, 0.431098)
-texture = ExtResource("6_b0dpf")
+position = Vector2(7, 0)
+rotation = -1.5708
+scale = Vector2(4.334, 4)
+texture = ExtResource("7_dyjeh")
 metadata/_edit_group_ = true
 
-[node name="Ant" parent="." instance=ExtResource("8_josjx")]
-
-[connection signal="direction_changed" from="." to="Ant" method="_on_player_direction_changed"]
 [connection signal="timeout" from="StaminaTimer" to="." method="_on_stamina_timer_timeout"]
 [connection signal="body_entered" from="Head" to="Head" method="_on_body_entered"]

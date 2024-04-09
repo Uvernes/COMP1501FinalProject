@@ -19,7 +19,3 @@ func _process(_delta):
 
 #func _draw():
 	#draw_line(Vector2.ZERO, direction, Color.WHITE, 5)
-
-func _on_player_direction_changed(new_direction):
-	direction = new_direction
-	print(direction)
