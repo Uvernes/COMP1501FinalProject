@@ -69,7 +69,7 @@ func enemy_died():
 func base_status_changed(type): #types: "under attack", "inactive", "safe"
 	if type == "safe":
 		$SpawnTimer.stop()
-		max_enemy_count = 0
+		queue_free()
 	elif type == "under attack":
 		trigger_wave_event()
 	elif type == "inactive":

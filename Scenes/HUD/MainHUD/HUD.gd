@@ -164,7 +164,8 @@ func base_status_changed(type):
 		$PopulationBar.hide()
 		$PopulationBar/WaveTimer.stop()
 		$PopulationBar/WaveTimer.wait_time = 20
-		#game_map.
+		game_map._on_cur_room_base_status_changed(type)
+		update_bases_captured()
 		wave_num = 1
 	if type == "under attack":
 		$PopulationBar.show()
