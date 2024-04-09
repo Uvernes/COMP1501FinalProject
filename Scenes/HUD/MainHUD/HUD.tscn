@@ -618,7 +618,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.993333, 1.00424)
 theme_override_styles/normal = SubResource("StyleBoxFlat_s18ot")
-text = "Space
+text = "Shift
 To Cycle"
 label_settings = SubResource("LabelSettings_o1qhi")
 horizontal_alignment = 1

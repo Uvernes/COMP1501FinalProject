@@ -32,7 +32,7 @@ offset_left = 133.0
 offset_top = 124.0
 offset_right = 306.0
 offset_bottom = 139.0
-text = "WASD - Main Movement"
+text = "Escape - Pause Menu"
 
 [node name="Label4" type="Label" parent="."]
 modulate = Color(0.47451, 0.380392, 0.290196, 1)
@@ -64,10 +64,10 @@ text = "Attack Controls"
 [node name="Label12" type="Label" parent="."]
 modulate = Color(0.47451, 0.380392, 0.290196, 1)
 layout_mode = 0
-offset_left = 627.0
-offset_top = 323.0
-offset_right = 832.0
-offset_bottom = 338.0
+offset_left = 626.0
+offset_top = 332.0
+offset_right = 831.0
+offset_bottom = 347.0
 text = "Build Controls
 "
 
@@ -100,7 +100,7 @@ offset_left = 135.0
 offset_top = 173.0
 offset_right = 334.0
 offset_bottom = 224.0
-text = "Shift - Dash
+text = "Space Bar - Dash
 This will result in a loss of 
 Stamina"
 horizontal_alignment = 1
@@ -134,39 +134,39 @@ offset_left = 647.0
 offset_top = 216.0
 offset_right = 985.0
 offset_bottom = 285.0
-text = "Ants Have Several ways to defend themselves. 
+text = "Ants Have several ways to defend themselves. 
 Often they can shoot venomous spit bullets.
 Othertimes, use their head to fight enemies."
 
 [node name="Label8" type="Label" parent="."]
 modulate = Color(0.47451, 0.380392, 0.290196, 1)
 layout_mode = 0
-offset_left = 673.0
-offset_top = 278.0
-offset_right = 978.0
-offset_bottom = 329.0
-text = "Left Click - Shoots Venomous Spit Bullets
+offset_left = 600.0
+offset_top = 275.0
+offset_right = 1069.0
+offset_bottom = 326.0
+text = "Left Click - Shoots Venomous Spit Bullets (consuming Stamina)
 Right Click - Ant Head Punt"
 horizontal_alignment = 1
 
 [node name="Label13" type="Label" parent="."]
 modulate = Color(0.47451, 0.380392, 0.290196, 1)
 layout_mode = 0
-offset_left = 608.0
-offset_top = 346.0
-offset_right = 1022.0
-offset_bottom = 505.0
+offset_left = 607.0
+offset_top = 355.0
+offset_right = 1021.0
+offset_bottom = 514.0
 scale = Vector2(0.962431, 0.895935)
 theme_override_font_sizes/font_size = 15
 text = "In Delete Mode - 
-     Right Click - Deletes 
+     Left Click - Deletes 
      the selected Block
 
 In Build Mode -
-     Tab - change the
+     Shift - change the
      selected block
 
-	     Right Click - Build"
+	     Left Click - Build"
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
