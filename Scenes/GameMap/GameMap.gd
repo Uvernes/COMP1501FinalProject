@@ -24,7 +24,8 @@ var Placeable = preload("res://Scenes/Placeables/Placeable.gd")
 # Each dict specifies path of room and whether or not it has a base
 const tutorial_rooms = [
 	{
-		"path": "res://Scenes/GameMap/Rooms/Tutorials/tutorial_1.tscn",
+		"path": "res://Scenes/GameMap/Rooms/Main/NoBase/template_room_no_base.tscn",
+		#"path": "res://Scenes/GameMap/Rooms/Tutorials/tutorial_1.tscn",
 		"has_base": false
 	},
 	{
