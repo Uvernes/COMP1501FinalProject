@@ -109,6 +109,7 @@ func attempt_base_claim():
 	
 
 func handle_room_change():
+	return
 	room = gameMap.cur_room
 	room.connect("player_close_to_exit",handle_player_close_to_exit)
 	base = room.base

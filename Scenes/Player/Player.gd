@@ -56,7 +56,7 @@ const Placeable = preload("res://Scenes/Placeables/Placeable.gd")
 var enemies_following = 0
 
 func _ready():
-	position = Vector2(0,0)
+	# position = Vector2(0,0)
 	cur_health = max_health
 	cur_stamina = max_stamina
 	

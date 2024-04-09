@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://8y5tjw7ph5bt"]
+[gd_scene load_steps=9 format=3 uid="uid://8y5tjw7ph5bt"]
 
 [ext_resource type="Script" path="res://Scripts/GameController.gd" id="1_72oun"]
 [ext_resource type="PackedScene" uid="uid://dgwwc726rr5xm" path="res://Scenes/Menus/Pause/PauseMenu.tscn" id="2_2ac2h"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://7lgbxm51b76s" path="res://Scenes/GameMap/GameMap.tscn" id="5_m7ats"]
 [ext_resource type="PackedScene" uid="uid://sior3tw6cm58" path="res://Scenes/WorldStructures/Darkness.tscn" id="6_nweq1"]
 [ext_resource type="PackedScene" uid="uid://b7oecv531ru7h" path="res://Scenes/Resources/resource_manager.tscn" id="7_8cil1"]
+[ext_resource type="PackedScene" uid="uid://2agyyonqylay" path="res://Scenes/LoadingScreens/start_of_scene_covering.tscn" id="8_3ttkn"]
 
 [node name="Gameplay" type="Node2D"]
 script = ExtResource("1_72oun")
@@ -27,6 +28,8 @@ position = Vector2(131, 68)
 color = Color(0.0196078, 0.0196078, 0.0196078, 1)
 
 [node name="ResourceManager" parent="." instance=ExtResource("7_8cil1")]
+
+[node name="StartOfSceneCovering" parent="." instance=ExtResource("8_3ttkn")]
 
 [connection signal="build_requested" from="Player" to="." method="_on_player_build_requested"]
 [connection signal="build_selection_changed" from="Player" to="HUD" method="_on_player_build_selection_changed"]
