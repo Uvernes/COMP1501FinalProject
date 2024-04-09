@@ -40,7 +40,6 @@ func room_changed(base):
 		base.connect("population_changed", base_population_changed)
 		base.connect("status_changed", base_status_changed)
 
-	
 	#$HScrollBar.set_focus()
 
 # Cannot initialize HUD until player is initialized (otherwise undefined values)
@@ -161,7 +160,9 @@ func update_current_base(base, state):
 func base_status_changed(type):
 	if type == "safe":
 		can_open_upgrade_menu = true
-		$PopulationBar.show()
+		$PopulationBar.hide()
+		$PopulationBar/WaveTimer.stop()
+		$PopulationBar/WaveTimer.wait_time = 20
 		wave_num = 1
 	if type == "under attack":
 		$PopulationBar.show()

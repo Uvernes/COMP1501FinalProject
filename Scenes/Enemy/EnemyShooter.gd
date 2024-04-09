@@ -37,6 +37,7 @@ var attacking_base = false
 
 # misc
 var itemdropdistancerange = 20
+var spawner
 
 func _ready():
 	player = get_tree().get_current_scene().get_node("Player")
@@ -218,3 +219,7 @@ func make_path(target):
 
 func _on_path_update_timer_timeout():
 	make_path(target)
+
+
+func _on_tree_exiting():
+	spawner.enemy_died()

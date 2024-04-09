@@ -22,8 +22,8 @@ var base
 # vars for wave event -> value varies according to difficulty // num of bases claimed
 var difficulty
 var wave_countdown
-var max_wave_options = [3, 5, 7, 9, 11, 13]
-var spawn_interval_options = [10, 11, 13, 15, 15, 19] # 3, 2, 2, 1, 1
+var max_wave_options = [3, 5, 7, 9, 11]
+var spawn_interval_options = [10, 11, 13, 15, 15] # 3, 2, 2, 1, 1
 
 # set difficulty based on how many rooms captured from bottom of GameMap
 var cur_enemy_count = 0
@@ -39,7 +39,6 @@ func _ready():
 		base.connect("status_changed", base_status_changed)
 
 func _on_spawn_timer_timeout():
-	print(cur_enemy_count)
 	if cur_enemy_count < max_enemy_count:
 		spawn_enemy()
 		$SpawnTimer.start()
@@ -58,14 +57,14 @@ func spawn_enemy():
 			enemy = enemy_scenes[0].instantiate()
 	enemy.add_to_group("Enemy")
 	enemy.get_node("EnemyHead").add_to_group("EnemyHeads")
+	enemy.spawner = self
 	enemy.position = global_position
 	get_parent().get_parent().add_child(enemy)
 	cur_enemy_count += 1
 
-func _on_child_exiting_tree(node):
-	if node.is_in_group("Enemy"):
-		cur_enemy_count -= 1
-		$SpawnTimer.start()
+func enemy_died():
+	cur_enemy_count -= 1
+	$SpawnTimer.start()
 
 func base_status_changed(type): #types: "under attack", "inactive", "safe"
 	if type == "safe":
@@ -88,5 +87,7 @@ func _on_wave_timer_timeout():
 	if wave_countdown > 0:
 		$SpawnTimer.wait_time = $SpawnTimer.wait_time - 1
 		max_enemy_count += 1
-		$WaveTimer.start()
 		wave_countdown -= 1
+		$IntermissionTimer.start()
+		await $IntermissionTimer.timeout
+		$WaveTimer.start()

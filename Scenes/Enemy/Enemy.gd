@@ -32,6 +32,7 @@ var attacking_base = false
 
 # misc
 var itemdropdistancerange = 20
+var spawner
 
 func _ready():
 	player = get_tree().get_current_scene().get_node("Player")
@@ -113,28 +114,33 @@ func take_damage(amount,attacker,knockback=Vector2.ZERO,force=0):
 		var mobdrop = resource_scene.instantiate()
 		mobdrop.init("mobdrops","res://Assets/Resources/body.png")
 		mobdrop.position = Vector2((position.x)-(randf_range(-itemdropdistancerange, itemdropdistancerange)), (position.y)-(randf_range(-itemdropdistancerange, itemdropdistancerange)))
-		get_parent().add_child(mobdrop)
+		#get_parent().add_child(mobdrop)
+		get_parent().call_deferred("add_child", mobdrop)
 		var randomizer = randf()
 		if randomizer < 0.25:
 			var dirt = resource_scene.instantiate()
 			dirt.init("dirt", "res://Assets/Resources/dirt.png")
 			dirt.position = Vector2((position.x)+(randf_range(-itemdropdistancerange, itemdropdistancerange)), (position.y)+(randf_range(-itemdropdistancerange, itemdropdistancerange)))
-			get_parent().add_child(dirt)
+			#get_parent().add_child(dirt)
+			get_parent().call_deferred("add_child", dirt)
 		elif randomizer < 0.5:
 			var stone = resource_scene.instantiate()
 			stone.init("stone", "res://Assets/Resources/rock.png")
 			stone.position = Vector2((position.x)+(randf_range(-itemdropdistancerange, itemdropdistancerange)), (position.y)+(randf_range(-itemdropdistancerange, itemdropdistancerange)))
-			get_parent().add_child(stone)
+			#get_parent().add_child(stone)
+			get_parent().call_deferred("add_child", stone)
 		elif randomizer < 0.75:
 			var leaves = resource_scene.instantiate()
 			leaves.init("leaves", "res://Assets/Resources/leaf.png")
 			leaves.position = Vector2((position.x)+(randf_range(-itemdropdistancerange, itemdropdistancerange)), (position.y)+(randf_range(-itemdropdistancerange, itemdropdistancerange)))
-			get_parent().add_child(leaves)
+			#get_parent().add_child(leaves)
+			get_parent().call_deferred("add_child", leaves)
 		else:
 			var wood = resource_scene.instantiate()
 			wood.init("wood", "res://Assets/Resources/wood.png")
 			wood.position = Vector2((position.x)+(randf_range(-itemdropdistancerange, itemdropdistancerange)), (position.y)+(randf_range(-itemdropdistancerange, itemdropdistancerange)))
-			get_parent().add_child(wood)
+			#get_parent().add_child(wood)
+			get_parent().call_deferred("add_child", wood)
 		self.dead = true
 		game_controller.update_enemy_death_count(difficulty)
 		queue_free()
@@ -173,3 +179,7 @@ func make_path(target):
 
 func _on_path_update_timer_timeout():
 	make_path(target)
+
+
+func _on_tree_exiting():
+	spawner.enemy_died()
