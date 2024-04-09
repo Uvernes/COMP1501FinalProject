@@ -106,10 +106,9 @@ func attempt_base_claim():
 	if $ResourceManager.attempt_base_purchase() == true:
 		base.build()
 		$HUD.update_all_resources($ResourceManager.resources)
-	
+
 
 func handle_room_change():
-	return
 	room = gameMap.cur_room
 	room.connect("player_close_to_exit",handle_player_close_to_exit)
 	base = room.get_node_or_null("Base")
