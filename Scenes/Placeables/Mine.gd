@@ -1,7 +1,7 @@
 extends "res://Scenes/Placeables/Placeable.gd"
 
 const max_damage = 120 #multiplied by very small numberw
-const knockback_force = 820
+const knockback_force = 800
 var in_blast_radius
 # Called when the node enters the scene tree for the first time.
 func _ready():
