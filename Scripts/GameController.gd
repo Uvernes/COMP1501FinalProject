@@ -97,6 +97,7 @@ func handle_upgrade(type):
 			player.increase_damage(1)
 		$HUD.update_all_resources($ResourceManager.resources)
 
+
 func attempt_base_claim():
 	if $ResourceManager.attempt_base_purchase() == true:
 		base.build()
@@ -111,12 +112,28 @@ func handle_room_change():
 	if base != null:
 		base.connect("fully_heal_player", heal_player.bind(1000))
 		base.connect("attempt_claim", attempt_base_claim)
-	
+
+
 func handle_player_close_to_exit(state):
 	$HUD.show_warning(state)
 
+
+# Handling for a room entered for the first time
+func handle_room_entered_first_time():
+	$HUD.update_rooms_visited()
+
+
+# TODO. Finish implementing. Need ability to capture bases first.
+func handle_base_captured(room):
+	print("Base captured!")
+	$HUD.update_bases_captured()
+	
+	# TODO - check if game won!
+	
+
 func heal_player(amount):
 	player.heal(amount)
+
 
 func update_enemy_death_count(enemy_difficulty):
 	enemy_death_count += 1

@@ -367,6 +367,16 @@ func _on_build_removed(build):
 	room_index_to_builds[cur_room_index].erase(build.position)
 
 
+func _on_cur_room_base_status_changed(new_status):
+	if new_status == "safe":
+		_handle_cur_room_base_captured()
+
+
+func _handle_cur_room_base_captured():
+	room_index_with_base_to_captured[cur_room_index] = true
+	get_parent().handle_base_captured(cur_room)
+
+
 # Initialize the room just entered (either at start of the game or when entered from a dif. room).
 # Initialization involves:'
 # -Create room instance
@@ -376,8 +386,10 @@ func _on_build_removed(build):
 func init_new_room(room_index, entrance):		
 	#print("Entered:")
 	#print(room_index)
-	# Mark room as visited
-	room_index_to_visited[room_index] = true
+	# Mark room as visited if not already visited, and let game controller know.
+	if not room_index_to_visited[room_index]:
+		room_index_to_visited[room_index] = true
+		get_parent().handle_room_entered_first_time()
 	#print(room_index_to_visited)
 	
 	# Create instance of room just entered
@@ -391,6 +403,11 @@ func init_new_room(room_index, entrance):
 	cur_room = load(cur_room_scene_path).instantiate()
 	call_deferred("add_child", cur_room)
 	#add_child(cur_room)
+	
+	# Set up any required connections
+	# If room has a base, connect to its status changes to know when its captured
+	if cur_room.base:
+		cur_room.base.status_changed.connect(_on_cur_room_base_status_changed)
 	
 	#print("in init_new_room...")
 	#print(is_tutorial_room)
@@ -517,3 +534,28 @@ func handle_room_exit(direction):
 	
 	init_new_room(new_room_index, entrance)
 	room_changed.emit()
+
+
+func total_rooms():
+	return n_rows * n_cols + tutorial_rooms.size()
+
+
+func total_bases():
+	return room_index_with_base_to_captured.size()
+	
+
+func get_num_rooms_visited():
+	var num_rooms_visited = 0
+	for index in room_index_to_visited:
+		if room_index_to_visited[index]:
+			num_rooms_visited += 1
+	return num_rooms_visited
+
+
+func get_num_bases_captured():
+	var num_bases_captured = 0
+	for index in room_index_with_base_to_captured:
+		if room_index_with_base_to_captured[index]:
+			num_bases_captured += 1
+	return num_bases_captured
+	

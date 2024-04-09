@@ -1009,6 +1009,55 @@ text = "Warning! Leaving while your base is under attack will reset it."
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="ProgressDisplay" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0.662745)
+layout_mode = 3
+anchors_preset = 0
+
+[node name="RoomsVisited" type="Control" parent="ProgressDisplay"]
+anchors_preset = 0
+offset_left = 94.0
+offset_top = 180.0
+offset_right = 134.0
+offset_bottom = 220.0
+
+[node name="TextLabel" type="Label" parent="ProgressDisplay/RoomsVisited"]
+layout_mode = 0
+offset_left = -73.0
+offset_top = -5.0
+offset_right = 87.0
+offset_bottom = 14.0
+text = "Rooms Visited:"
+
+[node name="NumbersLabel" type="Label" parent="ProgressDisplay/RoomsVisited"]
+offset_left = 37.0
+offset_top = -4.0
+offset_right = 78.0
+offset_bottom = 15.0
+text = "0/10"
+
+[node name="BasesCaptured" type="Control" parent="ProgressDisplay"]
+anchors_preset = 0
+offset_left = 67.0
+offset_top = 203.0
+offset_right = 107.0
+offset_bottom = 243.0
+
+[node name="TextLabel" type="Label" parent="ProgressDisplay/BasesCaptured"]
+layout_mode = 0
+offset_left = -55.0
+offset_top = -10.0
+offset_right = 62.0
+offset_bottom = 9.0
+text = "Bases captured:"
+
+[node name="NumbersLabel" type="Label" parent="ProgressDisplay/BasesCaptured"]
+offset_left = 64.0
+offset_top = -9.0
+offset_right = 105.0
+offset_bottom = 10.0
+text = "0/5"
+
 [connection signal="timeout" from="HideBuildSidebarTimer" to="." method="_on_hide_build_sidebar_timer_timeout"]
 [connection signal="focus_entered" from="UpgradeMenu" to="." method="_on_upgrade_menu_focus_entered"]
 [connection signal="pressed" from="UpgradeMenu/UpgradeHealth/Button" to="." method="_on_health_button_pressed"]

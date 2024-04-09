@@ -37,3 +37,4 @@ color = Color(0.0196078, 0.0196078, 0.0196078, 1)
 [connection signal="player_death" from="Player" to="." method="_handle_player_death"]
 [connection signal="ready" from="Player" to="HUD" method="_on_player_ready"]
 [connection signal="stamina_changed" from="Player" to="HUD" method="_on_player_stamina_changed"]
+[connection signal="ready" from="GameMap" to="HUD" method="_on_game_map_ready"]

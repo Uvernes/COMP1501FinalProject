@@ -5,6 +5,7 @@ signal stamina_button_pressed()
 signal dmg_button_pressed()
 
 var player
+var game_map
 var base
 var can_open_upgrade_menu
 var can_build_base
@@ -16,6 +17,7 @@ func _ready():
 	$Warning.hide()
 	$BuildSidebar.hide()
 	player = get_parent().get_node("Player")
+	game_map = get_parent().get_node("GameMap")
 	can_open_upgrade_menu = false
 	can_build_base = false
 	upgrade_menu_open = false
@@ -46,6 +48,13 @@ func _on_player_ready():
 	_on_player_mode_changed(player.cur_mode)
 	_on_player_build_selection_changed(player.cur_build_selection)
 	update_all_resources(get_parent().get_node("ResourceManager").resources)
+
+
+# Init HUD progress display using the initialized values of the game map
+func _on_game_map_ready():
+	update_rooms_visited()
+	update_bases_captured()
+
 
 func _on_player_health_changed(new_health):
 	$HealthBar.value = new_health
@@ -107,6 +116,17 @@ func update_all_resources(resource_amounts: Dictionary):
 	$ResourceDisplay/Leaves/Label.text = "Leaves: " + str(resource_amounts["leaves"])
 	$ResourceDisplay/Wood/Label.text = "Wood: " + str(resource_amounts["wood"])
 	$ResourceDisplay/Mobdrops/Label.text = "Mobdrops: " + str(resource_amounts["mobdrops"])
+
+
+func update_rooms_visited():
+	$ProgressDisplay/RoomsVisited/NumbersLabel.text = \
+		str(game_map.get_num_rooms_visited()) + "/" + str(game_map.total_rooms())
+
+
+func update_bases_captured():
+	$ProgressDisplay/BasesCaptured/NumbersLabel.text = \
+		str(game_map.get_num_bases_captured()) + "/" + str(game_map.total_bases())
+
 
 #updates if the upgrade menu can be opened
 func update_upgrade_menu_open(state):
