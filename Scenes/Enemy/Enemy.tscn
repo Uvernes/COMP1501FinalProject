@@ -1,14 +1,32 @@
-[gd_scene load_steps=8 format=3 uid="uid://cbej05v14rtms"]
+[gd_scene load_steps=13 format=3 uid="uid://cbej05v14rtms"]
 
 [ext_resource type="Script" path="res://Scenes/Enemy/Enemy.gd" id="1_2m10n"]
 [ext_resource type="PackedScene" uid="uid://b6imdyagxnjg7" path="res://Scenes/Resources/resource.tscn" id="2_jdubo"]
-[ext_resource type="Texture2D" uid="uid://doylxy08g5a0d" path="res://PrototypeAssets/red.png" id="3_v1uwv"]
+[ext_resource type="Texture2D" uid="uid://b5mmkqcewmlt8" path="res://Assets/Bugs/Ants/empty.png" id="3_201g4"]
+[ext_resource type="Texture2D" uid="uid://ddj3feqflay24" path="res://Assets/Bugs/EnemyAnt/antlegs2.png" id="4_f4iho"]
 [ext_resource type="Script" path="res://Scenes/Enemy/EnemyHead.gd" id="4_s6wme"]
-[ext_resource type="Texture2D" uid="uid://bqxm7whjg8o2s" path="res://PrototypeAssets/ants/redAntHead.png" id="5_rvtii"]
+[ext_resource type="Texture2D" uid="uid://bct2dv52nhaa3" path="res://Assets/Bugs/EnemyAnt/antlegs.png" id="5_4oqiw"]
+[ext_resource type="Texture2D" uid="uid://b1ayvmfonexkp" path="res://Assets/Bugs/EnemyAnt/antthorax.png" id="6_wiqsq"]
+[ext_resource type="Texture2D" uid="uid://ypywnem6you" path="res://Assets/Bugs/EnemyAnt/antabdomen.png" id="7_cg6uo"]
+[ext_resource type="Texture2D" uid="uid://brvqokfrkkdo8" path="res://Assets/Bugs/EnemyAnt/anthead-red.png" id="9_v7v0r"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ln52u"]
 radius = 15.0
 height = 52.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kmu8x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_f4iho")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_4oqiw")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5ojxr"]
 size = Vector2(12.4167, 16)
@@ -28,8 +46,28 @@ metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." groups=["Enemy"]]
 scale = Vector2(0.824219, 0.59375)
-texture = ExtResource("3_v1uwv")
+texture = ExtResource("3_201g4")
 metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(64.25, 39.25)
+rotation = 1.5708
+scale = Vector2(2.6, 2.6)
+sprite_frames = SubResource("SpriteFrames_kmu8x")
+animation = &"Walk"
+offset = Vector2(-15.0962, 21.6346)
+
+[node name="Thorax" type="Sprite2D" parent="."]
+position = Vector2(25, 0.0115929)
+rotation = 1.5708
+scale = Vector2(4, 4)
+texture = ExtResource("6_wiqsq")
+offset = Vector2(-0.00289807, 3.3105)
+
+[node name="Abdomen" type="Sprite2D" parent="Thorax"]
+position = Vector2(-0.00289796, 5.8105)
+texture = ExtResource("7_cg6uo")
+offset = Vector2(0.0282909, 3.99592)
 
 [node name="AttackTimer" type="Timer" parent="." groups=["Enemy"]]
 wait_time = 2.0
@@ -55,10 +93,10 @@ position = Vector2(11.5417, 0)
 shape = SubResource("RectangleShape2D_5ojxr")
 
 [node name="Sprite2D" type="Sprite2D" parent="EnemyHead"]
-position = Vector2(6, 0)
-rotation = 1.5708
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("5_rvtii")
+position = Vector2(10.6667, 0)
+rotation = -1.5708
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("9_v7v0r")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_postprocessing = 1
