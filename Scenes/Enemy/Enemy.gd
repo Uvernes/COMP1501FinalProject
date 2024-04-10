@@ -36,7 +36,7 @@ var spawner
 
 func _ready():
 	player = get_tree().get_current_scene().get_node("Player")
-	base = get_parent().get_parent().get_parent().get_node_or_null("Base")
+	base = get_parent().get_node_or_null("Base")
 	game_controller = get_tree().get_current_scene()
 	nav_agent = $NavigationAgent2D
 	
@@ -164,7 +164,7 @@ func start_attack_process():
 	# after timer, make everything resume
 	moving = true
 
-#called by base when enemy enters ita
+#called by base when enemy enters it
 func attack_base():
 	attacking_base = true
 	moving = false
@@ -182,4 +182,5 @@ func _on_path_update_timer_timeout():
 
 
 func _on_tree_exiting():
-	spawner.enemy_died()
+	if spawner != null:
+		spawner.enemy_died()

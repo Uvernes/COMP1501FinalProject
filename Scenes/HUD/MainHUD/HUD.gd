@@ -29,12 +29,15 @@ func _ready():
 	upgrade_menu_open = false
 
 func _process(_delta):
-	if $PopulationBar.is_visible():
-		$PopulationBar/WaveInfo.text = "Wave " + str(wave_num) + ": " + str(snapped($PopulationBar/WaveTimer.time_left, 0.01))
+	if $PopulationBar.is_visible() && wave_num <= max_waves:
+		$PopulationBar/WaveInfo.text = "Wave " + str(wave_num) + "/" + str(max_waves) + ": " + str(snapped($PopulationBar/WaveTimer.time_left, 0.01))
+	elif $PopulationBar.is_visible():
+		$PopulationBar/WaveInfo.text = "Waves Complete"
 
 func room_changed(base):
 	$PopulationBar.hide()
 	$Warning.hide()
+	self.base = base
 	if base != null:
 		base.connect("player_on_base", update_current_base.bind(base, true))
 		base.connect("player_off_base", update_current_base.bind(base,false))
@@ -161,11 +164,13 @@ func update_current_base(base, state):
 func base_status_changed(type):
 	if type == "safe":
 		can_open_upgrade_menu = true
-		$PopulationBar.hide()
-		$PopulationBar/WaveTimer.stop()
-		$PopulationBar/WaveTimer.wait_time = 20
+		#print("gave gamemap new room type")
 		game_map._on_cur_room_base_status_changed(type)
-		update_bases_captured()
+		$PopulationBar/WaveTimer.stop()
+		$PopulationBar/WaveTimer.wait_time = 3
+		if get_tree() != null:
+			await get_tree().create_timer(1.0).timeout
+		$PopulationBar.hide()
 		wave_num = 1
 	if type == "under attack":
 		$PopulationBar.show()
@@ -212,4 +217,7 @@ func _on_wave_timer_timeout():
 		wave_num += 1
 		$PopulationBar/WaveTimer.start()
 	else:
-		game_map.cur_room.get_node("Base").status_changed.emit("safe")
+		wave_num += 1 # to make WaveInfo display update in _process
+		#print("told everyone base changed to safe from HUD")
+		#base.status_changed.emit("safe")
+		base.becomeSafe()

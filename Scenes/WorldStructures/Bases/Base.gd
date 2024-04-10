@@ -120,8 +120,13 @@ func changeActiveStatus(status):
 		stopAllEnemyAttacks()
 
 func becomeSafe(): #can be called when re-entering a room with a claimed base
+	#print("base becoming safe")
 	active = true
 	safe = true
+	$ActivateBasePopUp.hide()
+	$Light.show()
+	current_pop = 100
+	update_sprite_based_on_population()
 	status_changed.emit("safe")#use to stop mob spawns, and update HUD
 
 func _input(ev):

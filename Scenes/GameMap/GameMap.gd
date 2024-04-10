@@ -192,36 +192,6 @@ func init_game_map():
 	init_new_room(starting_room_index, "left") 
 
 
-
-# OLD - completely open world version
-# Init the game map to be num_rows x num_cols in dimension.
-# All assumed to be 60x60 rooms for now
-#func init_game_map():
-	#for i in n_rows:
-		#for j in n_cols:
-			## Select and instance room to place at rooms[i][j]
-			## For now, starting room is in the top left corner. TODO - have it be in the center   
-			#var room_scene_path
-			#if i==0 and j==0:
-				#room_scene_path = room_scene_paths[0]
-			#else:
-				#room_scene_path = room_scene_paths.pick_random()
-			#var room_scene_instance = load(room_scene_path).instantiate()
-			## Calculate position based on size on row, col position,
-			## and size of tile cells (num cells assumed to be 60 for now
-			## tile_set_size should be the same for all rooms (64x64)
-			#var tile_set_size = room_scene_instance.tile_set.tile_size 
-			#var room_length_n_tiles = 60  # Again, num cells assumed to be 60 for now
-			#room_scene_instance.position = Vector2(
-				#room_length_n_tiles * tile_set_size.x * i,
-				#room_length_n_tiles * tile_set_size.y * j
-			#)
-			#print(room_scene_instance.position)
-			#add_child(room_scene_instance)
-	#
-	# For 
-
-
 func move_spawn_tile_to_cell_at_pos(pos):
 	var tile_coords_map = $BackgroundTileMap.local_to_map(pos)
 	var tile_coords_local = $BackgroundTileMap.map_to_local(tile_coords_map)
@@ -277,12 +247,6 @@ func move_hover_tile_to_moused_over_cell():
 	#print(new_hover_tile_coords)
 	#set_cell(2, new_hover_tile_coords, hover_tile_source_id, hover_tile_atlas_coords, 0)
 	#cur_hover_tile_coords = new_hover_tile_coords  # Update current hover tile coords
-
-
-# Check if mouse is in current room tilemap
-func _mouse_in_cur_room_tilemap():
-	cur_room
-	
 
 # Determines whether or not the given build can be placed on the tile where global_mouse_pos
 # is at (i.e where the hover tile is at).
@@ -375,13 +339,15 @@ func _on_build_removed(build):
 
 
 func _on_cur_room_base_status_changed(new_status):
+	#print("updating gameMap")
 	if new_status == "safe":
 		_handle_cur_room_base_captured()
 
 
 func _handle_cur_room_base_captured():
-	room_index_with_base_to_captured[cur_room_index] = true
-	get_parent().handle_base_captured(cur_room)
+	if room_index_with_base_to_captured[cur_room_index] != true:
+		room_index_with_base_to_captured[cur_room_index] = true
+		get_parent().handle_base_captured(cur_room)
 
 
 # Initialize the room just entered (either at start of the game or when entered from a dif. room).
@@ -390,7 +356,7 @@ func _handle_cur_room_base_captured():
 # -Have exits open only where valid and closed elsewhere
 # -Have player enter room from direction they were travelling
 # -Create any pre-existing builds the player has in the room entered (i.e if revisiting a room)
-func init_new_room(room_index, entrance):		
+func init_new_room(room_index, entrance):
 	#print("Entered:")
 	#print(room_index)
 	# Mark room as visited if not already visited, and let game controller know.
@@ -412,9 +378,10 @@ func init_new_room(room_index, entrance):
 	#add_child(cur_room)
 	
 	# Set up any required connections
-	# If room has a base, connect to its status changes to know when its captured
-	if cur_room.base:
-		cur_room.base.status_changed.connect(_on_cur_room_base_status_changed)
+	# If room has a base, check if it needs to be considered safe
+	if cur_room.get_node_or_null("Base"):
+		if room_index_with_base_to_captured[cur_room_index]:
+			cur_room.base_is_safe = true
 	
 	#print("in init_new_room...")
 	#print(is_tutorial_room)

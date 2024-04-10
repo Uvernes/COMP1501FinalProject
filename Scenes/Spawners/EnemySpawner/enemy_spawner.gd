@@ -3,7 +3,7 @@ extends Node2D
 
 @export var spawn_delay: float
 @export var max_enemy_count: int
-var original_max_enemy_count = max_enemy_count
+var original_max_enemy_count
 
 @export var include_melee: bool = false
 @export var include_ranged: bool = false
@@ -30,7 +30,11 @@ var cur_enemy_count = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#player = get_tree().get_current_scene().get_node("Player")
+	if spawn_delay == 0:
+		spawn_delay = 8
+	if max_enemy_count == 0:
+		max_enemy_count = 4
+	original_max_enemy_count = max_enemy_count
 	$SpawnTimer.wait_time = spawn_delay
 	$SpawnTimer.start()
 	base = get_parent().get_parent().get_node_or_null("Base")
@@ -88,6 +92,4 @@ func _on_wave_timer_timeout():
 		$SpawnTimer.wait_time = $SpawnTimer.wait_time - 1
 		max_enemy_count += 1
 		wave_countdown -= 1
-		$IntermissionTimer.start()
-		await $IntermissionTimer.timeout
 		$WaveTimer.start()

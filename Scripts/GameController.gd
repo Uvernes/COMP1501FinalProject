@@ -86,9 +86,9 @@ func _on_player_delete_requested(_global_mouse_pos):
 
 
 func _handle_player_death():
-		#game over
-		#print("Player died: Game Over")
-		tree.change_scene_to_file("res://Scenes/Menus/MainMenu/MainMenu.tscn")
+	#game over
+	#print("Player died: Game Over")
+	tree.change_scene_to_file("res://Scenes/Menus/MainMenu/MainMenu.tscn")
 
 
 func handle_upgrade(type):
@@ -117,7 +117,7 @@ func handle_room_change():
 		base.connect("fully_heal_player", heal_player.bind(1000))
 		base.connect("attempt_claim", attempt_base_claim)
 
-
+# handles by room controller
 func handle_player_close_to_exit(state):
 	$HUD.show_warning(state)
 
@@ -129,7 +129,7 @@ func handle_room_entered_first_time():
 
 # TODO. Finish implementing. Need ability to capture bases first.
 func handle_base_captured(room):
-	print("Base captured!")
+	#print("Base captured!")
 	$HUD.update_bases_captured()
 	
 	if $GameMap.is_game_won():
@@ -138,7 +138,7 @@ func handle_base_captured(room):
 
 # TODO - implement
 func handle_game_won():
-	pass
+	tree.change_scene_to_file("res://Scenes/Menus/MainMenu/MainMenu.tscn")
 
 func heal_player(amount):
 	player.heal(amount)

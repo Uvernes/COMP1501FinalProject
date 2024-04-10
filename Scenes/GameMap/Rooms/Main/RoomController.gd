@@ -10,6 +10,7 @@ signal player_close_to_exit(state)
 
 var player
 var base
+var base_is_safe = false
 var exits = [] #list of all open exits
 const exit_range = 150
 
@@ -23,9 +24,10 @@ var already_unwarned
 func _ready():
 	player = get_parent().get_parent().get_node("Player")
 	base = get_node_or_null("Base")
-	exits = []
 	already_warned = false
 	already_unwarned = false
+	if base_is_safe:
+		base.becomeSafe()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -35,14 +37,14 @@ func _process(_delta):
 func add_exit(type):
 	if exits != null:
 		exits.append(get_node("Entrances").get_node(type).position)
-	
+
 #checks if the player is close to an open exit
 #sends signal to game controller if base is under attack to show/hide leaving warning
 #should only send signal if it hasn't already been sent
 func check_if_close_to_exit():
 	var close = false
 	for i in exits.size():
-		if player.position.x > exits[i].x - exit_range && player.position.x < exits[i].x + exit_range && player.position.y > exits[i].y - exit_range && player.position.y < exits[i].y + exit_range:
+		if ((player.position.x > exits[i].x - exit_range) && (player.position.x < exits[i].x + exit_range) && (player.position.y > exits[i].y - exit_range) && (player.position.y < exits[i].y + exit_range)):
 			close = true
 			if base != null:
 				if !base.safe && base.active:
