@@ -177,6 +177,8 @@ func base_status_changed(type):
 		$PopulationBar/WaveTimer.start()
 		max_waves = (2 * game_map.get_num_bases_captured() + 3)
 	if type == "inactive":
+		$PopulationBar/WaveTimer.stop()
+		$PopulationBar/WaveTimer.wait_time = 15
 		can_open_upgrade_menu = false
 		$PopulationBar.hide()
 		wave_num = 1
