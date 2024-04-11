@@ -166,32 +166,32 @@ position = Vector2(352, 1760)
 
 [node name="EnemySpawner" parent="EnemySpawnerStorage" instance=ExtResource("7_ubftg")]
 position = Vector2(1504, -352)
-spawn_delay = 25.0
+spawn_delay = 3.0
 max_enemy_count = 3
 
 [node name="EnemySpawner2" parent="EnemySpawnerStorage" instance=ExtResource("7_ubftg")]
 position = Vector2(864, 1376)
-spawn_delay = 14.0
+spawn_delay = 3.0
 max_enemy_count = 3
 
 [node name="EnemySpawner3" parent="EnemySpawnerStorage" instance=ExtResource("7_ubftg")]
 position = Vector2(-1120, 1568)
-spawn_delay = 10.0
+spawn_delay = 5.0
 max_enemy_count = 4
 
 [node name="EnemySpawner4" parent="EnemySpawnerStorage" instance=ExtResource("7_ubftg")]
 position = Vector2(32, -1312)
-spawn_delay = 15.0
+spawn_delay = 5.0
 max_enemy_count = 4
 
 [node name="EnemySpawner5" parent="EnemySpawnerStorage" instance=ExtResource("7_ubftg")]
 position = Vector2(-1568, -1120)
-spawn_delay = 19.0
+spawn_delay = 9.0
 max_enemy_count = 4
 
 [node name="EnemySpawner6" parent="EnemySpawnerStorage" instance=ExtResource("7_ubftg")]
 position = Vector2(-1376, 32)
-spawn_delay = 18.0
+spawn_delay = 10.0
 max_enemy_count = 4
 
 [node name="EnemySpawner7" parent="EnemySpawnerStorage" instance=ExtResource("7_ubftg")]
@@ -201,22 +201,22 @@ max_enemy_count = 4
 
 [node name="EnemySpawner8" parent="EnemySpawnerStorage" instance=ExtResource("7_ubftg")]
 position = Vector2(-800, 992)
-spawn_delay = 19.0
+spawn_delay = 6.0
 max_enemy_count = 4
 
 [node name="EnemySpawner9" parent="EnemySpawnerStorage" instance=ExtResource("7_ubftg")]
 position = Vector2(1568, 544)
-spawn_delay = 20.0
+spawn_delay = 16.0
 max_enemy_count = 4
 
 [node name="EnemySpawner10" parent="EnemySpawnerStorage" instance=ExtResource("7_ubftg")]
 position = Vector2(1632, -736)
-spawn_delay = 25.0
+spawn_delay = 20.0
 max_enemy_count = 4
 
 [node name="EnemySpawner11" parent="EnemySpawnerStorage" instance=ExtResource("7_ubftg")]
 position = Vector2(224, -1696)
-spawn_delay = 30.0
+spawn_delay = 25.0
 max_enemy_count = 4
 
 [node name="StructureStorage" type="Node2D" parent="."]

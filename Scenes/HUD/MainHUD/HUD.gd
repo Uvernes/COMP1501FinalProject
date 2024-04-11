@@ -167,7 +167,7 @@ func base_status_changed(type):
 		#print("gave gamemap new room type")
 		game_map._on_cur_room_base_status_changed(type)
 		$PopulationBar/WaveTimer.stop()
-		$PopulationBar/WaveTimer.wait_time = 3
+		$PopulationBar/WaveTimer.wait_time = 15
 		if get_tree() != null:
 			await get_tree().create_timer(1.0).timeout
 		$PopulationBar.hide()

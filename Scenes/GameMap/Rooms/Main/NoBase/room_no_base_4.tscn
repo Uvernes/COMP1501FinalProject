@@ -109,27 +109,27 @@ position = Vector2(-480, 672)
 
 [node name="EnemySpawner" parent="EnemySpawnerStorage" instance=ExtResource("8_cvu4a")]
 position = Vector2(352, -544)
-spawn_delay = 20.0
+spawn_delay = 5.0
 max_enemy_count = 4
 
 [node name="EnemySpawner3" parent="EnemySpawnerStorage" instance=ExtResource("8_cvu4a")]
 position = Vector2(-1696, -1632)
-spawn_delay = 20.0
+spawn_delay = 5.0
 max_enemy_count = 4
 
 [node name="EnemySpawner4" parent="EnemySpawnerStorage" instance=ExtResource("8_cvu4a")]
 position = Vector2(864, -1504)
-spawn_delay = 20.0
+spawn_delay = 8.0
 max_enemy_count = 4
 
 [node name="EnemySpawner5" parent="EnemySpawnerStorage" instance=ExtResource("8_cvu4a")]
 position = Vector2(-1248, 480)
-spawn_delay = 20.0
+spawn_delay = 12.0
 max_enemy_count = 4
 
 [node name="EnemySpawner6" parent="EnemySpawnerStorage" instance=ExtResource("8_cvu4a")]
 position = Vector2(352, 1376)
-spawn_delay = 20.0
+spawn_delay = 16.0
 max_enemy_count = 4
 
 [node name="EnemySpawner7" parent="EnemySpawnerStorage" instance=ExtResource("8_cvu4a")]

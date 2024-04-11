@@ -23,7 +23,7 @@ var base
 var difficulty
 var wave_countdown
 var max_wave_options = [3, 5, 7, 9, 11]
-var spawn_interval_options = [10, 11, 13, 15, 15] # 3, 2, 2, 1, 1
+var spawn_interval_options = [10, 9, 11, 12, 13] # 7, 4, 4, 3, 2
 
 # set difficulty based on how many rooms captured from bottom of GameMap
 var cur_enemy_count = 0
